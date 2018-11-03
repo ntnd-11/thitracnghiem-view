@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
@@ -16,7 +18,7 @@
             </nav>
             <div class="credits ml-auto">
               <span class="copyright">
-                ©
+                Â©
                 <script>
                   document.write(new Date().getFullYear())
                 </script>, made with <i class="fa fa-heart heart"></i> by Group 2 Website
