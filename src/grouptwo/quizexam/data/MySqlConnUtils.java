@@ -44,7 +44,7 @@ public class MySqlConnUtils {
 	
 	
 	
-/*	public static void main(String[] args) {
+	public static void main(String[] args) {
 		try {
 			Connection conn = MySqlConnUtils.getConnection();
 			if(conn!=null) {
@@ -60,5 +60,5 @@ public class MySqlConnUtils {
 			System.out.println("Failed " +e);
 		}
 		
-	}*/
+	}
 }
