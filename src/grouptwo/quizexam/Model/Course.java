@@ -1,15 +1,41 @@
-package grouptwo.quizexam.beans;
+package grouptwo.quizexam.Model;
 
-import java.time.DayOfWeek;
 import java.util.Date;
 
 public class Course {
 	
-	public int getSubject() {
-		return subject;
+	public Course() {
 	}
-	public void setSubject(int subject) {
-		this.subject = subject;
+	public Course(int subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, int partOfStarting,
+			int partOfEnding, int numberOfStudent, String room, boolean activate, String teacher) {
+		this.subjectId = subjectId;
+		this.dateOfStarting = dateOfStarting;
+		this.dateOfEnding = dateOfEnding;
+		this.dateOfWeek = dateOfWeek;
+		this.partOfStarting = partOfStarting;
+		this.partOfEnding = partOfEnding;
+		this.numberOfStudent = numberOfStudent;
+		this.room = room;
+		this.activate = activate;
+		this.teacher = teacher;
+	}
+
+	private int subjectId;
+	private Date dateOfStarting;
+	private Date dateOfEnding;
+	private String dateOfWeek;
+	private int partOfStarting;
+	private int partOfEnding;
+	private int numberOfStudent;
+	private String room;
+	private boolean activate;
+	private String teacher;
+
+	public int getSubjectId() {
+		return subjectId;
+	}
+	public void setSubjectId(int subjectId) {
+		this.subjectId = subjectId;
 	}
 	public Date getDateOfStarting() {
 		return dateOfStarting;
@@ -23,10 +49,10 @@ public class Course {
 	public void setDateOfEnding(Date dateOfEnding) {
 		this.dateOfEnding = dateOfEnding;
 	}
-	public DayOfWeek getDateOfWeek() {
+	public String getDateOfWeek() {
 		return dateOfWeek;
 	}
-	public void setDateOfWeek(DayOfWeek dateOfWeek) {
+	public void setDateOfWeek(String dateOfWeek) {
 		this.dateOfWeek = dateOfWeek;
 	}
 	public int getPartOfStarting() {
@@ -59,23 +85,13 @@ public class Course {
 	public void setActivate(boolean activate) {
 		this.activate = activate;
 	}
-	public int getTeacher() {
+	public String getTeacher() {
 		return teacher;
 	}
-	public void setTeacher(int teacher) {
+	public void setTeacher(String teacher) {
 		this.teacher = teacher;
 	}
-	private int subject;
-	private Date dateOfStarting;
-	private Date dateOfEnding;
-	private DayOfWeek dateOfWeek;
-	private int partOfStarting;
-	private int partOfEnding;
-	private int numberOfStudent;
-	private String room;
-	private boolean activate;
-	private int teacher;
-	
+
 	
 	
 	
