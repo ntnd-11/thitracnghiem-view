@@ -2,7 +2,7 @@ package grouptwo.quizexam.controller;
 
 import java.util.List;
 
-import grouptwo.quizexam.Model.Course;
+import grouptwo.quizexam.model.Course;
 import grouptwo.quizexam.service.CourseService;
 
 public class Cdiejfie {
@@ -13,7 +13,7 @@ public class Cdiejfie {
 		List<Course> test = courseService.getAllCourse();
 		for(Course a : test)
 		{
-			System.out.println(a.getTeacher());
+			System.out.println(a.getDateOfStarting());
 		}
 	}
 

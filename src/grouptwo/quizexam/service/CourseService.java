@@ -1,12 +1,10 @@
 package grouptwo.quizexam.service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.DayOfWeek;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import grouptwo.quizexam.Model.Course;
+import grouptwo.quizexam.model.Course;
 
 
 public class CourseService extends BaseService {
@@ -44,6 +42,28 @@ public class CourseService extends BaseService {
 		
 	}
 	public Course getCourseById(int id) {
+		String query = "Select * from classes where Id = " +id;
+		try
+		{
+			ResultSet rs = excuteQuery(query);
+			Course course = new Course(
+					rs.getInt(2),
+					rs.getDate(3),
+					rs.getDate(4),
+					rs.getString(5),
+					rs.getInt(6),
+					rs.getInt(7),
+					rs.getInt(8),
+					rs.getString(9),
+					rs.getBoolean(10),
+					rs.getString(11));
+			return course;
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+
+		}
 		return null;
 	}
 	public Course getCourseByName(String subject) {
@@ -54,7 +74,16 @@ public class CourseService extends BaseService {
 	}
 	public boolean updateCourse(Course course)
 	{
-		return false;
+		String query ="INSERT INTO Classes VALUES (?,?,?,?,?)";
+		boolean action = false;
+		try {
+			//ResultSet rs = excuteQuery(query);
+			
+		}catch(Exception e) {
+			
+		}
+	
+		return action;
 	}
 	public boolean addCourse(Course course) {
 		return false;
