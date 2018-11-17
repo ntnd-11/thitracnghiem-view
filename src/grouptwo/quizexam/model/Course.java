@@ -1,4 +1,4 @@
-package grouptwo.quizexam.Model;
+package grouptwo.quizexam.model;
 
 import java.util.Date;
 
@@ -30,7 +30,7 @@ public class Course {
 	private String room;
 	private boolean activate;
 	private String teacher;
-
+	
 	public int getSubjectId() {
 		return subjectId;
 	}
