@@ -1,4 +1,4 @@
-// default package
+package grouptwo.quizexam.Model;
 // Generated Nov 17, 2018, 5:02:38 PM by Hibernate Tools 5.3.6.Final
 
 import java.util.HashSet;
