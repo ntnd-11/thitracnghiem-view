@@ -1,8 +1,8 @@
-package grouptwo.quizexam.Model;
+package grouptwo.quizexam.model;
 
 import java.util.Date;
 
-public class exam {
+public class Exam {
 
 	private int id;
 	private String name;

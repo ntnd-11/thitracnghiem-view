@@ -25,4 +25,12 @@ public class BaseService {
  
         return stmt.executeQuery(query);
 	}
+	protected boolean executeUpdate(String query) throws SQLException
+	{
+		Statement stmt = conn.createStatement();
+ 
+        return stmt.execute(query);
+        
+	}
+
 }
