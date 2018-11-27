@@ -28,4 +28,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>WebContent/WEB-INF/libs/mysql-connector-java-5.1.47.jar</name>
+			<type>1</type>
+			<location>D:/Web/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47.jar</location>
+		</link>
+	</linkedResources>
 </projectDescription>

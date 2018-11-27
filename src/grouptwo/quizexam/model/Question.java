@@ -1,6 +1,6 @@
-package grouptwo.quizexam.Model;
+package grouptwo.quizexam.model;
 
-public class questions {
+public class Question {
 
 	private int id;
 	private String question;

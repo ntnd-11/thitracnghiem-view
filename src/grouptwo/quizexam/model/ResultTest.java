@@ -1,6 +1,6 @@
-package grouptwo.quizexam.Model;
+package grouptwo.quizexam.model;
 
-public class resulttests {
+public class ResultTest {
 
 	private int id;
 	private int score;
