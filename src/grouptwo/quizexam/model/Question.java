@@ -24,13 +24,13 @@ public class Question {
 		this.correctAnswerID = correctAnswerID;
 	}
 	public Question( String question, String image, String level,String creatorID,
-			int correctAnswerID, int questionCategoryID) {
+			 int questionCategoryID) {
 		this.question = question;
 		this.image = image;
 		this.level = level;
 		this.questionCategoryID = questionCategoryID;
 		this.creatorID = creatorID;
-		this.correctAnswerID = correctAnswerID;
+		
 	}
 	public void setId(int id) {
 		this.id = id;

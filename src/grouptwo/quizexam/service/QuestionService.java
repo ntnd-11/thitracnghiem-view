@@ -124,15 +124,19 @@ public class QuestionService extends BaseService {
 	}
 
 	public boolean addQuestions(Question question) {
-		String query="Insert into questions (Question,Image,Level,Creator,CorrectAnswer,QuestionCategoryId)"
-				+"values (?,?,?,?,?,?)";
+		String query="Insert into questions (Question,Image,Level,Creator,QuestionCategory)"
+				+"values (?,?,?,?,?)";
 	List<Object> params= new ArrayList<>();
+	
 	params.add(question.getQuestion());
 	params.add(question.getImage());
 	params.add(question.getLevel());
 	params.add(question.getCreatorID());
-	params.add(question.getCorrectAnswerID());
 	params.add(question.getQuestionCategoryID());
+	for(Object c:params)
+	{
+		System.out.println(c+"");
+	}
 	try {
 		boolean action = executeUpdate(query, params);
 		return action;

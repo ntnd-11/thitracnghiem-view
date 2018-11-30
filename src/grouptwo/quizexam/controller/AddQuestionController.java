@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import grouptwo.quizexam.model.Question;
 import grouptwo.quizexam.model.Questioncategorie;
 import grouptwo.quizexam.service.BaseService;
+import grouptwo.quizexam.service.QuestionService;
 import grouptwo.quizexam.service.QuestioncategorieService;
 
 
@@ -20,10 +22,11 @@ public class AddQuestionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	QuestioncategorieService _questioncategorieService;
-	
+	QuestionService _questionService;
     public AddQuestionController() {
         super();
         _questioncategorieService = new QuestioncategorieService();
+        _questionService= new QuestionService();
     }
 
 
@@ -44,7 +47,7 @@ public class AddQuestionController extends HttpServlet {
 		String ans2=request.getParameter("ans2");
 		String ans3=request.getParameter("ans3");
 		String ans4=request.getParameter("ans4");
-
+		//String url
 		String categories=request.getParameter("categories");
 		String question=request.getParameter("question");
 		String level=request.getParameter("radLevel");
@@ -60,7 +63,9 @@ public class AddQuestionController extends HttpServlet {
 			level="Khó";
 			break;
 		}
-		_que
+		
+		_questionService.addQuestions(new Question(question, "", level, null, Integer.parseInt(categories)));
+		
 		
 		
 		
