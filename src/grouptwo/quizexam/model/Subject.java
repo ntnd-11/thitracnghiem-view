@@ -1,46 +1,53 @@
 package grouptwo.quizexam.model;
 
-
 public class Subject {
-
-	private Integer id;
-	private String name;
-	private String faculty;
-	private int credit;
-	private String type;
-	private byte activate;
 
 	public Subject() {
 	}
-
-	public Subject(String name, String faculty, int credit, String type, byte activate) {
-		this.name = name;
+	public Subject( String subjectName, String faculty, int credit, String type, boolean activity) {
+		super();
+		this.subjectName = subjectName;
 		this.faculty = faculty;
 		this.credit = credit;
 		this.type = type;
-		this.activate = activate;
+		this.activity = activity;
 	}
 
-
-
-	public Integer getId() {
-		return this.id;
+	public Subject(int subjectID, String subjectName, String faculty, int credit, String type, boolean activity) {
+		super();
+		this.subjectID = subjectID;
+		this.subjectName = subjectName;
+		this.faculty = faculty;
+		this.credit = credit;
+		this.type = type;
+		this.activity = activity;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	private int subjectID;
+	private String subjectName;
+	private String faculty;
+	private int credit;
+	private String type;
+	private boolean activity;
+
+	public int getSubjectID() {
+		return subjectID;
 	}
 
-	public String getName() {
-		return this.name;
+	public void setSubjectID(int subjectID) {
+		this.subjectID = subjectID;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
 	}
 
 	public String getFaculty() {
-		return this.faculty;
+		return faculty;
 	}
 
 	public void setFaculty(String faculty) {
@@ -48,7 +55,7 @@ public class Subject {
 	}
 
 	public int getCredit() {
-		return this.credit;
+		return credit;
 	}
 
 	public void setCredit(int credit) {
@@ -56,21 +63,19 @@ public class Subject {
 	}
 
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(String type) {
 		this.type = type;
 	}
 
-	public byte getActivate() {
-		return this.activate;
+	public boolean isActivity() {
+		return activity;
 	}
 
-	public void setActivate(byte activate) {
-		this.activate = activate;
+	public void setActivity(boolean activity) {
+		this.activity = activity;
 	}
-
-
 
 }

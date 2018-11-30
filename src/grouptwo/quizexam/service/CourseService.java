@@ -70,20 +70,21 @@ public class CourseService extends BaseService {
 		return null;
 	}
 	public boolean deleteCourse(int id) {
-		/*String query = "DELETE FROM onlinequiz.CLASSES WHERE Id = ?";
+		String query = "DELETE FROM onlinequiz.CLASSES WHERE Id = ?";
 		
-		List<String> params = new ArrayList<>();
-		params.add(id +"");
+		List<Object> params = new ArrayList<>();
+		params.add(id);
 		try {
-			return executeUpdate(query, params);
+			boolean action = executeUpdate(query, params);
+			return action;
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}*/
+		}
 		return false;
 	}
 	public boolean updateCourse(Course course)
 	{
-		/*String query = "UPDATE onlinequiz.CLASSES SET Subject=?,"
+		String query = "UPDATE onlinequiz.CLASSES SET Subject=?,"
 				+ "DateOfStarting=?,"
 				+ "DateOfEnding=?,"
 				+ "DateOfWeek=?,"
@@ -92,24 +93,25 @@ public class CourseService extends BaseService {
 				+ "Room = ? ,Activate = ?,"
 				+ "Teacher = ? "
 				+ "WHERE Id=?";
-		List<String> params = new ArrayList<>();
-		params.add(course.getSubjectId()+"");
-		params.add(course.getDateOfStarting()+"");
-		params.add(course.getDateOfEnding()+"");
-		params.add(course.getDateOfWeek()+"");
-		params.add(course.getPartOfStarting()+"");
-		params.add(course.getPartOfEnding()+"");
-		params.add(course.getPartOfEnding()+"");
-		params.add(course.getRoom()+"");
-		params.add(course.isActivate()+"");
-		params.add(course.getTeacher()+"");
-		params.add(course.getCourseId()+"");
+		List<Object> params = new ArrayList<>();
+		params.add(course.getSubjectId());
+		params.add(course.getDateOfStarting());
+		params.add(course.getDateOfEnding());
+		params.add(course.getDateOfWeek());
+		params.add(course.getPartOfStarting());
+		params.add(course.getPartOfEnding());
+		params.add(course.getPartOfEnding());
+		params.add(course.getRoom());
+		params.add(course.isActivate());
+		params.add(course.getTeacher());
+		params.add(course.getCourseId());
 
 		try {
-			return executeUpdate(query, params);
+			boolean action = executeUpdate(query, params);
+			return action;
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}*/
+		}
 		return false;
 
 	}
