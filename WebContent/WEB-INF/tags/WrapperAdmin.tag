@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8" />
 <link rel="apple-touch-icon" 
-	href="../assets/img/apple-icon.png">
-<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+	href="${pageContext.request.contextPath}/assets/img/apple-icon.png">
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/img/favicon.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>Trang quản lý</title>
 <meta
@@ -21,10 +21,10 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
 	rel="stylesheet">
 <!-- CSS Files -->
-<link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-<link href="../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="../assets/demo/demo.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -45,22 +45,22 @@
 
 
 			<!--   Core JS Files   -->
-			<script src="../assets/js/core/jquery.min.js"></script>
-			<script src="../assets/js/core/popper.min.js"></script>
-			<script src="../assets/js/core/bootstrap.min.js"></script>
-			<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+			<script src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js"></script>
+			<script src="${pageContext.request.contextPath}/assets/js/core/popper.min.js"></script>
+			<script src="${pageContext.request.contextPath}/assets/js/core/bootstrap.min.js"></script>
+			<script src="${pageContext.request.contextPath}/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 			<!--  Google Maps Plugin    -->
 			<script
 				src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 			<!-- Chart JS -->
-			<script src="../assets/js/plugins/chartjs.min.js"></script>
+			<script src="${pageContext.request.contextPath}/assets/js/plugins/chartjs.min.js"></script>
 			<!--  Notifications Plugin    -->
-			<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+			<script src="${pageContext.request.contextPath}/assets/js/plugins/bootstrap-notify.js"></script>
 			<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-			<script src="../assets/js/paper-dashboard.min.js?v=2.0.0"
+			<script src="${pageContext.request.contextPath}/assets/js/paper-dashboard.min.js?v=2.0.0"
 				type="text/javascript"></script>
 			<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-			<script src="../assets/demo/demo.js"></script>
+			<script src="${pageContext.request.contextPath}/assets/demo/demo.js"></script>
 			</div>
 			</div>
 </body>

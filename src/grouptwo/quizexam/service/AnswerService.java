@@ -12,7 +12,7 @@ public class AnswerService extends BaseService {
 		super();
 	}
 	public List<Answer> getAllAnswers() {
-		String query = "Select * from answers";
+		String query = "Select * from answer";
 		List<Answer> lstAnswers = new ArrayList<>();
 
 		try {

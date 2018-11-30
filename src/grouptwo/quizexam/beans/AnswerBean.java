@@ -7,16 +7,21 @@ import grouptwo.quizexam.service.AnswerService;
 
 public class AnswerBean {
 	private static List<Answer> lsQus;
-	private AnswerService ans;
-	public AnswerBean() {
+	private static AnswerService ans;
+	static {
 		ans=new AnswerService();
-		lsQus=ans.getAllAnswers();
+		setLsQus(ans.getAllAnswers());
 	}
-	public List<Answer> getLsQus() {
+	public AnswerBean() {
+		
+	}
+	public static List<Answer> getLsQus() {
 		return lsQus;
 	}
-	public void setLsQus(List<Answer> lsQus) {
-		this.lsQus = lsQus;
+	public static void setLsQus(List<Answer> lsQus) {
+		AnswerBean.lsQus = lsQus;
 	}
+
+
 
 }

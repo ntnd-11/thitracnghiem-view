@@ -8,6 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:useBean id="answers" class="grouptwo.quizexam.beans.AnswerBean">
+	</jsp:useBean>
+	<c:forEach items="${answers}" var="answer">
+		<p>${answer.id}</p>
+	</c:forEach>
 
 </body>
 </html>
