@@ -5,7 +5,6 @@ import java.util.Date;
 public class Profilemanager {
 
 	private String usersUserName;
-	private User user;
 	private String name;
 	private Date dateOfBirth;
 	private String gender;
@@ -14,18 +13,18 @@ public class Profilemanager {
 	private String image;
 	private byte showProfile;
 
-	public Profilemanager() {
-	}
+	
 
-	public Profilemanager(User user, String name, Date dateOfBirth, String gender, String email, String phoneNumber,
-			byte showProfile) {
-		this.user = user;
+	public Profilemanager(String usersUserName,  String name, java.sql.Date dateOfBirth, String gender, String email, String phoneNumber,
+			String image, byte showProfile) {
+		this.usersUserName=usersUserName;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.showProfile = showProfile;
+		this.image=image;
 	}
 	public Profilemanager(String name)
 	{
@@ -39,14 +38,6 @@ public class Profilemanager {
 
 	public void setUsersUserName(String usersUserName) {
 		this.usersUserName = usersUserName;
-	}
-
-	public User getUsers() {
-		return this.user;
-	}
-
-	public void setUser(User users) {
-		this.user = users;
 	}
 
 	public String getName() {
@@ -73,6 +64,11 @@ public class Profilemanager {
 		this.gender = gender;
 	}
 
+	public int getShowProfile() {
+		return showProfile;
+	}
+
+
 	public String getEmail() {
 		return this.email;
 	}
@@ -97,10 +93,7 @@ public class Profilemanager {
 		this.image = image;
 	}
 
-	public byte getShowProfile() {
-		return this.showProfile;
-	}
-
+	
 	public void setShowProfile(byte showProfile) {
 		this.showProfile = showProfile;
 	}

@@ -46,7 +46,7 @@ public class BaseService {
 	}
 	protected boolean executeUpdate(String query,List<String> params) throws SQLException
 	{
-		boolean action = false;
+		
 		PreparedStatement stmt = conn.prepareStatement(query);
 		for(int i = 0; i < params.size() ;i++)
 		{

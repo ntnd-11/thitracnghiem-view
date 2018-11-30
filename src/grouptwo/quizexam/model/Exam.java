@@ -10,7 +10,10 @@ public class Exam {
 	private int numQuestions;
 	private Date timeFinishing;
 	private int courseID;
-	public Exam(int id,String name,Date timeStarting,int numQuestions,Date timeFinishing,int courseID)
+	private boolean avtivate;
+	private String creatorID;
+	
+	public Exam(int id,String name,Date timeStarting,int numQuestions,Date timeFinishing,int courseID,boolean avtivate,String creatorID)
 	{
 		this.id=id;
 		this.name=name;
@@ -18,6 +21,8 @@ public class Exam {
 		this.numQuestions=numQuestions;
 		this.timeFinishing=timeFinishing;
 		this.courseID=courseID;
+		this.avtivate=avtivate;
+		this.creatorID=creatorID;
 		
 	}
 	public int getId() {
@@ -68,8 +73,6 @@ public class Exam {
 	public void setCreatorID(String creatorID) {
 		this.creatorID = creatorID;
 	}
-	private boolean avtivate;
-	private String creatorID;
 	
 	
 }
