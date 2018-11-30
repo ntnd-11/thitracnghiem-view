@@ -1,6 +1,6 @@
 package grouptwo.quizexam.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Course {
 	
@@ -19,7 +19,22 @@ public class Course {
 		this.activate = activate;
 		this.teacher = teacher;
 	}
+	public Course(int courseId,int subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, int partOfStarting,
+			int partOfEnding, int numberOfStudent, String room, boolean activate, String teacher) {
+		this.courseId = courseId;
+		this.subjectId = subjectId;
+		this.dateOfStarting = dateOfStarting;
+		this.dateOfEnding = dateOfEnding;
+		this.dateOfWeek = dateOfWeek;
+		this.partOfStarting = partOfStarting;
+		this.partOfEnding = partOfEnding;
+		this.numberOfStudent = numberOfStudent;
+		this.room = room;
+		this.activate = activate;
+		this.teacher = teacher;
+	}
 
+	private int courseId;
 	private int subjectId;
 	private Date dateOfStarting;
 	private Date dateOfEnding;
@@ -31,6 +46,9 @@ public class Course {
 	private boolean activate;
 	private String teacher;
 	
+	public int getCourseId() {
+		return courseId;
+	}
 	public int getSubjectId() {
 		return subjectId;
 	}
