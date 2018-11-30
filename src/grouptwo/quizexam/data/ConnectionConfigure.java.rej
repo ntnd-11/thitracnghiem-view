@@ -1,0 +1,10 @@
+diff a/src/grouptwo/quizexam/data/ConnectionConfigure.java b/src/grouptwo/quizexam/data/ConnectionConfigure.java	(rejected hunks)
+@@ -1,8 +0,0 @@
+-package grouptwo.quizexam.data;
+-
+-public final class ConnectionConfigure {
+-	public final static String hostname = "localhost";
+-	public final static String dbName = "onlinequiz";
+-	public final static String userName = "root";
+-	public final static String password = "12345";
+-}

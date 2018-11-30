@@ -1,18 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ tag language="java" pageEncoding="UTF-8"%>
 <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
             <nav class="footer-nav">
               <ul>
                 <li>
-                  <a href="https://www.creative-tim.com" target="_blank"> Group 2 </a>
+                  <a href="#" target="_blank"> Group 2 </a>
                 </li>
                 <li>
-                  <a href="http://blog.creative-tim.com/" target="_blank"> Class room </a>
+                  <a href="#" target="_blank"> Class room </a>
                 </li>
                 <li>
-                  <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
+                  <a href="#" target="_blank">Licenses</a>
                 </li>
               </ul>
             </nav>
