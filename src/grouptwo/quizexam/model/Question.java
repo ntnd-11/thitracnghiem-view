@@ -12,6 +12,26 @@ public class Question {
 	public int getId() {
 		return id;
 	}
+	
+	public Question(int id, String question, String image, String level,String creatorID,
+			int correctAnswerID, int questionCategoryID) {
+		this.id = id;
+		this.question = question;
+		this.image = image;
+		this.level = level;
+		this.questionCategoryID = questionCategoryID;
+		this.creatorID = creatorID;
+		this.correctAnswerID = correctAnswerID;
+	}
+	public Question( String question, String image, String level,String creatorID,
+			int correctAnswerID, int questionCategoryID) {
+		this.question = question;
+		this.image = image;
+		this.level = level;
+		this.questionCategoryID = questionCategoryID;
+		this.creatorID = creatorID;
+		this.correctAnswerID = correctAnswerID;
+	}
 	public void setId(int id) {
 		this.id = id;
 	}
