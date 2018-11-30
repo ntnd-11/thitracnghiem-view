@@ -110,7 +110,7 @@
                         </span>
                       </div>
                       <div class="col-md-3 col-3 text-right">
-                        <btn class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></btn>
+                        <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
                       </div>
                     </div>
                   </li>
@@ -129,7 +129,7 @@
                         </span>
                       </div>
                       <div class="col-md-3 col-3 text-right">
-                        <btn class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></btn>
+                        <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
                       </div>
                     </div>
                   </li>
@@ -148,7 +148,9 @@
                         </span>
                       </div>
                       <div class="col-md-3 col-3 text-right">
-                        <btn class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></btn>
+                        <button class="btn btn-sm btn-outline-success btn-round btn-icon">
+                        	<i class="fa fa-envelope"></i>
+                        </button>
                       </div>
                     </div>
                   </li>
@@ -166,8 +168,8 @@
                   <div class="row">
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
-                        <label>Công ty </label>
-                        <input type="text" class="form-control" disabled="" placeholder="Company" value="HCMUTE Inc.">
+                        <label> Công ty </label>
+                        <input type="text" class="form-control" disabled="disabled" placeholder="Company" value="HCMUTE Inc.">
                       </div>
                     </div>
                     <div class="col-md-3 px-1">
@@ -192,7 +194,7 @@
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
-                        <label>Họ & Tên lót</label>
+                        <label> Họ Tên</label>
                         <input type="text" class="form-control" placeholder="Last Name" value="Nguyễn Thành">
                       </div>
                     </div>

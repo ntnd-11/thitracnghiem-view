@@ -35,7 +35,7 @@ public class User {
 		return this.roleuser;
 	}
 
-	public void setRoleusers(Integer roleusers) {
+	public void setRoleusers(Integer roleuser) {
 		this.roleuser = roleuser;
 	}
 

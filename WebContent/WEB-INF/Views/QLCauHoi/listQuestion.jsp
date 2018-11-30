@@ -38,14 +38,16 @@
 					
 						<table class="table">
 							<thead class=" text-primary">
-								<th width="2%"><input type="checkbox"
-									aria-label="Radio button for following text input"></th>
+							<tr>
+								<th width="2%">
+									<input type="checkbox" aria-label="Radio button for following text input"></th>
 								<th width="8%">Mã</th>
 								<th width="20%">Câu hỏi</th>
 								<th width="20%">Câu trả lời</th>
 								<th width="20%">Đáp án</th>
 								<th>Ngày thêm</th>
 								<th class="20%">Tùy chọn</th>
+							</tr>
 							</thead>
 							<tr>
 								<td><input type="checkbox"

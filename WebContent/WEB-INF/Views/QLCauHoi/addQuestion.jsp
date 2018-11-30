@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:WrapperAdmin>
+
 <div class="row">
 	<div class="col-md-12">
 		<div class="card">
@@ -10,7 +11,7 @@
 					<div class="col-md-6">
 						<h3 class="card-title">
 							<b> Thêm câu hỏi mới </b>
-							</h4>
+							</h3>
 					</div>
 					<div class="col-md-3"></div>
 					<div class="col-md-3 mr-0">
@@ -85,7 +86,7 @@
 					</div>
 					<div class="card-body">
 						<form>
-							<ul class="nav flex-column" name="listAnswer">
+							<ul class="nav flex-column">
 								<li class="nav-item">
 									<div class="input-group-text">
 										<input type="radio" name="radAns" class="mr-2"
@@ -142,4 +143,5 @@
 		</div>
 	</div>
 </div>
+
 </t:WrapperAdmin>

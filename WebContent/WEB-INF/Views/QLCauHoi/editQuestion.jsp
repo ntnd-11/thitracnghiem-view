@@ -77,7 +77,7 @@
 						<div class="card-footer">
 							<div class="input-group-text"
 								style="border: none; background: none">
-								<input type="checkbox" checked="checked" radAns" class="mr-2"
+								<input type="checkbox" checked="checked" name="radAns" class="mr-2"
 									aria-label="Radio button for following text input">
 								Kích hoạt
 							</div>
@@ -92,7 +92,7 @@
 						</div>
 						<div class="card-body">
 							<form>
-								<ul class="nav flex-column" name="listAnswer">
+								<ul class="nav flex-column">
 									<li class="nav-item">
 										<div class="input-group-text">
 											<input type="radio" name="radAns" class="mr-2"

@@ -115,7 +115,7 @@ public class BaseService {
 		}
 		
 		int action = stmt.executeUpdate();
-		return action >0;
+		return action > 0;
 	}
 
 }
