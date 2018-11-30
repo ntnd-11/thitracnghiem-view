@@ -6,19 +6,17 @@ package grouptwo.quizexam.model;
 public class User {
 
 	private String userName;
-	private Roleuser roleuser;
+	private Integer roleuser;
 	private String email;
 	private String password;
-	private byte activate;
-	private Profilestudent profilestudent;
-	private Profilemanager profilemanager;
+	private boolean activate;
 
 	public User() {
 	}
 
-	public User(String userName, Roleuser roleusers, String email, String password, byte activate) {
+	public User(String userName, String email, String password, Integer roleuser, boolean activate) {
 		this.userName = userName;
-		this.roleuser = roleusers;
+		this.roleuser = roleuser;
 		this.email = email;
 		this.password = password;
 		this.activate = activate;
@@ -33,12 +31,12 @@ public class User {
 		this.userName = userName;
 	}
 
-	public Roleuser getRoleuser() {
+	public Integer getRoleuser() {
 		return this.roleuser;
 	}
 
-	public void setRoleusers(Roleuser roleusers) {
-		this.roleuser = roleusers;
+	public void setRoleusers(Integer roleusers) {
+		this.roleuser = roleuser;
 	}
 
 	public String getEmail() {
@@ -57,28 +55,14 @@ public class User {
 		this.password = password;
 	}
 
-	public byte getActivate() {
+	public boolean getActivate() {
 		return this.activate;
 	}
 
-	public void setActivate(byte activate) {
+	public void setActivate(boolean activate) {
 		this.activate = activate;
 	}
 
-	public Profilestudent getProfilestudent() {
-		return this.profilestudent;
-	}
 
-	public void setProfilestudent(Profilestudent profilestudent) {
-		this.profilestudent = profilestudent;
-	}
-
-	public Profilemanager getProfilemanager() {
-		return this.profilemanager;
-	}
-
-	public void setProfilemanager(Profilemanager profilemanager) {
-		this.profilemanager = profilemanager;
-	}
 
 }

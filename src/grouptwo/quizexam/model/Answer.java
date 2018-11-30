@@ -6,14 +6,18 @@ package grouptwo.quizexam.model;
 public class Answer  {
 
 	private int id;
-	private Question question;
+	private Integer question;
 	private String answer;
 
 	public Answer() {
 	}
 
-	public Answer(int id, Question question, String answer) {
+	public Answer(int id, Integer question, String answer) {
 		this.id = id;
+		this.question = question;
+		this.answer = answer;
+	}
+	public Answer(Integer question, String answer) {
 		this.question = question;
 		this.answer = answer;
 	}
@@ -26,11 +30,11 @@ public class Answer  {
 		this.id = id;
 	}
 
-	public Question getQuestions() {
+	public Integer getQuestions() {
 		return this.question;
 	}
 
-	public void setQuestions(Question question) {
+	public void setQuestions(Integer question) {
 		this.question = question;
 	}
 

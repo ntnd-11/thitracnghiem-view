@@ -62,14 +62,14 @@ public class SubjectService extends BaseService {
 		return null;
 	}
 
-	public boolean deleteSubjects(Subject subject) {
+	public boolean deleteSubjects(int id) {
 		String query="Delete from subjects where Id=?";
-		List<String> params= new ArrayList<>();
-		params.add(subject.getSubjectID()+"");
+		List<Object> params= new ArrayList<>();
+		params.add(id);
 		try {
-			return executeUpdate(query, params);
-			
-		} catch (Exception e) {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
@@ -84,17 +84,17 @@ public class SubjectService extends BaseService {
 					+ "Type = ?,"
 					+ "Activate = ?,"
 					+ "Where Id= ?";
-			List<String> params= new ArrayList<>();
-			params.add(subject.getSubjectName()+"");
-			params.add(subject.getFaculty()+"");
-			params.add(subject.getCredit()+"");
-			params.add(subject.getType()+"");
-			params.add(subject.isActivity()+"");
-			params.add(subject.getSubjectID()+"");
+			List<Object> params= new ArrayList<>();
+			params.add(subject.getSubjectName());
+			params.add(subject.getFaculty());
+			params.add(subject.getCredit());
+			params.add(subject.getType());
+			params.add(subject.isActivity());
+			params.add(subject.getSubjectID());
 			try {
-				return executeUpdate(query, params);
-				
-			} catch (Exception e) {
+				boolean action = executeUpdate(query, params);
+				return action;
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			return false;
@@ -104,16 +104,16 @@ public class SubjectService extends BaseService {
 	public boolean addSubjects(Subject subject) {
 		String query="Insert into subjects (Name,Faculty,Credit,Type,Activate)"
 				+"values (?,?,?,?,?)";
-	List<String> params= new ArrayList<>();
-	params.add(subject.getSubjectName()+"");
-	params.add(subject.getFaculty()+"");
-	params.add(subject.getCredit()+"");
-	params.add(subject.getType()+"");
-	params.add(subject.isActivity()+"");
+	List<Object> params= new ArrayList<>();
+	params.add(subject.getSubjectName());
+	params.add(subject.getFaculty());
+	params.add(subject.getCredit());
+	params.add(subject.getType());
+	params.add(subject.isActivity());
 	try {
-		return executeUpdate(query, params);
-		
-	} catch (Exception e) {
+		boolean action = executeUpdate(query, params);
+		return action;
+	} catch (SQLException e) {
 		e.printStackTrace();
 	}
 	return false;

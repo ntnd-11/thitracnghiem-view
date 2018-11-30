@@ -54,14 +54,14 @@ public class RoleuserService extends BaseService {
 		return null;
 	}
 
-	public boolean deleteRoleUser(Roleuser roleUser) {
+	public boolean deleteRoleUser(int id) {
 		String query="Delete from roleusers where Id=?";
-		List<String> params= new ArrayList<>();
-		params.add(roleUser.getId()+"");
+		List<Object> params= new ArrayList<>();
+		params.add(id);
 		try {
-			return executeUpdate(query, params);
-			
-		} catch (Exception e) {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
@@ -72,13 +72,13 @@ public class RoleuserService extends BaseService {
 		String query ="update roleusers set "
 				+ "RoleName=?,"
 				+ "Where Id= ?";
-		List<String> params= new ArrayList<>();
-		params.add(roleUser.getRoleName()+"");
-		params.add(roleUser.getId()+"");
+		List<Object> params= new ArrayList<>();
+		params.add(roleUser.getRoleName());
+		params.add(roleUser.getId());
 		try {
-			return executeUpdate(query, params);
-			
-		} catch (Exception e) {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
@@ -88,12 +88,12 @@ public class RoleuserService extends BaseService {
 	public boolean addRoleUser(Roleuser roleUser) {
 		String query="Insert into roleusers (RoleName)"
 				+"values (?)";
-	List<String> params= new ArrayList<>();
-	params.add(roleUser.getRoleName()+"");
+	List<Object> params= new ArrayList<>();
+	params.add(roleUser.getRoleName());
 	try {
-		return executeUpdate(query, params);
-		
-	} catch (Exception e) {
+		boolean action = executeUpdate(query, params);
+		return action;
+	} catch (SQLException e) {
 		e.printStackTrace();
 	}
 	return false;
