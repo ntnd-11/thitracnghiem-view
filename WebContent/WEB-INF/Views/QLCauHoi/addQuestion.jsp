@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
 <t:WrapperAdmin>
 <div class="row">
-	<div class="col-md-12">
+	<form class="col-md-12" action="/WebThi/AddQuestion" method ="post">
 		<div class="card">
 			<div class="card-header">
 				<div class="row">
 					<div class="col-md-6">
 						<h3 class="card-title">
 							<b> Thêm câu hỏi mới </b>
-							</h4>
+							</h3>
 					</div>
 					<div class="col-md-3"></div>
 					<div class="col-md-3 mr-0">
@@ -36,11 +38,13 @@
 								<p>
 									<b>Lĩnh vực</b>
 								</p>
-								<select class="custom-select" id="inputGroupSelect01">
+								<select class="custom-select" id="inputGroupSelect01" name="categories">
 									<option selected>Lĩnh vực...</option>
-									<option value="1">Toán</option>
-									<option value="2">Tin</option>
-									<option value="3">Giải thuật</option>
+									<c:forEach items="${ lstCategory }" var="item"> 
+									   <option value="${item.getId()}"> ${item.getCategoryName() }</option>
+									</c:forEach>
+									
+
 								</select>
 							</div>
 						</div>
@@ -48,7 +52,7 @@
 						<p>
 							<b> Nội dung câu hỏi </b>
 						</p>
-						<textarea class="form-control p-2 my-2" rows="5"
+						<textarea class="form-control p-2 my-2" rows="5" name="question"
 							style="max-height: 400px"></textarea>
 						<p>
 							<b>Mức độ</b>
@@ -56,13 +60,14 @@
 
 						<div class="input-group">
 							<div class="input-group-text"
-								style="border: none; background: none">
-								<input type="radio" name="radLevel" class="ml-2 mr-1"
-									aria-label="Radio button for following text input"> Dễ
-								<input type="radio" name="radLevel" class="ml-2 mr-1"
-									aria-label="Radio button for following text input">
+								style="border: none; background: none" >
+								
+								<input type="radio" name="radLevel" class="ml-2 mr-1" 
+									aria-label="Radio button for following text input" value="de"> Dễ
+								<input type="radio" name="radLevel" class="ml-2 mr-1" 
+									aria-label="Radio button for following text input" value="tb">
 								Trung bình <input type="radio" name="radLevel" class="ml-2 mr-1"
-									aria-label="Radio button for following text input"> Khó
+									aria-label="Radio button for following text input" value="kh"> Khó
 							</div>
 						</div>
 					</div>
@@ -84,11 +89,10 @@
 						<p class="card-category">Chọn 1 đáp án đúng</p>
 					</div>
 					<div class="card-body">
-						<form>
 							<ul class="nav flex-column" name="listAnswer">
 								<li class="nav-item">
 									<div class="input-group-text">
-										<input type="radio" name="radAns" class="mr-2"
+										<input type="radio" name="radAns1" class="mr-2"
 											aria-label="Radio button for following text input"> <input
 											type="text" class="form-control"
 											aria-label="Text input with radio button">
@@ -96,7 +100,7 @@
 								</li>
 								<li class="nav-item">
 									<div class="input-group-text">
-										<input type="radio" name="radAns" class="mr-2"
+										<input type="radio" name="radAns2" class="mr-2"
 											aria-label="Radio button for following text input"> <input
 											type="text" class="form-control"
 											aria-label="Text input with radio button">
@@ -104,7 +108,7 @@
 								</li>
 								<li class="nav-item">
 									<div class="input-group-text">
-										<input type="radio" name="radAns" class="mr-2"
+										<input type="radio" name="radAns3" class="mr-2"
 											aria-label="Radio button for following text input"> <input
 											type="text" class="form-control"
 											aria-label="Text input with radio button">
@@ -112,14 +116,13 @@
 								</li>
 								<li class="nav-item">
 									<div class="input-group-text">
-										<input type="radio" name="radAns" class="mr-2"
+										<input type="radio" name="radAns4" class="mr-2"
 											aria-label="Radio button for following text input"> <input
 											type="text" class="form-control"
 											aria-label="Text input with radio button">
 									</div>
 								</li>
 							</ul>
-						</form>
 					</div>
 					<div class="card-footer">
 						<hr />
@@ -133,13 +136,16 @@
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<button class="btn btn-info col-3">
+			<button type="submit" class="btn btn-info col-3" >
 				<i class="fa fa-save"></i> Lưu thay đổi
 			</button>
+			
 			<button class="btn btn-danger col-3">
 				<i class="fa fa-times"></i> Hủy
 			</button>
 		</div>
-	</div>
+	
+	
+</form>
 </div>
 </t:WrapperAdmin>
