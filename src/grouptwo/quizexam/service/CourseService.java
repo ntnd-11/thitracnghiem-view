@@ -15,7 +15,7 @@ public class CourseService extends BaseService {
 
 	public List<Course> getAllCourse() {
 		
-		String query = "Select * from classes";
+		String query = "Select * from onlinequiz.classes";
 		List<Course> lstCourse = new ArrayList<>();
 
 		try {
@@ -42,7 +42,7 @@ public class CourseService extends BaseService {
 		
 	}
 	public Course getCourseById(int id) {
-		String query = "Select * from classes where Id = " +id;
+		String query = "Select * from onlinequiz.classes where Id = " +id;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
@@ -66,26 +66,74 @@ public class CourseService extends BaseService {
 		}
 		return null;
 	}
-	public Course getCourseByName(String subject) {
+	public Course getCourseByNameSubject(String subject) {
 		return null;
 	}
 	public boolean deleteCourse(int id) {
+		/*String query = "DELETE FROM onlinequiz.CLASSES WHERE Id = ?";
+		
+		List<String> params = new ArrayList<>();
+		params.add(id +"");
+		try {
+			return executeUpdate(query, params);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}*/
 		return false;
 	}
 	public boolean updateCourse(Course course)
 	{
-		String query ="INSERT INTO Classes VALUES (?,?,?,?,?)";
-		boolean action = false;
+		/*String query = "UPDATE onlinequiz.CLASSES SET Subject=?,"
+				+ "DateOfStarting=?,"
+				+ "DateOfEnding=?,"
+				+ "DateOfWeek=?,"
+				+ "PartOfStarting = ?,"
+				+ "PartOfEnding=?, "
+				+ "Room = ? ,Activate = ?,"
+				+ "Teacher = ? "
+				+ "WHERE Id=?";
+		List<String> params = new ArrayList<>();
+		params.add(course.getSubjectId()+"");
+		params.add(course.getDateOfStarting()+"");
+		params.add(course.getDateOfEnding()+"");
+		params.add(course.getDateOfWeek()+"");
+		params.add(course.getPartOfStarting()+"");
+		params.add(course.getPartOfEnding()+"");
+		params.add(course.getPartOfEnding()+"");
+		params.add(course.getRoom()+"");
+		params.add(course.isActivate()+"");
+		params.add(course.getTeacher()+"");
+		params.add(course.getCourseId()+"");
+
 		try {
-			action = executeUpdate(query);
-			
-		}catch(Exception e) {
-			
-		}
-		return action;
+			return executeUpdate(query, params);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}*/
+		return false;
 
 	}
 	public boolean addCourse(Course course) {
+		String query = "INSERT INTO onlinequiz.CLASSES (Subject, DateOfStarting, DateOfEnding,DateOfWeek,PartOfStarting,PartOfEnding,NumOfStudents,Room,Activate,Teacher)" + 
+				"VALUES (?,?,?,?,?,?,?,?,?,?)";
+		List<Object> params = new ArrayList<>();
+		params.add(course.getSubjectId());
+		params.add(course.getDateOfStarting());
+		params.add(course.getDateOfEnding());
+		params.add(course.getDateOfWeek());
+		params.add(course.getPartOfStarting());
+		params.add(course.getPartOfEnding());
+		params.add(course.getNumberOfStudent());
+		params.add(course.getRoom());
+		params.add(course.isActivate());
+		params.add(course.getTeacher());
+		
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 
 	}
