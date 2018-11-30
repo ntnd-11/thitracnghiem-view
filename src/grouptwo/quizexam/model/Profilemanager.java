@@ -27,6 +27,10 @@ public class Profilemanager {
 		this.phoneNumber = phoneNumber;
 		this.showProfile = showProfile;
 	}
+	public Profilemanager(String name)
+	{
+		this.name=name;
+	}
 
 
 	public String getUsersUserName() {
