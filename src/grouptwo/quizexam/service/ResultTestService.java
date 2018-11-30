@@ -17,9 +17,9 @@ public class  ResultTestService extends BaseService {
 	public  boolean addResultTest(int id, int score,int id_Exam,String user_ProfileStudent)
 	{
 		String sql="insert into resulttests(Score,Exam,ProfileStudent) values(?,?,?)";
-		List<String> param= new ArrayList<>();
-		param.add(score+"");
-		param.add(id_Exam+"");
+		List<Object> param= new ArrayList<>();
+		param.add(score);
+		param.add(id_Exam);
 		param.add(user_ProfileStudent);
 		try {
 			return executeUpdate(sql,param);
@@ -57,8 +57,8 @@ public class  ResultTestService extends BaseService {
 	{
 		 ResultTest qsc=new  ResultTest();
 		String sql="select * from resulttests where Id=?";
-		List<String> param= new ArrayList<>();
-		param.add(id+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id);
 		try {
 			ResultSet rs=excuteQuery(sql,param);
 			while(rs.next())
@@ -81,7 +81,7 @@ public class  ResultTestService extends BaseService {
 	{
 		 ResultTest qsc=new  ResultTest();
 			String sql="select * from resulttests where ProfileStudent=?";
-			List<String> param= new ArrayList<>();
+			List<Object> param= new ArrayList<>();
 			param.add(proFileStudent);
 			try {
 				ResultSet rs=excuteQuery(sql,param);
@@ -104,8 +104,8 @@ public class  ResultTestService extends BaseService {
 	public  boolean deleteResultTest(int id_ResultTest)
 	{
 		String sql="delete from resulttests where Id=?";
-		List<String> param= new ArrayList<>();
-		param.add(id_ResultTest+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id_ResultTest);
 		try {
 			return executeUpdate(sql, param);
 		}
@@ -117,11 +117,11 @@ public class  ResultTestService extends BaseService {
 	public  boolean updateResultTest(int id, int score,int id_Exam,String user_ProfileStudent)
 	{
 		String sql="update resulttests set Score=?,Exam=?,ProfileStudent=? where Id=?";
-		List<String> param= new ArrayList<>();
-		param.add(score+"");
-		param.add(id_Exam+"");
+		List<Object> param= new ArrayList<>();
+		param.add(score);
+		param.add(id_Exam);
 		param.add(user_ProfileStudent);
-		param.add(id+"");
+		param.add(id);
 		try {
 			return executeUpdate(sql, param);
 		}
@@ -135,7 +135,7 @@ public class  ResultTestService extends BaseService {
 		int id=-1;
 		List<Integer> listId=new ArrayList<>();
 		String sql="select id from resulttests where ProfileStudent=?";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(profileStudentName);
 		try {
 			ResultSet rs= excuteQuery(sql, param);
@@ -154,8 +154,8 @@ public class  ResultTestService extends BaseService {
 	{
 		String sql="select ProfileStudent from resulttests where id=?";
 		String Name=null;
-		List<String> param= new ArrayList<>();
-		param.add(id_ResultTest+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id_ResultTest);
 		try {
 			ResultSet rs= excuteQuery(sql, param);
 			while(rs.next())

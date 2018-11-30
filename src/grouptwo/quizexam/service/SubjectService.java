@@ -17,12 +17,12 @@ public class SubjectService extends BaseService {
 	public  boolean addSubject(String Name,String Faculty,int credit,String type,boolean active )
 	{
 		String sql="insert into subjects(Name,Faculty,Credit,Type,Activate) values(?,?,?,?,?)";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(Name);
 		param.add(Faculty);
-		param.add(credit+"");
+		param.add(credit);
 		param.add(type);
-		param.add(active+"");
+		param.add(active);
 			try {
 				return executeUpdate(sql,param);
 			} catch (SQLException e) {
@@ -61,8 +61,8 @@ public class SubjectService extends BaseService {
 	{
 		Subject qsc=null;
 		String sql="select * from subjects where Id=?";
-		List<String> param= new ArrayList<>();
-		param.add(id+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id);
 		try {
 			ResultSet rs=excuteQuery(sql,param);
 			while(rs.next())
@@ -87,7 +87,7 @@ public class SubjectService extends BaseService {
 	{
 		Subject qsc=null;
 		String sql="select * from subjects where Name=?";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(name);
 		try {
 			ResultSet rs=excuteQuery(sql,param);
@@ -112,8 +112,8 @@ public class SubjectService extends BaseService {
 	public  boolean deleteSubject(int id_Subject)
 	{
 		String sql="delete from subjects where Id=?";
-		List<String> param= new ArrayList<>();
-		param.add(id_Subject+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id_Subject);
 		try {
 			return executeUpdate(sql, param);
 		}
@@ -125,12 +125,12 @@ public class SubjectService extends BaseService {
 	public  boolean updateSubject(String Name,String Faculty,int credit,String type,boolean active )
 	{
 		String sql="update subjects set Name=?,Faculty=?,Credit=?,Type=?,Activate=? where id=?";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(Name);
 		param.add(Faculty);
-		param.add(credit+"");
+		param.add(credit);
 		param.add(type);
-		param.add(active+"");
+		param.add(active);
 		try {
 			return executeUpdate(sql, param);
 		}
@@ -143,7 +143,7 @@ public class SubjectService extends BaseService {
 	{
 		int id=-1;
 		String sql="select Id from subjects where Name=?";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(subjectName);
 		try {
 			ResultSet rs= excuteQuery(sql, param);
@@ -162,8 +162,8 @@ public class SubjectService extends BaseService {
 
 		String Name=null;
 		String sql="select Name from subjects where Id=?";
-		List<String> param= new ArrayList<>();
-		param.add(id_Subject+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id_Subject);
 		try {
 			ResultSet rs= excuteQuery(sql, param);
 			while(rs.next())

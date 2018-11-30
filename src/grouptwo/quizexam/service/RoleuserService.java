@@ -16,7 +16,7 @@ public class RoleuserService extends BaseService {
 	public  boolean addRoleuser(String RoleuserName)
 	{
 		String sql="insert into roleusers(RoLeName) values(?)";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(RoleuserName);
 			try {
 				return executeUpdate(sql,param);
@@ -52,8 +52,8 @@ public class RoleuserService extends BaseService {
 	{
 		Roleuser qsc=new Roleuser();
 		String sql="select * from roleusers where Id=?";
-		List<String> param= new ArrayList<>();
-		param.add(id+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id);
 		try {
 			ResultSet rs=excuteQuery(sql,param);
 			while(rs.next())
@@ -74,8 +74,8 @@ public class RoleuserService extends BaseService {
 	{
 		Roleuser qsc=new Roleuser();
 		String sql="select * from roleusers where RoleName=?";
-		List<String> param= new ArrayList<>();
-		param.add(name+"");
+		List<Object> param= new ArrayList<>();
+		param.add(name);
 		try {
 			ResultSet rs=excuteQuery(sql,param);
 			while(rs.next())
@@ -93,8 +93,8 @@ public class RoleuserService extends BaseService {
 	public  boolean deleteRoleuser(int id_Roleuser)
 	{
 		String sql="delete from roleusers where Id=?";
-		List<String> param= new ArrayList<>();
-		param.add(id_Roleuser+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id_Roleuser);
 		try {
 			return executeUpdate(sql, param);
 		}
@@ -106,9 +106,9 @@ public class RoleuserService extends BaseService {
 	public  boolean updateRoleuser(int id_Roleuser,String roleUserName)
 	{
 		String sql="update roleusers set RoleName=? where Id=?";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(roleUserName);
-		param.add(id_Roleuser+"");
+		param.add(id_Roleuser);
 		try {
 			return executeUpdate(sql, param);
 		}
@@ -121,7 +121,7 @@ public class RoleuserService extends BaseService {
 	{
 		int id=-1;
 		String sql="select Id from roleusers where RoleName=?";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(roleUserName);
 		try {
 			ResultSet rs= excuteQuery(sql, param);
@@ -139,8 +139,8 @@ public class RoleuserService extends BaseService {
 	{
 		String Name=null;
 		String sql="select RoleName  from roleusers where Id=?";
-		List<String> param= new ArrayList<>();
-		param.add(id_Roleuser+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id_Roleuser);
 		try {
 			ResultSet rs= excuteQuery(sql, param);
 			while(rs.next())

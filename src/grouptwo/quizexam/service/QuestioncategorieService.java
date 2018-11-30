@@ -16,7 +16,7 @@ public class QuestioncategorieService extends BaseService {
 	public  boolean addQuestionCategory(String categoryName)
 	{
 		String sql="insert into questioncategories(CategoryName) values(?)";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(categoryName);
 
 			try {
@@ -55,8 +55,8 @@ public class QuestioncategorieService extends BaseService {
 	{
 		Questioncategorie qsc=new Questioncategorie();
 		String sql="select * from questioncategories where id=?";
-		List<String> param= new ArrayList<>();
-		param.add(id+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id);
 		try {
 			ResultSet rs=excuteQuery(sql,param);
 			while(rs.next())
@@ -75,7 +75,7 @@ public class QuestioncategorieService extends BaseService {
 	{
 		Questioncategorie qsc=new Questioncategorie();
 		String sql="select * from questioncategories where CategoryName=?";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(name);
 		try {
 			ResultSet rs=excuteQuery(sql,param);
@@ -94,8 +94,8 @@ public class QuestioncategorieService extends BaseService {
 	public  boolean deleteQuestionCategorie(int id_QuestionCategorie)
 	{
 		String sql="delete from questioncategories where id=?";
-		List<String> param= new ArrayList<>();
-		param.add(id_QuestionCategorie+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id_QuestionCategorie);
 		try {
 			return executeUpdate(sql, param);
 		}
@@ -107,9 +107,9 @@ public class QuestioncategorieService extends BaseService {
 	public  boolean updateQuestionCategorie(int id_QuestionCategorie,String categoryName)
 	{
 		String sql="update questioncategories set CategoryName=? where id=?";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(categoryName);
-		param.add(id_QuestionCategorie+"");
+		param.add(id_QuestionCategorie);
 		try {
 			return executeUpdate(sql, param);
 		}
@@ -122,7 +122,7 @@ public class QuestioncategorieService extends BaseService {
 	{
 		int id=-1;
 		String sql="select id from questioncategories where CategoryName=?";
-		List<String> param= new ArrayList<>();
+		List<Object> param= new ArrayList<>();
 		param.add(name);
 		try {
 			ResultSet rs= excuteQuery(sql, param);
@@ -140,8 +140,8 @@ public class QuestioncategorieService extends BaseService {
 	{
 		String Name=null;
 		String sql="select CategoryName from questioncategories where id=?";
-		List<String> param= new ArrayList<>();
-		param.add(id_Categorie+"");
+		List<Object> param= new ArrayList<>();
+		param.add(id_Categorie);
 		try {
 			ResultSet rs= excuteQuery(sql, param);
 			while(rs.next())

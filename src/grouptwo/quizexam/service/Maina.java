@@ -14,7 +14,7 @@ public class Maina{
 		BaseService bs=new BaseService();
 		String sql="delete from questioncategories where CategoryName=?";
 		String a="dsad";
-		List<String> param=new  ArrayList<>();
+		List<Object> param=new  ArrayList<>();
 		param.add(a);
 		try {
 			bs.executeUpdate(sql,param);
