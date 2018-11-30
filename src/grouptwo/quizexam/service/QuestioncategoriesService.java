@@ -1,6 +1,6 @@
 package grouptwo.quizexam.service;
 
-import java.sql.Date;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import grouptwo.quizexam.model.Exam;
 import grouptwo.quizexam.model.Questioncategorie;
 
 public class QuestioncategoriesService extends BaseService {
@@ -63,8 +62,8 @@ public class QuestioncategoriesService extends BaseService {
 
 	public boolean deleteQuestioncategorie(int id) {
 		String query = "DELETE FROM questioncategories WHERE Id=?";
-		List<String> params = new ArrayList<>();
-		params.add(id + "");
+		List<Object> params = new ArrayList<>();
+		params.add(id );
 		try {
 
 			return executeUpdate(query, params);
@@ -80,7 +79,7 @@ public class QuestioncategoriesService extends BaseService {
 	public boolean InsertQuestioncategorie(String categoryName) {
 		// String query = "INSERT INTO EXAMS VALUES(?,?,?,?,?)" ;
 		String query = "Insert into questioncategories(CategoryName) values(?)";
-		List<String> params = new ArrayList<>();
+		List<Object> params = new ArrayList<>();
 		params.add(categoryName);
 
 		try {
@@ -97,9 +96,9 @@ public class QuestioncategoriesService extends BaseService {
 
 	public boolean UpdateQuestioncategorie(String categoryName, int id) {
 		String query = "update questioncategories set CategoryName=? where Id=?";
-		List<String> params = new ArrayList<>();
+		List<Object> params = new ArrayList<>();
 		params.add(categoryName);
-		params.add(id + "");
+		params.add(id );
 		try {
 
 			return executeUpdate(query, params);
@@ -111,5 +110,6 @@ public class QuestioncategoriesService extends BaseService {
 
 		return false;
 	}
+	
 
 }

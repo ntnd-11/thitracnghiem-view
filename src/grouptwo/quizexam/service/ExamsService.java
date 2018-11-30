@@ -1,7 +1,6 @@
 package grouptwo.quizexam.service;
 
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -30,7 +29,8 @@ public class ExamsService extends BaseService{
 						rs.getDate(3),
 						rs.getInt(4),
 						rs.getDate(5),
-						rs.getInt(6),rs.getBoolean(7),
+						rs.getInt(6),
+						rs.getBoolean(7),
 						rs.getString(8));
 				lstExams.add(course);
 	        }
@@ -87,8 +87,8 @@ public class ExamsService extends BaseService{
 	}
 	public boolean deleteExams(int id) {
 		String query = "DELETE FROM exams WHERE Id=?" ;
-		List<String> params=new ArrayList<>();
-		params.add(id+"");
+		List<Object> params=new ArrayList<>();
+		params.add(id);
 		try {
 			
 			return executeUpdate(query,params);
@@ -105,13 +105,13 @@ public class ExamsService extends BaseService{
 	{
 		//String query = "INSERT INTO EXAMS VALUES(?,?,?,?,?)" ;
 		String query="Insert into Exams(exams.Name,TimeStarting,NumQuestions,TimeFinishing,Class,Avtivate,Creator) values(?,?,?,?,?,?,?)";
-		List<String> params=new ArrayList<>();
+		List<Object> params=new ArrayList<>();
 		params.add(name);
-		params.add(timeStarting+"");
-		params.add(NumQuestions+"");
-		params.add(timeFinishing+"");
-		params.add(classlop+"");
-		params.add(avtivate+"");
+		params.add(timeStarting);
+		params.add(NumQuestions);
+		params.add(timeFinishing);
+		params.add(classlop);
+		params.add(avtivate);
 		params.add(creator);
 		try {
 			
@@ -128,15 +128,15 @@ public class ExamsService extends BaseService{
 	public boolean UpdateExams(String name,Date timeStarting,int NumQuestions,Date timeFinishing,int classlop,int avtivate,String creator,int id)
 	{
 		String query="update Exams set exams.Name=? ,TimeStarting=?,NumQuestions=?,TimeFinishing=?,Class=?,Avtivate=?,Creator=? where Id=?";
-		List<String> params=new ArrayList<>();
+		List<Object> params=new ArrayList<>();
 		params.add(name);
-		params.add(timeStarting+"");
-		params.add(NumQuestions+"");
-		params.add(timeFinishing+"");
-		params.add(classlop+"");
-		params.add(avtivate+"");
+		params.add(timeStarting);
+		params.add(NumQuestions);
+		params.add(timeFinishing);
+		params.add(classlop);
+		params.add(avtivate);
 		params.add(creator);
-		params.add(id+"");
+		params.add(id);
 		try {
 
 			return executeUpdate(query, params);
