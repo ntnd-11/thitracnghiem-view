@@ -33,6 +33,7 @@ public class Questioncategorie {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+	
 
 
 
