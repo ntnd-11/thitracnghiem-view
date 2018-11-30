@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import grouptwo.quizexam.model.Subject;
 
 
@@ -37,6 +38,23 @@ public class SubjectService extends BaseService {
 	}
 
 	public Subject getSubjectsById(int id) {
+		String query = "Select * from subjects where Id = " +id;
+		try
+		{
+			ResultSet rs = excuteQuery(query);
+			Subject subject = new Subject(
+					rs.getString("Name"),
+					rs.getString("Faculty"),
+					rs.getInt("Credit"),
+					rs.getString("Type"),
+					rs.getBoolean("Activate"));
+			return subject;
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+
+		}
 		return null;
 	}
 
@@ -44,16 +62,62 @@ public class SubjectService extends BaseService {
 		return null;
 	}
 
-	public boolean deleteSubjects(int id) {
+	public boolean deleteSubjects(Subject subject) {
+		String query="Delete from subjects where Id=?";
+		List<String> params= new ArrayList<>();
+		params.add(subject.getSubjectID()+"");
+		try {
+			return executeUpdate(query, params);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
-	public boolean updateSubjects(Subject subjects) {
-		return false;
+	public boolean updateSubjects(Subject subject) {
+		{
+			String query ="update subjects set "
+					+ "Name=?,"
+					+ "Faculty = ?,"
+					+ "Credit = ?,"
+					+ "Type = ?,"
+					+ "Activate = ?,"
+					+ "Where Id= ?";
+			List<String> params= new ArrayList<>();
+			params.add(subject.getSubjectName()+"");
+			params.add(subject.getFaculty()+"");
+			params.add(subject.getCredit()+"");
+			params.add(subject.getType()+"");
+			params.add(subject.isActivity()+"");
+			params.add(subject.getSubjectID()+"");
+			try {
+				return executeUpdate(query, params);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
 	}
 
-	public boolean addSubjects(Subject subjects) {
-		return false;
+	public boolean addSubjects(Subject subject) {
+		String query="Insert into subjects (Name,Faculty,Credit,Type,Activate)"
+				+"values (?,?,?,?,?)";
+	List<String> params= new ArrayList<>();
+	params.add(subject.getSubjectName()+"");
+	params.add(subject.getFaculty()+"");
+	params.add(subject.getCredit()+"");
+	params.add(subject.getType()+"");
+	params.add(subject.isActivity()+"");
+	try {
+		return executeUpdate(query, params);
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return false;
+
 
 	}
 }

@@ -13,7 +13,10 @@ public class Roleuser {
 	public Roleuser(String roleName) {
 		this.roleName = roleName;
 	}
-
+	public Roleuser(Integer id,String roleName) {
+		this.id=id;
+		this.roleName = roleName;
+	}
 
 
 	public Integer getId() {

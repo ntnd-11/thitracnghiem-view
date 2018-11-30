@@ -4,6 +4,14 @@ public class Subject {
 
 	public Subject() {
 	}
+	public Subject( String subjectName, String faculty, int credit, String type, boolean activity) {
+		super();
+		this.subjectName = subjectName;
+		this.faculty = faculty;
+		this.credit = credit;
+		this.type = type;
+		this.activity = activity;
+	}
 
 	public Subject(int subjectID, String subjectName, String faculty, int credit, String type, boolean activity) {
 		super();

@@ -19,7 +19,21 @@ public class Course {
 		this.activate = activate;
 		this.teacher = teacher;
 	}
-
+	public Course(int id,int subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, int partOfStarting,
+			int partOfEnding, int numberOfStudent, String room, boolean activate, String teacher) {
+		this.id=id;
+		this.subjectId = subjectId;
+		this.dateOfStarting = dateOfStarting;
+		this.dateOfEnding = dateOfEnding;
+		this.dateOfWeek = dateOfWeek;
+		this.partOfStarting = partOfStarting;
+		this.partOfEnding = partOfEnding;
+		this.numberOfStudent = numberOfStudent;
+		this.room = room;
+		this.activate = activate;
+		this.teacher = teacher;
+	}
+	private int id;
 	private int subjectId;
 	private Date dateOfStarting;
 	private Date dateOfEnding;
@@ -31,6 +45,13 @@ public class Course {
 	private boolean activate;
 	private String teacher;
 	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getSubjectId() {
 		return subjectId;
 	}

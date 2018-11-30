@@ -5,29 +5,38 @@ import java.util.Date;
 public class Profilemanager {
 
 	private String usersUserName;
-	private User user;
 	private String name;
 	private Date dateOfBirth;
 	private String gender;
 	private String email;
 	private String phoneNumber;
 	private String image;
-	private byte showProfile;
+	private boolean showProfile;
 
 	public Profilemanager() {
 	}
 
-	public Profilemanager(User user, String name, Date dateOfBirth, String gender, String email, String phoneNumber,
-			byte showProfile) {
-		this.user = user;
+	public Profilemanager(String usersUserName, String name, Date dateOfBirth, String gender, String email, String phoneNumber,
+			String image,boolean showProfile) {
+		this.usersUserName = usersUserName;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
+		this.image=image;
 		this.showProfile = showProfile;
 	}
-
+	public Profilemanager( String name, Date dateOfBirth, String gender, String email, String phoneNumber,
+			String image,boolean showProfile) {
+		this.name = name;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.image=image;
+		this.showProfile = showProfile;
+	}
 
 	public String getUsersUserName() {
 		return this.usersUserName;
@@ -35,14 +44,6 @@ public class Profilemanager {
 
 	public void setUsersUserName(String usersUserName) {
 		this.usersUserName = usersUserName;
-	}
-
-	public User getUsers() {
-		return this.user;
-	}
-
-	public void setUser(User users) {
-		this.user = users;
 	}
 
 	public String getName() {
@@ -93,11 +94,11 @@ public class Profilemanager {
 		this.image = image;
 	}
 
-	public byte getShowProfile() {
+	public boolean getShowProfile() {
 		return this.showProfile;
 	}
 
-	public void setShowProfile(byte showProfile) {
+	public void setShowProfile(boolean showProfile) {
 		this.showProfile = showProfile;
 	}
 
