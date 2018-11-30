@@ -77,6 +77,7 @@ public class CourseService extends BaseService {
 		String query ="INSERT INTO Classes VALUES (?,?,?,?,?)";
 		boolean action = false;
 		try {
+			
 			action = executeUpdate(query);
 			
 		}catch(Exception e) {
