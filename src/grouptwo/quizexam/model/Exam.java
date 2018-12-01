@@ -4,16 +4,20 @@ import java.util.Date;
 
 public class Exam {
 
-	private int id;
+	private Integer id;
 	private String name;
 	private Date timeStarting;	
-	private int numQuestions;
+	private Integer numQuestions;
 	private Date timeFinishing;
-	private int courseID;
+	private Integer courseID;
 	private boolean avtivate;
-	private String creatorID;
+	private Integer creatorID;
 	
-	public Exam(int id,String name,Date timeStarting,int numQuestions,Date timeFinishing,int courseID,boolean avtivate,String creatorID)
+	public Exam()
+	{
+		
+	}
+	public Exam(Integer id,String name,Date timeStarting,Integer numQuestions,Date timeFinishing,Integer courseID,boolean avtivate,Integer creatorID)
 	{
 		this.id=id;
 		this.name=name;
@@ -25,10 +29,10 @@ public class Exam {
 		this.creatorID=creatorID;
 		
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -43,10 +47,10 @@ public class Exam {
 	public void setTimeStarting(Date timeStarting) {
 		this.timeStarting = timeStarting;
 	}
-	public int getNumQuestions() {
+	public Integer getNumQuestions() {
 		return numQuestions;
 	}
-	public void setNumQuestions(int numQuestions) {
+	public void setNumQuestions(Integer numQuestions) {
 		this.numQuestions = numQuestions;
 	}
 	public Date getTimeFinishing() {
@@ -55,10 +59,10 @@ public class Exam {
 	public void setTimeFinishing(Date timeFinishing) {
 		this.timeFinishing = timeFinishing;
 	}
-	public int getCourseID() {
+	public Integer getCourseID() {
 		return courseID;
 	}
-	public void setCourseID(int courseID) {
+	public void setCourseID(Integer courseID) {
 		this.courseID = courseID;
 	}
 	public boolean isAvtivate() {
@@ -67,10 +71,10 @@ public class Exam {
 	public void setAvtivate(boolean avtivate) {
 		this.avtivate = avtivate;
 	}
-	public String getCreatorID() {
+	public int getCreatorID() {
 		return creatorID;
 	}
-	public void setCreatorID(String creatorID) {
+	public void setCreatorID(int creatorID) {
 		this.creatorID = creatorID;
 	}
 	

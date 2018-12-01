@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.model.Question;
 import grouptwo.quizexam.model.Questioncategorie;
-import grouptwo.quizexam.service.BaseService;
 import grouptwo.quizexam.service.QuestionService;
 import grouptwo.quizexam.service.QuestioncategorieService;
 
@@ -43,11 +42,12 @@ public class AddQuestionController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		
 		String ans1=request.getParameter("ans1");
 		String ans2=request.getParameter("ans2");
 		String ans3=request.getParameter("ans3");
 		String ans4=request.getParameter("ans4");
-		//String url
+		
 		String categories=request.getParameter("categories");
 		String question=request.getParameter("question");
 		String level=request.getParameter("radLevel");

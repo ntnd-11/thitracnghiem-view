@@ -3,14 +3,14 @@ package grouptwo.quizexam.model;
 public class DetailCourse {
 
 	public DetailCourse() {
-		// TODO Auto-generated constructor stub
 	}
-	public DetailCourse(int courseId, String profileStudentId) {
+	public DetailCourse(int courseId, int studentId) {
 		this.courseId = courseId;
-		this.profileStudentId = profileStudentId;
+		this.studentId = studentId;
 	}
+	
 	private int courseId;
-	private String profileStudentId;
+	private int studentId;
 
 	public int getCourseId() {
 		return courseId;
@@ -18,10 +18,10 @@ public class DetailCourse {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
-	public String getProfileStudentId() {
-		return profileStudentId;
+	public int getStudentId() {
+		return studentId;
 	}
-	public void setProfileStudentId(String profileStudentId) {
-		this.profileStudentId = profileStudentId;
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 }

@@ -2,15 +2,16 @@ package grouptwo.quizexam.model;
 
 public class ResultTest {
 
-	private int id;
+	private int resultId;
 	private int score;
 	private int examID;
-	private String profileStudent;
-	public int getId() {
-		return id;
+	private int studentId;
+	
+	public int getResultId() {
+		return resultId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setResultId(int resultId) {
+		this.resultId = resultId;
 	}
 	public int getScore() {
 		return score;
@@ -24,10 +25,10 @@ public class ResultTest {
 	public void setExamID(int examID) {
 		this.examID = examID;
 	}
-	public String getProfileStudent() {
-		return profileStudent;
+	public int getStudentId() {
+		return studentId;
 	}
-	public void setProfileStudent(String profileStudent) {
-		this.profileStudent = profileStudent;
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 }

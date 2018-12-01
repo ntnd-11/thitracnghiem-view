@@ -4,44 +4,25 @@ import java.util.Date;
 
 public class Profilemanager {
 
-	private String usersUserName;
+	private Integer profileId;
 	private String name;
 	private Date dateOfBirth;
 	private String gender;
-	private String email;
 	private String phoneNumber;
 	private String image;
-	private byte showProfile;
-
+	private boolean showProfile;
+	private Integer userId;
 	
-
-	public Profilemanager(String usersUserName,  String name, java.sql.Date dateOfBirth, String gender, String email, String phoneNumber,
-			String image, byte showProfile) {
-		this.usersUserName=usersUserName;
-		this.name = name;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.showProfile = showProfile;
-		this.image=image;
-	}
-	public Profilemanager(String name)
-	{
-		this.name=name;
+	public Integer getProfileId() {
+		return profileId;
 	}
 
-
-	public String getUsersUserName() {
-		return this.usersUserName;
-	}
-
-	public void setUsersUserName(String usersUserName) {
-		this.usersUserName = usersUserName;
+	public void setProfileId(Integer profileId) {
+		this.profileId = profileId;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -49,7 +30,7 @@ public class Profilemanager {
 	}
 
 	public Date getDateOfBirth() {
-		return this.dateOfBirth;
+		return dateOfBirth;
 	}
 
 	public void setDateOfBirth(Date dateOfBirth) {
@@ -57,28 +38,15 @@ public class Profilemanager {
 	}
 
 	public String getGender() {
-		return this.gender;
+		return gender;
 	}
 
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	public int getShowProfile() {
-		return showProfile;
-	}
-
-
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getPhoneNumber() {
-		return this.phoneNumber;
+		return phoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
@@ -86,17 +54,58 @@ public class Profilemanager {
 	}
 
 	public String getImage() {
-		return this.image;
+		return image;
 	}
 
 	public void setImage(String image) {
 		this.image = image;
 	}
 
-	
-	public void setShowProfile(byte showProfile) {
+	public boolean isShowProfile() {
+		return showProfile;
+	}
+
+	public void setShowProfile(boolean showProfile) {
 		this.showProfile = showProfile;
 	}
 
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+
+
+	public Profilemanager()
+	{
+	}
+	
+	public Profilemanager(String name, Date dateOfBirth, String gender, String phoneNumber, String image,
+			boolean showProfile, Integer userId) {
+		super();
+		this.name = name;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.image = image;
+		this.showProfile = showProfile;
+		this.userId = userId;
+	}
+
+	public Profilemanager(Integer profileId, String name, Date dateOfBirth, String gender, String phoneNumber,
+			String image, boolean showProfile, Integer userId) {
+		super();
+		this.profileId = profileId;
+		this.name = name;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.image = image;
+		this.showProfile = showProfile;
+		this.userId = userId;
+	}
 
 }

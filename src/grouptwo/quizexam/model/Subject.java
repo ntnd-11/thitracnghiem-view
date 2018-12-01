@@ -2,33 +2,35 @@ package grouptwo.quizexam.model;
 
 public class Subject {
 
+	private int subjectID;
+	private String subjectName;
+	private String faculty;
+	private int credit;
+	private String type;
+	private boolean activate;
+
+	
 	public Subject() {
 	}
-	public Subject( String subjectName, String faculty, int credit, String type, boolean activity) {
+	public Subject( String subjectName, String faculty, int credit, String type, boolean activate) {
 		super();
 		this.subjectName = subjectName;
 		this.faculty = faculty;
 		this.credit = credit;
 		this.type = type;
-		this.activity = activity;
+		this.activate = activate;
 	}
 
-	public Subject(int subjectID, String subjectName, String faculty, int credit, String type, boolean activity) {
+	public Subject(int subjectID, String subjectName, String faculty, int credit, String type, boolean activate) {
 		super();
 		this.subjectID = subjectID;
 		this.subjectName = subjectName;
 		this.faculty = faculty;
 		this.credit = credit;
 		this.type = type;
-		this.activity = activity;
+		this.activate = activate;
 	}
 
-	private int subjectID;
-	private String subjectName;
-	private String faculty;
-	private int credit;
-	private String type;
-	private boolean activity;
 
 	public int getSubjectID() {
 		return subjectID;
@@ -70,12 +72,12 @@ public class Subject {
 		this.type = type;
 	}
 
-	public boolean isActivity() {
-		return activity;
+	public boolean isActivate() {
+		return activate;
 	}
 
-	public void setActivity(boolean activity) {
-		this.activity = activity;
+	public void setActivate(boolean activate) {
+		this.activate = activate;
 	}
 
 }

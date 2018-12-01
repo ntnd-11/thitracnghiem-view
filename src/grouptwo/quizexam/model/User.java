@@ -5,6 +5,7 @@ package grouptwo.quizexam.model;
  */
 public class User {
 
+	private Integer userId;
 	private String userName;
 	private Integer roleuser;
 	private String email;
@@ -12,6 +13,15 @@ public class User {
 	private boolean activate;
 
 	public User() {
+	}
+
+	public User(Integer userId, String userName, String email, String password, Integer roleuser, boolean activate) {
+		this.userId = userId;
+		this.userName = userName;
+		this.roleuser = roleuser;
+		this.email = email;
+		this.password = password;
+		this.activate = activate;
 	}
 
 	public User(String userName, String email, String password, Integer roleuser, boolean activate) {
@@ -62,7 +72,13 @@ public class User {
 	public void setActivate(boolean activate) {
 		this.activate = activate;
 	}
+	public Integer getUserId() {
+		return userId;
+	}
 
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 
 
 }

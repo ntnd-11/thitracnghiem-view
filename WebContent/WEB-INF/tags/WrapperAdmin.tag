@@ -21,10 +21,10 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
 	rel="stylesheet">
 <!-- CSS Files -->
-<link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-<link href="../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="../assets/demo/demo.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
 </head>
 
 <body class="">

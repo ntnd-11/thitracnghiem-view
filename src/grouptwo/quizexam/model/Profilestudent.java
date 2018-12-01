@@ -4,73 +4,44 @@ import java.sql.Date;
 
 public class Profilestudent {
 
-
-	private String user;
+	private Integer studentId;
 	private String name;
-	private int identityCardNumber;
+	private Integer identityCardNumber;
 	private Date dateOfBirth;
 	private String gender;
-	private String email;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String country;
 	private String address;
 	private String religion;
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	private Date yearOfAdmission;
-	private Date yearOfGraduation;
+	private Integer yearOfAdmission;
+	private Integer yearOfGraduation;
 	private String image;
-	private boolean showProfile;
-	
-
-	public Profilestudent() {
+	public Integer getStudentId() {
+		return studentId;
 	}
 
-	public Profilestudent(String user, String name, int identityCardNumber, Date dateOfBirth, String gender,
-			String email, int phoneNumber, String country, Date yearOfAdmission, Date yearOfGraduation,
-			boolean showProfile) {
-		this.user = user;
-		this.name = name;
-		this.identityCardNumber = identityCardNumber;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.country = country;
-		this.yearOfAdmission = yearOfAdmission;
-		this.yearOfGraduation = yearOfGraduation;
-		this.showProfile = showProfile;
+	public void setStudentId(Integer studentId) {
+		this.studentId = studentId;
 	}
-
-
-
-
-
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public int getIdentityCardNumber() {
-		return this.identityCardNumber;
+	public Integer getIdentityCardNumber() {
+		return identityCardNumber;
 	}
 
-	public void setIdentityCardNumber(int identityCardNumber) {
+	public void setIdentityCardNumber(Integer identityCardNumber) {
 		this.identityCardNumber = identityCardNumber;
 	}
 
 	public Date getDateOfBirth() {
-		return this.dateOfBirth;
+		return dateOfBirth;
 	}
 
 	public void setDateOfBirth(Date dateOfBirth) {
@@ -78,31 +49,23 @@ public class Profilestudent {
 	}
 
 	public String getGender() {
-		return this.gender;
+		return gender;
 	}
 
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	public String getEmail() {
-		return this.email;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public int getPhoneNumber() {
-		return this.phoneNumber;
-	}
-
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
 	public String getCountry() {
-		return this.country;
+		return country;
 	}
 
 	public void setCountry(String country) {
@@ -110,7 +73,7 @@ public class Profilestudent {
 	}
 
 	public String getAddress() {
-		return this.address;
+		return address;
 	}
 
 	public void setAddress(String address) {
@@ -118,31 +81,31 @@ public class Profilestudent {
 	}
 
 	public String getReligion() {
-		return this.religion;
+		return religion;
 	}
 
 	public void setReligion(String religion) {
 		this.religion = religion;
 	}
 
-	public Date getYearOfAdmission() {
-		return this.yearOfAdmission;
+	public Integer getYearOfAdmission() {
+		return yearOfAdmission;
 	}
 
-	public void setYearOfAdmission(Date yearOfAdmission) {
+	public void setYearOfAdmission(Integer yearOfAdmission) {
 		this.yearOfAdmission = yearOfAdmission;
 	}
 
-	public Date getYearOfGraduation() {
-		return this.yearOfGraduation;
+	public Integer getYearOfGraduation() {
+		return yearOfGraduation;
 	}
 
-	public void setYearOfGraduation(Date yearOfGraduation) {
+	public void setYearOfGraduation(Integer yearOfGraduation) {
 		this.yearOfGraduation = yearOfGraduation;
 	}
 
 	public String getImage() {
-		return this.image;
+		return image;
 	}
 
 	public void setImage(String image) {
@@ -157,7 +120,60 @@ public class Profilestudent {
 		this.showProfile = showProfile;
 	}
 
-	
+	public Integer getUserId() {
+		return userId;
+	}
 
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	private boolean showProfile;
+	private Integer userId;
+	
+	public Profilestudent() {
+		super();
+	}
+
+	public Profilestudent(String name, Integer identityCardNumber, Date dateOfBirth, String gender, String phoneNumber,
+			String country, String address, String religion, Integer yearOfAdmission, Integer yearOfGraduation,
+			String image, boolean showProfile, Integer userId) {
+		super();
+		this.name = name;
+		this.identityCardNumber = identityCardNumber;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.country = country;
+		this.address = address;
+		this.religion = religion;
+		this.yearOfAdmission = yearOfAdmission;
+		this.yearOfGraduation = yearOfGraduation;
+		this.image = image;
+		this.showProfile = showProfile;
+		this.userId = userId;
+	}
+
+	public Profilestudent(Integer studentId, String name, Integer identityCardNumber, Date dateOfBirth, String gender,
+			String phoneNumber, String country, String address, String religion, Integer yearOfAdmission,
+			Integer yearOfGraduation, String image, boolean showProfile, Integer userId) {
+		super();
+		this.studentId = studentId;
+		this.name = name;
+		this.identityCardNumber = identityCardNumber;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.country = country;
+		this.address = address;
+		this.religion = religion;
+		this.yearOfAdmission = yearOfAdmission;
+		this.yearOfGraduation = yearOfGraduation;
+		this.image = image;
+		this.showProfile = showProfile;
+		this.userId = userId;
+	}
+
+	
 
 }
