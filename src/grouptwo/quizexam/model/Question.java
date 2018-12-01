@@ -19,6 +19,10 @@ public class Question {
 		return id;
 	}
 	
+	public Question() {
+		super();
+	}
+
 	public Question(int id, String question, String image, String level,int questionCategoryID,int creatorID,
 			int correctAnswerID) {
 		this.id = id;

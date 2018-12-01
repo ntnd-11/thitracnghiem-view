@@ -33,20 +33,23 @@ public class DetailExamService extends BaseService {
 
 	public static DetailExam getDetailExamsByIdExam(int id) {
 		String query = "Select * from detailexams where Exam = " +id;
+		DetailExam detailexam = null;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			DetailExam detailexam = new DetailExam(
+			while(rs.next())
+			{
+			 detailexam = new DetailExam(
 					rs.getInt(1),
 					rs.getInt(2));
-			return detailexam;
+			}
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return detailexam;
 	}
 
 	public static DetailExam getDeTailExamsByIdQuestion(String detailexam) {

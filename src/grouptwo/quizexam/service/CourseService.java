@@ -15,7 +15,7 @@ public class CourseService extends BaseService {
 
 	public static List<Course> getAllCourse() {
 		
-		String query = "Select * from onlinequiz.coures";
+		String query = "Select * from onlinequiz.courses";
 		List<Course> lstCourse = new ArrayList<>();
 
 		try {
@@ -43,10 +43,13 @@ public class CourseService extends BaseService {
 	}
 	public static Course getCourseById(int id) {
 		String query = "Select * from onlinequiz.courses where Id = " +id;
+		Course course = null;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Course course = new Course(rs.getInt("Subject"), 
+			while(rs.next())
+			{
+				course = new Course(rs.getInt("Subject"), 
 					rs.getDate("DateOfStarting"), 
 					rs.getDate("DateOfEnding"), 
 					rs.getString("DateOfWeek"), 
@@ -56,14 +59,14 @@ public class CourseService extends BaseService {
 					rs.getString("Room"), 
 					rs.getBoolean("Activate"),
 					rs.getInt("Teacher"));
-			return course;
+			}
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return course;
 	}
 	public static Course getCourseByNameSubject(String subject) {
 		return null;

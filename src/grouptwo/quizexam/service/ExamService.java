@@ -14,7 +14,7 @@ public class ExamService extends BaseService{
 		super();
 	}
 
-	public static List<Exam> getAllCourse() {
+	public static List<Exam> getAllExam() {
 		
 		String query = "SELECT * FROM onlinequiz.exams";
 		List<Exam> lstExams = new ArrayList<>();
@@ -41,10 +41,13 @@ public class ExamService extends BaseService{
 	}
 	public static Exam getExamById(int id) {
 		String query = "Select * from Exams where Id = " +id;
+		Exam exams = null;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Exam exams = new Exam(rs.getInt("Id"), 
+			while(rs.next())
+			{
+			exams = new Exam(rs.getInt("Id"), 
 					rs.getString("name"), 
 					rs.getTimestamp("TimeStarting"), 
 					rs.getInt("NumQuestions"), 
@@ -52,14 +55,14 @@ public class ExamService extends BaseService{
 					rs.getInt("Course"), 
 					rs.getBoolean("Activate"),	 
 					rs.getInt("Creator"));
-			return exams;
+			}
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return exams;
 	}
 	
 	/*public Exam getExamByName(String subject) {

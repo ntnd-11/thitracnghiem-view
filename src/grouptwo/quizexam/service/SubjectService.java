@@ -15,7 +15,7 @@ public class SubjectService extends BaseService {
 	}
 
 	public static List<Subject> getAllSubjects() {
-		String query = "Select * from roleusers";
+		String query = "Select * from subjects";
 		List<Subject> lstSubjects = new ArrayList<>();
 
 		try {
@@ -38,23 +38,25 @@ public class SubjectService extends BaseService {
 
 	public static Subject getSubjectsById(int id) {
 		String query = "Select * from subjects where Id = " +id;
+		Subject subject = new Subject();
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Subject subject = new Subject(
+			while (rs.next()) {
+			subject = new Subject(
 					rs.getString("Name"),
 					rs.getString("Faculty"),
 					rs.getInt("Credit"),
 					rs.getString("Type"),
 					rs.getBoolean("Activate"));
-			return subject;
+			}
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return subject;
 	}
 
 	public static Subject getSubjectsByName(String subject) {

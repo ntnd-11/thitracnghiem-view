@@ -48,9 +48,12 @@ public class ProfilestudentService extends BaseService {
 
 	public static Profilestudent getProfilesutudentById(int id) {
 		String query = "select * from profilestudents where Id = " + id;
+		Profilestudent profilestudent = null;
 		try {
 			ResultSet rs = excuteQuery(query);
-			Profilestudent profilestudent = new Profilestudent(
+			while(rs.next())
+			{
+				profilestudent = new Profilestudent(
 					rs.getInt("Id"), 
 					rs.getString("Name"),
 					rs.getInt("IdentityCardNumber"),
@@ -65,12 +68,12 @@ public class ProfilestudentService extends BaseService {
 					rs.getString("Image"),
 					rs.getBoolean("ShowProfile"),
 					rs.getInt("User"));
-			return profilestudent;
+			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return profilestudent;
 	}
 
 	public static Profilestudent getProfilestudentByName(String subject) {

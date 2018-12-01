@@ -106,11 +106,13 @@ public class QuestionService extends BaseService {
 	}
 	
 	public static Question getQuestionsById(int id) {
-		String query = "Select * from questions where Id = " +id;
+		String query = "Select * from onlinequiz.questions where Id = " +id;
+		Question questions=null;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Question questions = new Question(
+			while(rs.next()) {
+					questions = new Question(
 					rs.getInt("Id"),
 					rs.getString("Question"),
 					rs.getString("Image"),
@@ -118,37 +120,43 @@ public class QuestionService extends BaseService {
 					rs.getInt("QuestionCategory"),					
 					rs.getInt("Creator"),
 					rs.getInt("CorrectAnswer"));
-			return questions;
+			}
+			
+			
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return questions;
 	}
 
 	public static Question getQuestionsByName(String question) {
 		String query = "Select * from questions where Question = " +question;
+		Question questions=null;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Question questions = new Question(
+			while(rs.next()) {
+					questions = new Question(
 					rs.getInt("Id"),
 					rs.getString("Question"),
 					rs.getString("Image"),
 					rs.getString("Level"),
-					rs.getInt("QuestionCategory"),
-										rs.getInt("Creator"),
+					rs.getInt("QuestionCategory"),					
+					rs.getInt("Creator"),
 					rs.getInt("CorrectAnswer"));
-			return questions;
+			}
+			
+			
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return questions;
 	}
 
 	public static boolean deleteQuestions(int id) {

@@ -34,23 +34,26 @@ public class UserService extends BaseService {
 
 	public static  User getUsersById(int id) {
 		String query = "Select * from users where Id = " +id;
+		User user = null;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			User user = new User(
+			while(rs.next())
+			{
+			 user = new User(
 					rs.getString(1),
 					rs.getString(2),
 					rs.getString(3),
 					rs.getInt(4),
 					rs.getBoolean(5));
-			return user;
+			}
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return user;
 	}
 
 	public static  User getUsersByName(String user) {
@@ -96,7 +99,7 @@ public class UserService extends BaseService {
 	}
 
 	public static boolean addUsers(User user) {
-		String query="Insert into subjects (UserName,Email,Password,RoleUser,Activate)"
+		String query="Insert into users (UserName,Email,Password,RoleUser,Activate)"
 				+"values (?,?,?,?,?)";
 	List<Object> params= new ArrayList<>();
 	params.add(user.getUserName());
