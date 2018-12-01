@@ -13,7 +13,7 @@ public class ProfilestudentService extends BaseService {
 		super();
 	}
 
-	public List<Profilestudent> getAllProfilesutudent() {
+	public static List<Profilestudent> getAllProfilesutudent() {
 
 		String query = "select * from profilestudents";
 		List<Profilestudent> lstProfilemanager = new ArrayList<>();
@@ -46,7 +46,7 @@ public class ProfilestudentService extends BaseService {
 
 	}
 
-	public Profilestudent getProfilesutudentById(int id) {
+	public static Profilestudent getProfilesutudentById(int id) {
 		String query = "select * from profilestudents where Id = " + id;
 		try {
 			ResultSet rs = excuteQuery(query);
@@ -73,7 +73,7 @@ public class ProfilestudentService extends BaseService {
 		return null;
 	}
 
-	public Profilestudent getProfilestudentByName(String subject) {
+	public static Profilestudent getProfilestudentByName(String subject) {
 		String query = "select * from profilestudents where User = " + subject;
 		try {
 			ResultSet rs = excuteQuery(query);
@@ -100,7 +100,7 @@ public class ProfilestudentService extends BaseService {
 		return null;
 	}
 
-	public boolean deleteProfilestudent(int id) {
+	public static boolean deleteProfilestudent(int id) {
 		String query = "DELETE FROM Profilestudents WHERE Id=?";
 		List<Object> params = new ArrayList<>();
 		params.add(id);
@@ -115,7 +115,7 @@ public class ProfilestudentService extends BaseService {
 		return false;
 	}
 
-	public boolean InsertProfilestudent(String user, String name, int identityCardNumber, Date dateOfBirth,
+	public static boolean InsertProfilestudent(String user, String name, int identityCardNumber, Date dateOfBirth,
 			String gender, String email, int phoneNumber, String country, Date yearOfAdmission, Date yearOfGraduation,
 			boolean showProfile) {
 		// String query = "INSERT INTO EXAMS VALUES(?,?,?,?,?)" ;
@@ -145,7 +145,7 @@ public class ProfilestudentService extends BaseService {
 		return false;
 	}
 
-	public boolean UpdateProfilestudent(String user, String name, int identityCardNumber, Date dateOfBirth,
+	public static boolean UpdateProfilestudent(String user, String name, int identityCardNumber, Date dateOfBirth,
 			String gender, String email, int phoneNumber, String country, Date yearOfAdmission, Date yearOfGraduation,
 			boolean showProfile) {
 		String query = "update profilestudents set profilestudent.Name=?,IdentityCardNumber=?,DateOfBirth=?,Gender=?,Email=?,PhoneNumber=?,Country=?,Address=?,Religion=?,YearOfAdmission=?,YearOfGraduation=?,Image=?,ShowProfile=? where profilestudent.User=?";

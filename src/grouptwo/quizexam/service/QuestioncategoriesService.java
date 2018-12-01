@@ -13,7 +13,7 @@ public class QuestioncategoriesService extends BaseService {
 		super();
 	}
 
-	public List<Questioncategorie> getAllQuestioncategorie() {
+	public static List<Questioncategorie> getAllQuestioncategorie() {
 
 		String query = "SELECT * FROM questioncategories";
 		List<Questioncategorie> lstQuestioncategorie = new ArrayList<>();
@@ -32,7 +32,7 @@ public class QuestioncategoriesService extends BaseService {
 
 	}
 
-	public Questioncategorie getQuestioncategoriesServiceById(int id) {
+	public static Questioncategorie getQuestioncategoriesServiceById(int id) {
 		String query = "Select * from questioncategories where Id = " + id;
 		try {
 			ResultSet rs = excuteQuery(query);
@@ -45,7 +45,7 @@ public class QuestioncategoriesService extends BaseService {
 		return null;
 	}
 
-	public Questioncategorie getQuestioncategorieByName(String subject) {
+	public static Questioncategorie getQuestioncategorieByName(String subject) {
 		String query = "Select * from questioncategories where CategoryName = " + subject;
 		try {
 			ResultSet rs = excuteQuery(query);
@@ -58,7 +58,7 @@ public class QuestioncategoriesService extends BaseService {
 		return null;
 	}
 
-	public boolean deleteQuestioncategorie(int id) {
+	public static boolean deleteQuestioncategorie(int id) {
 		String query = "DELETE FROM questioncategories WHERE Id=?";
 		List<Object> params = new ArrayList<>();
 		params.add(id );
@@ -74,7 +74,7 @@ public class QuestioncategoriesService extends BaseService {
 		return false;
 	}
 
-	public boolean InsertQuestioncategorie(String categoryName) {
+	public static boolean InsertQuestioncategorie(String categoryName) {
 		// String query = "INSERT INTO EXAMS VALUES(?,?,?,?,?)" ;
 		String query = "Insert into questioncategories(CategoryName) values(?)";
 		List<Object> params = new ArrayList<>();
@@ -92,7 +92,7 @@ public class QuestioncategoriesService extends BaseService {
 		return false;
 	}
 
-	public boolean UpdateQuestioncategorie(String categoryName, int id) {
+	public static boolean UpdateQuestioncategorie(String categoryName, int id) {
 		String query = "update questioncategories set CategoryName=? where Id=?";
 		List<Object> params = new ArrayList<>();
 		params.add(categoryName);

@@ -17,7 +17,7 @@ public class RoleuserService extends BaseService {
 		super();
 	}
 
-	public  boolean addRoleuser(String RoleuserName)
+	public static  boolean addRoleuser(String RoleuserName)
 	{
 		String sql="insert into roleusers(RoLeName) values(?)";
 		List<Object> param= new ArrayList<>();
@@ -29,7 +29,7 @@ public class RoleuserService extends BaseService {
 			}
 		return false;
 	}
-	public  List<Roleuser> getAllRoleuser()
+	public static  List<Roleuser> getAllRoleuser()
 	{
 		String sql="select * from roleusers";
 		List<Roleuser> list=null;
@@ -52,7 +52,7 @@ public class RoleuserService extends BaseService {
 		
 		return list;
 	}
-	public  Roleuser getRoleuser(int id)
+	public static  Roleuser getRoleuser(int id)
 	{
 		Roleuser qsc=new Roleuser();
 		String sql="select * from roleusers where Id=?";
@@ -74,7 +74,7 @@ public class RoleuserService extends BaseService {
 		
 		
 	}
-	public  Roleuser getRoleuser(String name)
+	public static  Roleuser getRoleuser(String name)
 	{
 		Roleuser qsc=new Roleuser();
 		String sql="select * from roleusers where RoleName=?";
@@ -94,7 +94,7 @@ public class RoleuserService extends BaseService {
 		}
 		return qsc;
 	}
-	public  boolean deleteRoleuser(int id_Roleuser)
+	public static  boolean deleteRoleuser(int id_Roleuser)
 	{
 		String sql="delete from roleusers where Id=?";
 		List<Object> param= new ArrayList<>();
@@ -107,7 +107,7 @@ public class RoleuserService extends BaseService {
 		}
 		return false;
 	}
-	public  boolean updateRoleuser(int id_Roleuser,String roleUserName)
+	public static  boolean updateRoleuser(int id_Roleuser,String roleUserName)
 	{
 		String sql="update roleusers set RoleName=? where Id=?";
 		List<Object> param= new ArrayList<>();
@@ -121,7 +121,7 @@ public class RoleuserService extends BaseService {
 		}
 		return false;
 	}
-	public  int getIdRoleuser(String roleUserName)
+	public static  int getIdRoleuser(String roleUserName)
 	{
 		int id=-1;
 		String sql="select Id from roleusers where RoleName=?";
@@ -139,7 +139,7 @@ public class RoleuserService extends BaseService {
 		}
 		return id;
 	}
-	public  String getNameRoleuser(int id_Roleuser)
+	public static  String getNameRoleuser(int id_Roleuser)
 	{
 		String Name=null;
 		String sql="select RoleName  from roleusers where Id=?";
@@ -158,7 +158,7 @@ public class RoleuserService extends BaseService {
 		return Name;
 	}
 
-	public List<Roleuser> getAllRoleUser() {
+	public static List<Roleuser> getAllRoleUser() {
 		String query = "Select * from roleuser";
 		List<Roleuser> lstRoleUser = new ArrayList<>();
 
@@ -177,7 +177,7 @@ public class RoleuserService extends BaseService {
 		return lstRoleUser;
 	}
 
-	public Roleuser getRoleUserById(int id) {
+	public static Roleuser getRoleUserById(int id) {
 		String query = "Select * from roleusers where Id = " +id;
 		try
 		{
@@ -194,11 +194,11 @@ public class RoleuserService extends BaseService {
 		return null;
 	}
 
-	public Roleuser getRoleUserByName(String subject) {
+	public static Roleuser getRoleUserByName(String subject) {
 		return null;
 	}
 
-	public boolean deleteRoleUser(int id) {
+	public static boolean deleteRoleUser(int id) {
 		String query="Delete from roleusers where Id=?";
 		List<Object> params= new ArrayList<>();
 		params.add(id);
@@ -211,7 +211,7 @@ public class RoleuserService extends BaseService {
 		return false;
 	}
 
-	public boolean updateRoleUser(Roleuser roleUser) {
+	public static boolean updateRoleUser(Roleuser roleUser) {
 
 		String query ="update roleusers set "
 				+ "RoleName=?,"
@@ -229,7 +229,7 @@ public class RoleuserService extends BaseService {
 
 	}
 
-	public boolean addRoleUser(Roleuser roleUser) {
+	public static boolean addRoleUser(Roleuser roleUser) {
 		String query="Insert into roleusers (RoleName)"
 				+"values (?)";
 	List<Object> params= new ArrayList<>();

@@ -14,7 +14,7 @@ public class SubjectService extends BaseService {
 		super();
 	}
 
-	public List<Subject> getAllSubjects() {
+	public static List<Subject> getAllSubjects() {
 		String query = "Select * from roleusers";
 		List<Subject> lstSubjects = new ArrayList<>();
 
@@ -36,7 +36,7 @@ public class SubjectService extends BaseService {
 		return lstSubjects;
 	}
 
-	public Subject getSubjectsById(int id) {
+	public static Subject getSubjectsById(int id) {
 		String query = "Select * from subjects where Id = " +id;
 		try
 		{
@@ -57,11 +57,11 @@ public class SubjectService extends BaseService {
 		return null;
 	}
 
-	public Subject getSubjectsByName(String subject) {
+	public static Subject getSubjectsByName(String subject) {
 		return null;
 	}
 
-	public boolean deleteSubjects(int id) {
+	public static boolean deleteSubjects(int id) {
 		String query="Delete from subjects where Id=?";
 		List<Object> params= new ArrayList<>();
 		params.add(id);
@@ -74,7 +74,7 @@ public class SubjectService extends BaseService {
 		return false;
 	}
 
-	public boolean updateSubjects(Subject subject) {
+	public static boolean updateSubjects(Subject subject) {
 		{
 			String query ="update subjects set "
 					+ "Name=?,"
@@ -100,7 +100,7 @@ public class SubjectService extends BaseService {
 		}
 	}
 
-	public boolean addSubjects(Subject subject) {
+	public static boolean addSubjects(Subject subject) {
 		String query="Insert into subjects (Name,Faculty,Credit,Type,Activate)"
 				+"values (?,?,?,?,?)";
 	List<Object> params= new ArrayList<>();

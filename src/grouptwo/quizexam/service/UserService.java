@@ -10,7 +10,7 @@ public class UserService extends BaseService {
 	public UserService() {
 		super();
 	}
-	public List<User> getAllUsers() {
+	public static  List<User> getAllUsers() {
 		String query = "Select * from users";
 		List<User> lstUsers = new ArrayList<>();
 
@@ -32,7 +32,7 @@ public class UserService extends BaseService {
 		return lstUsers;
 	}
 
-	public User getUsersById(int id) {
+	public static  User getUsersById(int id) {
 		String query = "Select * from users where Id = " +id;
 		try
 		{
@@ -53,11 +53,11 @@ public class UserService extends BaseService {
 		return null;
 	}
 
-	public User getUsersByName(String user) {
+	public static  User getUsersByName(String user) {
 		return null;
 	}
 
-	public boolean deleteUsers(int id) {
+	public static  boolean deleteUsers(int id) {
 		String query="Delete from users where Id=?";
 		List<Object> params= new ArrayList<>();
 		params.add(id);
@@ -70,7 +70,7 @@ public class UserService extends BaseService {
 		return false;
 	}
 
-	public boolean updateUsers(User user) {
+	public static boolean updateUsers(User user) {
 		{
 			String query ="update users set "
 					+ "UserName=?,"
@@ -85,7 +85,6 @@ public class UserService extends BaseService {
 			params.add(user.getPassword());
 			params.add(user.getRoleuser());
 			params.add(user.getActivate());
-//			params.add(user.);
 			try {
 				boolean action = executeUpdate(query, params);
 				return action;
@@ -96,7 +95,7 @@ public class UserService extends BaseService {
 		}
 	}
 
-	public boolean addUsers(User user) {
+	public static boolean addUsers(User user) {
 		String query="Insert into subjects (UserName,Email,Password,RoleUser,Activate)"
 				+"values (?,?,?,?,?)";
 	List<Object> params= new ArrayList<>();

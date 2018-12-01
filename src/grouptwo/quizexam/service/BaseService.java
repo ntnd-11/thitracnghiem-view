@@ -11,7 +11,10 @@ import java.util.List;
 import grouptwo.quizexam.data.MySqlConnUtils;
 
 public class BaseService {
-	private Connection conn;
+	private static Connection conn;
+	static {
+		init();
+	}
 	public  BaseService() {
 		try
 		{
@@ -21,8 +24,18 @@ public class BaseService {
 			System.out.println(e+"");
 		}
 	}
+	 static void init()
+	{
+		try
+		{
+			conn = MySqlConnUtils.getConnection();
+		}
+		catch(Exception e) {
+			System.out.println(e+"");
+		}
+	}
 	// no parameter
-	protected ResultSet excuteQuery(String query) throws SQLException
+	protected static ResultSet excuteQuery(String query) throws SQLException
 	{
 		Statement stmt = conn.createStatement();
  
@@ -30,7 +43,7 @@ public class BaseService {
 	}
 	
 	// select have parameter
-	protected ResultSet excuteQuery(String query,List<Object> params) throws SQLException
+	protected static ResultSet excuteQuery(String query,List<Object> params) throws SQLException
 	{
 		PreparedStatement stmt = conn.prepareStatement(query);
 		for(int i = 0; i < params.size() ;i++)
@@ -68,12 +81,10 @@ public class BaseService {
         return stmt.executeQuery();
         
 	}
-	protected ResultSet searchExcuteQuery(String query,String character) throws SQLException
+	protected static ResultSet searchExcuteQuery(String query,String character) throws SQLException
 	{
 		PreparedStatement stmt = conn.prepareStatement(query);
 		stmt.setString(1,"%"+character+"%");
-		
-		System.out.println(stmt+"");
         return stmt.executeQuery();
         
 	}
@@ -88,7 +99,7 @@ public class BaseService {
 	}
 	// insert,update,delete with parameter
 
-	protected boolean executeUpdate(String query,List<Object> params) throws SQLException
+	protected static boolean executeUpdate(String query,List<Object> params) throws SQLException
 	{
 		PreparedStatement stmt = conn.prepareStatement(query);
 		for(int i = 0; i < params.size() ;i++)

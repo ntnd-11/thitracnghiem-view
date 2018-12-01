@@ -12,7 +12,7 @@ public class DetailExamService extends BaseService {
 	public DetailExamService() {
 		super();
 	}
-	public List<DetailExam> getAllDetailExams() {
+	public static List<DetailExam> getAllDetailExams() {
 		String query = "Select * from detailexams";
 		List<DetailExam> lstDetailExams = new ArrayList<>();
 
@@ -31,7 +31,7 @@ public class DetailExamService extends BaseService {
 		return lstDetailExams;
 	}
 
-	public DetailExam getDetailExamsByIdExam(int id) {
+	public static DetailExam getDetailExamsByIdExam(int id) {
 		String query = "Select * from detailexams where Exam = " +id;
 		try
 		{
@@ -49,11 +49,11 @@ public class DetailExamService extends BaseService {
 		return null;
 	}
 
-	public DetailExam getDeTailExamsByIdQuestion(String detailexam) {
+	public static DetailExam getDeTailExamsByIdQuestion(String detailexam) {
 		return null;
 	}
 
-	public boolean deleteDetailExams(int id1, int id2) {
+	public static boolean deleteDetailExams(int id1, int id2) {
 		String query="Delete from detailexams where Exam=? and Question=?";
 		List<Object> params= new ArrayList<>();
 		params.add(id1);
@@ -67,7 +67,7 @@ public class DetailExamService extends BaseService {
 		return false;
 	}
 
-	public boolean updateDetailExams(DetailExam detailexam) {
+	public static boolean updateDetailExams(DetailExam detailexam) {
 		{
 			String query ="update detailexams set "
 					+ "Exam = ?,"
@@ -87,7 +87,7 @@ public class DetailExamService extends BaseService {
 		}
 	}
 
-	public boolean addDetailExams(DetailExam detailexam) {
+	public static boolean addDetailExams(DetailExam detailexam) {
 		String query="Insert into detailexams (Exam,Question) "
 				+"values (?,?)";
 	List<Object> params= new ArrayList<>();

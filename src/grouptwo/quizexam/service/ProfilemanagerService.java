@@ -13,7 +13,7 @@ public class ProfilemanagerService extends BaseService {
 		super();
 	}
 
-	public List<Profilemanager> getAllProfilemanager() {
+	public static List<Profilemanager> getAllProfilemanager() {
 
 		String query = "select * from profilemanagers";
 		List<Profilemanager> lstProfilemanager = new ArrayList<>();
@@ -34,7 +34,7 @@ public class ProfilemanagerService extends BaseService {
 
 	}
 	
-	public Profilemanager getManagerById(int id) {
+	public static Profilemanager getManagerById(int id) {
 
 		String query = "select * from onlinequiz.profilemanagers where id=?";
 		List<Profilemanager> lstProfilemanager = new ArrayList<>();
@@ -58,7 +58,7 @@ public class ProfilemanagerService extends BaseService {
 
 	}
 	
-	public boolean deleteManager(int id) {
+	public static boolean deleteManager(int id) {
 		String query = "DELETE FROM onlinequiz.profilemanagers WHERE Id = ?";
 		
 		List<Object> params = new ArrayList<>();
@@ -72,7 +72,7 @@ public class ProfilemanagerService extends BaseService {
 		return false;
 	}
 	
-	public boolean updateManager(Profilemanager profilemanager)
+	public static boolean updateManager(Profilemanager profilemanager)
 	{
 		String query = "UPDATE onlinequiz.profilemanagers SET "
 				+ "Name=?, "
@@ -103,7 +103,7 @@ public class ProfilemanagerService extends BaseService {
 		return false;
 
 	}
-	public boolean addCourse(Profilemanager profilemanager) {
+	public static boolean addCourse(Profilemanager profilemanager) {
 		String query = "INSERT INTO onlinequiz.profilemanagers (Name, DateOfBirth, Gender,PhoneNumber,Image,ShowProfile,UserId)" + 
 				"VALUES (?,?,?,?,?,?,?)";
 		

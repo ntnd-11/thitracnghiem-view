@@ -13,7 +13,7 @@ public class CourseService extends BaseService {
 		super();
 	}
 
-	public List<Course> getAllCourse() {
+	public static List<Course> getAllCourse() {
 		
 		String query = "Select * from onlinequiz.coures";
 		List<Course> lstCourse = new ArrayList<>();
@@ -41,7 +41,7 @@ public class CourseService extends BaseService {
 		return lstCourse;
 		
 	}
-	public Course getCourseById(int id) {
+	public static Course getCourseById(int id) {
 		String query = "Select * from onlinequiz.courses where Id = " +id;
 		try
 		{
@@ -65,10 +65,10 @@ public class CourseService extends BaseService {
 		}
 		return null;
 	}
-	public Course getCourseByNameSubject(String subject) {
+	public static Course getCourseByNameSubject(String subject) {
 		return null;
 	}
-	public boolean deleteCourse(int id) {
+	public static boolean deleteCourse(int id) {
 		String query = "DELETE FROM onlinequiz.courses WHERE Id = ?";
 		
 		List<Object> params = new ArrayList<>();
@@ -81,7 +81,7 @@ public class CourseService extends BaseService {
 		}
 		return false;
 	}
-	public boolean updateCourse(Course course)
+	public static boolean updateCourse(Course course)
 	{
 		String query = "UPDATE onlinequiz.courses SET Subject=?,"
 				+ "DateOfStarting=?,"
@@ -114,7 +114,7 @@ public class CourseService extends BaseService {
 		return false;
 
 	}
-	public boolean addCourse(Course course) {
+	public static boolean addCourse(Course course) {
 		String query = "INSERT INTO onlinequiz.courses (Subject, DateOfStarting, DateOfEnding,DateOfWeek,PartOfStarting,PartOfEnding,NumOfStudents,Room,Activate,Teacher)" + 
 				"VALUES (?,?,?,?,?,?,?,?,?,?)";
 		List<Object> params = new ArrayList<>();

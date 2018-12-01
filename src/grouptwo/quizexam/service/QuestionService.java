@@ -12,7 +12,7 @@ public class QuestionService extends BaseService {
 	public QuestionService() {
 		super();
 	}
-	public List<Question> getAllQuestions() {
+	public static List<Question> getAllQuestions() {
 		String query = "Select * from questions";
 		List<Question> lstQuestions = new ArrayList<>();
 
@@ -34,7 +34,7 @@ public class QuestionService extends BaseService {
 		}
 		return lstQuestions;
 	}
-	public List<Question> getAllQuestions(int firstReSult,int amoutResult) {
+	public static List<Question> getAllQuestions(int firstReSult,int amoutResult) {
 		String query = "select * from questions order by Id LIMIT ?,?";
 		List<Object> param=new ArrayList<>();
 		param.add(firstReSult);
@@ -45,13 +45,13 @@ public class QuestionService extends BaseService {
 			ResultSet rs = excuteQuery(query,param);
 			while (rs.next()) {
 				Question questions = new Question(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getInt(5),
-						rs.getString(6),
-						rs.getInt(7));
+						rs.getInt("Id"),
+						rs.getString("Question"),
+						rs.getString("Image"),
+						rs.getString("Level"),
+						rs.getInt("QuestionCategory"),
+						rs.getInt("Creator"),
+						rs.getInt("CorrectAnswer"));
 				lstQuestions.add(questions);
 			}
 			return lstQuestions;
@@ -62,7 +62,7 @@ public class QuestionService extends BaseService {
 		return null;
 	
 	}
-	public List<Question> searchQuestion(String character)
+	public static List<Question> searchQuestion(String character)
 	{
 		String sql="SELECT * FROM questions " + 
 				"WHERE lower(Question) LIKE ?";
@@ -72,13 +72,13 @@ public class QuestionService extends BaseService {
 			ResultSet rs = searchExcuteQuery(sql,character);
 			while (rs.next()) {
 				Question questions = new Question(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getInt(5),
-						rs.getString(6),
-						rs.getInt(7));
+						rs.getInt("Id"),
+						rs.getString("Question"),
+						rs.getString("Image"),
+						rs.getString("Level"),
+						rs.getInt("QuestionCategory"),
+						rs.getInt("Creator"),
+						rs.getInt("CorrectAnswer"));
 				lstQuestions.add(questions);
 			}
 			return lstQuestions;
@@ -88,7 +88,7 @@ public class QuestionService extends BaseService {
 		}
 		return null;
 	}
-	public int countAnswer()
+	public static int countQuestion()
 	{
 		String sql="select count(id) from questions";
 		try
@@ -105,18 +105,19 @@ public class QuestionService extends BaseService {
 		return 0;
 	}
 	
-	public Question getQuestionsById(int id) {
+	public static Question getQuestionsById(int id) {
 		String query = "Select * from questions where Id = " +id;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Question questions = new Question(rs.getInt("Id"),
+			Question questions = new Question(
+					rs.getInt("Id"),
 					rs.getString("Question"),
 					rs.getString("Image"),
 					rs.getString("Level"),
-					rs.getInt("QuestionCategory"),
-					rs.getInt("CorrectAnswer"),
-					rs.getInt("Creator"));
+					rs.getInt("QuestionCategory"),					
+					rs.getInt("Creator"),
+					rs.getInt("CorrectAnswer"));
 			return questions;
 		}
 		catch(SQLException e)
@@ -127,7 +128,7 @@ public class QuestionService extends BaseService {
 		return null;
 	}
 
-	public Question getQuestionsByName(String question) {
+	public static Question getQuestionsByName(String question) {
 		String query = "Select * from questions where Question = " +question;
 		try
 		{
@@ -138,8 +139,8 @@ public class QuestionService extends BaseService {
 					rs.getString("Image"),
 					rs.getString("Level"),
 					rs.getInt("QuestionCategory"),
-					rs.getInt("CorrectAnswer"),
-					rs.getInt("Creator"));
+										rs.getInt("Creator"),
+					rs.getInt("CorrectAnswer"));
 			return questions;
 		}
 		catch(SQLException e)
@@ -150,7 +151,7 @@ public class QuestionService extends BaseService {
 		return null;
 	}
 
-	public boolean deleteQuestions(int id) {
+	public static boolean deleteQuestions(int id) {
 		String query="Delete from questions where Id=?";
 		List<Object> params= new ArrayList<>();
 		params.add(id);
@@ -177,10 +178,10 @@ public class QuestionService extends BaseService {
 			params.add(question.getQuestion());
 			params.add(question.getImage());
 			params.add(question.getLevel());
-			params.add(question.getCreatorId());
-			params.add(question.getCorrectAnswerId());
-			params.add(question.getQuestionCategoryId());
-			params.add(question.getQuestionId());
+			params.add(question.getCreatorID());
+			params.add(question.getCorrectAnswerID());
+			params.add(question.getQuestionCategoryID());
+			params.add(question.getId());
 			try {
 				boolean action = executeUpdate(query, params);
 				return action;
@@ -191,7 +192,7 @@ public class QuestionService extends BaseService {
 		}
 	}
 
-	public boolean addQuestions(Question question) {
+	public static boolean addQuestions(Question question) {
 		String query="Insert into questions (Question,Image,Level,Creator,QuestionCategory)"
 				+"values (?,?,?,?,?)";
 	List<Object> params= new ArrayList<>();
@@ -199,8 +200,8 @@ public class QuestionService extends BaseService {
 	params.add(question.getQuestion());
 	params.add(question.getImage());
 	params.add(question.getLevel());
-	params.add(question.getCreatorId());
-	params.add(question.getQuestionCategoryId());
+	params.add(question.getCreatorID());
+	params.add(question.getQuestionCategoryID());
 	for(Object c:params)
 	{
 		System.out.println(c+"");

@@ -13,7 +13,7 @@ public class  ResultTestService extends BaseService {
 		// TODO Auto-generated constructor stub
 		super();
 	}
-	public  boolean addResultTest(int id, int score,int id_Exam,String user_ProfileStudent)
+	public static  boolean addResultTest(int id, int score,int id_Exam,String user_ProfileStudent)
 	{
 		String sql="insert into resulttests(Score,Exam,ProfileStudent) values(?,?,?)";
 		List<Object> param= new ArrayList<>();
@@ -27,7 +27,7 @@ public class  ResultTestService extends BaseService {
 		}
 		return false;
 	}
-	public  List< ResultTest> getAllQuestionCategorie()
+	public static  List< ResultTest> getAllQuestionCategorie()
 	{
 		List< ResultTest> list=null;
 		String sql="select * from resulttests";
@@ -52,7 +52,7 @@ public class  ResultTestService extends BaseService {
 		
 		return list;
 	}
-	public   ResultTest getResultTest(int id)
+	public static ResultTest getResultTest(int id)
 	{
 		 ResultTest qsc=new  ResultTest();
 		String sql="select * from resulttests where Id=?";
@@ -76,7 +76,7 @@ public class  ResultTestService extends BaseService {
 		
 		return qsc;
 	}
-	public   ResultTest getResultTest(String proFileStudent)
+	public  static  ResultTest getResultTest(String proFileStudent)
 	{
 		 ResultTest qsc=new  ResultTest();
 			String sql="select * from resulttests where ProfileStudent=?";
@@ -100,7 +100,7 @@ public class  ResultTestService extends BaseService {
 			
 			return qsc;
 	}
-	public  boolean deleteResultTest(int id_ResultTest)
+	public static  boolean deleteResultTest(int id_ResultTest)
 	{
 		String sql="delete from resulttests where Id=?";
 		List<Object> param= new ArrayList<>();
@@ -113,7 +113,7 @@ public class  ResultTestService extends BaseService {
 		}
 		return false;
 	}
-	public  boolean updateResultTest(int id, int score,int id_Exam,String user_ProfileStudent)
+	public static  boolean updateResultTest(int id, int score,int id_Exam,String user_ProfileStudent)
 	{
 		String sql="update resulttests set Score=?,Exam=?,ProfileStudent=? where Id=?";
 		List<Object> param= new ArrayList<>();
@@ -129,7 +129,7 @@ public class  ResultTestService extends BaseService {
 		}
 		return false;
 	}
-	public  List<Integer> getListIdResultTest(String profileStudentName)
+	public static  List<Integer> getListIdResultTest(String profileStudentName)
 	{
 		int id=-1;
 		List<Integer> listId=new ArrayList<>();
@@ -149,7 +149,7 @@ public class  ResultTestService extends BaseService {
 		}
 		return listId;
 	}
-	public  String getProfileStu_ResultTest(String id_ResultTest)
+	public static   String getProfileStu_ResultTest(String id_ResultTest)
 	{
 		String sql="select ProfileStudent from resulttests where id=?";
 		String Name=null;

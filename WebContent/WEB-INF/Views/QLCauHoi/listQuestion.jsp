@@ -72,7 +72,7 @@
 									<td>${item.id}</td>
 									<td>${item.question}</td>
 									<td><c:forEach items="${item.lsAnswer}" var="item1">
-								${item1.answer} <br />
+										${item1.answer} <br />
 										</c:forEach></td>
 									<td>${item.answerCorrect.answer}</td>
 

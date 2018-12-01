@@ -11,7 +11,7 @@ public class AnswerService extends BaseService {
 	public AnswerService() {
 		super();
 	}
-	public List<Answer> getAllAnswers() {
+	public static List<Answer> getAllAnswers() {
 		String query = "Select * from answers";
 		List<Answer> lstAnswers = new ArrayList<>();
 
@@ -31,8 +31,9 @@ public class AnswerService extends BaseService {
 		return lstAnswers;
 	}
 
-	public Answer getAnswersById(int id) {
+	public static Answer getAnswersById(int id) {
 		String query = "Select * from answers where Id = " +id;
+		Answer answer = null;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
@@ -52,8 +53,8 @@ public class AnswerService extends BaseService {
 		}
 		return null;
 	}
-	public List<Answer> getAnswersByIdForQuestion(int id_questiton) {
-		String query = "Select * from answer where Question="+id_questiton;
+	public static List<Answer> getAnswersByIdForQuestion(int id_questiton) {
+		String query = "Select * from answers where Question="+id_questiton;
 		List<Answer> lstAnswers = new ArrayList<>();
 		try {
 			ResultSet rs = excuteQuery(query);
@@ -74,7 +75,7 @@ public class AnswerService extends BaseService {
 		return null;
 	}
 
-	public boolean deleteAnswers(int id) {
+	public static boolean deleteAnswers(int id) {
 		String query="Delete from answers where Id=?";
 		List<Object> params= new ArrayList<>();
 		params.add(id);
@@ -87,7 +88,7 @@ public class AnswerService extends BaseService {
 		return false;
 	}
 
-	public boolean updateAnswers(Answer answer) {
+	public static boolean updateAnswers(Answer answer) {
 		{
 			String query ="update answers set "
 					+ "Question = ?,"
@@ -107,7 +108,7 @@ public class AnswerService extends BaseService {
 		}
 	}
 
-	public boolean addAnswers(Answer answer) {
+	public static boolean addAnswers(Answer answer) {
 		String query="Insert into answers (Question,Answer)"
 				+"values (?,?)";
 	List<Object> params= new ArrayList<>();

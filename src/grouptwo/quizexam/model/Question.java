@@ -13,13 +13,13 @@ public class Question {
 	private int questionCategoryID;
 	private List<Answer> lsAnswer;
 	private Answer answerCorrect;
-	private String creatorID;
+	private int creatorID;
 	private int correctAnswerID;
 	public int getId() {
 		return id;
 	}
 	
-	public Question(int id, String question, String image, String level,int questionCategoryID,String creatorID,
+	public Question(int id, String question, String image, String level,int questionCategoryID,int creatorID,
 			int correctAnswerID) {
 		this.id = id;
 		this.question = question;
@@ -30,11 +30,10 @@ public class Question {
 		this.creatorID = creatorID;
 		this.correctAnswerID = correctAnswerID;
 		
-		AnswerService ans=new AnswerService();
-		this.lsAnswer=ans.getAnswersByIdForQuestion(id);
-		this.answerCorrect=ans.getAnswersById(correctAnswerID);
+		this.lsAnswer= AnswerService.getAnswersByIdForQuestion(id);
+		this.answerCorrect= AnswerService.getAnswersById(correctAnswerID);
 	}
-	public Question( String question, String image, String level,String creatorID,
+	public Question( String question, String image, String level,int creatorID,
 			int correctAnswerID, int questionCategoryID) {
 		this.question = question;
 		this.image = image;
@@ -70,10 +69,10 @@ public class Question {
 	public void setQuestionCategoryID(int questionCategoryID) {
 		this.questionCategoryID = questionCategoryID;
 	}
-	public String getCreatorID() {
+	public int getCreatorID() {
 		return creatorID;
 	}
-	public void setCreatorID(String creatorID) {
+	public void setCreatorID(int creatorID) {
 		this.creatorID = creatorID;
 	}
 	public int getCorrectAnswerID() {

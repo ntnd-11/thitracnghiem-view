@@ -12,7 +12,7 @@ public class QuestioncategorieService extends BaseService {
 	public QuestioncategorieService() {
 		super();
 	}
-	public  boolean addQuestionCategory(String categoryName)
+	public static boolean addQuestionCategory(String categoryName)
 	{
 		String sql="insert into questioncategories(CategoryName) values(?)";
 		List<Object> param= new ArrayList<>();
@@ -27,7 +27,7 @@ public class QuestioncategorieService extends BaseService {
 		
 		
 	}
-	public  List<Questioncategorie> getAllQuestionCategorie()
+	public static List<Questioncategorie> getAllQuestionCategorie()
 	{
 		String sql="select * from questioncategories";
 		List<Questioncategorie> list=null;
@@ -70,7 +70,7 @@ public class QuestioncategorieService extends BaseService {
 		}
 		return qsc;
 	}
-	public  Questioncategorie getQuestionCategorie(String name)
+	public static  Questioncategorie getQuestionCategorie(String name)
 	{
 		Questioncategorie qsc=new Questioncategorie();
 		String sql="select * from questioncategories where CategoryName=?";
@@ -90,7 +90,7 @@ public class QuestioncategorieService extends BaseService {
 		}
 		return qsc;
 	}
-	public  boolean deleteQuestionCategorie(int id_QuestionCategorie)
+	public static boolean deleteQuestionCategorie(int id_QuestionCategorie)
 	{
 		String sql="delete from questioncategories where id=?";
 		List<Object> param= new ArrayList<>();
@@ -103,7 +103,7 @@ public class QuestioncategorieService extends BaseService {
 		}
 		return false;
 	}
-	public  boolean updateQuestionCategorie(int id_QuestionCategorie,String categoryName)
+	public static boolean updateQuestionCategorie(int id_QuestionCategorie,String categoryName)
 	{
 		String sql="update questioncategories set CategoryName=? where id=?";
 		List<Object> param= new ArrayList<>();
@@ -117,7 +117,7 @@ public class QuestioncategorieService extends BaseService {
 		}
 		return false;
 	}
-	public  int getIdQuestitonCategory(String name)
+	public static  int getIdQuestitonCategory(String name)
 	{
 		int id=-1;
 		String sql="select id from questioncategories where CategoryName=?";
@@ -135,7 +135,7 @@ public class QuestioncategorieService extends BaseService {
 		}
 		return id;
 	}
-	public  String getNameQuestionCategory(int id_Categorie)
+	public static  String getNameQuestionCategory(int id_Categorie)
 	{
 		String Name=null;
 		String sql="select CategoryName from questioncategories where id=?";

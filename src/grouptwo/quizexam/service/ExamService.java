@@ -14,7 +14,7 @@ public class ExamService extends BaseService{
 		super();
 	}
 
-	public List<Exam> getAllCourse() {
+	public static List<Exam> getAllCourse() {
 		
 		String query = "SELECT * FROM onlinequiz.exams";
 		List<Exam> lstExams = new ArrayList<>();
@@ -39,7 +39,7 @@ public class ExamService extends BaseService{
 		return lstExams;
 		
 	}
-	public Exam getExamById(int id) {
+	public static Exam getExamById(int id) {
 		String query = "Select * from Exams where Id = " +id;
 		try
 		{
@@ -85,7 +85,7 @@ public class ExamService extends BaseService{
 		return null;
 	}*/
 	
-	public boolean deleteExam(int id) {
+	public static boolean deleteExam(int id) {
 		String query = "DELETE FROM exams WHERE Id=?" ;
 		List<Object> params=new ArrayList<>();
 		params.add(id);
@@ -101,7 +101,7 @@ public class ExamService extends BaseService{
 		
 		return false;
 	}
-	public boolean InsertExam(String name,Date timeStarting,int NumQuestions,Date timeFinishing,int classlop,int avtivate,String creator)
+	public static boolean InsertExam(String name,Date timeStarting,int NumQuestions,Date timeFinishing,int classlop,int avtivate,String creator)
 	{
 		String query="Insert into Exams(exams.Name,TimeStarting,NumQuestions,TimeFinishing,Class,Avtivate,Creator) values(?,?,?,?,?,?,?)";
 		List<Object> params=new ArrayList<>();
@@ -123,7 +123,7 @@ public class ExamService extends BaseService{
 		
 		return false;
 	}
-	public boolean UpdateExam(Exam exam)
+	public static boolean UpdateExam(Exam exam)
 	{
 		String query="update Exams set exams.Name=? ,TimeStarting=?,NumQuestions=?,TimeFinishing=?,Course=?,Avtivate=?,Creator=? where Id=?";
 		List<Object> params=new ArrayList<>();
