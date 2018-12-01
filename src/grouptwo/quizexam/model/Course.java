@@ -4,10 +4,23 @@ import java.sql.Date;
 
 public class Course {
 	
+	private Integer courseId;
+	private Integer subjectId;
+	private Date dateOfStarting;
+	private Date dateOfEnding;
+	private String dateOfWeek;
+	private Integer partOfStarting;
+	private Integer partOfEnding;
+	private Integer numberOfStudent;
+	private String room;
+	private boolean activate;
+	private Integer teacherId;
+	
+	
 	public Course() {
 	}
-	public Course(int subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, int partOfStarting,
-			int partOfEnding, int numberOfStudent, String room, boolean activate, String teacher) {
+	public Course(Integer subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, Integer partOfStarting,
+			Integer partOfEnding, Integer numberOfStudent, String room, boolean activate, Integer teacherId) {
 		this.subjectId = subjectId;
 		this.dateOfStarting = dateOfStarting;
 		this.dateOfEnding = dateOfEnding;
@@ -17,10 +30,10 @@ public class Course {
 		this.numberOfStudent = numberOfStudent;
 		this.room = room;
 		this.activate = activate;
-		this.teacher = teacher;
+		this.teacherId = teacherId;
 	}
-	public Course(int courseId,int subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, int partOfStarting,
-			int partOfEnding, int numberOfStudent, String room, boolean activate, String teacher) {
+	public Course(Integer courseId,Integer subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, Integer partOfStarting,
+			Integer partOfEnding, Integer numberOfStudent, String room, boolean activate, Integer teacherId) {
 		this.courseId = courseId;
 		this.subjectId = subjectId;
 		this.dateOfStarting = dateOfStarting;
@@ -31,28 +44,18 @@ public class Course {
 		this.numberOfStudent = numberOfStudent;
 		this.room = room;
 		this.activate = activate;
-		this.teacher = teacher;
+		this.teacherId = teacherId;
 	}
 
-	private int courseId;
-	private int subjectId;
-	private Date dateOfStarting;
-	private Date dateOfEnding;
-	private String dateOfWeek;
-	private int partOfStarting;
-	private int partOfEnding;
-	private int numberOfStudent;
-	private String room;
-	private boolean activate;
-	private String teacher;
+
 	
-	public int getCourseId() {
+	public Integer getCourseId() {
 		return courseId;
 	}
-	public int getSubjectId() {
+	public Integer getSubjectId() {
 		return subjectId;
 	}
-	public void setSubjectId(int subjectId) {
+	public void setSubjectId(Integer subjectId) {
 		this.subjectId = subjectId;
 	}
 	public Date getDateOfStarting() {
@@ -73,22 +76,22 @@ public class Course {
 	public void setDateOfWeek(String dateOfWeek) {
 		this.dateOfWeek = dateOfWeek;
 	}
-	public int getPartOfStarting() {
+	public Integer getPartOfStarting() {
 		return partOfStarting;
 	}
-	public void setPartOfStarting(int partOfStarting) {
+	public void setPartOfStarting(Integer partOfStarting) {
 		this.partOfStarting = partOfStarting;
 	}
-	public int getPartOfEnding() {
+	public Integer getPartOfEnding() {
 		return partOfEnding;
 	}
-	public void setPartOfEnding(int partOfEnding) {
+	public void setPartOfEnding(Integer partOfEnding) {
 		this.partOfEnding = partOfEnding;
 	}
-	public int getNumberOfStudent() {
+	public Integer getNumberOfStudent() {
 		return numberOfStudent;
 	}
-	public void setNumberOfStudent(int numberOfStudent) {
+	public void setNumberOfStudent(Integer numberOfStudent) {
 		this.numberOfStudent = numberOfStudent;
 	}
 	public String getRoom() {
@@ -103,11 +106,11 @@ public class Course {
 	public void setActivate(boolean activate) {
 		this.activate = activate;
 	}
-	public String getTeacher() {
-		return teacher;
+	public Integer getTeacher() {
+		return teacherId;
 	}
-	public void setTeacher(String teacher) {
-		this.teacher = teacher;
+	public void setTeacher(Integer teacherId) {
+		this.teacherId = teacherId;
 	}
 
 	

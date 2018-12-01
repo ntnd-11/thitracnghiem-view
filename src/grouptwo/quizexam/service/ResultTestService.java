@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import grouptwo.quizexam.model.ResultTest;
 
 public class  ResultTestService extends BaseService {
@@ -39,10 +38,10 @@ public class  ResultTestService extends BaseService {
 			while(rs.next())
 			{
 				qsc=new ResultTest();
-				qsc.setId(rs.getInt(1));
+				qsc.setResultId(rs.getInt(1));
 				qsc.setScore(rs.getInt(2));
 				qsc.setExamID(rs.getInt(3));
-				qsc.setProfileStudent(rs.getString(4));
+				qsc.setStudentId(rs.getInt(4));
 				list.add(qsc);
 			}
 		}
@@ -64,10 +63,10 @@ public class  ResultTestService extends BaseService {
 			while(rs.next())
 			{
 				qsc=new ResultTest();
-				qsc.setId(rs.getInt(1));
+				qsc.setResultId(rs.getInt(1));
 				qsc.setScore(rs.getInt(2));
 				qsc.setExamID(rs.getInt(3));
-				qsc.setProfileStudent(rs.getString(4));
+				qsc.setStudentId(rs.getInt(4));
 
 			}
 		}
@@ -88,10 +87,10 @@ public class  ResultTestService extends BaseService {
 				while(rs.next())
 				{
 					qsc=new ResultTest();
-					qsc.setId(rs.getInt(1));
+					qsc.setResultId(rs.getInt(1));
 					qsc.setScore(rs.getInt(2));
 					qsc.setExamID(rs.getInt(3));
-					qsc.setProfileStudent(rs.getString(4));
+					qsc.setStudentId(rs.getInt(4));
 
 				}
 			}

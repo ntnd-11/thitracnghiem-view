@@ -5,13 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import grouptwo.quizexam.model.Exam;
 
-public class ExamsService extends BaseService{
+public class ExamService extends BaseService{
 	
-	public ExamsService() {
+	public ExamService() {
 		super();
 	}
 
@@ -23,15 +22,14 @@ public class ExamsService extends BaseService{
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
-				Exam course = new Exam(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getDate(3),
-						rs.getInt(4),
-						rs.getDate(5),
-						rs.getInt(6),
-						rs.getBoolean(7),
-						rs.getString(8));
+				Exam course = new Exam(rs.getInt("Id"), 
+						rs.getString("name"), 
+						rs.getTimestamp("TimeStarting"), 
+						rs.getInt("NumQuestions"), 
+						rs.getTimestamp("TimeFinishing"), 
+						rs.getInt("Course"), 
+						rs.getBoolean("Activate"),	 
+						rs.getInt("Creator"));
 				lstExams.add(course);
 	        }
 		} catch (SQLException e) {
@@ -41,19 +39,19 @@ public class ExamsService extends BaseService{
 		return lstExams;
 		
 	}
-	public Exam getExamsById(int id) {
+	public Exam getExamById(int id) {
 		String query = "Select * from Exams where Id = " +id;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Exam exams = new Exam(
-					rs.getInt(1),
-					rs.getString(2),
-					rs.getDate(3),
-					rs.getInt(4),
-					rs.getDate(5),
-					rs.getInt(6),rs.getBoolean(7),
-					rs.getString(8));
+			Exam exams = new Exam(rs.getInt("Id"), 
+					rs.getString("name"), 
+					rs.getTimestamp("TimeStarting"), 
+					rs.getInt("NumQuestions"), 
+					rs.getTimestamp("TimeFinishing"), 
+					rs.getInt("Course"), 
+					rs.getBoolean("Activate"),	 
+					rs.getInt("Creator"));
 			return exams;
 		}
 		catch(SQLException e)
@@ -63,7 +61,8 @@ public class ExamsService extends BaseService{
 		}
 		return null;
 	}
-	public Exam getExamByName(String subject) {
+	
+	/*public Exam getExamByName(String subject) {
 		String query = "Select * from Exams where Name = " +subject;
 		try
 		{
@@ -84,8 +83,9 @@ public class ExamsService extends BaseService{
 
 		}
 		return null;
-	}
-	public boolean deleteExams(int id) {
+	}*/
+	
+	public boolean deleteExam(int id) {
 		String query = "DELETE FROM exams WHERE Id=?" ;
 		List<Object> params=new ArrayList<>();
 		params.add(id);
@@ -96,14 +96,13 @@ public class ExamsService extends BaseService{
 		}
 		catch(SQLException ex) {
 			
-			Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
+			//Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
 		return false;
 	}
-	public boolean InsertExams(String name,Date timeStarting,int NumQuestions,Date timeFinishing,int classlop,int avtivate,String creator)
+	public boolean InsertExam(String name,Date timeStarting,int NumQuestions,Date timeFinishing,int classlop,int avtivate,String creator)
 	{
-		//String query = "INSERT INTO EXAMS VALUES(?,?,?,?,?)" ;
 		String query="Insert into Exams(exams.Name,TimeStarting,NumQuestions,TimeFinishing,Class,Avtivate,Creator) values(?,?,?,?,?,?,?)";
 		List<Object> params=new ArrayList<>();
 		params.add(name);
@@ -114,36 +113,35 @@ public class ExamsService extends BaseService{
 		params.add(avtivate);
 		params.add(creator);
 		try {
-			
 			return executeUpdate(query,params);
 			
 		}
 		catch(SQLException ex) {
 			
-			Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
+			//Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
 		return false;
 	}
-	public boolean UpdateExams(String name,Date timeStarting,int NumQuestions,Date timeFinishing,int classlop,int avtivate,String creator,int id)
+	public boolean UpdateExam(Exam exam)
 	{
-		String query="update Exams set exams.Name=? ,TimeStarting=?,NumQuestions=?,TimeFinishing=?,Class=?,Avtivate=?,Creator=? where Id=?";
+		String query="update Exams set exams.Name=? ,TimeStarting=?,NumQuestions=?,TimeFinishing=?,Course=?,Avtivate=?,Creator=? where Id=?";
 		List<Object> params=new ArrayList<>();
-		params.add(name);
-		params.add(timeStarting);
-		params.add(NumQuestions);
-		params.add(timeFinishing);
-		params.add(classlop);
-		params.add(avtivate);
-		params.add(creator);
-		params.add(id);
+		params.add(exam.getName());
+		params.add(exam.getTimeStarting());
+		params.add(exam.getNumQuestions());
+		params.add(exam.getTimeFinishing());
+		params.add(exam.getCourseID());
+		params.add(exam.isActivate());
+		params.add(exam.getCreatorID());
+		params.add(exam.getId());
 		try {
 
 			return executeUpdate(query, params);
 
 		} catch (SQLException ex) {
 
-			Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
+			//Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		return false;

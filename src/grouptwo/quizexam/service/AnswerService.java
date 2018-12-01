@@ -32,7 +32,7 @@ public class AnswerService extends BaseService {
 	}
 
 	public Answer getAnswersById(int id) {
-		String query = "Select * from answer where Id = " +id;
+		String query = "Select * from answers where Id = " +id;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
@@ -54,7 +54,7 @@ public class AnswerService extends BaseService {
 	}
 
 	public boolean deleteAnswers(int id) {
-		String query="Delete from answer where Id=?";
+		String query="Delete from answers where Id=?";
 		List<Object> params= new ArrayList<>();
 		params.add(id);
 		try {
@@ -68,7 +68,7 @@ public class AnswerService extends BaseService {
 
 	public boolean updateAnswers(Answer answer) {
 		{
-			String query ="update answer set "
+			String query ="update answers set "
 					+ "Question = ?,"
 					+ "Answer = ?,"
 					+ "Where Id= ?";
@@ -87,7 +87,7 @@ public class AnswerService extends BaseService {
 	}
 
 	public boolean addAnswers(Answer answer) {
-		String query="Insert into answer (Question,Answer)"
+		String query="Insert into answers (Question,Answer)"
 				+"values (?,?)";
 	List<Object> params= new ArrayList<>();
 	params.add(answer.getQuestions());

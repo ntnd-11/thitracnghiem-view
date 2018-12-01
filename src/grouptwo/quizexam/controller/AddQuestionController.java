@@ -64,7 +64,7 @@ public class AddQuestionController extends HttpServlet {
 			break;
 		}
 		
-		_questionService.addQuestions(new Question(question, "", level, null, Integer.parseInt(categories)));
+		//_questionService.addQuestions(new Question(question, "", level, null, Integer.parseInt(categories)));
 		
 		
 		

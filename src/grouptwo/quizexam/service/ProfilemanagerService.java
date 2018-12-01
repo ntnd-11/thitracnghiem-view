@@ -7,35 +7,121 @@ import java.util.List;
 
 import grouptwo.quizexam.model.Profilemanager;
 
-public class ProfilemanagerService extends BaseService{
+public class ProfilemanagerService extends BaseService {
 
 	public ProfilemanagerService() {
 		super();
 	}
-public List<Profilemanager> getAllProfilemanager() {
-		
-		String query = "select * from profilemanager";
+
+	public List<Profilemanager> getAllProfilemanager() {
+
+		String query = "select * from profilemanagers";
 		List<Profilemanager> lstProfilemanager = new ArrayList<>();
 
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
-				Profilemanager profilemanager = new Profilemanager(
-						rs.getString(1),
-						rs.getString(2),
-						rs.getDate(3),
-						rs.getString(4),
-						rs.getString(5),
-						rs.getString(6),
-						rs.getString(7),
-						rs.getByte(8));
+				Profilemanager profilemanager = new Profilemanager(rs.getInt("Id"), rs.getString("Name"),
+						rs.getDate("DateOfBirth"), rs.getString("Gender"), rs.getString("PhoneNumber"),
+						rs.getString("Image"), rs.getBoolean("ShowProfile"), rs.getInt("User"));
 				lstProfilemanager.add(profilemanager);
-	        }
+			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return null;
-		}	
+		}
 		return lstProfilemanager;
+
+	}
+	
+	public Profilemanager getManagerById(int id) {
+
+		String query = "select * from onlinequiz.profilemanagers where id=?";
+		List<Profilemanager> lstProfilemanager = new ArrayList<>();
+		List<Object> params = new ArrayList<>();
+		params.add(id);
+
+		try {
+			ResultSet rs = excuteQuery(query,params);
+			while (rs.next()) {
+				Profilemanager profilemanager = new Profilemanager(rs.getInt("Id"), rs.getString("Name"),
+						rs.getDate("DateOfBirth"), rs.getString("Gender"), rs.getString("PhoneNumber"),
+						rs.getString("Image"), rs.getBoolean("ShowProfile"), rs.getInt("User"));
+				lstProfilemanager.add(profilemanager);
+				return profilemanager;
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		return null;
+
+	}
+	
+	public boolean deleteManager(int id) {
+		String query = "DELETE FROM onlinequiz.profilemanagers WHERE Id = ?";
 		
+		List<Object> params = new ArrayList<>();
+		params.add(id);
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean updateManager(Profilemanager profilemanager)
+	{
+		String query = "UPDATE onlinequiz.profilemanagers SET "
+				+ "Name=?, "
+				+ "DateOfBirth=?, "
+				+ "Gender=?, "
+				+ "PhoneNumber = ?, "
+				+ "Image=?, "
+				+ "ShowProfile = ?, "
+				+ "UserId = ? "
+				+ "WHERE Id =?";
+		List<Object> params = new ArrayList<>();
+		params.add(profilemanager.getName());
+		params.add(profilemanager.getDateOfBirth());
+		params.add(profilemanager.getGender());
+		params.add(profilemanager.getPhoneNumber());
+		params.add(profilemanager.getImage());
+		params.add(profilemanager.isShowProfile());
+		params.add(profilemanager.getUserId());
+		params.add(profilemanager.getProfileId());
+
+
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+	public boolean addCourse(Profilemanager profilemanager) {
+		String query = "INSERT INTO onlinequiz.profilemanagers (Name, DateOfBirth, Gender,PhoneNumber,Image,ShowProfile,UserId)" + 
+				"VALUES (?,?,?,?,?,?,?)";
+		
+		List<Object> params = new ArrayList<>();
+		params.add(profilemanager.getName());
+		params.add(profilemanager.getDateOfBirth());
+		params.add(profilemanager.getGender());
+		params.add(profilemanager.getPhoneNumber());
+		params.add(profilemanager.getImage());
+		params.add(profilemanager.isShowProfile());
+		params.add(profilemanager.getUserId());
+		
+		try {
+			return executeUpdate(query, params);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+
 	}
 }

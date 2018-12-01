@@ -88,7 +88,7 @@ public class DetailExamService extends BaseService {
 	}
 
 	public boolean addDetailExams(DetailExam detailexam) {
-		String query="Insert into detailexams (Exam,Question)"
+		String query="Insert into detailexams (Exam,Question) "
 				+"values (?,?)";
 	List<Object> params= new ArrayList<>();
 	params.add(detailexam.getExamId());

@@ -19,14 +19,13 @@ public class QuestionService extends BaseService {
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
-				Question questions = new Question(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getString(5),
-						rs.getInt(6),
-						rs.getInt(7));
+				Question questions = new Question(rs.getInt("Id"),
+						rs.getString("Question"),
+						rs.getString("Image"),
+						rs.getString("Level"),
+						rs.getInt("QuestionCategory"),
+						rs.getInt("CorrectAnswer"),
+						rs.getInt("Creator"));
 				lstQuestions.add(questions);
 			}
 		} catch (SQLException e) {
@@ -41,14 +40,13 @@ public class QuestionService extends BaseService {
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Question questions = new Question(
-					rs.getInt(1),
-					rs.getString(2),
-					rs.getString(3),
-					rs.getString(4),
-					rs.getString(5),
-					rs.getInt(6),
-					rs.getInt(7));
+			Question questions = new Question(rs.getInt("Id"),
+					rs.getString("Question"),
+					rs.getString("Image"),
+					rs.getString("Level"),
+					rs.getInt("QuestionCategory"),
+					rs.getInt("CorrectAnswer"),
+					rs.getInt("Creator"));
 			return questions;
 		}
 		catch(SQLException e)
@@ -65,13 +63,13 @@ public class QuestionService extends BaseService {
 		{
 			ResultSet rs = excuteQuery(query);
 			Question questions = new Question(
-					rs.getInt(1),
-					rs.getString(2),
-					rs.getString(3),
-					rs.getString(4),
-					rs.getString(5),
-					rs.getInt(6),
-					rs.getInt(7));
+					rs.getInt("Id"),
+					rs.getString("Question"),
+					rs.getString("Image"),
+					rs.getString("Level"),
+					rs.getInt("QuestionCategory"),
+					rs.getInt("CorrectAnswer"),
+					rs.getInt("Creator"));
 			return questions;
 		}
 		catch(SQLException e)
@@ -109,10 +107,10 @@ public class QuestionService extends BaseService {
 			params.add(question.getQuestion());
 			params.add(question.getImage());
 			params.add(question.getLevel());
-			params.add(question.getCreatorID());
-			params.add(question.getCorrectAnswerID());
-			params.add(question.getQuestionCategoryID());
-			params.add(question.getId());
+			params.add(question.getCreatorId());
+			params.add(question.getCorrectAnswerId());
+			params.add(question.getQuestionCategoryId());
+			params.add(question.getQuestionId());
 			try {
 				boolean action = executeUpdate(query, params);
 				return action;
@@ -131,8 +129,8 @@ public class QuestionService extends BaseService {
 	params.add(question.getQuestion());
 	params.add(question.getImage());
 	params.add(question.getLevel());
-	params.add(question.getCreatorID());
-	params.add(question.getQuestionCategoryID());
+	params.add(question.getCreatorId());
+	params.add(question.getQuestionCategoryId());
 	for(Object c:params)
 	{
 		System.out.println(c+"");

@@ -15,23 +15,23 @@ public class CourseService extends BaseService {
 
 	public List<Course> getAllCourse() {
 		
-		String query = "Select * from onlinequiz.classes";
+		String query = "Select * from onlinequiz.coures";
 		List<Course> lstCourse = new ArrayList<>();
 
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
 				Course course = new Course(
-						rs.getInt(2),
-						rs.getDate(3),
-						rs.getDate(4),
-						rs.getString(5),
-						rs.getInt(6),
-						rs.getInt(7),
-						rs.getInt(8),
-						rs.getString(9),
-						rs.getBoolean(10),
-						rs.getString(11));
+						rs.getInt("Subject"), 
+						rs.getDate("DateOfStarting"), 
+						rs.getDate("DateOfEnding"), 
+						rs.getString("DateOfWeek"), 
+						rs.getInt("PartOfStarting"), 
+						rs.getInt("PartOfEnding"), 
+						rs.getInt("NumOfStudents"), 
+						rs.getString("Room"), 
+						rs.getBoolean("Activate"),
+						rs.getInt("Teacher"));
 				lstCourse.add(course);
 	        }
 		} catch (SQLException e) {
@@ -42,21 +42,20 @@ public class CourseService extends BaseService {
 		
 	}
 	public Course getCourseById(int id) {
-		String query = "Select * from onlinequiz.classes where Id = " +id;
+		String query = "Select * from onlinequiz.courses where Id = " +id;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Course course = new Course(
-					rs.getInt(2),
-					rs.getDate(3),
-					rs.getDate(4),
-					rs.getString(5),
-					rs.getInt(6),
-					rs.getInt(7),
-					rs.getInt(8),
-					rs.getString(9),
-					rs.getBoolean(10),
-					rs.getString(11));
+			Course course = new Course(rs.getInt("Subject"), 
+					rs.getDate("DateOfStarting"), 
+					rs.getDate("DateOfEnding"), 
+					rs.getString("DateOfWeek"), 
+					rs.getInt("PartOfStarting"), 
+					rs.getInt("PartOfEnding"), 
+					rs.getInt("NumOfStudents"), 
+					rs.getString("Room"), 
+					rs.getBoolean("Activate"),
+					rs.getInt("Teacher"));
 			return course;
 		}
 		catch(SQLException e)
@@ -70,7 +69,7 @@ public class CourseService extends BaseService {
 		return null;
 	}
 	public boolean deleteCourse(int id) {
-		String query = "DELETE FROM onlinequiz.CLASSES WHERE Id = ?";
+		String query = "DELETE FROM onlinequiz.courses WHERE Id = ?";
 		
 		List<Object> params = new ArrayList<>();
 		params.add(id);
@@ -84,7 +83,7 @@ public class CourseService extends BaseService {
 	}
 	public boolean updateCourse(Course course)
 	{
-		String query = "UPDATE onlinequiz.CLASSES SET Subject=?,"
+		String query = "UPDATE onlinequiz.courses SET Subject=?,"
 				+ "DateOfStarting=?,"
 				+ "DateOfEnding=?,"
 				+ "DateOfWeek=?,"
@@ -116,7 +115,7 @@ public class CourseService extends BaseService {
 
 	}
 	public boolean addCourse(Course course) {
-		String query = "INSERT INTO onlinequiz.CLASSES (Subject, DateOfStarting, DateOfEnding,DateOfWeek,PartOfStarting,PartOfEnding,NumOfStudents,Room,Activate,Teacher)" + 
+		String query = "INSERT INTO onlinequiz.courses (Subject, DateOfStarting, DateOfEnding,DateOfWeek,PartOfStarting,PartOfEnding,NumOfStudents,Room,Activate,Teacher)" + 
 				"VALUES (?,?,?,?,?,?,?,?,?,?)";
 		List<Object> params = new ArrayList<>();
 		params.add(course.getSubjectId());

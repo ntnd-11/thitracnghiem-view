@@ -10,14 +10,14 @@ public class Exam {
 	private Integer numQuestions;
 	private Date timeFinishing;
 	private Integer courseID;
-	private boolean avtivate;
+	private boolean activate;
 	private Integer creatorID;
 	
 	public Exam()
 	{
 		
 	}
-	public Exam(Integer id,String name,Date timeStarting,Integer numQuestions,Date timeFinishing,Integer courseID,boolean avtivate,Integer creatorID)
+	public Exam(Integer id,String name,Date timeStarting,Integer numQuestions,Date timeFinishing,Integer courseID,boolean activate,Integer creatorID)
 	{
 		this.id=id;
 		this.name=name;
@@ -25,7 +25,18 @@ public class Exam {
 		this.numQuestions=numQuestions;
 		this.timeFinishing=timeFinishing;
 		this.courseID=courseID;
-		this.avtivate=avtivate;
+		this.activate=activate;
+		this.creatorID=creatorID;
+		
+	}
+	public Exam(String name,Date timeStarting,Integer numQuestions,Date timeFinishing,Integer courseID,boolean activate,Integer creatorID)
+	{
+		this.name=name;
+		this.timeStarting=timeStarting;
+		this.numQuestions=numQuestions;
+		this.timeFinishing=timeFinishing;
+		this.courseID=courseID;
+		this.activate=activate;
 		this.creatorID=creatorID;
 		
 	}
@@ -65,11 +76,11 @@ public class Exam {
 	public void setCourseID(Integer courseID) {
 		this.courseID = courseID;
 	}
-	public boolean isAvtivate() {
-		return avtivate;
+	public boolean isActivate() {
+		return activate;
 	}
-	public void setAvtivate(boolean avtivate) {
-		this.avtivate = avtivate;
+	public void setActivate(boolean activate) {
+		this.activate = activate;
 	}
 	public int getCreatorID() {
 		return creatorID;

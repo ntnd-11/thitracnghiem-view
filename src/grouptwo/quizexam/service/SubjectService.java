@@ -15,19 +15,18 @@ public class SubjectService extends BaseService {
 	}
 
 	public List<Subject> getAllSubjects() {
-		String query = "Select * from roleuser";
+		String query = "Select * from roleusers";
 		List<Subject> lstSubjects = new ArrayList<>();
 
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
 				Subject subjects = new Subject(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getString(3),
-						rs.getInt(4),
-						rs.getString(5),
-						rs.getBoolean(6));
+						rs.getString("Name"),
+						rs.getString("Faculty"),
+						rs.getInt("Credit"),
+						rs.getString("Type"),
+						rs.getBoolean("Activate"));
 				lstSubjects.add(subjects);
 			}
 		} catch (SQLException e) {
@@ -89,7 +88,7 @@ public class SubjectService extends BaseService {
 			params.add(subject.getFaculty());
 			params.add(subject.getCredit());
 			params.add(subject.getType());
-			params.add(subject.isActivity());
+			params.add(subject.isActivate());
 			params.add(subject.getSubjectID());
 			try {
 				boolean action = executeUpdate(query, params);
@@ -109,7 +108,7 @@ public class SubjectService extends BaseService {
 	params.add(subject.getFaculty());
 	params.add(subject.getCredit());
 	params.add(subject.getType());
-	params.add(subject.isActivity());
+	params.add(subject.isActivate());
 	try {
 		boolean action = executeUpdate(query, params);
 		return action;
