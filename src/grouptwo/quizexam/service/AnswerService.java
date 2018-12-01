@@ -32,13 +32,19 @@ public class AnswerService extends BaseService {
 	}
 
 	public Answer getAnswersById(int id) {
-		String query = "Select * from answer where Id = " +id;
+		String query = "Select * from answer where Id= " +id;
+		Answer answer=null;
 		try
 		{
+			
 			ResultSet rs = excuteQuery(query);
-			Answer answer = new Answer(
-					rs.getInt(2),
-					rs.getString(3));
+			while(rs.next())
+			{
+				answer = new Answer(rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3));
+			}
+			
 			return answer;
 		}
 		catch(SQLException e)
@@ -48,7 +54,24 @@ public class AnswerService extends BaseService {
 		}
 		return null;
 	}
-
+	public List<Answer> getAnswersByIdForQuestion(int id_questiton) {
+		String query = "Select * from answer where Question="+id_questiton;
+		List<Answer> lstAnswers = new ArrayList<>();
+		try {
+			ResultSet rs = excuteQuery(query);
+			while (rs.next()) {
+				Answer answers = new Answer(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3));
+				lstAnswers.add(answers);
+			}
+			return lstAnswers;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
 	public Answer getAnswersByName(String answer) {
 		return null;
 	}

@@ -1,5 +1,9 @@
 package grouptwo.quizexam.model;
 
+import java.util.List;
+
+import grouptwo.quizexam.service.AnswerService;
+
 public class Question {
 
 	private int id;
@@ -7,21 +11,28 @@ public class Question {
 	private String image;
 	private String level;
 	private int questionCategoryID;
+	private List<Answer> lsAnswer;
+	private Answer answerCorrect;
 	private String creatorID;
 	private int correctAnswerID;
 	public int getId() {
 		return id;
 	}
 	
-	public Question(int id, String question, String image, String level,String creatorID,
-			int correctAnswerID, int questionCategoryID) {
+	public Question(int id, String question, String image, String level,int questionCategoryID,String creatorID,
+			int correctAnswerID) {
 		this.id = id;
 		this.question = question;
 		this.image = image;
 		this.level = level;
+		
 		this.questionCategoryID = questionCategoryID;
 		this.creatorID = creatorID;
 		this.correctAnswerID = correctAnswerID;
+		
+		AnswerService ans=new AnswerService();
+		this.lsAnswer=ans.getAnswersByIdForQuestion(id);
+		this.answerCorrect=ans.getAnswersById(correctAnswerID);
 	}
 	public Question( String question, String image, String level,String creatorID,
 			int correctAnswerID, int questionCategoryID) {
@@ -70,6 +81,22 @@ public class Question {
 	}
 	public void setCorrectAnswerID(int correctAnswerID) {
 		this.correctAnswerID = correctAnswerID;
+	}
+
+	public List<Answer> getLsAnswer() {
+		return lsAnswer;
+	}
+
+	public void setLsAnswer(List<Answer> lsAnswer) {
+		this.lsAnswer = lsAnswer;
+	}
+
+	public Answer getAnswerCorrect() {
+		return answerCorrect;
+	}
+
+	public void setAnswerCorrect(Answer answerCorrect) {
+		this.answerCorrect = answerCorrect;
 	}
 
 		

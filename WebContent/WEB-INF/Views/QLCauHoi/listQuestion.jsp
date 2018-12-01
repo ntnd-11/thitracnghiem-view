@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <t:WrapperAdmin>
 	<div class="row">
 		<div class="col-md-12">
@@ -44,68 +45,39 @@
 								<th width="20%">Câu hỏi</th>
 								<th width="20%">Câu trả lời</th>
 								<th width="20%">Đáp án</th>
-								<th>Ngày thêm</th>
 								<th class="20%">Tùy chọn</th>
 							</thead>
+							<c:forEach items="${list}" var="item">
 							<tr>
 								<td><input type="checkbox"
 									aria-label="Radio button for following text input"></td>
-								<td>1</td>
-								<td>C# được ra đời năm nào ?</td>
-								<td>1995 <br /> 1996 <br /> 2000 <br /> 2001 <br />
+								<td>${item.id}</td>
+								<td>${item.question}</td>
+								<td>
+								<c:forEach items="${item.lsAnswer}" var="item1">
+								${item1.answer} <br/> 
+								</c:forEach>
 								</td>
-								<td>Không biết</td>
-								<td>2/2/2018 15:30 GMT</td>
-								<td><a href="./editQuestion.jsp" class="btn btn-warning"><i
+								<td>${item.answerCorrect.answer}</td>
+								
+								<td><a href="${pageContext.request.contextPath}/*?id=${item.id}" class="btn btn-warning"><i
 										class="fa fa-pencil"></i></a>
-									<button class="btn btn-danger" data-toggle="modal"
-										data-target="#modalConfirmDeleting">
+									<a class="btn btn-danger" href="${pageContext.request.contextPath}/*?id=${item.id}" >
 										<i class="fa fa-trash"></i>
-									</button></td>
+									</a></td>
 							</tr>
-							<tr>
-								<td><input type="checkbox"
-									aria-label="Radio button for following text input"></td>
-								<td>1</td>
-								<td>C# được ra đời năm nào ?</td>
-								<td>1995 <br /> 1996 <br /> 2000 <br /> 2001 <br />
-								</td>
-								<td>Không biết</td>
-								<td>2/2/2018 15:30 GMT</td>
-								<td><a href="./editQuestion.jsp" class="btn btn-warning"><i
-										class="fa fa-pencil"></i></a>
-									<button class="btn btn-danger" data-toggle="modal"
-										data-target="#modalConfirmDeleting">
-										<i class="fa fa-trash"></i>
-									</button></td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"
-									aria-label="Radio button for following text input"></td>
-								<td>1</td>
-								<td>C# được ra đời năm nào ?</td>
-								<td>1995 <br /> 1996 <br /> 2000 <br /> 2001 <br />
-								</td>
-								<td>Không biết</td>
-								<td>2/2/2018 15:30 GMT</td>
-								<td><a href="./editQuestion.jsp" class="btn btn-warning"><i
-										class="fa fa-pencil"></i></a>
-									<button class="btn btn-danger" data-toggle="modal"
-										data-target="#modalConfirmDeleting">
-										<i class="fa fa-trash"></i>
-									</button></td>
-							</tr>
+							</c:forEach>
+							
+							
 						</table>
 
 						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
 								<li class="page-item disabled"><a class="page-link"
 									href="#" tabindex="-1">Previous</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-
-								<li class="page-item"><a class="page-link" href="#">Next</a>
+								<c:forEach var="i" begin="1" end="${numberPage}">
+									<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListQuestion?page=${i}">${i}</a></li>
+								</c:forEach>
 								</li>
 							</ul>
 						</nav>

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import grouptwo.quizexam.model.Question;
 
 
@@ -24,8 +25,8 @@ public class QuestionService extends BaseService {
 						rs.getString(2),
 						rs.getString(3),
 						rs.getString(4),
-						rs.getString(5),
-						rs.getInt(6),
+						rs.getInt(5),
+						rs.getString(6),
 						rs.getInt(7));
 				lstQuestions.add(questions);
 			}
@@ -35,7 +36,51 @@ public class QuestionService extends BaseService {
 		}
 		return lstQuestions;
 	}
+	public List<Question> getAllQuestions(int firstReSult,int amoutResult) {
+		String query = "select * from questions order by Id LIMIT ?,?";
+		List<Object> param=new ArrayList<>();
+		param.add(firstReSult);
+		param.add(amoutResult);
+		List<Question> lstQuestions = new ArrayList<>();
 
+		try {
+			ResultSet rs = excuteQuery(query,param);
+			while (rs.next()) {
+				Question questions = new Question(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getString(6),
+						rs.getInt(7));
+				lstQuestions.add(questions);
+			}
+			return lstQuestions;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return null;
+	
+	}
+	public int countAnswer()
+	{
+		String sql="select count(id) from questions";
+		try
+		{
+			ResultSet rs=excuteQuery(sql);
+			while(rs.next())
+			{
+				return rs.getInt(1);
+			}
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return 0;
+	}
+	
 	public Question getQuestionsById(int id) {
 		String query = "Select * from questions where Id = " +id;
 		try
@@ -46,8 +91,8 @@ public class QuestionService extends BaseService {
 					rs.getString(2),
 					rs.getString(3),
 					rs.getString(4),
-					rs.getString(5),
-					rs.getInt(6),
+					rs.getInt(5),
+					rs.getString(6),
 					rs.getInt(7));
 			return questions;
 		}
@@ -69,8 +114,8 @@ public class QuestionService extends BaseService {
 					rs.getString(2),
 					rs.getString(3),
 					rs.getString(4),
-					rs.getString(5),
-					rs.getInt(6),
+					rs.getInt(5),
+					rs.getString(6),
 					rs.getInt(7));
 			return questions;
 		}
