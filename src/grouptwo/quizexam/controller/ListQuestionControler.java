@@ -36,6 +36,7 @@ public class ListQuestionControler extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		QuestionService qus=new QuestionService();
 		List<Question> qsl=qus.getAllQuestions();
+		
 		int page=1;
 		if(request.getParameter("page")==null)
 		{
@@ -78,5 +79,6 @@ public class ListQuestionControler extends HttpServlet {
 		return kq;
 		
 	}
+	
 
 }

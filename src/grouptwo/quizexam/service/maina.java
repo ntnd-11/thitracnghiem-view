@@ -1,7 +1,6 @@
 package grouptwo.quizexam.service;
 
-import grouptwo.quizexam.beans.AnswerBean;
-import grouptwo.quizexam.model.Answer;
+import grouptwo.quizexam.model.Question;
 
 public class maina {
 
@@ -10,13 +9,8 @@ public class maina {
 	}
 
 	public static void main(String[] args) {
-		AnswerService ans=new AnswerService();
-		
-		for(Answer c:AnswerBean.getLsQus())
-		{
-			System.out.println(c.getId());
-		}
-
+		 	String sql="Đâu";
+		 	System.out.println(sql.toLowerCase());
 	}
 
 }

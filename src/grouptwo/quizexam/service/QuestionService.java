@@ -64,6 +64,32 @@ public class QuestionService extends BaseService {
 		return null;
 	
 	}
+	public List<Question> searchQuestion(String character)
+	{
+		String sql="SELECT * FROM questions " + 
+				"WHERE lower(Question) LIKE ?";
+		
+		List<Question> lstQuestions = new ArrayList<>();
+		try {
+			ResultSet rs = searchExcuteQuery(sql,character);
+			while (rs.next()) {
+				Question questions = new Question(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getString(6),
+						rs.getInt(7));
+				lstQuestions.add(questions);
+			}
+			return lstQuestions;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return null;
+	}
 	public int countAnswer()
 	{
 		String sql="select count(id) from questions";
@@ -188,4 +214,5 @@ public class QuestionService extends BaseService {
 
 
 	}
+	
 }

@@ -28,6 +28,7 @@ public class BaseService {
  
         return stmt.executeQuery(query);
 	}
+	
 	// select have parameter
 	protected ResultSet excuteQuery(String query,List<Object> params) throws SQLException
 	{
@@ -64,6 +65,15 @@ public class BaseService {
 			continue;
 
 		}
+        return stmt.executeQuery();
+        
+	}
+	protected ResultSet searchExcuteQuery(String query,String character) throws SQLException
+	{
+		PreparedStatement stmt = conn.prepareStatement(query);
+		stmt.setString(1,"%"+character+"%");
+		
+		System.out.println(stmt+"");
         return stmt.executeQuery();
         
 	}
