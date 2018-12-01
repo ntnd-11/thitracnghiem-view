@@ -34,7 +34,77 @@ public class QuestionService extends BaseService {
 		}
 		return lstQuestions;
 	}
+	public List<Question> getAllQuestions(int firstReSult,int amoutResult) {
+		String query = "select * from questions order by Id LIMIT ?,?";
+		List<Object> param=new ArrayList<>();
+		param.add(firstReSult);
+		param.add(amoutResult);
+		List<Question> lstQuestions = new ArrayList<>();
 
+		try {
+			ResultSet rs = excuteQuery(query,param);
+			while (rs.next()) {
+				Question questions = new Question(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getString(6),
+						rs.getInt(7));
+				lstQuestions.add(questions);
+			}
+			return lstQuestions;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return null;
+	
+	}
+	public List<Question> searchQuestion(String character)
+	{
+		String sql="SELECT * FROM questions " + 
+				"WHERE lower(Question) LIKE ?";
+		
+		List<Question> lstQuestions = new ArrayList<>();
+		try {
+			ResultSet rs = searchExcuteQuery(sql,character);
+			while (rs.next()) {
+				Question questions = new Question(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getString(6),
+						rs.getInt(7));
+				lstQuestions.add(questions);
+			}
+			return lstQuestions;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return null;
+	}
+	public int countAnswer()
+	{
+		String sql="select count(id) from questions";
+		try
+		{
+			ResultSet rs=excuteQuery(sql);
+			while(rs.next())
+			{
+				return rs.getInt(1);
+			}
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return 0;
+	}
+	
 	public Question getQuestionsById(int id) {
 		String query = "Select * from questions where Id = " +id;
 		try

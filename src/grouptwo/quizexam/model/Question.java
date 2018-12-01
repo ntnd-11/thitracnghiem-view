@@ -1,100 +1,104 @@
 package grouptwo.quizexam.model;
 
+import java.util.List;
+
+import grouptwo.quizexam.service.AnswerService;
+
 public class Question {
 
-	private int questionId;
+	private int id;
 	private String question;
 	private String image;
 	private String level;
-	private int questionCategoryId;
-	private int creatorId;
-	private int correctAnswerId;
+	private int questionCategoryID;
+	private List<Answer> lsAnswer;
+	private Answer answerCorrect;
+	private String creatorID;
+	private int correctAnswerID;
+	public int getId() {
+		return id;
+	}
 	
-
-
-	public int getQuestionId() {
-		return questionId;
+	public Question(int id, String question, String image, String level,int questionCategoryID,String creatorID,
+			int correctAnswerID) {
+		this.id = id;
+		this.question = question;
+		this.image = image;
+		this.level = level;
+		
+		this.questionCategoryID = questionCategoryID;
+		this.creatorID = creatorID;
+		this.correctAnswerID = correctAnswerID;
+		
+		AnswerService ans=new AnswerService();
+		this.lsAnswer=ans.getAnswersByIdForQuestion(id);
+		this.answerCorrect=ans.getAnswersById(correctAnswerID);
 	}
-
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
+	public Question( String question, String image, String level,String creatorID,
+			int correctAnswerID, int questionCategoryID) {
+		this.question = question;
+		this.image = image;
+		this.level = level;
+		this.questionCategoryID = questionCategoryID;
+		this.creatorID = creatorID;
+		this.correctAnswerID = correctAnswerID;
 	}
-
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getQuestion() {
 		return question;
 	}
-
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-
 	public String getImage() {
 		return image;
 	}
-
 	public void setImage(String image) {
 		this.image = image;
 	}
-
 	public String getLevel() {
 		return level;
 	}
-
 	public void setLevel(String level) {
 		this.level = level;
 	}
-
-	public int getQuestionCategoryId() {
-		return questionCategoryId;
+	public int getQuestionCategoryID() {
+		return questionCategoryID;
+	}
+	public void setQuestionCategoryID(int questionCategoryID) {
+		this.questionCategoryID = questionCategoryID;
+	}
+	public String getCreatorID() {
+		return creatorID;
+	}
+	public void setCreatorID(String creatorID) {
+		this.creatorID = creatorID;
+	}
+	public int getCorrectAnswerID() {
+		return correctAnswerID;
+	}
+	public void setCorrectAnswerID(int correctAnswerID) {
+		this.correctAnswerID = correctAnswerID;
 	}
 
-	public void setQuestionCategoryId(int questionCategoryId) {
-		this.questionCategoryId = questionCategoryId;
+	public List<Answer> getLsAnswer() {
+		return lsAnswer;
 	}
 
-	public int getCreatorId() {
-		return creatorId;
+	public void setLsAnswer(List<Answer> lsAnswer) {
+		this.lsAnswer = lsAnswer;
 	}
 
-	public void setCreatorId(int creatorId) {
-		this.creatorId = creatorId;
+	public Answer getAnswerCorrect() {
+		return answerCorrect;
 	}
 
-	public int getCorrectAnswerId() {
-		return correctAnswerId;
+	public void setAnswerCorrect(Answer answerCorrect) {
+		this.answerCorrect = answerCorrect;
 	}
 
-	public void setCorrectAnswerId(int correctAnswerId) {
-		this.correctAnswerId = correctAnswerId;
-	}
-
-	public Question() {
-		super();
-	}
-	
-	public Question(String question, String image, String level, int questionCategoryId, int creatorId,
-			int correctAnswerId) {
-		super();
-		this.question = question;
-		this.image = image;
-		this.level = level;
-		this.questionCategoryId = questionCategoryId;
-		this.creatorId = creatorId;
-		this.correctAnswerId = correctAnswerId;
-	}
-	
-	public Question(int questionId, String question, String image, String level, int questionCategoryId, int creatorId,
-			int correctAnswerId) {
-		super();
-		this.questionId = questionId;
-		this.question = question;
-		this.image = image;
-		this.level = level;
-		this.questionCategoryId = questionCategoryId;
-		this.creatorId = creatorId;
-		this.correctAnswerId = correctAnswerId;
-	}
-	
-	
+		
 	
 }
