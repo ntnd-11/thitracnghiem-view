@@ -15,13 +15,14 @@ public class CourseService extends BaseService {
 
 	public static List<Course> getAllCourse() {
 		
-		String query = "Select * from onlinequiz.coures";
+		String query = "Select * from onlinequiz.courses";
 		List<Course> lstCourse = new ArrayList<>();
 
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
 				Course course = new Course(
+						rs.getInt("Id"),
 						rs.getInt("Subject"), 
 						rs.getDate("DateOfStarting"), 
 						rs.getDate("DateOfEnding"), 
@@ -41,22 +42,43 @@ public class CourseService extends BaseService {
 		return lstCourse;
 		
 	}
+	public static List<Integer> getAllId()
+	{
+		String sql="select id from courses";
+		List<Integer> lsID = new ArrayList<>();
+		try {
+			ResultSet rs = excuteQuery(sql);
+			while (rs.next()) {
+			
+				lsID.add(rs.getInt(1));
+	        }
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}	
+		return lsID;
+	}
 	public static Course getCourseById(int id) {
 		String query = "Select * from onlinequiz.courses where Id = " +id;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Course course = new Course(rs.getInt("Subject"), 
-					rs.getDate("DateOfStarting"), 
-					rs.getDate("DateOfEnding"), 
-					rs.getString("DateOfWeek"), 
-					rs.getInt("PartOfStarting"), 
-					rs.getInt("PartOfEnding"), 
-					rs.getInt("NumOfStudents"), 
-					rs.getString("Room"), 
-					rs.getBoolean("Activate"),
-					rs.getInt("Teacher"));
-			return course;
+			while(rs.next())
+			{
+				Course course = new Course(rs.getInt("Subject"), 
+						rs.getDate("DateOfStarting"), 
+						rs.getDate("DateOfEnding"), 
+						rs.getString("DateOfWeek"), 
+						rs.getInt("PartOfStarting"), 
+						rs.getInt("PartOfEnding"), 
+						rs.getInt("NumOfStudents"), 
+						rs.getString("Room"), 
+						rs.getBoolean("Activate"),
+						rs.getInt("Teacher"));
+				return course;
+			}
+		
+			
 		}
 		catch(SQLException e)
 		{
@@ -138,5 +160,6 @@ public class CourseService extends BaseService {
 		return false;
 
 	}
+
 	
 }

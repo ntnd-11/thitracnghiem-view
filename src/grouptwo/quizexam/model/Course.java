@@ -2,10 +2,13 @@ package grouptwo.quizexam.model;
 
 import java.sql.Date;
 
+import grouptwo.quizexam.service.SubjectService;
+
 public class Course {
 	
 	private Integer courseId;
 	private Integer subjectId;
+	private Subject subjectIdObject;
 	private Date dateOfStarting;
 	private Date dateOfEnding;
 	private String dateOfWeek;
@@ -31,6 +34,7 @@ public class Course {
 		this.room = room;
 		this.activate = activate;
 		this.teacherId = teacherId;
+		this.subjectIdObject=SubjectService.getSubjectsById(subjectId);
 	}
 	public Course(Integer courseId,Integer subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, Integer partOfStarting,
 			Integer partOfEnding, Integer numberOfStudent, String room, boolean activate, Integer teacherId) {
@@ -45,6 +49,7 @@ public class Course {
 		this.room = room;
 		this.activate = activate;
 		this.teacherId = teacherId;
+		this.subjectIdObject=SubjectService.getSubjectsById(subjectId);
 	}
 
 
@@ -111,6 +116,12 @@ public class Course {
 	}
 	public void setTeacher(Integer teacherId) {
 		this.teacherId = teacherId;
+	}
+	public Subject getSubjectIdObject() {
+		return subjectIdObject;
+	}
+	public void setSubjectIdObject(Subject subjectIdObject) {
+		this.subjectIdObject = subjectIdObject;
 	}
 
 	

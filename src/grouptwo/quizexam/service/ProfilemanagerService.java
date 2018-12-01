@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grouptwo.quizexam.model.Profilemanager;
+import grouptwo.quizexam.model.Profilestudent;
 
 public class ProfilemanagerService extends BaseService {
 
@@ -123,5 +124,10 @@ public class ProfilemanagerService extends BaseService {
 		}
 		return false;
 
+	}
+
+	public static List<Profilestudent> getAllProfilemanager(int i, int amoutResult) {
+		
+		return null;
 	}
 }

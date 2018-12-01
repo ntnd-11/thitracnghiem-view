@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import grouptwo.quizexam.model.Profilestudent;
 import grouptwo.quizexam.model.Subject;
 
 
@@ -15,7 +16,7 @@ public class SubjectService extends BaseService {
 	}
 
 	public static List<Subject> getAllSubjects() {
-		String query = "Select * from roleusers";
+		String query = "Select * from subjects";
 		List<Subject> lstSubjects = new ArrayList<>();
 
 		try {
@@ -41,13 +42,17 @@ public class SubjectService extends BaseService {
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Subject subject = new Subject(
-					rs.getString("Name"),
-					rs.getString("Faculty"),
-					rs.getInt("Credit"),
-					rs.getString("Type"),
-					rs.getBoolean("Activate"));
-			return subject;
+			while(rs.next())
+			{
+				Subject subject = new Subject(
+						rs.getString("Name"),
+						rs.getString("Faculty"),
+						rs.getInt("Credit"),
+						rs.getString("Type"),
+						rs.getBoolean("Activate"));
+				return subject;
+			}
+		
 		}
 		catch(SQLException e)
 		{
@@ -118,5 +123,30 @@ public class SubjectService extends BaseService {
 	return false;
 
 
+	}
+
+	public static List<Subject> getAllSubjects(int firstReSult, int amoutResult) {
+		String query = "select * from subjects order by Id LIMIT ?,?";
+		List<Object> param=new ArrayList<>();
+		param.add(firstReSult);
+		param.add(amoutResult);
+		List<Subject> lstSub = new ArrayList<>();
+		try {
+			ResultSet rs = excuteQuery(query,param);
+			while (rs.next()) {
+				Subject subject = new Subject(
+						rs.getString("Name"),
+						rs.getString("Faculty"),
+						rs.getInt("Credit"),
+						rs.getString("Type"),
+						rs.getBoolean("Activate"));
+				lstSub.add(subject);
+			}
+			return lstSub;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return null;
 	}
 }
