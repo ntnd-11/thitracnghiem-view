@@ -33,14 +33,24 @@ public class Question {
 		this.lsAnswer= AnswerService.getAnswersByIdForQuestion(id);
 		this.answerCorrect= AnswerService.getAnswersById(correctAnswerID);
 	}
-	public Question( String question, String image, String level,int creatorID,
-			int correctAnswerID, int questionCategoryID) {
+	public Question( String question, String image, String level,
+			int correctAnswerID, int questionCategoryID,int creatorID) {
 		this.question = question;
 		this.image = image;
 		this.level = level;
 		this.questionCategoryID = questionCategoryID;
 		this.creatorID = creatorID;
 		this.correctAnswerID = correctAnswerID;
+	}
+	public Question( String question, String image, String level,
+			 int questionCategoryID,int correctAnswerID,int creatorID,int id) {
+		this.question = question;
+		this.image = image;
+		this.level = level;
+		this.questionCategoryID = questionCategoryID;
+		this.creatorID = creatorID;
+		this.correctAnswerID = correctAnswerID;
+		this.id=id;
 	}
 	public void setId(int id) {
 		this.id = id;

@@ -1,4 +1,4 @@
-package grouptwo.quizexam.service;
+	package grouptwo.quizexam.service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -106,11 +106,13 @@ public class QuestionService extends BaseService {
 	}
 	
 	public static Question getQuestionsById(int id) {
-		String query = "Select * from questions where Id = " +id;
+		String query = "Select * from onlinequiz.questions where Id = " +id;
+		Question questions=null;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Question questions = new Question(
+			while(rs.next()) {
+					questions = new Question(
 					rs.getInt("Id"),
 					rs.getString("Question"),
 					rs.getString("Image"),
@@ -118,37 +120,41 @@ public class QuestionService extends BaseService {
 					rs.getInt("QuestionCategory"),					
 					rs.getInt("Creator"),
 					rs.getInt("CorrectAnswer"));
-			return questions;
+			}
+			
+			
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return questions;
 	}
 
 	public static Question getQuestionsByName(String question) {
 		String query = "Select * from questions where Question = " +question;
+		Question questions=null;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Question questions = new Question(
+			while(rs.next()) {
+					questions = new Question(
 					rs.getInt("Id"),
 					rs.getString("Question"),
 					rs.getString("Image"),
 					rs.getString("Level"),
-					rs.getInt("QuestionCategory"),
-										rs.getInt("Creator"),
+					rs.getInt("QuestionCategory"),					
+					rs.getInt("Creator"),
 					rs.getInt("CorrectAnswer"));
-			return questions;
+			}
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return questions;
 	}
 
 	public static boolean deleteQuestions(int id) {
@@ -164,24 +170,18 @@ public class QuestionService extends BaseService {
 		return false;
 	}
 
-	public boolean updateQuestions(Question question) {
+	public static boolean updateQuestions(Question question) {
 		{
-			String query ="update questions set "
-					+ "Question = ?,"
-					+ "Image = ?,"
-					+ "Level = ?,"
-					+ "Creator = ?,"
-					+ "CorrectAnswer = ?,"
-					+ "QuestionCategoryId = ?,"
-					+ "Where Id= ?";
+			String query ="update questions set Question = ? , Image = ? , Level = ? , QuestionCategory = ? , CorrectAnswer = ?,Creator = ? Where Id= ?";
 			List<Object> params= new ArrayList<>();
 			params.add(question.getQuestion());
 			params.add(question.getImage());
 			params.add(question.getLevel());
-			params.add(question.getCreatorID());
-			params.add(question.getCorrectAnswerID());
 			params.add(question.getQuestionCategoryID());
+			params.add(question.getCorrectAnswerID());
+			params.add(question.getCreatorID());			
 			params.add(question.getId());
+		
 			try {
 				boolean action = executeUpdate(query, params);
 				return action;
@@ -193,15 +193,15 @@ public class QuestionService extends BaseService {
 	}
 
 	public static boolean addQuestions(Question question) {
-		String query="Insert into questions (Question,Image,Level,Creator,QuestionCategory)"
-				+"values (?,?,?,?,?)";
+	String query="Insert into questions (Question,Image,Level,CorrectAnswer,QuestionCategory,Creator) values (?,?,?,?,?,?)";
 	List<Object> params= new ArrayList<>();
 	
 	params.add(question.getQuestion());
 	params.add(question.getImage());
 	params.add(question.getLevel());
-	params.add(question.getCreatorID());
+	params.add(question.getCorrectAnswerID());
 	params.add(question.getQuestionCategoryID());
+	params.add(question.getCreatorID());
 	for(Object c:params)
 	{
 		System.out.println(c+"");

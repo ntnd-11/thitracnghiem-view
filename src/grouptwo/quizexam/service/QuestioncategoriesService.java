@@ -34,15 +34,19 @@ public class QuestioncategoriesService extends BaseService {
 
 	public static Questioncategorie getQuestioncategoriesServiceById(int id) {
 		String query = "Select * from questioncategories where Id = " + id;
+		Questioncategorie questioncategorie=null;
 		try {
+			
 			ResultSet rs = excuteQuery(query);
-			Questioncategorie questioncategorie = new Questioncategorie(rs.getInt(1), rs.getString(2));
-			return questioncategorie;
+			while(rs.next()) {
+				questioncategorie = new Questioncategorie(rs.getInt("Id"), rs.getString("CategoryName"));
+			}
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return questioncategorie;
 	}
 
 	public static Questioncategorie getQuestioncategorieByName(String subject) {

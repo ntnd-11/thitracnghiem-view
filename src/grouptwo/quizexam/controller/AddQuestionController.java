@@ -20,19 +20,19 @@ import grouptwo.quizexam.service.QuestioncategorieService;
 public class AddQuestionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	QuestioncategorieService _questioncategorieService;
-	QuestionService _questionService;
+	
     public AddQuestionController() {
         super();
-        _questioncategorieService = new QuestioncategorieService();
-        _questionService= new QuestionService();
+      
     }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<Questioncategorie> lstCate = _questioncategorieService.getAllQuestionCategorie();
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		List<Questioncategorie> lstCate = QuestioncategorieService.getAllQuestionCategorie();
 		request.setAttribute("lstCategory", lstCate);
+		
 		   RequestDispatcher dispatcher = request.getServletContext()
 	                .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/addQuestion.jsp");
 	        dispatcher.forward(request, response);
@@ -51,6 +51,7 @@ public class AddQuestionController extends HttpServlet {
 		String categories=request.getParameter("categories");
 		String question=request.getParameter("question");
 		String level=request.getParameter("radLevel");
+		
 		switch(level)
 		{
 		case "de":
@@ -64,7 +65,10 @@ public class AddQuestionController extends HttpServlet {
 			break;
 		}
 		
-		//_questionService.addQuestions(new Question(question, "", level, null, Integer.parseInt(categories)));
+		QuestionService.addQuestions(new Question(question, "", level,99, Integer.parseInt(categories), 2));
+		RequestDispatcher  dispatcher = request.getServletContext()
+                .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/listQuestion.jsp");
+	dispatcher.forward(request, response);
 		
 		
 		

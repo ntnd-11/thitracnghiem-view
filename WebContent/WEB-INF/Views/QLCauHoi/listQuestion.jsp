@@ -14,7 +14,7 @@
 						</div>
 
 						<div class="col-md-3">
-							<a class="btn btn-success" href="./addQuestion.jsp"> <i
+							<a class="btn btn-success" href="${pageContext.request.contextPath}/AddQuestion"> <i
 								class="fa fa-plus"></i> Add Question
 							</a>
 						</div>
@@ -77,10 +77,10 @@
 									<td>${item.answerCorrect.answer}</td>
 
 									<td><a
-										href="${pageContext.request.contextPath}/*?id=${item.id}"
+										href="${pageContext.request.contextPath}/EditQuestion?command=update&id=${item.id}"
 										class="btn btn-warning"><i class="fa fa-pencil"></i></a> <a
 										class="btn btn-danger"
-										href="${pageContext.request.contextPath}/*?id=${item.id}">
+										href="${pageContext.request.contextPath}/EditQuestion?command=delete&id=${item.id}">
 											<i class="fa fa-trash"></i>
 									</a></td>
 								</tr>

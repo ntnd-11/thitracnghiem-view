@@ -136,9 +136,10 @@
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<button type="submit" class="btn btn-info col-3" >
-				<i class="fa fa-save"></i> Lưu thay đổi
+			<button type="submit" class="btn btn-info col-3"  >
+				<i class="fa fa-save"></i>Lưu thay đổi
 			</button>
+			
 			
 			<button class="btn btn-danger col-3">
 				<i class="fa fa-times"></i> Hủy

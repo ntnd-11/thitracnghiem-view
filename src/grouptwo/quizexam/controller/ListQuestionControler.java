@@ -24,11 +24,11 @@ public class ListQuestionControler extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Question> qsl= null;
+
+		
 		int page=1;
 		if(request.getParameter("page")==null)
 		{
