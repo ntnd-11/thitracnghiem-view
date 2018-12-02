@@ -22,13 +22,13 @@ import grouptwo.quizexam.service.ProfilestudentService;
  * Servlet implementation class ListStudentControler
  */
 @WebServlet("/ListStudent")
-public class ListStudentControler extends HttpServlet {
+public class ListStudentCourseControler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListStudentControler() {
+    public ListStudentCourseControler() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -85,7 +85,7 @@ public class ListStudentControler extends HttpServlet {
 		request.setAttribute("list",prfi_Stu);
 		RequestDispatcher dispatcher 
         = this.getServletContext()//
-              .getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/listStudent.jsp");
+              .getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/listStudentForCourses.jsp");
 		 dispatcher.forward(request, response);
 	}
 

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grouptwo.quizexam.model.Course;
+import grouptwo.quizexam.model.Exam;
+import grouptwo.quizexam.model.Subject;
 
 
 public class CourseService extends BaseService {
@@ -160,6 +162,57 @@ public class CourseService extends BaseService {
 		return false;
 
 	}
+
+	public static int countCourse() {
+		String sql="select count(id) from courses";
+		try
+		{
+			ResultSet rs=excuteQuery(sql);
+			while(rs.next())
+			{
+				return rs.getInt(1);
+			}
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return 0;
+	}
+
+	public static List<Course> getAllCourse(int firstResult, int amoutResult) {
+		String query = "select * from courses order by Id LIMIT ?,?";
+		List<Object> param=new ArrayList<>();
+		param.add(firstResult);
+		param.add(amoutResult);
+		List<Course> lstCourse =null;
+
+		try {	
+			lstCourse= new ArrayList<>();
+			ResultSet rs = excuteQuery(query,param);
+			while (rs.next()) {
+				Course courses = new Course(
+						rs.getInt("Id"),
+						rs.getInt("Subject"), 
+						rs.getDate("DateOfStarting"), 
+						rs.getDate("DateOfEnding"), 
+						rs.getString("DateOfWeek"), 
+						rs.getInt("PartOfStarting"), 
+						rs.getInt("PartOfEnding"), 
+						rs.getInt("NumOfStudents"), 
+						rs.getString("Room"), 
+						rs.getBoolean("Activate"),
+						rs.getInt("Teacher"));
+				lstCourse.add(courses);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return lstCourse;
+	}
+
+
 
 	
 }

@@ -50,10 +50,10 @@
 									<th width="8%">Mã SV</th>
 									<th width="20%">Họ tên</th>
 
-									<th width="10%">Ngành</th>
-									<th width="10%">Lớp</th>
-									<th width="10%">Khóa</th>
-									<th>Ngày thêm</th>
+									<th width="10%">Số CMND</th>
+									<th width="10%">Giới Tính</th>
+									<th width="10%">Ngày Sinh</th>
+									
 									<th class="20%">Tùy chọn</th>
 								</tr>
 							</thead>
@@ -65,16 +65,15 @@
 											aria-label="Radio button for following text input"></td>
 										<td>${item.studentId}</td>
 										<td>${item.name}</td>
-										<td>${item.name}</td>
-										<td>161101</td>
-										<td>2016</td>
-										<td>2/2/2018 15:30 GMT</td>
+										<td>${item.identityCardNumber}</td>
+										<td>${item.gender}</td>
+										<td>${item.dateOfBirth}</td>
+									
 										<td>
 											<button class="btn btn-success" data-toggle="modal"
 												data-target="#modalStudent">
 												<i class="fa fa-eye"></i>
-											</button> <a href="./editStudent.jsp" class="btn btn-warning"><i
-												class="fa fa-pencil"></i></a>
+											</button>
 											<button class="btn btn-danger" data-toggle="modal"
 												data-target="#modalConfirmDeleting">
 												<i class="fa fa-trash"></i>

@@ -11,22 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.data.ParamaterStatic;
+import grouptwo.quizexam.model.Course;
 import grouptwo.quizexam.model.Exam;
 import grouptwo.quizexam.model.Subject;
+import grouptwo.quizexam.service.CourseService;
 import grouptwo.quizexam.service.ExamService;
 import grouptwo.quizexam.service.SubjectService;
 
 /**
  * Servlet implementation class ListSubjectControler
  */
-@WebServlet("/ListSubjectControler")
-public class ListSubjectControler extends HttpServlet {
+@WebServlet("/ListCourses")
+public class ListCoursesControler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListSubjectControler() {
+    public ListCoursesControler() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,22 +38,22 @@ public class ListSubjectControler extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<Subject> sub= null;
+		List<Course> coureseLs= null;
 		int page=1;
 		if(request.getParameter("page")==null)
 		{
 			int numberPage;
 			//Dem so trang
-			numberPage=lamTron(ExamService.countExam(),ParamaterStatic.amoutResult);
-			sub=SubjectService.getAllSubjects(page-1,ParamaterStatic.amoutResult);
+			numberPage=lamTron(CourseService.countCourse(),ParamaterStatic.amoutResult);
+			coureseLs=CourseService.getAllCourse(page-1,ParamaterStatic.amoutResult);
 			getServletContext().setAttribute("numberPage",numberPage);
 		}
 		else
 		{
 			page=Integer.parseInt(request.getParameter("page"));
-			sub=SubjectService.getAllSubjects((page-1)*ParamaterStatic.amoutResult,ParamaterStatic.amoutResult);
+			coureseLs=CourseService.getAllCourse((page-1)*ParamaterStatic.amoutResult,ParamaterStatic.amoutResult);
 		}	
-		request.setAttribute("list",sub);
+		request.setAttribute("list",coureseLs);
 		RequestDispatcher dispatcher 
         = this.getServletContext()//
               .getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/listSubject.jsp");

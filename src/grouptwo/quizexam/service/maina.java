@@ -10,9 +10,9 @@ public class maina {
 	}
 
 	public static void main(String[] args) {
-		for(int c:CourseService.getAllId())
+		for(Course c:CourseService.getAllCourse(0, 8))
 		{
-			System.out.println(c+"");
+			System.out.println(c.getCourseId()+"");
 		}
 
 	}

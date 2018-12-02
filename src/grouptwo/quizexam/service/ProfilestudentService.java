@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import grouptwo.quizexam.model.Course;
 import grouptwo.quizexam.model.Profilestudent;
 import grouptwo.quizexam.model.Question;
 
@@ -260,5 +261,59 @@ public class ProfilestudentService extends BaseService {
 		}
 		return 0;
 	}
+
+	public static List<Profilestudent> getAllStudent(int firstResult, int amoutResult) {
+		String query = "select * from profilestudents order by Id LIMIT ?,?";
+		List<Object> param=new ArrayList<>();
+		param.add(firstResult);
+		param.add(amoutResult);
+		List<Profilestudent> lstProfileStu =null;
+
+		try {	
+			lstProfileStu= new ArrayList<>();
+			ResultSet rs = excuteQuery(query,param);
+			while (rs.next()) {
+				Profilestudent ProfileStu = new Profilestudent(
+						rs.getInt("Id"), 
+						rs.getString("Name"),
+						rs.getInt("IdentityCardNumber"),
+						rs.getDate("DateOfBirth"),
+						rs.getString("Gender"),
+						rs.getString("PhoneNumber"),
+						rs.getString("Country"),
+						rs.getString("Address"),
+						rs.getString("Religion"),
+						rs.getInt("YearOfAdmission"),
+						rs.getInt("YearOfGraduation"),
+						rs.getString("Image"),
+						rs.getBoolean("ShowProfile"),
+						rs.getInt("User"));
+				lstProfileStu.add(ProfileStu);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return lstProfileStu;
+	}
+
+	public static int countProfile() {
+		String sql="select count(id) from profilestudents";
+		try
+		{
+			ResultSet rs=excuteQuery(sql);
+			while(rs.next())
+			{
+				return rs.getInt(1);
+			}
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return 0;
+	}
+
+	
 
 }
