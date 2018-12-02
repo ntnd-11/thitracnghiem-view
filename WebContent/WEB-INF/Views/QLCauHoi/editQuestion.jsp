@@ -42,7 +42,7 @@
 									</p>
 									<select class="custom-select" id="inputGroupSelect01"
 										name="lstCategory">
-										<option selected>
+										<option selected value="${questioncategory.getId()}">
 											${questioncategory.getCategoryName()}</option>
 											<c:forEach items="${ lstCategory }" var="item">
 												<option value="${item.getId()}">
@@ -52,7 +52,7 @@
 									
 									
 
-								</select>
+								
 								</div>
 							</div>
 
