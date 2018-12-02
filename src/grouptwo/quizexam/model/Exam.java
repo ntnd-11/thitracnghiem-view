@@ -2,6 +2,8 @@ package grouptwo.quizexam.model;
 
 import java.util.Date;
 
+import grouptwo.quizexam.service.CourseService;
+
 public class Exam {
 
 	private Integer id;
@@ -10,6 +12,7 @@ public class Exam {
 	private Integer numQuestions;
 	private Date timeFinishing;
 	private Integer courseID;
+	private Course courseObject;
 	private boolean activate;
 	private Integer creatorID;
 	
@@ -27,7 +30,7 @@ public class Exam {
 		this.courseID=courseID;
 		this.activate=activate;
 		this.creatorID=creatorID;
-		
+		this.courseObject=CourseService.getCourseById(courseID);
 	}
 	public Exam(String name,Date timeStarting,Integer numQuestions,Date timeFinishing,Integer courseID,boolean activate,Integer creatorID)
 	{
@@ -87,6 +90,12 @@ public class Exam {
 	}
 	public void setCreatorID(int creatorID) {
 		this.creatorID = creatorID;
+	}
+	public Course getCourseObject() {
+		return courseObject;
+	}
+	public void setCourseObject(Course courseObject) {
+		this.courseObject = courseObject;
 	}
 	
 	
