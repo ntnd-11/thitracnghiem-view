@@ -18,7 +18,10 @@ public class Question {
 	public int getId() {
 		return id;
 	}
-	
+	public Question()
+	{
+		
+	}
 	public Question(int id, String question, String image, String level,int questionCategoryID,int creatorID,
 			int correctAnswerID) {
 		this.id = id;

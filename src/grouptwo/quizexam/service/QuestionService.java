@@ -62,6 +62,25 @@ public class QuestionService extends BaseService {
 		return null;
 	
 	}
+	public static int returnIdQuestionAfterInsert(Question qus)
+	{
+		if(addQuestions(qus))
+		{
+			String sql=" SELECT * FROM questions WHERE id= LAST_INSERT_ID()";
+			
+			try {
+				ResultSet rs = excuteQuery(sql);
+				rs.next();
+				return rs.getInt(1);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return -1;
+		
+	}
 	public static List<Question> searchQuestion(String character)
 	{
 		String sql="SELECT * FROM questions " + 
@@ -164,7 +183,7 @@ public class QuestionService extends BaseService {
 		return false;
 	}
 
-	public boolean updateQuestions(Question question) {
+	public static boolean updateQuestions(Question question) {
 		{
 			String query ="update questions set "
 					+ "Question = ?,"
@@ -172,8 +191,8 @@ public class QuestionService extends BaseService {
 					+ "Level = ?,"
 					+ "Creator = ?,"
 					+ "CorrectAnswer = ?,"
-					+ "QuestionCategoryId = ?,"
-					+ "Where Id= ?";
+					+ "QuestionCategory = ? "
+					+ "Where Id=?";
 			List<Object> params= new ArrayList<>();
 			params.add(question.getQuestion());
 			params.add(question.getImage());
