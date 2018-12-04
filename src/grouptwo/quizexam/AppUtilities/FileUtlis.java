@@ -96,7 +96,7 @@ public class FileUtlis {
 		return null;
 	}
 
-	public static boolean readAndWriteFileExcel(String filePath,int idCreator) throws IOException {
+	public static boolean readAndWriteFileExcel(String filePath,int idCreator,int subjectId) throws IOException {
 		Question question=null;
 		Answer answer=null;
 		
@@ -111,7 +111,7 @@ public class FileUtlis {
 				int idCurrentQus;
 				question=new Question();
 				question.setCreatorID(idCreator);
-				
+				question.setSubjectId(subjectId);
 				
 				/*Lấy từng hàng của sheet*/
 				Row currentRow = iterator.next();
@@ -122,9 +122,9 @@ public class FileUtlis {
 				
 				
 				/* getIdCategory câu hỏi */
-				Cell cellIdCategory = cellIterator.next();
+				/*Cell cellIdCategory = cellIterator.next();
 				question.setQuestionCategoryID(Integer.parseInt(fmt.formatCellValue(cellIdCategory)));
-				System.out.println("id category câu hỏi là" + Integer.parseInt(fmt.formatCellValue(cellIdCategory)));
+				System.out.println("id category câu hỏi là" + Integer.parseInt(fmt.formatCellValue(cellIdCategory)));*/
 				
 				
 				/*get mức độ câu hỏi*/

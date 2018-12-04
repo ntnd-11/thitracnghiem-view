@@ -10,7 +10,7 @@ public class Question {
 	private String question;
 	private String image;
 	private String level;
-	private int questionCategoryID;
+	private int SubjectId;
 	private List<Answer> lsAnswer;
 	private Answer answerCorrect;
 	private int creatorID;
@@ -22,14 +22,14 @@ public class Question {
 	{
 		
 	}
-	public Question(int id, String question, String image, String level,int questionCategoryID,int creatorID,
+	public Question(int id, String question, String image, String level,int SubjectId,int creatorID,
 			int correctAnswerID) {
 		this.id = id;
 		this.question = question;
 		this.image = image;
 		this.level = level;
 		
-		this.questionCategoryID = questionCategoryID;
+		this.SubjectId=SubjectId;
 		this.creatorID = creatorID;
 		this.correctAnswerID = correctAnswerID;
 		
@@ -37,11 +37,11 @@ public class Question {
 		this.answerCorrect= AnswerService.getAnswersById(correctAnswerID);
 	}
 	public Question( String question, String image, String level,int creatorID,
-			int correctAnswerID, int questionCategoryID) {
+			int correctAnswerID, int SubjectId) {
 		this.question = question;
 		this.image = image;
 		this.level = level;
-		this.questionCategoryID = questionCategoryID;
+		this.SubjectId = SubjectId;
 		this.creatorID = creatorID;
 		this.correctAnswerID = correctAnswerID;
 	}
@@ -65,12 +65,6 @@ public class Question {
 	}
 	public void setLevel(String level) {
 		this.level = level;
-	}
-	public int getQuestionCategoryID() {
-		return questionCategoryID;
-	}
-	public void setQuestionCategoryID(int questionCategoryID) {
-		this.questionCategoryID = questionCategoryID;
 	}
 	public int getCreatorID() {
 		return creatorID;
@@ -99,6 +93,12 @@ public class Question {
 
 	public void setAnswerCorrect(Answer answerCorrect) {
 		this.answerCorrect = answerCorrect;
+	}
+	public int getSubjectId() {
+		return SubjectId;
+	}
+	public void setSubjectId(int subjectId) {
+		SubjectId = subjectId;
 	}
 
 		

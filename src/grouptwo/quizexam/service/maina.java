@@ -16,7 +16,7 @@ public class maina {
 	public static void main(String[] args) throws IOException {
 		
 		String appPath="C:/Users/Dattr/eclipse -workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ReadQuestion/uploadDir\\Book1.xlsx";
-		boolean isSucess=grouptwo.quizexam.AppUtilities.FileUtlis.readAndWriteFileExcel(appPath, 2);
+		boolean isSucess=grouptwo.quizexam.AppUtilities.FileUtlis.readAndWriteFileExcel(appPath, 2,3);
 		if(isSucess)
 			System.out.println("Thành công");
 	}

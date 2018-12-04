@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.AppUtilities.FileUtlis;
+import grouptwo.quizexam.service.SubjectService;
 
 
 
@@ -46,10 +47,11 @@ public class uploadFileControler extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String saveFullPath=FileUtlis.createFoderUploadFile(request);
 		String pathFile=FileUtlis.upLoadFile(request, saveFullPath);
+		int subjectId=SubjectService.getSubjectsByName(request.getParameter("subjectName")).getSubjectID();
 		if(pathFile!=null)
 		{
 			System.out.println(pathFile);
-			FileUtlis.readAndWriteFileExcel(pathFile,2);
+			FileUtlis.readAndWriteFileExcel(pathFile,2,subjectId);
 			FileUtlis.DeleteFile(pathFile);
 			response.sendRedirect(request.getContextPath() + "/uploadFileResults");
 		}

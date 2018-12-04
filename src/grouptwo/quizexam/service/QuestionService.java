@@ -23,7 +23,7 @@ public class QuestionService extends BaseService {
 						rs.getString("Question"),
 						rs.getString("Image"),
 						rs.getString("Level"),
-						rs.getInt("QuestionCategory"),
+						rs.getInt("Subject"),
 						rs.getInt("CorrectAnswer"),
 						rs.getInt("Creator"));
 				lstQuestions.add(questions);
@@ -49,7 +49,7 @@ public class QuestionService extends BaseService {
 						rs.getString("Question"),
 						rs.getString("Image"),
 						rs.getString("Level"),
-						rs.getInt("QuestionCategory"),
+						rs.getInt("Subject"),
 						rs.getInt("Creator"),
 						rs.getInt("CorrectAnswer"));
 				lstQuestions.add(questions);
@@ -95,7 +95,7 @@ public class QuestionService extends BaseService {
 						rs.getString("Question"),
 						rs.getString("Image"),
 						rs.getString("Level"),
-						rs.getInt("QuestionCategory"),
+						rs.getInt("Subject"),
 						rs.getInt("Creator"),
 						rs.getInt("CorrectAnswer"));
 				lstQuestions.add(questions);
@@ -134,7 +134,7 @@ public class QuestionService extends BaseService {
 					rs.getString("Question"),
 					rs.getString("Image"),
 					rs.getString("Level"),
-					rs.getInt("QuestionCategory"),					
+					rs.getInt("Subject"),					
 					rs.getInt("Creator"),
 					rs.getInt("CorrectAnswer"));
 			return questions;
@@ -157,7 +157,7 @@ public class QuestionService extends BaseService {
 					rs.getString("Question"),
 					rs.getString("Image"),
 					rs.getString("Level"),
-					rs.getInt("QuestionCategory"),
+					rs.getInt("Subject"),
 										rs.getInt("Creator"),
 					rs.getInt("CorrectAnswer"));
 			return questions;
@@ -191,7 +191,7 @@ public class QuestionService extends BaseService {
 					+ "Level = ?,"
 					+ "Creator = ?,"
 					+ "CorrectAnswer = ?,"
-					+ "QuestionCategory = ? "
+					+ "Subject = ? "
 					+ "Where Id=?";
 			List<Object> params= new ArrayList<>();
 			params.add(question.getQuestion());
@@ -199,7 +199,7 @@ public class QuestionService extends BaseService {
 			params.add(question.getLevel());
 			params.add(question.getCreatorID());
 			params.add(question.getCorrectAnswerID());
-			params.add(question.getQuestionCategoryID());
+			params.add(question.getSubjectId());
 			params.add(question.getId());
 			try {
 				boolean action = executeUpdate(query, params);
@@ -212,7 +212,7 @@ public class QuestionService extends BaseService {
 	}
 
 	public static boolean addQuestions(Question question) {
-		String query="Insert into questions (Question,Image,Level,Creator,QuestionCategory)"
+		String query="Insert into questions (Question,Image,Level,Creator,Subject)"
 				+"values (?,?,?,?,?)";
 	List<Object> params= new ArrayList<>();
 	
@@ -220,7 +220,7 @@ public class QuestionService extends BaseService {
 	params.add(question.getImage());
 	params.add(question.getLevel());
 	params.add(question.getCreatorID());
-	params.add(question.getQuestionCategoryID());
+	params.add(question.getSubjectId());
 	for(Object c:params)
 	{
 		System.out.println(c+"");
