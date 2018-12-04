@@ -18,6 +18,7 @@ public class Course {
 	private String room;
 	private boolean activate;
 	private Integer teacherId;
+	private String name;
 	
 	
 	public Course() {

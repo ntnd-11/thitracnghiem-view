@@ -11,31 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.data.ParamaterStatic;
-import grouptwo.quizexam.model.Exam;
 import grouptwo.quizexam.model.Profilestudent;
 import grouptwo.quizexam.service.CourseService;
-import grouptwo.quizexam.service.ExamService;
-import grouptwo.quizexam.service.ProfilemanagerService;
 import grouptwo.quizexam.service.ProfilestudentService;
+import grouptwo.quizexam.utils.CalculationHelper;
 
-/**
- * Servlet implementation class ListStudentControler
- */
+
 @WebServlet("/ListStudent")
 public class ListStudentCourseControler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public ListStudentCourseControler() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		List<Profilestudent> prfi_Stu= null;
@@ -70,7 +61,7 @@ public class ListStudentCourseControler extends HttpServlet {
 			{
 				int numberPage;
 				//Dem so trang
-				numberPage=lamTron(ProfilestudentService.countProfileForCourse(idCourse),ParamaterStatic.amoutResult);
+				numberPage= CalculationHelper.rouding(ProfilestudentService.countProfileForCourse(idCourse),ParamaterStatic.amoutResult);
 				prfi_Stu=ProfilestudentService.getAllProfilesutudent(idCourse,page-1,ParamaterStatic.amoutResult);
 				getServletContext().setAttribute("numberPage",numberPage);
 				getServletContext().setAttribute("idCourse",idCourse);
@@ -89,26 +80,9 @@ public class ListStudentCourseControler extends HttpServlet {
 		 dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-	}
-	private int lamTron(int numberFilm,int row)
-	{
-		int kq;
-		if(numberFilm%row!=0)
-		{
-			kq=numberFilm/row+1;
-		}
-		else
-		{
-			kq=numberFilm/row;
-		}
-		return kq;
-		
 	}
 
 }

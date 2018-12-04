@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grouptwo.quizexam.model.Exam;
-import grouptwo.quizexam.model.Question;
 
 public class ExamService extends BaseService{
 	
@@ -193,7 +192,10 @@ public class ExamService extends BaseService{
 						rs.getTimestamp("TimeFinishing"), 
 						rs.getInt("Course"), 
 						rs.getBoolean("Activate"),	 
-						rs.getInt("Creator"));
+						rs.getInt("Creator"),
+						rs.getInt("NumDiffi"),
+						rs.getInt("NumNormal"), 
+						rs.getInt("NumEasy"), rs.getInt("LimitTime"));
 				lstExam.add(questions);
 			}
 			
@@ -219,7 +221,11 @@ public class ExamService extends BaseService{
 						rs.getTimestamp("TimeFinishing"), 
 						rs.getInt("Course"), 
 						rs.getBoolean("Activate"),	 
-						rs.getInt("Creator"));
+						rs.getInt("Creator"),
+						rs.getInt("NumDiffi"),
+						rs.getInt("NumNormal"), 
+						rs.getInt("NumEasy"), 
+						rs.getInt("LimitTime"));
 				lstExams.add(exams);
 			}
 			return lstExams;

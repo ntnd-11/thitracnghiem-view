@@ -1,4 +1,4 @@
-package grouptwo.quizexam.AppUtilities;
+package grouptwo.quizexam.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -121,23 +121,23 @@ public class FileUtlis {
 				Iterator<Cell> cellIterator = currentRow.cellIterator();
 				
 				
-				/* getIdCategory câu hỏi */
+				/* getIdCategory câu h�?i */
 				Cell cellIdCategory = cellIterator.next();
 				question.setQuestionCategoryID(Integer.parseInt(fmt.formatCellValue(cellIdCategory)));
-				System.out.println("id category câu hỏi là" + Integer.parseInt(fmt.formatCellValue(cellIdCategory)));
+				System.out.println("id category câu h�?i là" + Integer.parseInt(fmt.formatCellValue(cellIdCategory)));
 				
 				
-				/*get mức độ câu hỏi*/
+				/*get mức độ câu h�?i*/
 				Cell cellLevel = cellIterator.next();
 				question.setLevel((cellLevel+""));
 				
-				/* get câu hỏi */
+				/* get câu h�?i */
 				Cell cellQuestion = cellIterator.next();
 				question.setQuestion(cellQuestion+"");
-				System.out.println("câu hỏi là:" + cellQuestion);
+				System.out.println("câu h�?i là:" + cellQuestion);
 				
 				
-				/*add câu hỏi vào database
+				/*add câu h�?i vào database
 				 */
 				
 				idCurrentQus=QuestionService.returnIdQuestionAfterInsert(question);
@@ -147,7 +147,7 @@ public class FileUtlis {
 					return false;
 				}
 				question.setId(idCurrentQus);
-				/* import câu trả lời */
+				/* import câu trả l�?i */
 				while (cellIterator.hasNext()) {
 					answer=new Answer();
 					Cell nextCell = cellIterator.next();
@@ -158,7 +158,7 @@ public class FileUtlis {
 					
 					/*them noi dung*/
 					answer.setAnswer(nextCell+"");
-					answer.setQuestions(idCurrentQus);
+					answer.setQuestion(idCurrentQus);
 					
 					
 					if (font.getBold()) {

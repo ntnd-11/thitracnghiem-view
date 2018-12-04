@@ -6,13 +6,17 @@ public class Exam {
 
 	private Integer id;
 	private String name;
-	private Date timeStarting;	
+	private Date timeStarting;
 	private Integer numQuestions;
 	private Date timeFinishing;
 	private Integer courseID;
 	private Course courseObject;
 	private boolean activate;
 	private Integer creatorID;
+	private Integer numDifficult;
+	private Integer numNormal;
+	private Integer numEasy;
+	private Integer limitTime;
 	
 	public Exam(String name, Date timeStarting, Integer numQuestions, Date timeFinishing, Integer courseID,
 			boolean activate, Integer creatorID, Integer numDifficult, Integer numNormal, Integer numEasy,

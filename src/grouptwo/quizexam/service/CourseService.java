@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grouptwo.quizexam.model.Course;
-import grouptwo.quizexam.model.Exam;
-import grouptwo.quizexam.model.Subject;
 
 
 public class CourseService extends BaseService {
@@ -217,7 +215,8 @@ public class CourseService extends BaseService {
 						rs.getInt("NumOfStudents"), 
 						rs.getString("Room"), 
 						rs.getBoolean("Activate"),
-						rs.getInt("Teacher"));
+						rs.getInt("Teacher"),
+						rs.getString("Name"));
 				lstCourse.add(courses);
 			}
 			
