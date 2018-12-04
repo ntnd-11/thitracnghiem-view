@@ -235,7 +235,7 @@ public class QuestionService extends BaseService {
 	}	
 	
 	public static List<Question> getRandQuestionByLevel(String level, int amount	) {
-		String query = "Select * from onlinequiz.questions where level = "+level+" order by rand() limit " +amount;
+		String query = "Select * from onlinequiz.questions where level = '"+level+"' order by rand() limit " +amount;
 		try {
 			List<Question> lstQuestion = new ArrayList<>();
 			ResultSet rs = excuteQuery(query);
