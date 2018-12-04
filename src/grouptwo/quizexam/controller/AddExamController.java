@@ -35,7 +35,7 @@ public class AddExamController extends HttpServlet {
 		int page=1;
 		if (lstQuestion.size()!=0)
 		{
-			if(request.getParameter("page")==null)
+			if(request.getParameter("page")!=null)
 			{
 				page = Integer.parseInt(request.getParameter("page"));
 			}

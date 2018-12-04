@@ -98,14 +98,10 @@
                                        <c:forEach items="${lstCurrentQuestion}" var="question">
                                     
 	                                        <tr>
-	                                            <td> ${question.id } </td>
+	                                            <td> ${question.questionId } </td>
 	                                            <td>
 	                                            	 <select class="form-control">
-	                                            		<option selected value=" ${question.id} "> ${ question.question }<option>
-	                                            	    <%-- <c:forEach items="${lstAllQuestionBySubject}" var="qSubject">
-	                                            			    <option selected value=" ${qSubject.id} "> ${ qSubject.question }<option>
-	                                            		</c:forEach>
-	                                            		 --%>
+	                                            		<option selected value=" ${question.questionId} "> ${ question.question }<option>
 	                                            	</select>
 	                                            </td>
 	                                            <td>
@@ -130,8 +126,7 @@
                                     <ul class="pagination">
                                         
                                         <c:forEach var="i" begin="1" end="${numberPage}">
-											<li class="page-item"><a class="page-link"
-												href="${pageContext.request.contextPath}/ListQuestion?page=${i}">${i}</a>
+											<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/AddExam?page=${i}">${i}</a>
 											</li>
 										</c:forEach>
 										
