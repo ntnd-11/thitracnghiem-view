@@ -45,8 +45,8 @@
 						</div>
 						
 						<select multiple class="form-control mb-4" name="sellist2"
-							id="resultSearch" hidden>
-							<label>Result</label>
+							id="resultSearch" hidden="hidden">
+							<option selected>Result</option>
 						</select>
 					</div>
 					<div class="table-responsive">
@@ -98,7 +98,8 @@
 	<script type="text/javascript">
 		function searchResult(character) {
 
-			$
+			
+		$
 					.ajax({
 						url : '${pageContext.request.contextPath}/SearchListExam',
 						data : {

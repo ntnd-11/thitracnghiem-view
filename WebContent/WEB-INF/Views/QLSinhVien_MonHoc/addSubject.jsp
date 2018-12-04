@@ -6,7 +6,7 @@
 <t:WrapperAdmin>
 	<div class="row">
 		<div class="col-md-12">
-		<form action="/WebThi/AddSubject" method ="post" onsubmit="return validate();"">
+		<form action="/WebThi/AddSubject" method ="post">
 			<div class="card">
 				<div class="card-header">
 					<h3 class="card-title">
@@ -36,9 +36,7 @@
 									<b> Số tín chỉ </b></label>
 								<div class="col-sm-4">
 									<input type="number" class="form-control" id="credit" name="txtCredit">
-						<%-- 			 <c:if test="${ re }">
-									 	 <p style="color:red"><c: out value="${requestScope. error_name }"/></p>
-									 </c:if> --%>
+
 								</div>
 								<label for="inputId" class="col-sm-2 col-form-label my-1"> 
 									<b> Loại môn học </b>

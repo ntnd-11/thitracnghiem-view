@@ -123,7 +123,6 @@ public class FileUtlis {
 				
 				/* getIdCategory câu h�?i */
 				Cell cellIdCategory = cellIterator.next();
-				question.setQuestionCategoryID(Integer.parseInt(fmt.formatCellValue(cellIdCategory)));
 				System.out.println("id category câu h�?i là" + Integer.parseInt(fmt.formatCellValue(cellIdCategory)));
 				
 				
@@ -146,7 +145,7 @@ public class FileUtlis {
 				{
 					return false;
 				}
-				question.setId(idCurrentQus);
+				question.setQuestionId(idCurrentQus);
 				/* import câu trả l�?i */
 				while (cellIterator.hasNext()) {
 					answer=new Answer();
@@ -158,7 +157,7 @@ public class FileUtlis {
 					
 					/*them noi dung*/
 					answer.setAnswer(nextCell+"");
-					answer.setQuestion(idCurrentQus);
+					answer.setQuestionId(idCurrentQus);
 					
 					
 					if (font.getBold()) {
@@ -169,7 +168,7 @@ public class FileUtlis {
 							return false;
 						}
 						question.setCorrectAnswerID(idAns);
-						if(QuestionService.updateQuestions(question))
+						if(QuestionService.updateQuestion(question))
 							{
 							System.out.println("thêm câu tl đúng tc");
 							}

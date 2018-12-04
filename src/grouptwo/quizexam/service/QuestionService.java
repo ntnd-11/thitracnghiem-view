@@ -188,7 +188,7 @@ public class QuestionService extends BaseService {
 		return false;
 	}
 
-	public boolean updateQuestions(Question question) {
+	public static boolean updateQuestion(Question question) {
 		{
 			String query ="update questions set "
 					+ "Question = ?,"

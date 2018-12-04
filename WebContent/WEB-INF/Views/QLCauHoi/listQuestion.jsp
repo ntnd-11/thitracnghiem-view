@@ -14,7 +14,7 @@
 						</div>
 
 						<div class="col-md-3">
-							<a class="btn btn-success" href="./addQuestion.jsp"> <i
+							<a class="btn btn-success" href="${pageContext.request.contextPath}/AddQuestion"> <i
 								class="fa fa-plus"></i> Add Question
 							</a>
 						</div>
@@ -37,7 +37,7 @@
 										</div>
 									</div>
 									<select multiple class="form-control" name="sellist2"
-										id="resultSearch" hidden>
+										id="resultSearch" hidden="hidden">
 										
 									</select>
 								</div>
@@ -70,7 +70,7 @@
 								<tr>
 									<td><input type="checkbox"
 										aria-label="Radio button for following text input"></td>
-									<td>${item.id}</td>
+									<td>${item.questionId}</td>
 									<td>${item.question}</td>
 									<td><c:forEach items="${item.lsAnswer}" var="item1">
 								${item1.answer} <br />
@@ -78,10 +78,11 @@
 									<td>${item.answerCorrect.answer}</td>
 
 									<td><a
-										href="${pageContext.request.contextPath}/*?id=${item.id}"
-										class="btn btn-warning"><i class="fa fa-pencil"></i></a> <a
+										href="${pageContext.request.contextPath}/*?id=${item.questionId}"
+										class="btn btn-warning"><i class="fa fa-pencil"></i></a> 
+										<a
 										class="btn btn-danger"
-										href="${pageContext.request.contextPath}/*?id=${item.id}">
+										href="${pageContext.request.contextPath}/*?id=${item.questionId}">
 											<i class="fa fa-trash"></i>
 									</a></td>
 								</tr>

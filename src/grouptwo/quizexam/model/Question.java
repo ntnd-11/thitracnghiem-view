@@ -17,6 +17,9 @@ public class Question {
 	private int correctAnswerID;
 
 	
+	public Question() {
+		super();
+	}
 	public Question(int questionId, String question, String image, String level,int subjectID,int creatorID,
 			int correctAnswerID) {
 		this.questionId = questionId;

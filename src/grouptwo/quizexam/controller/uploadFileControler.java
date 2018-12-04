@@ -46,7 +46,7 @@ public class uploadFileControler extends HttpServlet {
 		}
 		else
 		{
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsps/uploadFile.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsps/uploadFile.jsp");
 		}
 	}
 
