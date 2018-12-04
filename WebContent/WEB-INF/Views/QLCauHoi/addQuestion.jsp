@@ -38,10 +38,10 @@
 								<p>
 									<b>Lĩnh vực</b>
 								</p>
-								<select class="custom-select" id="inputGroupSelect01" name="categories">
+								<select class="custom-select" id="inputGroupSelect01" name="subjects">
 									<option selected>Lĩnh vực...</option>
-									<c:forEach items="${ lstCategory }" var="item"> 
-									   <option value="${item.getId()}"> ${item.getCategoryName() }</option>
+									<c:forEach items="${ lstSubject }" var="item"> 
+									   <option value="${item.subjectID}"> ${item.subjectName }</option>
 									</c:forEach>
 									
 
@@ -89,37 +89,40 @@
 						<p class="card-category">Chọn 1 đáp án đúng</p>
 					</div>
 					<div class="card-body">
-							<ul class="nav flex-column" name="listAnswer">
+							<ul class="nav flex-column">
 								<li class="nav-item">
 									<div class="input-group-text">
-										<input type="radio" name="radAns1" class="mr-2"
-											aria-label="Radio button for following text input"> <input
-											type="text" class="form-control"
-											aria-label="Text input with radio button">
+										<input type="radio" name="radAns" class="mr-2"
+											aria-label="Radio button for following text input" value="ans1"> 
+										<input type="text" class="form-control"
+											aria-label="Text input with radio button" name="ans1">
 									</div>
 								</li>
 								<li class="nav-item">
 									<div class="input-group-text">
-										<input type="radio" name="radAns2" class="mr-2"
-											aria-label="Radio button for following text input"> <input
+										<input type="radio" name="radAns" class="mr-2"
+											aria-label="Radio button for following text input" value="ans2"> 
+										<input
 											type="text" class="form-control"
-											aria-label="Text input with radio button">
+											aria-label="Text input with radio button" name="ans2">
 									</div>
 								</li>
 								<li class="nav-item">
 									<div class="input-group-text">
-										<input type="radio" name="radAns3" class="mr-2"
-											aria-label="Radio button for following text input"> <input
+										<input type="radio" name="radAns" class="mr-2"
+											aria-label="Radio button for following text input" value="ans3"> 
+										<input
 											type="text" class="form-control"
-											aria-label="Text input with radio button">
+											aria-label="Text input with radio button" name="ans3" >
 									</div>
 								</li>
 								<li class="nav-item">
 									<div class="input-group-text">
-										<input type="radio" name="radAns4" class="mr-2"
-											aria-label="Radio button for following text input"> <input
+										<input type="radio" name="radAns" class="mr-2"
+											aria-label="Radio button for following text input" value="ans4"> 
+										<input
 											type="text" class="form-control"
-											aria-label="Text input with radio button">
+											aria-label="Text input with radio button" name="ans4">
 									</div>
 								</li>
 							</ul>

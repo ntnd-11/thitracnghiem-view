@@ -47,9 +47,12 @@ public class ProfilestudentService extends BaseService {
 	}
 
 	public static Profilestudent getProfilesutudentById(int id) {
-		String query = "select * from profilestudents where Id = " + id;
+		String query = "select * from profilestudents where Id = ?";
+		List<Object> params = new ArrayList<>();
+		params.add(id);
 		try {
-			ResultSet rs = excuteQuery(query);
+			ResultSet rs = excuteQuery(query,params);
+			rs.next();
 			Profilestudent profilestudent = new Profilestudent(
 					rs.getInt("Id"), 
 					rs.getString("Name"),
@@ -73,26 +76,35 @@ public class ProfilestudentService extends BaseService {
 		return null;
 	}
 
-	public static Profilestudent getProfilestudentByName(String subject) {
-		String query = "select * from profilestudents where User = " + subject;
+	public static List<Profilestudent> getProfilestudentByName(String name) {
+		String query = "SELECT * FROM onlinequiz.profilestudents "
+						+ "WHERE lower(Name) LIKE ? ;";
+		List<Object> params = new ArrayList<>();
+		params.add('%'+name +'%');
+		
 		try {
-			ResultSet rs = excuteQuery(query);
-			Profilestudent profilestudent = new Profilestudent(
-					rs.getInt("Id"), 
-					rs.getString("Name"),
-					rs.getInt("IdentityCardNumber"),
-					rs.getDate("DateOfBirth"),
-					rs.getString("Gender"),
-					rs.getString("PhoneNumber"),
-					rs.getString("Country"),
-					rs.getString("Address"),
-					rs.getString("Religion"),
-					rs.getInt("YearOfAdmission"),
-					rs.getInt("YearOfGraduation"),
-					rs.getString("Image"),
-					rs.getBoolean("ShowProfile"),
-					rs.getInt("User"));
-			return profilestudent;
+			List<Profilestudent> lstStudent = new ArrayList<>();
+			ResultSet rs = excuteQuery(query,params);
+			while(rs.next())
+			{
+				Profilestudent profilestudent = new Profilestudent(
+						rs.getInt("Id"), 
+						rs.getString("Name"),
+						rs.getInt("IdentityCardNumber"),
+						rs.getDate("DateOfBirth"),
+						rs.getString("Gender"),
+						rs.getString("PhoneNumber"),
+						rs.getString("Country"),
+						rs.getString("Address"),
+						rs.getString("Religion"),
+						rs.getInt("YearOfAdmission"),
+						rs.getInt("YearOfGraduation"),
+						rs.getString("Image"),
+						rs.getBoolean("ShowProfile"),
+						rs.getInt("User"));
+				lstStudent.add(profilestudent);
+			}
+			return lstStudent;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 

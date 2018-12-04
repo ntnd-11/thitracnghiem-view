@@ -15,13 +15,14 @@ public class CourseService extends BaseService {
 
 	public static List<Course> getAllCourse() {
 		
-		String query = "Select * from onlinequiz.coures";
+		String query = "Select * from onlinequiz.courses";
 		List<Course> lstCourse = new ArrayList<>();
 
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
 				Course course = new Course(
+						rs.getInt("Id"),
 						rs.getInt("Subject"), 
 						rs.getDate("DateOfStarting"), 
 						rs.getDate("DateOfEnding"), 
@@ -31,7 +32,8 @@ public class CourseService extends BaseService {
 						rs.getInt("NumOfStudents"), 
 						rs.getString("Room"), 
 						rs.getBoolean("Activate"),
-						rs.getInt("Teacher"));
+						rs.getInt("Teacher"),
+						rs.getString("Name"));
 				lstCourse.add(course);
 	        }
 		} catch (SQLException e) {
@@ -46,7 +48,10 @@ public class CourseService extends BaseService {
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Course course = new Course(rs.getInt("Subject"), 
+			rs.next();
+			Course course = new Course(
+					rs.getInt("Id"),
+					rs.getInt("Subject"), 
 					rs.getDate("DateOfStarting"), 
 					rs.getDate("DateOfEnding"), 
 					rs.getString("DateOfWeek"), 
@@ -55,7 +60,8 @@ public class CourseService extends BaseService {
 					rs.getInt("NumOfStudents"), 
 					rs.getString("Room"), 
 					rs.getBoolean("Activate"),
-					rs.getInt("Teacher"));
+					rs.getInt("Teacher"),
+					rs.getString("Name"));
 			return course;
 		}
 		catch(SQLException e)
@@ -115,7 +121,7 @@ public class CourseService extends BaseService {
 
 	}
 	public static boolean addCourse(Course course) {
-		String query = "INSERT INTO onlinequiz.courses (Subject, DateOfStarting, DateOfEnding,DateOfWeek,PartOfStarting,PartOfEnding,NumOfStudents,Room,Activate,Teacher)" + 
+		String query = "INSERT INTO onlinequiz.courses (Subject, DateOfStarting, DateOfEnding,DateOfWeek,PartOfStarting,PartOfEnding,NumOfStudents,Room,Activate,Name) " + 
 				"VALUES (?,?,?,?,?,?,?,?,?,?)";
 		List<Object> params = new ArrayList<>();
 		params.add(course.getSubjectId());
@@ -127,8 +133,25 @@ public class CourseService extends BaseService {
 		params.add(course.getNumberOfStudent());
 		params.add(course.getRoom());
 		params.add(course.isActivate());
-		params.add(course.getTeacher());
+		params.add(course.getName());
 		
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+	public static boolean addStudentCourse(int courseId, int studentId)
+	{
+		String query = "INSERT INTO onlinequiz.detailcourses (Course, Student) " + 
+				"VALUES (?,?)";
+		List<Object> params = new ArrayList<>();
+		params.add(courseId);
+		params.add(studentId);
+
 		try {
 			boolean action = executeUpdate(query, params);
 			return action;

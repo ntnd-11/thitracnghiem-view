@@ -54,15 +54,16 @@ public class AnswerService extends BaseService {
 		return null;
 	}
 	public static List<Answer> getAnswersByIdForQuestion(int id_questiton) {
-		String query = "Select * from answers where Question="+id_questiton;
-		List<Answer> lstAnswers = new ArrayList<>();
+		String query = "Select * from onlinequiz.answers where Question = ?";
+		List<Object> params = new ArrayList<>();
+		params.add(id_questiton);
+		
 		try {
-			ResultSet rs = excuteQuery(query);
+			List<Answer> lstAnswers = new ArrayList<>();
+
+			ResultSet rs = excuteQuery(query,params);
 			while (rs.next()) {
-				Answer answers = new Answer(
-						rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3));
+				Answer answers = new Answer(rs.getInt("Id"),rs.getInt("Question"),rs.getString("Answer"));
 				lstAnswers.add(answers);
 			}
 			return lstAnswers;
@@ -95,7 +96,7 @@ public class AnswerService extends BaseService {
 					+ "Answer = ?,"
 					+ "Where Id= ?";
 			List<Object> params= new ArrayList<>();
-			params.add(answer.getQuestions());
+			params.add(answer.getQuestionId());
 			params.add(answer.getAnswer());
 			params.add(answer.getId());
 			try {
@@ -110,18 +111,17 @@ public class AnswerService extends BaseService {
 
 	public static boolean addAnswers(Answer answer) {
 		String query="Insert into answers (Question,Answer)"
-				+"values (?,?)";
-	List<Object> params= new ArrayList<>();
-	params.add(answer.getQuestions());
-	params.add(answer.getAnswer());
-	try {
-		boolean action = executeUpdate(query, params);
-		return action;
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-	return false;
-
+				+ "values (?,?)";
+		List<Object> params = new ArrayList<>();
+		params.add(answer.getQuestionId());
+		params.add(answer.getAnswer());
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 
 	}
 }

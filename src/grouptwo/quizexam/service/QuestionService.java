@@ -13,26 +13,30 @@ public class QuestionService extends BaseService {
 		super();
 	}
 	public static List<Question> getAllQuestions() {
-		String query = "Select * from questions";
-		List<Question> lstQuestions = new ArrayList<>();
+		String query = "Select * from onlinequiz.questions";
 
 		try {
+			List<Question> lstQuestions = new ArrayList<>();
+
 			ResultSet rs = excuteQuery(query);
+			
 			while (rs.next()) {
-				Question questions = new Question(rs.getInt("Id"),
+				Question questions = new Question(
+						rs.getInt("Id"),
 						rs.getString("Question"),
 						rs.getString("Image"),
 						rs.getString("Level"),
-						rs.getInt("QuestionCategory"),
-						rs.getInt("CorrectAnswer"),
-						rs.getInt("Creator"));
+						rs.getInt("Subject"),
+						rs.getInt("Creator"),
+						rs.getInt("CorrectAnswer"));
 				lstQuestions.add(questions);
+				
 			}
+			return lstQuestions;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			return null;
 		}
-		return lstQuestions;
+		return null;
 	}
 	public static List<Question> getAllQuestions(int firstReSult,int amoutResult) {
 		String query = "select * from questions order by Id LIMIT ?,?";
@@ -49,7 +53,7 @@ public class QuestionService extends BaseService {
 						rs.getString("Question"),
 						rs.getString("Image"),
 						rs.getString("Level"),
-						rs.getInt("QuestionCategory"),
+						rs.getInt("Subject"),
 						rs.getInt("Creator"),
 						rs.getInt("CorrectAnswer"));
 				lstQuestions.add(questions);
@@ -76,7 +80,7 @@ public class QuestionService extends BaseService {
 						rs.getString("Question"),
 						rs.getString("Image"),
 						rs.getString("Level"),
-						rs.getInt("QuestionCategory"),
+						rs.getInt("Subject"),
 						rs.getInt("Creator"),
 						rs.getInt("CorrectAnswer"));
 				lstQuestions.add(questions);
@@ -106,19 +110,20 @@ public class QuestionService extends BaseService {
 	}
 	
 	public static Question getQuestionsById(int id) {
-		String query = "Select * from questions where Id = " +id;
+		String query = "Select * from onlinequiz.questions where Id = " +id;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Question questions = new Question(
+			rs.next();
+			Question question = new Question(
 					rs.getInt("Id"),
 					rs.getString("Question"),
 					rs.getString("Image"),
 					rs.getString("Level"),
-					rs.getInt("QuestionCategory"),					
+					rs.getInt("Subject"),					
 					rs.getInt("Creator"),
 					rs.getInt("CorrectAnswer"));
-			return questions;
+			return question;
 		}
 		catch(SQLException e)
 		{
@@ -129,7 +134,7 @@ public class QuestionService extends BaseService {
 	}
 
 	public static Question getQuestionsByName(String question) {
-		String query = "Select * from questions where Question = " +question;
+		String query = "Select * from onlinequiz.questions where Question = " +question;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
@@ -138,8 +143,8 @@ public class QuestionService extends BaseService {
 					rs.getString("Question"),
 					rs.getString("Image"),
 					rs.getString("Level"),
-					rs.getInt("QuestionCategory"),
-										rs.getInt("Creator"),
+					rs.getInt("Subject"),
+					rs.getInt("Creator"),
 					rs.getInt("CorrectAnswer"));
 			return questions;
 		}
@@ -172,7 +177,7 @@ public class QuestionService extends BaseService {
 					+ "Level = ?,"
 					+ "Creator = ?,"
 					+ "CorrectAnswer = ?,"
-					+ "QuestionCategoryId = ?,"
+					+ "Subject = ?,"
 					+ "Where Id= ?";
 			List<Object> params= new ArrayList<>();
 			params.add(question.getQuestion());
@@ -180,8 +185,8 @@ public class QuestionService extends BaseService {
 			params.add(question.getLevel());
 			params.add(question.getCreatorID());
 			params.add(question.getCorrectAnswerID());
-			params.add(question.getQuestionCategoryID());
-			params.add(question.getId());
+			params.add(question.getSubjectID());
+			params.add(question.getQuestionId());
 			try {
 				boolean action = executeUpdate(query, params);
 				return action;
@@ -193,27 +198,66 @@ public class QuestionService extends BaseService {
 	}
 
 	public static boolean addQuestions(Question question) {
-		String query="Insert into questions (Question,Image,Level,Creator,QuestionCategory)"
-				+"values (?,?,?,?,?)";
-	List<Object> params= new ArrayList<>();
+		String query = "Insert into questions (Question,Image,Level,Creator,Subject)" + "values (?,?,?,?,?)";
+		List<Object> params = new ArrayList<>();
+
+		params.add(question.getQuestion());
+		params.add(null);
+		params.add(question.getLevel());
+		params.add(null);
+		params.add(question.getSubjectID());
+		for (Object c : params) {
+			System.out.println(c + "");
+		}
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+
+	public static boolean updateCorrectAnswer(int questionId, int answerId) {
+		String query = "update onlinequiz.questions set CorrectAnswer= ? where Id = ?";
+		List<Object> params = new ArrayList<>();
+		params.add(answerId);
+		params.add(questionId);
+		try {
+			
+			return executeUpdate(query, params);
+		} catch (SQLException e) {
+			
+		}
+		return false;
+
+	}	
 	
-	params.add(question.getQuestion());
-	params.add(question.getImage());
-	params.add(question.getLevel());
-	params.add(question.getCreatorID());
-	params.add(question.getQuestionCategoryID());
-	for(Object c:params)
-	{
-		System.out.println(c+"");
-	}
-	try {
-		boolean action = executeUpdate(query, params);
-		return action;
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-	return false;
+	public static List<Question> getRandQuestionByLevel(String level, int amount	) {
+		String query = "Select * from onlinequiz.questions where level = "+level+" order by rand() limit " +amount;
+		try {
+			List<Question> lstQuestion = new ArrayList<>();
+			ResultSet rs = excuteQuery(query);
+			while (rs.next()) {
+				Question question = new Question(
+						rs.getInt("Id"),
+						rs.getString("Question"), 
+						rs.getString("Image"), 
+						rs.getString("Level"), 
+						rs.getInt("Creator"), 
+						rs.getInt("CorrectAnswer"), 
+						rs.getInt("Subject"));
+				lstQuestion.add(question);
+			}
+			return lstQuestion;
+			
+		} catch (SQLException e) {
+			
+		}
+		return null;
 
-
-	}
+	}	
 }
+
+

@@ -15,12 +15,12 @@ public class Course {
 	private String room;
 	private boolean activate;
 	private Integer teacherId;
-	
+	private String name;
 	
 	public Course() {
 	}
 	public Course(Integer subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, Integer partOfStarting,
-			Integer partOfEnding, Integer numberOfStudent, String room, boolean activate, Integer teacherId) {
+			Integer partOfEnding, Integer numberOfStudent, String room, boolean activate,String name) {
 		this.subjectId = subjectId;
 		this.dateOfStarting = dateOfStarting;
 		this.dateOfEnding = dateOfEnding;
@@ -30,10 +30,10 @@ public class Course {
 		this.numberOfStudent = numberOfStudent;
 		this.room = room;
 		this.activate = activate;
-		this.teacherId = teacherId;
+		this.name = name;
 	}
 	public Course(Integer courseId,Integer subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, Integer partOfStarting,
-			Integer partOfEnding, Integer numberOfStudent, String room, boolean activate, Integer teacherId) {
+			Integer partOfEnding, Integer numberOfStudent, String room, boolean activate, Integer teacherId,String name) {
 		this.courseId = courseId;
 		this.subjectId = subjectId;
 		this.dateOfStarting = dateOfStarting;
@@ -45,6 +45,7 @@ public class Course {
 		this.room = room;
 		this.activate = activate;
 		this.teacherId = teacherId;
+		this.name = name;
 	}
 
 
@@ -111,6 +112,12 @@ public class Course {
 	}
 	public void setTeacher(Integer teacherId) {
 		this.teacherId = teacherId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	

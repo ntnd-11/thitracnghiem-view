@@ -14,7 +14,7 @@ public class ExamService extends BaseService{
 		super();
 	}
 
-	public static List<Exam> getAllCourse() {
+	public static List<Exam> getAllExam() {
 		
 		String query = "SELECT * FROM onlinequiz.exams";
 		List<Exam> lstExams = new ArrayList<>();
@@ -22,14 +22,19 @@ public class ExamService extends BaseService{
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
-				Exam course = new Exam(rs.getInt("Id"), 
-						rs.getString("name"), 
-						rs.getTimestamp("TimeStarting"), 
-						rs.getInt("NumQuestions"), 
-						rs.getTimestamp("TimeFinishing"), 
-						rs.getInt("Course"), 
-						rs.getBoolean("Activate"),	 
-						rs.getInt("Creator"));
+				Exam course = new Exam(
+						rs.getInt("Id"), 
+						rs.getString("name"),
+						rs.getDate("timeStarting"), 
+						rs.getInt("numQuestions"), 
+						rs.getDate("timeFinishing"), 
+						rs.getInt("courseID"), 
+						rs.getBoolean("activate"), 
+						rs.getInt("creatorID"), 
+						rs.getInt("numDifficult"), 
+						rs.getInt("numNormal"), 
+						rs.getInt("numEasy"), 
+						rs.getInt("limitTime"));
 				lstExams.add(course);
 	        }
 		} catch (SQLException e) {
@@ -44,14 +49,19 @@ public class ExamService extends BaseService{
 		try
 		{
 			ResultSet rs = excuteQuery(query);
+			rs.next();
 			Exam exams = new Exam(rs.getInt("Id"), 
-					rs.getString("name"), 
-					rs.getTimestamp("TimeStarting"), 
-					rs.getInt("NumQuestions"), 
-					rs.getTimestamp("TimeFinishing"), 
-					rs.getInt("Course"), 
-					rs.getBoolean("Activate"),	 
-					rs.getInt("Creator"));
+					rs.getString("name"),
+					rs.getDate("timeStarting"), 
+					rs.getInt("numQuestions"), 
+					rs.getDate("timeFinishing"), 
+					rs.getInt("courseID"), 
+					rs.getBoolean("activate"), 
+					rs.getInt("creatorID"), 
+					rs.getInt("numDifficult"), 
+					rs.getInt("numNormal"), 
+					rs.getInt("numEasy"), 
+					rs.getInt("limitTime"));
 			return exams;
 		}
 		catch(SQLException e)
@@ -140,8 +150,6 @@ public class ExamService extends BaseService{
 			return executeUpdate(query, params);
 
 		} catch (SQLException ex) {
-
-			//Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		return false;

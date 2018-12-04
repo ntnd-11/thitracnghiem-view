@@ -91,7 +91,7 @@ public class ProfilemanagerService extends BaseService {
 		params.add(profilemanager.getImage());
 		params.add(profilemanager.isShowProfile());
 		params.add(profilemanager.getUserId());
-		params.add(profilemanager.getProfileId());
+		params.add(profilemanager.getManagerId());
 
 
 		try {
