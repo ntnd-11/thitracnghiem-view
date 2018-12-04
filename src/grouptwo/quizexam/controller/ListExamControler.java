@@ -11,39 +11,50 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.data.ParamaterStatic;
+import grouptwo.quizexam.model.Exam;
 import grouptwo.quizexam.model.Question;
+import grouptwo.quizexam.service.ExamService;
 import grouptwo.quizexam.service.QuestionService;
-import grouptwo.quizexam.utils.CalculationHelper;
 
-
-@WebServlet("/ListQuestion")
-public class ListQuestionControler extends HttpServlet {
+/**
+ * Servlet implementation class ListExamControler
+ */
+@WebServlet("/ListExam")
+public class ListExamControler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public ListQuestionControler() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ListExamControler() {
         super();
+        // TODO Auto-generated constructor stub
     }
-    
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Question> qsl= null;
+		
+		List<Exam> exl= null;
 		int page=1;
 		if(request.getParameter("page")==null)
 		{
 			int numberPage;
 			//Dem so trang
-			numberPage = CalculationHelper.rouding(QuestionService.countQuestion(),ParamaterStatic.amoutResult);
-			qsl=QuestionService.getAllQuestions(page-1,ParamaterStatic.amoutResult);
+			numberPage=lamTron(ExamService.countExam(),ParamaterStatic.amoutResult);
+			exl=ExamService.getAllExam(page-1,ParamaterStatic.amoutResult);
 			getServletContext().setAttribute("numberPage",numberPage);
 		}
 		else
 		{
 			page=Integer.parseInt(request.getParameter("page"));
-			qsl=QuestionService.getAllQuestions((page-1)*ParamaterStatic.amoutResult,ParamaterStatic.amoutResult);
+			exl=ExamService.getAllExam((page-1)*ParamaterStatic.amoutResult,ParamaterStatic.amoutResult);
 		}	
-		request.setAttribute("list",qsl);
+		request.setAttribute("list",exl);
 		RequestDispatcher dispatcher 
-         = this.getServletContext()//
-               .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/listQuestion.jsp");
+        = this.getServletContext()//
+              .getRequestDispatcher("/WEB-INF/Views/QLDeThi/ManageExam.jsp");
 		 dispatcher.forward(request, response);
 	}
 
@@ -54,7 +65,19 @@ public class ListQuestionControler extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-	
+	private int lamTron(int numberFilm,int row)
+	{
+		int kq;
+		if(numberFilm%row!=0)
+		{
+			kq=numberFilm/row+1;
+		}
+		else
+		{
+			kq=numberFilm/row;
+		}
+		return kq;
+		
+	}
 
 }

@@ -108,6 +108,24 @@ public class AnswerService extends BaseService {
 			return false;
 		}
 	}
+	public static int returnIdAnsAfterInsert(Answer answer)
+	{
+		if(addAnswers(answer))
+		{
+			String sql=" SELECT * FROM answers WHERE id= LAST_INSERT_ID()";
+			
+			try {
+				ResultSet rs = excuteQuery(sql);
+				rs.next();
+				return rs.getInt(1);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return -1;
+	}
 
 	public static boolean addAnswers(Answer answer) {
 		String query="Insert into answers (Question,Answer)"

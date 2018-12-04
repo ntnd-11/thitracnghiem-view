@@ -11,39 +11,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.data.ParamaterStatic;
+import grouptwo.quizexam.model.Profilestudent;
 import grouptwo.quizexam.model.Question;
+import grouptwo.quizexam.service.ProfilestudentService;
 import grouptwo.quizexam.service.QuestionService;
-import grouptwo.quizexam.utils.CalculationHelper;
 
-
-@WebServlet("/ListQuestion")
-public class ListQuestionControler extends HttpServlet {
+/**
+ * Servlet implementation class ListAllStudentControler
+ */
+@WebServlet("/ListAllStudent")
+public class ListAllStudentControler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public ListQuestionControler() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ListAllStudentControler() {
         super();
+        // TODO Auto-generated constructor stub
     }
-    
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Question> qsl= null;
+		List<Profilestudent> prfi_Stu= null;
 		int page=1;
 		if(request.getParameter("page")==null)
 		{
 			int numberPage;
 			//Dem so trang
-			numberPage = CalculationHelper.rouding(QuestionService.countQuestion(),ParamaterStatic.amoutResult);
-			qsl=QuestionService.getAllQuestions(page-1,ParamaterStatic.amoutResult);
+			numberPage=lamTron(ProfilestudentService.countProfile(),ParamaterStatic.amoutResult);
+			prfi_Stu=ProfilestudentService.getAllStudent(page-1,ParamaterStatic.amoutResult);
 			getServletContext().setAttribute("numberPage",numberPage);
 		}
 		else
 		{
 			page=Integer.parseInt(request.getParameter("page"));
-			qsl=QuestionService.getAllQuestions((page-1)*ParamaterStatic.amoutResult,ParamaterStatic.amoutResult);
+			prfi_Stu=ProfilestudentService.getAllStudent((page-1)*ParamaterStatic.amoutResult,ParamaterStatic.amoutResult);
 		}	
-		request.setAttribute("list",qsl);
+		request.setAttribute("list",prfi_Stu);
 		RequestDispatcher dispatcher 
          = this.getServletContext()//
-               .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/listQuestion.jsp");
+               .getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/listStudent.jsp");
 		 dispatcher.forward(request, response);
 	}
 
@@ -54,7 +64,19 @@ public class ListQuestionControler extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-	
+	private int lamTron(int numberFilm,int row)
+	{
+		int kq;
+		if(numberFilm%row!=0)
+		{
+			kq=numberFilm/row+1;
+		}
+		else
+		{
+			kq=numberFilm/row;
+		}
+		return kq;
+		
+	}
 
 }

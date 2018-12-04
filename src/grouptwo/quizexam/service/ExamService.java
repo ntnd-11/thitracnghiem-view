@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grouptwo.quizexam.model.Exam;
+import grouptwo.quizexam.model.Question;
 
 public class ExamService extends BaseService{
 	
@@ -153,6 +154,80 @@ public class ExamService extends BaseService{
 		}
 
 		return false;
+	}
+
+	public static int countExam() {
+		String sql="select count(id) from  exams;";
+		try
+		{
+			ResultSet rs=excuteQuery(sql);
+			while(rs.next())
+			{
+				return rs.getInt(1);
+			}
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return 0;
+		
+	}
+
+	public static List<Exam> getAllExam(int firstResult, int amoutResult) {
+	
+		String query = "select * from exams order by Id LIMIT ?,?";
+		List<Object> param=new ArrayList<>();
+		param.add(firstResult);
+		param.add(amoutResult);
+		List<Exam> lstExam =null;
+
+		try {	
+			lstExam= new ArrayList<>();
+			ResultSet rs = excuteQuery(query,param);
+			while (rs.next()) {
+				Exam questions = new Exam(
+						rs.getInt("Id"), 
+						rs.getString("name"), 
+						rs.getTimestamp("TimeStarting"), 
+						rs.getInt("NumQuestions"), 
+						rs.getTimestamp("TimeFinishing"), 
+						rs.getInt("Course"), 
+						rs.getBoolean("Activate"),	 
+						rs.getInt("Creator"));
+				lstExam.add(questions);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return lstExam;
+	}
+
+	public static List<Exam> searchExam(String character) {
+		String sql="SELECT * FROM exams WHERE id LIKE ?";
+		
+		List<Exam> lstExams = new ArrayList<>();
+		try {
+			ResultSet rs = searchExcuteQuery(sql,character);
+			while (rs.next()) {
+				Exam exams = new Exam(
+						rs.getInt("Id"), 
+						rs.getString("name"), 
+						rs.getTimestamp("TimeStarting"), 
+						rs.getInt("NumQuestions"), 
+						rs.getTimestamp("TimeFinishing"), 
+						rs.getInt("Course"), 
+						rs.getBoolean("Activate"),	 
+						rs.getInt("Creator"));
+				lstExams.add(exams);
+			}
+			return lstExams;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return null;
 	}
 
 	
