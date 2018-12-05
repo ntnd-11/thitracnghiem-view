@@ -27,9 +27,11 @@
 
 
 
-			<li><a href="./addExam.jsp"> <i class="nc-icon nc-diamond"></i>
+			<li>
+				<a href="./addExam.jsp"> <i class="nc-icon nc-diamond"></i>
 					Đề Thi
-			</a></li>
+				</a>
+			</li>
 			<li><a href="./ManageExam.jsp"> <i class="nc-icon nc-pin-3"></i>
 					Quản Lý Đề Thi
 			</a></li>
