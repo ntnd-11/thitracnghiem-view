@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.model.Question;
-import grouptwo.quizexam.model.Questioncategorie;
+import grouptwo.quizexam.model.Subject;
 import grouptwo.quizexam.service.QuestionService;
-import grouptwo.quizexam.service.QuestioncategorieService;
-import grouptwo.quizexam.service.QuestioncategoriesService;
+import grouptwo.quizexam.service.SubjectService;
 
 
 @WebServlet("/EditQuestion")
@@ -44,10 +43,10 @@ public class EditQuestionController extends HttpServlet {
 		                .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/ListQuestion.jsp");
 			  dispatcher.forward(request, response);
 		case "update":
-				Questioncategorie questioncategory=QuestioncategoriesService.getQuestioncategoriesServiceById(question.getQuestionCategoryID());
+				Subject subject=SubjectService.getSubjectsById(question.getSubjectID());
 				request.setAttribute("question", question);
-				request.setAttribute("questioncategory", questioncategory);
-				List<Questioncategorie> lstCate = QuestioncategorieService.getAllQuestionCategorie();
+				request.setAttribute("questioncategory", subject);
+				List<Subject> lstCate = SubjectService.getAllSubjects();
 				request.setAttribute("lstCategory", lstCate);
 				  dispatcher = request.getServletContext()
 			                .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/editQuestion.jsp");
@@ -63,7 +62,7 @@ public class EditQuestionController extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		String categories=request.getParameter("lstCategory");
+		String subject=request.getParameter("lstSubject");
 		String question=request.getParameter("question");
 		String level=request.getParameter("radLevel");
 		String id=request.getParameter("id");
@@ -80,7 +79,7 @@ public class EditQuestionController extends HttpServlet {
 			break;
 		}
 		
-		QuestionService.updateQuestions(new Question(question, "", level,  Integer.parseInt(categories),99,2,Integer.parseInt(id)));
+		QuestionService.updateQuestion(new Question(Integer.parseInt(id),question, "", level,99,2,Integer.parseInt(subject)));
 		RequestDispatcher  dispatcher = request.getServletContext()
 	                .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/listQuestion.jsp");
 		dispatcher.forward(request, response);
