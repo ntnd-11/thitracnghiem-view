@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <t:WrapperAdmin>
                 <div class="row ">
                     <div class="col-md-4">
@@ -95,9 +96,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       <c:forEach items="${lstCurrentQuestion}" var="question">
+                                       <c:forEach items="${lstCurrentQuestion}" var="question" varStatus="loop">
                                     
-	                                        <tr>
+	                                        <tr id= "frameQuestion_${loop.index}" >
 	                                            <td> ${question.questionId } </td>
 	                                            <td>
 	                                            	 <select class="form-control">
@@ -116,7 +117,12 @@
 														</c:if> 
 													</c:forEach>
 	                                            </td>
-	                                            <td class="text-center"><a href="#"><i class="fa fa-edit" style="font-size:36px"></i></a>
+	                                            <td class="text-center">
+	                                            	<button type="button" class="btn btn-danger" id="btnDelete"
+	                                            			data-id=">${ question.questionId }"
+	                                            			data-index="${loop.index}">
+	                                            		<i class="fa fa-trash" style="font-size:10px"></i>
+	                                            	</button>
 	                                            </td>
 	                                        </tr>
 										</c:forEach>
@@ -143,21 +149,37 @@
             	</div>
 <script>
          	$(document).ready(function() {
-   			$('#btnCreateExam').click(function(){
-				var difficult = $('#difficult').val();
-				var normal = $('#normal').val();
-				var easy = $('#easy').val();
-				if(difficult == "" ||normal == "" ||easy == "")
-					alert("Xin vui lòng nhập số lượng câu hỏi từng loại");
-				else	
-					{
-					 	var link = '/WebThi/AddExam?difficult='+difficult+'&normal='+normal+'&easy='+easy;
-						window.location=link;
-					}
+	   			$('#btnCreateExam').click(function(){
+					var difficult = $('#difficult').val();
+					var normal = $('#normal').val();
+					var easy = $('#easy').val();
+					if(difficult == "" ||normal == "" ||easy == "")
+						alert("Xin vui lòng nhập số lượng câu hỏi từng loại");
+					else	
+						{
+						 	var link = '/WebThi/AddExam?difficult='+difficult+'&normal='+normal+'&easy='+easy;
+							window.location=link;
+						}
+	   			});
+	   			$('#btnDelete').click(function(){
+					var index = $(this).data("index");
+					deleteQuestion(index);
+	   			});
+
    			});
-   			
-   			
-   		});
+         	
+         	function deleteQuestion(indexQuestion)
+         	{
+         		$.ajax({
+					url : '${pageContext.request.contextPath}/AddExam?deleteIndex='+indexQuestion,
+					type:'DELETE',
+				    contentType: "json",
+				    success : function(data) {
+				    	$("#frameQuestion_"+indexQuestion).remove();
+				    	alert("Xóa thành công!");
+				    }
+         		});
+         	}
 </script>
 </t:WrapperAdmin>
             
