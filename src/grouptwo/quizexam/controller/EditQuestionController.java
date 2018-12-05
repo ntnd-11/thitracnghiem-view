@@ -42,6 +42,7 @@ public class EditQuestionController extends HttpServlet {
 			QuestionService.deleteQuestions(Integer.parseInt(id));
 			  dispatcher = request.getServletContext()
 		                .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/ListQuestion.jsp");
+			  dispatcher.forward(request, response);
 		case "update":
 				Questioncategorie questioncategory=QuestioncategoriesService.getQuestioncategoriesServiceById(question.getQuestionCategoryID());
 				request.setAttribute("question", question);

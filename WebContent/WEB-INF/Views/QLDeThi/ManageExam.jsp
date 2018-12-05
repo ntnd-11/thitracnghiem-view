@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <t:WrapperAdmin>
 
-	<div class="row justify-content-center">
+	<form class="row justify-content-center">
 		<div class="col-md-10  ">
 			<div class="card card-user">
 				<div class="card-header">
@@ -14,7 +14,7 @@
 					<div class="col">
 						<div class="row">
 							<div class="mr-auto">
-								<a href="#" class="btn btn-info " role="button">Thêm Đề Thi
+								<a href="${pageContext.request.contextPath}/AddExams" class="btn btn-info " role="button">Thêm Đề Thi
 									&#x2b; </a>
 							</div>
 
@@ -70,7 +70,8 @@
 										<td>${item.courseObject.subjectIdObject.subjectName}</td>
 										<td>${item.numQuestions}</td>
 										<td><a href="#"><i class="fa fa-edit float-right"
-												style="font-size: 36px"></i></a> <a href="#"><i
+												style="font-size: 36px"></i>
+												</a> <a href="${pageContext.request.contextPath}/EditExams?command=delete&id=${item.id}"><i
 												class="fa fa-trash-o float-left" style="font-size: 36px"></i></a>
 										</td>
 									</tr>
@@ -94,7 +95,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 	<script type="text/javascript">
 		function searchResult(character) {
 

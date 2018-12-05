@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:WrapperAdmin>
-                <div class="row ">
+                <form class="row ">
                     <div class="col-md-4">
                         <div class="card card-user">
                             <div class="row align-items-center justify-content-center">
@@ -159,7 +159,7 @@
 
                 
                  <button type="submit" class="btn btn-primary btn-round float-right">Tạo Đề Thi</button>
-            	</div>
+            	</form>
 </t:WrapperAdmin>
             
 
