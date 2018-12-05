@@ -17,6 +17,10 @@ public class Profilestudent {
 	private Integer yearOfAdmission;
 	private Integer yearOfGraduation;
 	private String image;
+
+
+
+
 	public Integer getStudentId() {
 		return studentId;
 	}
@@ -138,7 +142,7 @@ public class Profilestudent {
 
 	public Profilestudent(String name, Integer identityCardNumber, Date dateOfBirth, String gender, String phoneNumber,
 			String country, String address, String religion, Integer yearOfAdmission, Integer yearOfGraduation,
-			String image, boolean showProfile, Integer userId) {
+			String image, boolean showProfile, Integer userId,int id) {
 		super();
 		this.name = name;
 		this.identityCardNumber = identityCardNumber;
@@ -153,6 +157,7 @@ public class Profilestudent {
 		this.image = image;
 		this.showProfile = showProfile;
 		this.userId = userId;
+		this.studentId=id;
 	}
 
 	public Profilestudent(Integer studentId, String name, Integer identityCardNumber, Date dateOfBirth, String gender,

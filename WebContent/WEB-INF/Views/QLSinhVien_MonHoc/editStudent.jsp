@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:WrapperAdmin>
-        <div class="row">
+        <form class="row">
             <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
                       <h3 class="card-title"><b> Sửa thông tin sinh viên - lớp học </b> </h3>
                       <div class="card-body">
-                          <form>
+                          <div>
                               <div class="form-group row">
                                   <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                                   <div class="col-sm-10">
@@ -48,7 +48,7 @@
                                           <input type="text" class="form-control disab" id="inputName" value="Lập trình Web ST7 1-5 2018-2019" placeholder="Tên lớp">
                                         </div>
                                       </div>
-                            </form>
+                            </div>
                       </div>
                 </div>
         </div>
@@ -59,5 +59,5 @@
         </div>
       
     </div>
-  </div>
+  </form>
 </t:WrapperAdmin>

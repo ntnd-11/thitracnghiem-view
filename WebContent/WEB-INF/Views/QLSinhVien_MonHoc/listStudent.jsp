@@ -62,7 +62,9 @@
 											<button class="btn btn-success" data-toggle="modal"
 												data-target="#modalStudent">
 												<i class="fa fa-eye"></i>
-											</button> <a href="./editStudent.jsp" class="btn btn-warning"><i
+											</button> 
+						
+											<a href="${pageContext.request.contextPath}/EditAllStudent?command=update&id=${item.studentId}" class="btn btn-warning"><i
 												class="fa fa-pencil"></i></a>
 											<button class="btn btn-danger" data-toggle="modal"
 												data-target="#modalConfirmDeleting">
