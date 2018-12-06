@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import grouptwo.quizexam.model.Question;
 import grouptwo.quizexam.model.Questioncategorie;
 import grouptwo.quizexam.service.QuestionService;
-import grouptwo.quizexam.service.QuestioncategorieService;
+
 
 
 @WebServlet("/AddQuestion")
@@ -30,12 +30,9 @@ public class AddQuestionController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		List<Questioncategorie> lstCate = QuestioncategorieService.getAllQuestionCategorie();
-		request.setAttribute("lstCategory", lstCate);
 		
-		   RequestDispatcher dispatcher = request.getServletContext()
-	                .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/addQuestion.jsp");
-	        dispatcher.forward(request, response);
+		
+		
 	}
 
 
@@ -43,7 +40,7 @@ public class AddQuestionController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		String ans1=request.getParameter("ans1");
+		/*String ans1=request.getParameter("ans1");
 		String ans2=request.getParameter("ans2");
 		String ans3=request.getParameter("ans3");
 		String ans4=request.getParameter("ans4");
@@ -69,7 +66,7 @@ public class AddQuestionController extends HttpServlet {
 		RequestDispatcher  dispatcher = request.getServletContext()
                 .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/listQuestion.jsp");
 	dispatcher.forward(request, response);
-		
+		*/
 		
 		
 		

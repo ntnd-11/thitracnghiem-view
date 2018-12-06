@@ -7,6 +7,23 @@ public class User {
 
 	private Integer userId;
 	private String userName;
+	private int idCardNumber;
+	public int getIdCardNumber() {
+		return idCardNumber;
+	}
+
+
+
+	public void setIdCardNumber(int idCardNumber) {
+		this.idCardNumber = idCardNumber;
+	}
+
+
+
+	public void setRoleuser(Integer roleuser) {
+		this.roleuser = roleuser;
+	}
+
 	private Integer roleuser;
 	private String email;
 	private String password;
@@ -15,23 +32,24 @@ public class User {
 	public User() {
 	}
 
-	public User(Integer userId, String userName, String email, String password, Integer roleuser, boolean activate) {
-		this.userId = userId;
+
+
+	public User(String userName, String email, String password, Integer roleuser, boolean activate,int id) {
 		this.userName = userName;
 		this.roleuser = roleuser;
 		this.email = email;
 		this.password = password;
 		this.activate = activate;
+		this.userId=id;
 	}
-
 	public User(String userName, String email, String password, Integer roleuser, boolean activate) {
-		this.userName = userName;
-		this.roleuser = roleuser;
+		this.userName = userName;	
 		this.email = email;
 		this.password = password;
+		this.roleuser = roleuser;
 		this.activate = activate;
+	
 	}
-
 
 	public String getUserName() {
 		return this.userName;
