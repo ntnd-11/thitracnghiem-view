@@ -206,8 +206,11 @@ public class ProfilestudentService extends BaseService {
 		params.add(c.getStudentId());
 		params.add(c.getStudentId());
 		
+		System.out.println(c.getName()+"   "+c.getIdentityCardNumber()+"   "+c.getDateOfBirth()+"    "+c.getGender()+"   "+c.getPhoneNumber()+"    "+c.getCountry()+ "  "  +c.getAddress()+"   "+
+				c.getReligion()+ "  "  +c.getYearOfAdmission()+"  "+c.getYearOfGraduation()+ "   "  +c.getImage()+"    "+c.isShowProfile()+"   "+c.getUserId()+"     "+c.getStudentId());
+		
 		try {
-			
+			System.out.println("cc");
 			return executeUpdate(query, params);
 
 		} catch (SQLException ex) {

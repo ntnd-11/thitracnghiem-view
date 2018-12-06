@@ -14,7 +14,8 @@ import grouptwo.quizexam.model.Question;
 import grouptwo.quizexam.model.Questioncategorie;
 import grouptwo.quizexam.service.ExamService;
 import grouptwo.quizexam.service.QuestionService;
-
+import grouptwo.quizexam.service.QuestioncategorieService;
+import grouptwo.quizexam.service.QuestioncategoriesService;
 
 
 @WebServlet("/EditExams")

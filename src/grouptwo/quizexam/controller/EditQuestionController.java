@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import grouptwo.quizexam.model.Question;
 import grouptwo.quizexam.model.Questioncategorie;
 import grouptwo.quizexam.service.QuestionService;
+import grouptwo.quizexam.service.QuestioncategorieService;
+import grouptwo.quizexam.service.QuestioncategoriesService;
 
 
 @WebServlet("/EditQuestion")
@@ -36,15 +38,17 @@ public class EditQuestionController extends HttpServlet {
 		 RequestDispatcher dispatcher;
 		switch(command)
 		{
-		/*case "delete":
+		case "delete":
 			QuestionService.deleteQuestions(Integer.parseInt(id));
 			  dispatcher = request.getServletContext()
 		                .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/ListQuestion.jsp");
 			  dispatcher.forward(request, response);
-			  */
 		case "update":
-				
-				
+				Questioncategorie questioncategory=QuestioncategoriesService.getQuestioncategoriesServiceById(question.getQuestionCategoryID());
+				request.setAttribute("question", question);
+				request.setAttribute("questioncategory", questioncategory);
+				List<Questioncategorie> lstCate = QuestioncategorieService.getAllQuestionCategorie();
+				request.setAttribute("lstCategory", lstCate);
 				  dispatcher = request.getServletContext()
 			                .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/editQuestion.jsp");
 				 

@@ -78,8 +78,7 @@ public class EditAllStudentController extends HttpServlet {
 		String Name=request.getParameter("Name");
 		String PhoneNumber=request.getParameter("PhoneNumber");
 		String DateOfBirth=request.getParameter("DateOfBirth");
-		String GenDer=request.getParameter("GenDer");
-		//String GenDer="Nữ";
+		String GenDer="Nữ";
 		String Country=request.getParameter("Country");
 		String Adress=request.getParameter("Adress");
 		String Religion=request.getParameter("Religion");
@@ -88,9 +87,9 @@ public class EditAllStudentController extends HttpServlet {
 		String Image=null;
 		boolean ShowProfile=true;
 		String User="1";
-		System.out.println("dadsa:"+GenDer);
 		
-		UserService.updateUsers(new User(userprofile,email,passwordUser,Integer.parseInt(RoleUser),true,Integer.parseInt(id)));
+		//System.out.println(User+YearOfAdmission);
+		//UserService.updateUsers(new User(userprofile,email,passwordUser,Integer.parseInt(RoleUser),true,Integer.parseInt(id)));
 		ProfilestudentService.UpdateProfilestudent(new Profilestudent(Name,Integer.parseInt(IdentityCardNumber),java.sql.Date.valueOf(DateOfBirth),GenDer,PhoneNumber,Country,Adress,Religion,Integer.parseInt(YearOfAdmission),Integer.parseInt(YearOfGraduation),Image,ShowProfile,Integer.parseInt(User),Integer.parseInt(id)));
 		//Load lai Servlet ListAllStudent
 		String contextPath=request.getContextPath();
