@@ -12,11 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.data.ParamaterStatic;
 import grouptwo.quizexam.model.Course;
-import grouptwo.quizexam.model.Exam;
-import grouptwo.quizexam.model.Subject;
 import grouptwo.quizexam.service.CourseService;
-import grouptwo.quizexam.service.ExamService;
-import grouptwo.quizexam.service.SubjectService;
 
 /**
  * Servlet implementation class ListSubjectControler

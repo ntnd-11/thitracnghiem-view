@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grouptwo.quizexam.model.Exam;
-import grouptwo.quizexam.model.Question;
 
 public class ExamService extends BaseService{
 	
@@ -23,14 +22,19 @@ public class ExamService extends BaseService{
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
-				Exam course = new Exam(rs.getInt("Id"), 
-						rs.getString("name"), 
-						rs.getTimestamp("TimeStarting"), 
-						rs.getInt("NumQuestions"), 
-						rs.getTimestamp("TimeFinishing"), 
-						rs.getInt("Course"), 
-						rs.getBoolean("Activate"),	 
-						rs.getInt("Creator"));
+				Exam course = new Exam(
+						rs.getInt("Id"), 
+						rs.getString("name"),
+						rs.getDate("timeStarting"), 
+						rs.getInt("numQuestions"), 
+						rs.getDate("timeFinishing"), 
+						rs.getInt("courseID"), 
+						rs.getBoolean("activate"), 
+						rs.getInt("creatorID"), 
+						rs.getInt("numDifficult"), 
+						rs.getInt("numNormal"), 
+						rs.getInt("numEasy"), 
+						rs.getInt("limitTime"));
 				lstExams.add(course);
 	        }
 		} catch (SQLException e) {
@@ -45,14 +49,19 @@ public class ExamService extends BaseService{
 		try
 		{
 			ResultSet rs = excuteQuery(query);
+			rs.next();
 			Exam exams = new Exam(rs.getInt("Id"), 
-					rs.getString("name"), 
-					rs.getTimestamp("TimeStarting"), 
-					rs.getInt("NumQuestions"), 
-					rs.getTimestamp("TimeFinishing"), 
-					rs.getInt("Course"), 
-					rs.getBoolean("Activate"),	 
-					rs.getInt("Creator"));
+					rs.getString("name"),
+					rs.getDate("timeStarting"), 
+					rs.getInt("numQuestions"), 
+					rs.getDate("timeFinishing"), 
+					rs.getInt("courseID"), 
+					rs.getBoolean("activate"), 
+					rs.getInt("creatorID"), 
+					rs.getInt("numDifficult"), 
+					rs.getInt("numNormal"), 
+					rs.getInt("numEasy"), 
+					rs.getInt("limitTime"));
 			return exams;
 		}
 		catch(SQLException e)
@@ -141,8 +150,6 @@ public class ExamService extends BaseService{
 			return executeUpdate(query, params);
 
 		} catch (SQLException ex) {
-
-			//Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		return false;
@@ -185,7 +192,10 @@ public class ExamService extends BaseService{
 						rs.getTimestamp("TimeFinishing"), 
 						rs.getInt("Course"), 
 						rs.getBoolean("Activate"),	 
-						rs.getInt("Creator"));
+						rs.getInt("Creator"),
+						rs.getInt("NumDiffi"),
+						rs.getInt("NumNormal"), 
+						rs.getInt("NumEasy"), rs.getInt("LimitTime"));
 				lstExam.add(questions);
 			}
 			
@@ -211,7 +221,11 @@ public class ExamService extends BaseService{
 						rs.getTimestamp("TimeFinishing"), 
 						rs.getInt("Course"), 
 						rs.getBoolean("Activate"),	 
-						rs.getInt("Creator"));
+						rs.getInt("Creator"),
+						rs.getInt("NumDiffi"),
+						rs.getInt("NumNormal"), 
+						rs.getInt("NumEasy"), 
+						rs.getInt("LimitTime"));
 				lstExams.add(exams);
 			}
 			return lstExams;

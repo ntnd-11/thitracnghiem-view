@@ -20,11 +20,10 @@
 						</div>
 
 						<div class="navbar navbar-light">
-							<a class="navbar-brand"> Navbar </a>
 
 							<form class="form">
 
-								<div class="col">
+								<div class="col-12">
 									<div class="input-group mb-3">
 										<input class="form-control " type="search"
 											placeholder="Search .." aria-label="Search"
@@ -38,7 +37,7 @@
 										</div>
 									</div>
 									<select multiple class="form-control" name="sellist2"
-										id="resultSearch" hidden>
+										id="resultSearch" hidden="hidden">
 										
 									</select>
 								</div>
@@ -57,6 +56,7 @@
 
 						<table class="table">
 							<thead class=" text-primary">
+							<tr>
 								<th width="2%"><input type="checkbox"
 									aria-label="Radio button for following text input"></th>
 								<th width="8%">Mã</th>
@@ -64,23 +64,25 @@
 								<th width="20%">Câu trả lời</th>
 								<th width="20%">Đáp án</th>
 								<th class="20%">Tùy chọn</th>
+							</tr>
 							</thead>
 							<c:forEach items="${list}" var="item">
 								<tr>
 									<td><input type="checkbox"
 										aria-label="Radio button for following text input"></td>
-									<td>${item.id}</td>
+									<td>${item.questionId}</td>
 									<td>${item.question}</td>
 									<td><c:forEach items="${item.lsAnswer}" var="item1">
-										${item1.answer} <br />
+								${item1.answer} <br />
 										</c:forEach></td>
 									<td>${item.answerCorrect.answer}</td>
 
 									<td><a
-										href="${pageContext.request.contextPath}/EditQuestion?command=update&id=${item.id}"
-										class="btn btn-warning"><i class="fa fa-pencil"></i></a> <a
+										href="${pageContext.request.contextPath}/*?id=${item.questionId}"
+										class="btn btn-warning"><i class="fa fa-pencil"></i></a> 
+										<a
 										class="btn btn-danger"
-										href="${pageContext.request.contextPath}/EditQuestion?command=delete&id=${item.id}">
+										href="${pageContext.request.contextPath}/*?id=${item.questionId}">
 											<i class="fa fa-trash"></i>
 									</a></td>
 								</tr>
@@ -95,9 +97,10 @@
 									href="#" tabindex="-1">Previous</a></li>
 								<c:forEach var="i" begin="1" end="${numberPage}">
 									<li class="page-item"><a class="page-link"
-										href="${pageContext.request.contextPath}/ListQuestion?page=${i}">${i}</a></li>
+										href="${pageContext.request.contextPath}/ListQuestion?page=${i}">${i}</a>
+									</li>
 								</c:forEach>
-								</li>
+								
 							</ul>
 						</nav>
 					</div>
@@ -107,40 +110,45 @@
 	</div>
 
 	<script type="text/javascript">
-  function searchResult(character) {
-    
-$.ajax({
-                  url : '${pageContext.request.contextPath}/SearchListQuestion',
-                  data : {
-                    character : character
-                  },
-                  dataType : 'html',
-                  success : function(data) {
-                    var obj = $.parseJSON(data);
-                    console.log(obj);
-                    $.each(obj, function(index, el) {
-                      $(
-                          "<option>"+el.question+"</option>")
-                          .appendTo($("#resultSearch"));
-                    });
-                  }
-                });
+  
+		function searchResult(character) {
 
-$("#resultSearch").removeAttr("hidden")
+			$.ajax({
+				url : '${pageContext.request.contextPath}/SearchListQuestion',
+				data : {
+					character : character
+				},
+				dataType : 'json',
+				success : function(data) {
+					$("#resultSearch").show();
+					var obj = $.parseJSON(data);
+					//console.log(obj);
+					$.each(obj, function(index, el) {
+						var str = el.question.length > 30 ? el.question
+								.substring(0, 30) : el.question;
+						$("<option id='selected'>" + str + "</option>").appendTo(
+								$("#resultSearch"));
+					});
+				}
+			});
 
-  }
-  $(document).ready(function() {
-	
-    $('[name="characterSearch"]').keyup(function(event) {
-     
-      if(!$(this).val())
-      $("#resultSearch").attr("hidden");
-    else
-    {
-    $("#resultSearch").empty();
-       searchResult($(this).val());
-    }
-    });
-  });
-</script>
+			$("#resultSearch").removeAttr("hidden")
+
+		}
+		$(document).ready(function() {
+			$('#selected').click(function(){
+				$("#resultSearch").val($('#selected').text());
+			});
+			
+			$('[name="characterSearch"]').keyup(function(event) {
+
+				if (!$(this).val())
+					$("#resultSearch").attr("hidden");
+				else {
+					$("#resultSearch").empty();
+					searchResult($(this).val());
+				}
+			});
+		});
+	</script>
 </t:WrapperAdmin>

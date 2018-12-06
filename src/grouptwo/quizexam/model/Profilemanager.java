@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Profilemanager {
 
-	private Integer profileId;
+	private Integer managerId;
 	private String name;
 	private Date dateOfBirth;
 	private String gender;
@@ -13,12 +13,12 @@ public class Profilemanager {
 	private boolean showProfile;
 	private Integer userId;
 	
-	public Integer getProfileId() {
-		return profileId;
+	public Integer getManagerId() {
+		return managerId;
 	}
 
-	public void setProfileId(Integer profileId) {
-		this.profileId = profileId;
+	public void setManagerId(Integer managerId) {
+		this.managerId = managerId;
 	}
 
 	public String getName() {
@@ -95,10 +95,10 @@ public class Profilemanager {
 		this.userId = userId;
 	}
 
-	public Profilemanager(Integer profileId, String name, Date dateOfBirth, String gender, String phoneNumber,
+	public Profilemanager(Integer managerId, String name, Date dateOfBirth, String gender, String phoneNumber,
 			String image, boolean showProfile, Integer userId) {
 		super();
-		this.profileId = profileId;
+		this.managerId = managerId;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;

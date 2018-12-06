@@ -1,7 +1,5 @@
 package grouptwo.quizexam.model;
 
-
-
 public class Roleuser {
 
 	private Integer id;

@@ -4,7 +4,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8" />
 <link rel="apple-touch-icon"
 	href="${pageContext.request.contextPath}/assets/img/apple-icon.png">
 <link rel="icon" type="image/png"
@@ -60,9 +59,6 @@
 				src="${pageContext.request.contextPath}/assets/js/core/bootstrap.min.js"></script>
 			<script
 				src="${pageContext.request.contextPath}/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-			<!--  Google Maps Plugin    -->
-			<script
-				src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 			<!-- Chart JS -->
 			<script
 				src="${pageContext.request.contextPath}/assets/js/plugins/chartjs.min.js"></script>

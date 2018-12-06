@@ -4,9 +4,10 @@
 	<div class="logo">
 		<a href="http://www.creative-tim.com" class="simple-text logo-mini">
 			<div class="logo-image-small">
-				<img src="../assets/img/logo-small.png">
+				<img
+					src="${pageContext.request.contextPath}/assets/img/logo-small.png">
 			</div>
-		</a> <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+		</a> <a href="http://www.facebook.com" class="simple-text logo-normal">
 			Group 2 </a>
 	</div>
 	<div class="sidebar-wrapper">
@@ -16,8 +17,8 @@
 			<li><a href="./notifications.jsp"> <i
 					class="nc-icon nc-bell-55"></i> Thông báo
 			</a></li>
-			<li><a href="./profile.jsp"> <i
-					class="nc-icon nc-single-02"></i> Hồ sơ
+			<li><a href="./profile.jsp"> <i class="nc-icon nc-single-02"></i>
+					Hồ sơ
 			</a></li>
 			<li><a href="./listQuestion.jsp"> <i
 					class="nc-icon nc-tile-56"></i> Câu hỏi
@@ -36,11 +37,9 @@
 
 			<!-- Sinh viên -->
 
-			<li>
-				<a href="./listStudent.jsp"> 
-					<i class="nc-icon nc-tile-56"></i> Sinh viên
-				</a>
-			</li>
+			<li><a href="./listStudent.jsp"> <i
+					class="nc-icon nc-tile-56"></i> Sinh viên
+			</a></li>
 			<li><a href="./listSubject.jsp"> <i
 					class="nc-icon nc-briefcase-24"></i> Lớp học
 			</a></li>

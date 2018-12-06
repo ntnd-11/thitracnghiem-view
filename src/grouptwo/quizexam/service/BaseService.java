@@ -138,5 +138,16 @@ public class BaseService {
 		int action = stmt.executeUpdate();
 		return action >0;
 	}
+	public static int getIdAfterInsert() {
+		String query = "SELECT LAST_INSERT_ID()";
+		try {
+			ResultSet rs = excuteQuery(query);
+			return rs.next() ? rs.getInt("LAST_INSERT_ID()"): -1;
+		}
+		catch(SQLException e) {
+			return -1;
+		}
+		
+	}
 
 }

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <t:WrapperAdmin>
 
-	<form class="row justify-content-center">
+	<div class="row justify-content-center">
 		<div class="col-md-10  ">
 			<div class="card card-user">
 				<div class="card-header">
@@ -14,7 +14,7 @@
 					<div class="col">
 						<div class="row">
 							<div class="mr-auto">
-								<a href="${pageContext.request.contextPath}/AddExams" class="btn btn-info " role="button">Thêm Đề Thi
+								<a href="#" class="btn btn-info " role="button">Thêm Đề Thi
 									&#x2b; </a>
 							</div>
 
@@ -45,8 +45,8 @@
 						</div>
 						
 						<select multiple class="form-control mb-4" name="sellist2"
-							id="resultSearch" hidden>
-							<label>Result</label>
+							id="resultSearch" hidden="hidden">
+							<option selected>Result</option>
 						</select>
 					</div>
 					<div class="table-responsive">
@@ -70,8 +70,7 @@
 										<td>${item.courseObject.subjectIdObject.subjectName}</td>
 										<td>${item.numQuestions}</td>
 										<td><a href="#"><i class="fa fa-edit float-right"
-												style="font-size: 36px"></i>
-												</a> <a href="${pageContext.request.contextPath}/EditExams?command=delete&id=${item.id}"><i
+												style="font-size: 36px"></i></a> <a href="#"><i
 												class="fa fa-trash-o float-left" style="font-size: 36px"></i></a>
 										</td>
 									</tr>
@@ -95,11 +94,12 @@
 				</div>
 			</div>
 		</div>
-	</form>
+	</div>
 	<script type="text/javascript">
 		function searchResult(character) {
 
-			$
+			
+		$
 					.ajax({
 						url : '${pageContext.request.contextPath}/SearchListExam',
 						data : {

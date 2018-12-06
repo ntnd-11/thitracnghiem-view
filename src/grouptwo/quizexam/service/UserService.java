@@ -96,7 +96,7 @@ public class UserService extends BaseService {
 	}
 
 	public static boolean addUsers(User user) {
-		String query="Insert into subjects (UserName,Email,Password,RoleUser,Activate)"
+		String query="Insert into users (UserName,Email,Password,RoleUser,Activate)"
 				+"values (?,?,?,?,?)";
 	List<Object> params= new ArrayList<>();
 	params.add(user.getUserName());
