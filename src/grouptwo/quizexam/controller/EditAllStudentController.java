@@ -48,11 +48,12 @@ public class EditAllStudentController extends HttpServlet {
 		 RequestDispatcher dispatcher;
 		 switch(command)
 			{
-			/*case "delete":
-				QuestionService.deleteQuestions(Integer.parseInt(id));
-				  dispatcher = request.getServletContext()
-			                .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/ListQuestion.jsp");
-				  dispatcher.forward(request, response);*/
+			case "delete":
+			
+				ProfilestudentService.deleteProfilestudent(Integer.parseInt(id));
+				String contextPath=request.getContextPath();
+				response.sendRedirect(contextPath+"/ListAllStudent");
+				break;
 			case "update":
 		
 					  dispatcher = request.getServletContext()
@@ -60,6 +61,7 @@ public class EditAllStudentController extends HttpServlet {
 					 
 				        dispatcher.forward(request, response);
 				        command="";
+				        break;
 			}
 	}
 

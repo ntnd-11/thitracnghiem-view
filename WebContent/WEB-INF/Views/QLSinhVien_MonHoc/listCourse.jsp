@@ -9,11 +9,11 @@
 				<div class="card-header">
 					<div class="row">
 						<div class="col-md-3">
-							<h5 class="card-title">Danh sách Sinh viên</h5>
+							<h4 class="card-title">Danh sách Môn Học</h4>
 						</div>
 						<div class="col-md-3">
-							<a class="btn btn-success" href="./addStudent.jsp"> <i
-								class="fa fa-plus"></i> Thêm sinh viên
+							<a class="btn btn-success" href="./addSubject.jsp"> <i
+								class="fa fa-plus"></i> Mở lớp
 							</a>
 						</div>
 						<div class="navbar navbar-light">
@@ -30,49 +30,44 @@
 					</div>
 				</div>
 				<div class="card-body">
+
 					<div class="table-responsive">
 						<table class="table">
 							<thead class=" text-primary">
 								<tr>
-									<th width="2%"><input type="checkbox"
+									<th width="2px"><input type="checkbox"
 										aria-label="Radio button for following text input"></th>
-									<th width="8%">Mã SV</th>
-									<th width="20%">Họ tên</th>
+									<th width="4px">Mã</th>
+									<th>Tên lớp</th>
 
-									<th width="10%">Số CMND</th>
-									<th width="10%">Giới Tính</th>
-									<th width="10%">Ngày Sinh</th>
-									
+									<th width="15%">Môn học</th>
+									<th width="10%">Thời gian</th>
+
+									<th width="10%">Bắt đầu</th>
+									<th width="10%">Kết thúc</th>
 									<th class="20%">Tùy chọn</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${list}" var="item">
-
 									<tr>
 										<td><input type="checkbox"
 											aria-label="Radio button for following text input"></td>
-										<td>${item.studentId}</td>
-										<td>${item.name}</td>
-										<td>${item.identityCardNumber}</td>
-										<td>${item.gender}</td>
-										<td>${item.dateOfBirth}</td>
-									
-										<td>
-											<button class="btn btn-success" data-toggle="modal"
-												data-target="#modalStudent">
-												<i class="fa fa-eye"></i>
-											</button> 
-						
-											<a href="${pageContext.request.contextPath}/EditAllStudent?command=update&id=${item.studentId}" class="btn btn-warning"><i
+										<td>${item.courseId}</td>
+										<td>${item.subjectIdObject.subjectName} -Date: ${item.dateOfWeek}
+											 </td>
+										<td>${item.subjectIdObject.subjectName}</td>
+										<td>  ${item.partOfStarting} - ${item.partOfEnding}</td>
+										<td>${item.dateOfStarting}</td>
+										<td>${item.dateOfEnding}</td>
+										<td><a href="${pageContext.request.contextPath}/EditCourses?command=update&id=${item.courseId}&subjectName=${item.subjectIdObject.subjectName}" class="btn btn-warning"><i
 												class="fa fa-pencil"></i></a>
 											 <a
-												href="${pageContext.request.contextPath}/EditAllStudent?command=delete&id=${item.studentId}"
-												class="btn btn-danger"> <i class="fa fa-trash"></i></a>
-										</td>
+												href="${pageContext.request.contextPath}/EditCourses?command=delete&id=${item.courseId}"
+												class="btn btn-danger"> <i class="fa fa-trash"></i></a></td>
 									</tr>
-
 								</c:forEach>
+
 
 
 							</tbody>
@@ -81,9 +76,10 @@
 							<ul class="pagination justify-content-center">
 								<li class="page-item disabled"><a class="page-link"
 									href="#" tabindex="-1">Previous</a></li>
-									<c:forEach var="i" begin="1" end="${numberPage}">
-										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListAllStudent?page=${i}">${i}</a></li>
-									</c:forEach>
+								<c:forEach var="i" begin="1" end="${numberPage}">
+									<li class="page-item"><a class="page-link"
+										href="${pageContext.request.contextPath}/ListCourses?page=${i}">${i}</a></li>
+								</c:forEach>
 								<li class="page-item"><a class="page-link" href="#">Next</a>
 								</li>
 							</ul>
