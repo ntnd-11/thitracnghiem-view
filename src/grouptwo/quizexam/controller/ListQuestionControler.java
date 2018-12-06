@@ -26,6 +26,7 @@ public class ListQuestionControler extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Question> qsl= null;
+		System.out.println("cc");
 		int page=1;
 		if(request.getParameter("page")==null)
 		{
