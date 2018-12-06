@@ -1,4 +1,4 @@
-	package grouptwo.quizexam.service;
+package grouptwo.quizexam.service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,26 +13,30 @@ public class QuestionService extends BaseService {
 		super();
 	}
 	public static List<Question> getAllQuestions() {
-		String query = "Select * from questions";
-		List<Question> lstQuestions = new ArrayList<>();
+		String query = "Select * from onlinequiz.questions";
 
 		try {
+			List<Question> lstQuestions = new ArrayList<>();
+
 			ResultSet rs = excuteQuery(query);
+			
 			while (rs.next()) {
-				Question questions = new Question(rs.getInt("Id"),
+				Question questions = new Question(
+						rs.getInt("Id"),
 						rs.getString("Question"),
 						rs.getString("Image"),
 						rs.getString("Level"),
-						rs.getInt("QuestionCategory"),
-						rs.getInt("CorrectAnswer"),
-						rs.getInt("Creator"));
+						rs.getInt("Subject"),
+						rs.getInt("Creator"),
+						rs.getInt("CorrectAnswer"));
 				lstQuestions.add(questions);
+				
 			}
+			return lstQuestions;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			return null;
 		}
-		return lstQuestions;
+		return null;
 	}
 	public static List<Question> getAllQuestions(int firstReSult,int amoutResult) {
 		String query = "select * from questions order by Id LIMIT ?,?";
@@ -49,7 +53,7 @@ public class QuestionService extends BaseService {
 						rs.getString("Question"),
 						rs.getString("Image"),
 						rs.getString("Level"),
-						rs.getInt("QuestionCategory"),
+						rs.getInt("Subject"),
 						rs.getInt("Creator"),
 						rs.getInt("CorrectAnswer"));
 				lstQuestions.add(questions);
@@ -61,6 +65,25 @@ public class QuestionService extends BaseService {
 		}
 		return null;
 	
+	}
+	public static int returnIdQuestionAfterInsert(Question qus)
+	{
+		if(addQuestions(qus))
+		{
+			String sql=" SELECT * FROM questions WHERE id= LAST_INSERT_ID()";
+			
+			try {
+				ResultSet rs = excuteQuery(sql);
+				rs.next();
+				return rs.getInt(1);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return -1;
+		
 	}
 	public static List<Question> searchQuestion(String character)
 	{
@@ -76,7 +99,7 @@ public class QuestionService extends BaseService {
 						rs.getString("Question"),
 						rs.getString("Image"),
 						rs.getString("Level"),
-						rs.getInt("QuestionCategory"),
+						rs.getInt("Subject"),
 						rs.getInt("Creator"),
 						rs.getInt("CorrectAnswer"));
 				lstQuestions.add(questions);
@@ -107,54 +130,49 @@ public class QuestionService extends BaseService {
 	
 	public static Question getQuestionsById(int id) {
 		String query = "Select * from onlinequiz.questions where Id = " +id;
-		Question questions=null;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			while(rs.next()) {
-					questions = new Question(
+			rs.next();
+			Question question = new Question(
 					rs.getInt("Id"),
 					rs.getString("Question"),
 					rs.getString("Image"),
 					rs.getString("Level"),
-					rs.getInt("QuestionCategory"),					
+					rs.getInt("Subject"),					
 					rs.getInt("Creator"),
 					rs.getInt("CorrectAnswer"));
-			}
-			
-			
+			return question;
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return questions;
+		return null;
 	}
 
 	public static Question getQuestionsByName(String question) {
-		String query = "Select * from questions where Question = " +question;
-		Question questions=null;
+		String query = "Select * from onlinequiz.questions where Question = " +question;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			while(rs.next()) {
-					questions = new Question(
+			Question questions = new Question(
 					rs.getInt("Id"),
 					rs.getString("Question"),
 					rs.getString("Image"),
 					rs.getString("Level"),
-					rs.getInt("QuestionCategory"),					
+					rs.getInt("Subject"),
 					rs.getInt("Creator"),
 					rs.getInt("CorrectAnswer"));
-			}
+			return questions;
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return questions;
+		return null;
 	}
 
 	public static boolean deleteQuestions(int id) {
@@ -170,18 +188,24 @@ public class QuestionService extends BaseService {
 		return false;
 	}
 
-	public static boolean updateQuestions(Question question) {
+	public static boolean updateQuestion(Question question) {
 		{
-			String query ="update questions set Question = ? , Image = ? , Level = ? , QuestionCategory = ? , CorrectAnswer = ?,Creator = ? Where Id= ?";
+			String query ="update questions set "
+					+ "Question = ?,"
+					+ "Image = ?,"
+					+ "Level = ?,"
+					+ "Creator = ?,"
+					+ "CorrectAnswer = ?,"
+					+ "Subject = ?,"
+					+ "Where Id= ?";
 			List<Object> params= new ArrayList<>();
 			params.add(question.getQuestion());
 			params.add(question.getImage());
 			params.add(question.getLevel());
-			params.add(question.getQuestionCategoryID());
+			params.add(question.getCreatorID());
 			params.add(question.getCorrectAnswerID());
-			params.add(question.getCreatorID());			
-			params.add(question.getId());
-		
+			params.add(question.getSubjectID());
+			params.add(question.getQuestionId());
 			try {
 				boolean action = executeUpdate(query, params);
 				return action;
@@ -193,27 +217,66 @@ public class QuestionService extends BaseService {
 	}
 
 	public static boolean addQuestions(Question question) {
-	String query="Insert into questions (Question,Image,Level,CorrectAnswer,QuestionCategory,Creator) values (?,?,?,?,?,?)";
-	List<Object> params= new ArrayList<>();
+		String query = "Insert into questions (Question,Image,Level,Creator,Subject)" + "values (?,?,?,?,?)";
+		List<Object> params = new ArrayList<>();
+
+		params.add(question.getQuestion());
+		params.add(null);
+		params.add(question.getLevel());
+		params.add(null);
+		params.add(question.getSubjectID());
+		for (Object c : params) {
+			System.out.println(c + "");
+		}
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+
+	public static boolean updateCorrectAnswer(int questionId, int answerId) {
+		String query = "update onlinequiz.questions set CorrectAnswer= ? where Id = ?";
+		List<Object> params = new ArrayList<>();
+		params.add(answerId);
+		params.add(questionId);
+		try {
+			
+			return executeUpdate(query, params);
+		} catch (SQLException e) {
+			
+		}
+		return false;
+
+	}	
 	
-	params.add(question.getQuestion());
-	params.add(question.getImage());
-	params.add(question.getLevel());
-	params.add(question.getCorrectAnswerID());
-	params.add(question.getQuestionCategoryID());
-	params.add(question.getCreatorID());
-	for(Object c:params)
-	{
-		System.out.println(c+"");
-	}
-	try {
-		boolean action = executeUpdate(query, params);
-		return action;
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-	return false;
+	public static List<Question> getRandQuestionByLevel(String level, int amount	) {
+		String query = "Select * from onlinequiz.questions where level = '"+level+"' order by rand() limit " +amount;
+		try {
+			List<Question> lstQuestion = new ArrayList<>();
+			ResultSet rs = excuteQuery(query);
+			while (rs.next()) {
+				Question question = new Question(
+						rs.getInt("Id"),
+						rs.getString("Question"), 
+						rs.getString("Image"), 
+						rs.getString("Level"), 
+						rs.getInt("Creator"), 
+						rs.getInt("CorrectAnswer"), 
+						rs.getInt("Subject"));
+				lstQuestion.add(question);
+			}
+			return lstQuestion;
+			
+		} catch (SQLException e) {
+			
+		}
+		return null;
 
-
-	}
+	}	
 }
+
+

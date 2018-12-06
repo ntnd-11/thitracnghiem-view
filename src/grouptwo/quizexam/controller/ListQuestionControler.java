@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import grouptwo.quizexam.data.ParamaterStatic;
 import grouptwo.quizexam.model.Question;
 import grouptwo.quizexam.service.QuestionService;
+import grouptwo.quizexam.utils.CalculationHelper;
 
 
 @WebServlet("/ListQuestion")
@@ -21,20 +22,16 @@ public class ListQuestionControler extends HttpServlet {
 
     public ListQuestionControler() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Question> qsl= null;
-
-		
 		int page=1;
 		if(request.getParameter("page")==null)
 		{
 			int numberPage;
 			//Dem so trang
-			numberPage=lamTron(QuestionService.countQuestion(),ParamaterStatic.amoutResult);
+			numberPage = CalculationHelper.rouding(QuestionService.countQuestion(),ParamaterStatic.amoutResult);
 			qsl=QuestionService.getAllQuestions(page-1,ParamaterStatic.amoutResult);
 			getServletContext().setAttribute("numberPage",numberPage);
 		}
@@ -56,20 +53,6 @@ public class ListQuestionControler extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-	}
-	private int lamTron(int numberFilm,int row)
-	{
-		int kq;
-		if(numberFilm%row!=0)
-		{
-			kq=numberFilm/row+1;
-		}
-		else
-		{
-			kq=numberFilm/row;
-		}
-		return kq;
-		
 	}
 
 	

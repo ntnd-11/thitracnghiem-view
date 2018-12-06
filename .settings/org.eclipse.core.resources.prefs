@@ -6,3 +6,4 @@ encoding//WebContent/WEB-INF/tags/SideMenuAdmin.tag=UTF-8
 encoding//src/grouptwo/quizexam/controller/AddQuestionController.java=UTF-8
 encoding//src/grouptwo/quizexam/controller/EditAllStudentController.java=UTF-8
 encoding//src/grouptwo/quizexam/controller/EditQuestionController.java=UTF-8
+encoding//src/grouptwo/quizexam/utils/FileUtlis.java=UTF-8

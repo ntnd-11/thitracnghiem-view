@@ -12,11 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.data.ParamaterStatic;
 import grouptwo.quizexam.model.Course;
-import grouptwo.quizexam.model.Exam;
-import grouptwo.quizexam.model.Subject;
 import grouptwo.quizexam.service.CourseService;
-import grouptwo.quizexam.service.ExamService;
-import grouptwo.quizexam.service.SubjectService;
 
 /**
  * Servlet implementation class ListSubjectControler
@@ -56,7 +52,7 @@ public class ListCoursesControler extends HttpServlet {
 		request.setAttribute("list",coureseLs);
 		RequestDispatcher dispatcher 
         = this.getServletContext()//
-              .getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/listSubject.jsp");
+              .getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/listCourse.jsp");
 		 dispatcher.forward(request, response);
 	}
 

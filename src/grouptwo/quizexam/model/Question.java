@@ -6,54 +6,48 @@ import grouptwo.quizexam.service.AnswerService;
 
 public class Question {
 
-	private int id;
+	private int questionId;
 	private String question;
 	private String image;
 	private String level;
-	private int questionCategoryID;
+	private int subjectID;
 	private List<Answer> lsAnswer;
 	private Answer answerCorrect;
 	private int creatorID;
 	private int correctAnswerID;
-	public int getId() {
-		return id;
-	}
+
 	
-	public Question(int id, String question, String image, String level,int questionCategoryID,int creatorID,
+	public Question() {
+		super();
+	}
+	public Question(int questionId, String question, String image, String level,int subjectID,int creatorID,
 			int correctAnswerID) {
-		this.id = id;
+		this.questionId = questionId;
 		this.question = question;
 		this.image = image;
 		this.level = level;
 		
-		this.questionCategoryID = questionCategoryID;
+		this.subjectID = subjectID;
 		this.creatorID = creatorID;
 		this.correctAnswerID = correctAnswerID;
 		
-		this.lsAnswer= AnswerService.getAnswersByIdForQuestion(id);
+		this.lsAnswer= AnswerService.getAnswersByIdForQuestion(questionId);
 		this.answerCorrect= AnswerService.getAnswersById(correctAnswerID);
 	}
-	public Question( String question, String image, String level,
-			int correctAnswerID, int questionCategoryID,int creatorID) {
+	public Question( String question, String image, String level,int creatorID,
+			int correctAnswerID, int subjectID) {
 		this.question = question;
 		this.image = image;
 		this.level = level;
-		this.questionCategoryID = questionCategoryID;
+		this.subjectID = subjectID;
 		this.creatorID = creatorID;
 		this.correctAnswerID = correctAnswerID;
 	}
-	public Question( String question, String image, String level,
-			 int questionCategoryID,int correctAnswerID,int creatorID,int id) {
-		this.question = question;
-		this.image = image;
-		this.level = level;
-		this.questionCategoryID = questionCategoryID;
-		this.creatorID = creatorID;
-		this.correctAnswerID = correctAnswerID;
-		this.id=id;
+	public int getQuestionId() {
+		return questionId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
 	}
 	public String getQuestion() {
 		return question;
@@ -73,11 +67,11 @@ public class Question {
 	public void setLevel(String level) {
 		this.level = level;
 	}
-	public int getQuestionCategoryID() {
-		return questionCategoryID;
+	public int getSubjectID() {
+		return subjectID;
 	}
-	public void setQuestionCategoryID(int questionCategoryID) {
-		this.questionCategoryID = questionCategoryID;
+	public void setSubjectID(int subjectID) {
+		this.subjectID = subjectID;
 	}
 	public int getCreatorID() {
 		return creatorID;

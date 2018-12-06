@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.data.ParamaterStatic;
 import grouptwo.quizexam.model.Exam;
-import grouptwo.quizexam.model.Question;
 import grouptwo.quizexam.service.ExamService;
-import grouptwo.quizexam.service.QuestionService;
 
 /**
  * Servlet implementation class ListExamControler
@@ -38,7 +36,7 @@ public class ListExamControler extends HttpServlet {
 		
 		List<Exam> exl= null;
 		int page=1;
-		if(request.getParameter("page")==null)
+		if(request.getParameter	("page")==null)
 		{
 			int numberPage;
 			//Dem so trang

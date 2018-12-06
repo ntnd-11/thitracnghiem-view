@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <t:WrapperAdmin>
-	<div class="row ">
+	<form class="row ">
 		<div class="col-md-4">
 			<div class="card card-user">
 				<div class="row align-items-center justify-content-center">
 					<div class="col-md-6">
-						<input type="text" class="form-control" placeholder="Số Câu Hỏi">
+						<input type="text" class="form-control" placeholder="Số Câu Hỏi" value="${exam.getNumQuestions()}">
 					</div>
 					<div class="col-md-4">
 						<div class="dropdown">
@@ -32,19 +33,19 @@
 								<div class="row justify-content-center ">
 									<div class="col-md-3">
 										<div class="form-group justify-content-center text-center">
-											<input type="text" class="form-control" value="">
+											<input type="text" class="form-control" value="${exam.getNumEasy()}">
 											<p>Dễ</p>
 										</div>
 									</div>
 									<div class="col-md-3">
 										<div class="form-group justify-content-center text-center">
-											<input type="text" class="form-control" value="">
+											<input type="text" class="form-control" value="${exam.getNumNormal()}">
 											<p>TB</p>
 										</div>
 									</div>
 									<div class="col-md-3">
 										<div class="form-group justify-content-center text-center">
-											<input type="text" class="form-control" value="">
+											<input type="text" class="form-control" value="${exam.getNumDifficult()}">
 											<p>Khó</p>
 										</div>
 									</div>
@@ -71,12 +72,18 @@
 						<li>
 							<div class="mb-1">
 								<input type="text" class="form-control"
-									placeholder="Thời Gian Mở">
+									placeholder="Thời Gian Mở" value="${exam.getTimeStarting()}">
 							</div>
 						</li>
 						<li>
 							<div class="mb-1">
-								<input type="text" class="form-control" placeholder="Thời Lượng">
+								<input type="text" class="form-control"
+									placeholder="Thời Gian Đóng" value="${exam.getTimeFinishing()}">
+							</div>
+						</li>
+						<li>
+							<div class="mb-1">
+								<input type="text" class="form-control" placeholder="Thời Lượng" value="${exam.getLimitTime()}">
 							</div>
 						</li>
 						<li>
@@ -162,5 +169,5 @@
 		<button type="submit" class="btn btn-primary btn-round float-right">
 			Cập Nhật
 		</button>
-	</div>
+	</form>
 </t:WrapperAdmin>

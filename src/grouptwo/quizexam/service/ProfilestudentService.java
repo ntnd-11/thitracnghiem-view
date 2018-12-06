@@ -111,10 +111,13 @@ public class ProfilestudentService extends BaseService {
 		return profilestudent;
 	}
 
-	public static Profilestudent getProfilestudentByName(String subject) {
+	public static List<Profilestudent> getProfilestudentByName(String subject) {
 		String query = "select * from profilestudents where User = " + subject;
 		try {
+			List<Profilestudent> lstStudent = new ArrayList<>();
 			ResultSet rs = excuteQuery(query);
+			while(rs.next())
+			{
 			Profilestudent profilestudent = new Profilestudent(
 					rs.getInt("Id"), 
 					rs.getString("Name"),
@@ -130,14 +133,16 @@ public class ProfilestudentService extends BaseService {
 					rs.getString("Image"),
 					rs.getBoolean("ShowProfile"),
 					rs.getInt("User"));
-			return profilestudent;
+			lstStudent.add(profilestudent);
+			}
+			
+			return lstStudent;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 
 		}
 		return null;
 	}
-
 	public static boolean deleteProfilestudent(int id) {
 		String query = "DELETE FROM Profilestudents WHERE Id=?";
 		List<Object> params = new ArrayList<>();

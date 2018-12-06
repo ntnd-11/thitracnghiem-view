@@ -15,13 +15,14 @@ public class SubjectService extends BaseService {
 	}
 
 	public static List<Subject> getAllSubjects() {
-		String query = "Select * from roleusers";
+		String query = "Select * from onlinequiz.subjects";
 		List<Subject> lstSubjects = new ArrayList<>();
 
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
 				Subject subjects = new Subject(
+						rs.getInt("Id"),
 						rs.getString("Name"),
 						rs.getString("Faculty"),
 						rs.getInt("Credit"),
@@ -41,7 +42,9 @@ public class SubjectService extends BaseService {
 		try
 		{
 			ResultSet rs = excuteQuery(query);
+			rs.next();
 			Subject subject = new Subject(
+					rs.getInt("Id"),
 					rs.getString("Name"),
 					rs.getString("Faculty"),
 					rs.getInt("Credit"),
@@ -58,6 +61,25 @@ public class SubjectService extends BaseService {
 	}
 
 	public static Subject getSubjectsByName(String subject) {
+		String query = "Select * from subjects where Name = N'" +subject+"'";
+		try
+		{
+			ResultSet rs = excuteQuery(query);
+			rs.next();
+			Subject list = new Subject(
+					rs.getInt("Id"),
+					rs.getString("Name"),
+					rs.getString("Faculty"),
+					rs.getInt("Credit"),
+					rs.getString("Type"),
+					rs.getBoolean("Activate"));
+			return list;
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+
+		}
 		return null;
 	}
 
@@ -101,7 +123,7 @@ public class SubjectService extends BaseService {
 	}
 
 	public static boolean addSubjects(Subject subject) {
-		String query="Insert into subjects (Name,Faculty,Credit,Type,Activate)"
+		String query="Insert into onlinequiz.subjects (Name,Faculty,Credit,Type,Activate)"
 				+"values (?,?,?,?,?)";
 	List<Object> params= new ArrayList<>();
 	params.add(subject.getSubjectName());

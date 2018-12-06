@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grouptwo.quizexam.model.Course;
-import grouptwo.quizexam.model.Exam;
-import grouptwo.quizexam.model.Subject;
 
 
 public class CourseService extends BaseService {
@@ -34,7 +32,8 @@ public class CourseService extends BaseService {
 						rs.getInt("NumOfStudents"), 
 						rs.getString("Room"), 
 						rs.getBoolean("Activate"),
-						rs.getInt("Teacher"));
+						rs.getInt("Teacher"),
+						rs.getString("Name"));
 				lstCourse.add(course);
 	        }
 		} catch (SQLException e) {
@@ -65,22 +64,21 @@ public class CourseService extends BaseService {
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			while(rs.next())
-			{
-				Course course = new Course(rs.getInt("Subject"), 
-						rs.getDate("DateOfStarting"), 
-						rs.getDate("DateOfEnding"), 
-						rs.getString("DateOfWeek"), 
-						rs.getInt("PartOfStarting"), 
-						rs.getInt("PartOfEnding"), 
-						rs.getInt("NumOfStudents"), 
-						rs.getString("Room"), 
-						rs.getBoolean("Activate"),
-						rs.getInt("Teacher"));
-				return course;
-			}
-		
-			
+			rs.next();
+			Course course = new Course(
+					rs.getInt("Id"),
+					rs.getInt("Subject"), 
+					rs.getDate("DateOfStarting"), 
+					rs.getDate("DateOfEnding"), 
+					rs.getString("DateOfWeek"), 
+					rs.getInt("PartOfStarting"), 
+					rs.getInt("PartOfEnding"), 
+					rs.getInt("NumOfStudents"), 
+					rs.getString("Room"), 
+					rs.getBoolean("Activate"),
+					rs.getInt("Teacher"),
+					rs.getString("Name"));
+			return course;
 		}
 		catch(SQLException e)
 		{
@@ -107,40 +105,7 @@ public class CourseService extends BaseService {
 	}
 	public static boolean updateCourse(Course course)
 	{
-		String query = "UPDATE onlinequiz.courses SET Subject=?,"
-				+ "DateOfStarting=?,"
-				+ "DateOfEnding=?,"
-				+ "DateOfWeek=?,"
-				+ "PartOfStarting = ?,"
-				+ "PartOfEnding=?, "
-				+ "Room = ? ,Activate = ?,"
-				+ "Teacher = ? "
-				+ "WHERE Id=?";
-		List<Object> params = new ArrayList<>();
-		params.add(course.getSubjectId());
-		params.add(course.getDateOfStarting());
-		params.add(course.getDateOfEnding());
-		params.add(course.getDateOfWeek());
-		params.add(course.getPartOfStarting());
-		params.add(course.getPartOfEnding());
-		params.add(course.getPartOfEnding());
-		params.add(course.getRoom());
-		params.add(course.isActivate());
-		params.add(course.getTeacher());
-		params.add(course.getCourseId());
-
-		try {
-			boolean action = executeUpdate(query, params);
-			return action;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
-
-	}
-	public static boolean addCourse(Course course) {
-		String query = "INSERT INTO onlinequiz.courses (Subject, DateOfStarting, DateOfEnding,DateOfWeek,PartOfStarting,PartOfEnding,NumOfStudents,Room,Activate,Teacher)" + 
-				"VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String query = "UPDATE onlinequiz.courses SET Subject= ? ,DateOfStarting= ? , DateOfEnding= ? , DateOfWeek= ? ,PartOfStarting = ? , PartOfEnding= ? ,NumOfStudents= ? , Room = ? ,Activate = ?,Teacher = ? ,Name= ? WHERE Id=?";
 		List<Object> params = new ArrayList<>();
 		params.add(course.getSubjectId());
 		params.add(course.getDateOfStarting());
@@ -152,6 +117,33 @@ public class CourseService extends BaseService {
 		params.add(course.getRoom());
 		params.add(course.isActivate());
 		params.add(course.getTeacher());
+		params.add(course.getName());
+		params.add(course.getCourseId());
+	
+
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+	public static boolean addCourse(Course course) {
+		String query = "INSERT INTO onlinequiz.courses (Subject, DateOfStarting, DateOfEnding,DateOfWeek,PartOfStarting,PartOfEnding,NumOfStudents,Room,Activate,Name) " + 
+				"VALUES (?,?,?,?,?,?,?,?,?,?)";
+		List<Object> params = new ArrayList<>();
+		params.add(course.getSubjectId());
+		params.add(course.getDateOfStarting());
+		params.add(course.getDateOfEnding());
+		params.add(course.getDateOfWeek());
+		params.add(course.getPartOfStarting());
+		params.add(course.getPartOfEnding());
+		params.add(course.getNumberOfStudent());
+		params.add(course.getRoom());
+		params.add(course.isActivate());
+		params.add(course.getName());
 		
 		try {
 			boolean action = executeUpdate(query, params);
@@ -162,7 +154,23 @@ public class CourseService extends BaseService {
 		return false;
 
 	}
+	public static boolean addStudentCourse(int courseId, int studentId)
+	{
+		String query = "INSERT INTO onlinequiz.detailcourses (Course, Student) " + 
+				"VALUES (?,?)";
+		List<Object> params = new ArrayList<>();
+		params.add(courseId);
+		params.add(studentId);
 
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
 	public static int countCourse() {
 		String sql="select count(id) from courses";
 		try
@@ -201,7 +209,8 @@ public class CourseService extends BaseService {
 						rs.getInt("NumOfStudents"), 
 						rs.getString("Room"), 
 						rs.getBoolean("Activate"),
-						rs.getInt("Teacher"));
+						rs.getInt("Teacher"),
+						rs.getString("Name"));
 				lstCourse.add(courses);
 			}
 			

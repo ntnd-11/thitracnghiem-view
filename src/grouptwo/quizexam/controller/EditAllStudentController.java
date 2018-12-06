@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.model.Profilestudent;
 import grouptwo.quizexam.model.Question;
-import grouptwo.quizexam.model.Questioncategorie;
 import grouptwo.quizexam.model.User;
 import grouptwo.quizexam.service.ProfilestudentService;
 import grouptwo.quizexam.service.QuestionService;

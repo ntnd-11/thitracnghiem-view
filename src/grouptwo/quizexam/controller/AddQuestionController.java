@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.model.Question;
-import grouptwo.quizexam.model.Questioncategorie;
 import grouptwo.quizexam.service.QuestionService;
 
 

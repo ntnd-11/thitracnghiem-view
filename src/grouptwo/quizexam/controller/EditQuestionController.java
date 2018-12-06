@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.model.Question;
-import grouptwo.quizexam.model.Questioncategorie;
 import grouptwo.quizexam.service.QuestionService;
 
 
@@ -76,7 +75,7 @@ public class EditQuestionController extends HttpServlet {
 			break;
 		}
 		
-		QuestionService.updateQuestions(new Question(question, "", level,  Integer.parseInt(categories),99,2,Integer.parseInt(id)));
+		//QuestionService.updateQuestions(new Question(question, "", level,  Integer.parseInt(categories),99,2,Integer.parseInt(id)));
 		RequestDispatcher  dispatcher = request.getServletContext()
 	                .getRequestDispatcher("/WEB-INF/Views/QLCauHoi/listQuestion.jsp");
 		dispatcher.forward(request, response);
