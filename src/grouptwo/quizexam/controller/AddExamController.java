@@ -1,6 +1,7 @@
 package grouptwo.quizexam.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -164,11 +165,15 @@ public class AddExamController extends HttpServlet {
 		try {
 			java.util.Date openTime  = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(request.getParameter("timeOpen"));
 			java.util.Date closeTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(request.getParameter("closeTime"));
+			Timestamp tO = new Timestamp(openTime.getTime());
+			Timestamp tC = new Timestamp(closeTime.getTime());
+
+			
 			String nameExam = request.getParameter("nameExam");
 			int limitTime = Integer.parseInt(request.getParameter("limitTime"));
 			int totalQuestion = lstNumType.get(0) + lstNumType.get(1) + lstNumType.get(2);
 			
-			ExamService.addExam(new Exam(nameExam, openTime, totalQuestion,closeTime,subject.getSubjectID(),true,null,lstNumType.get(0),lstNumType.get(1),lstNumType.get(2),limitTime));
+			ExamService.addExam(new Exam(nameExam, tO, totalQuestion,tC,subject.getSubjectID(),true,null,lstNumType.get(0),lstNumType.get(1),lstNumType.get(2),limitTime));
 			
 			int examId = BaseService.getIdAfterInsert();
 			for(Question q: lstQuestion) {
