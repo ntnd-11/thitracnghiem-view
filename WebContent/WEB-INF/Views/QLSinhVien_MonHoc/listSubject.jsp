@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <t:WrapperAdmin>
 	<div class="row">
 		<div class="col-md-12">
@@ -39,76 +40,44 @@
 								<th>Tên lớp</th>
 
 								<th width="15%">Môn học</th>
-								<th width="10%">Thời gian</th>
+								<th width="10%">Khoa</th>
 
-								<th width="10%">Bắt đầu</th>
-								<th width="10%">Kết thúc</th>
+								<th width="10%">Số tín chỉ</th>
+								<th width="10%">Loại môn học</th>
+								<th width="10%">Activate</th>
 								<th class="20%">Tùy chọn</th>
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach items="${list}" var="item">
 								<tr>
 									<td><input type="checkbox"
 										aria-label="Radio button for following text input"></td>
-									<td>1</td>
-									<td>Lập Trình Web ST7 1-5 2018-2019</td>
-									<td>Lập trình Web</td>
-									<td>Tiết 1 - 5 Thứ 7</td>
-									<td>28/8/2/2018</td>
-									<td>15/12/2018</td>
-									<td><a href="./editSubject.jsp" class="btn btn-warning"><i
-											class="fa fa-pencil"></i></a>
-										<button class="btn btn-danger" data-toggle="modal"
-											data-target="#modalConfirmDeleting">
-											<i class="fa fa-trash"></i>
-										</button></td>
+									<td>${item.subjectID }</td>
+									<td>${item.subjectName }</td>
+									<td>${item.faculty}</td>
+									<td>${item.credit }</td>
+									<td>${item.type }</td>
+									<td>${item.activate }</td>
+									<td><a href="${pageContext.request.contextPath}/EditSubject?command=update&id=${item.subjectID}" class="btn btn-warning"><i
+												class="fa fa-pencil"></i></a>
+											 <a
+												href="${pageContext.request.contextPath}/EditSubject?command=delete&id=${item.subjectID}"
+												class="btn btn-danger"> <i class="fa fa-trash"></i></a>
+												</td>
 								</tr>
-								<tr>
-								<tr>
-									<td><input type="checkbox"
-										aria-label="Radio button for following text input"></td>
-									<td>1</td>
-									<td>Lập Trình Web ST7 1-5 2018-2019</td>
-									<td>Lập trình Web</td>
-									<td>Tiết 1 - 5 Thứ 7</td>
-									<td>28/8/2/2018</td>
-									<td>15/12/2018</td>
-									<td><a href="./editSubject.jsp" class="btn btn-warning"><i
-											class="fa fa-pencil"></i></a>
-										<button class="btn btn-danger" data-toggle="modal"
-											data-target="#modalConfirmDeleting">
-											<i class="fa fa-trash"></i>
-										</button></td>
-								</tr>
-								<tr>
-								<tr>
-									<td><input type="checkbox"
-										aria-label="Radio button for following text input"></td>
-									<td>1</td>
-									<td>Lập Trình Web ST7 1-5 2018-2019</td>
-									<td>Lập trình Web</td>
-									<td>Tiết 1 - 5 Thứ 7</td>
-									<td>28/8/2/2018</td>
-									<td>15/12/2018</td>
-									<td><a href="${pageContext.request.contextPath}/EditCourses?command=update&id=${item.studentId}" class="btn btn-warning"><i
-											class="fa fa-pencil"></i></a>
-										<button class="btn btn-danger" data-toggle="modal"
-											data-target="#modalConfirmDeleting">
-											<i class="fa fa-trash"></i>
-										</button></td>
-								</tr>
-								<tr>
+								</c:forEach>
+								
 							</tbody>
 						</table>
 						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
 								<li class="page-item disabled"><a class="page-link"
 									href="#" tabindex="-1">Previous</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">Next</a>
-								</li>
+								<c:forEach var="i" begin="1" end="${numberPage}">
+									<li class="page-item"><a class="page-link"
+										href="${pageContext.request.contextPath}/ListSubject?page=${i}">${i}</a></li>
+								</c:forEach>
 							</ul>
 						</nav>
 					</div>
