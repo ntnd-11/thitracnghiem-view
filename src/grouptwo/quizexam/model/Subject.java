@@ -30,6 +30,15 @@ public class Subject {
 		this.type = type;
 		this.activate = activate;
 	}
+	public Subject( String subjectName, String faculty, int credit, String type, boolean activate,int subjectID) {
+		super();
+		this.subjectID = subjectID;
+		this.subjectName = subjectName;
+		this.faculty = faculty;
+		this.credit = credit;
+		this.type = type;
+		this.activate = activate;
+	}
 
 
 	public int getSubjectID() {

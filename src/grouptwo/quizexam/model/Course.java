@@ -8,7 +8,6 @@ public class Course {
 	
 	private Integer courseId;
 	private Integer subjectId;
-
 	private Subject subjectIdObject;
 	private Date dateOfStarting;
 	private Date dateOfEnding;
@@ -25,8 +24,8 @@ public class Course {
 	public Course() {
 	}
 	public Course(Integer subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, Integer partOfStarting,
-			Integer partOfEnding, Integer numberOfStudent, String room, boolean activate,String name) {
-		this.setSubjectId(subjectId);
+			Integer partOfEnding, Integer numberOfStudent, String room, boolean activate,Integer teacherId,String name,Integer courseId) {
+		this.subjectId = subjectId;
 		this.dateOfStarting = dateOfStarting;
 		this.dateOfEnding = dateOfEnding;
 		this.dateOfWeek = dateOfWeek;
@@ -36,11 +35,12 @@ public class Course {
 		this.room = room;
 		this.activate = activate;
 		this.name = name;
+		this.courseId=courseId;
 	}
 	public Course(Integer courseId,Integer subjectId, Date dateOfStarting, Date dateOfEnding, String dateOfWeek, Integer partOfStarting,
 			Integer partOfEnding, Integer numberOfStudent, String room, boolean activate, Integer teacherId,String name) {
-		this.setCourseId(courseId);
-		this.setSubjectId(subjectId);
+		this.courseId = courseId;
+		this.subjectId = subjectId;
 		this.dateOfStarting = dateOfStarting;
 		this.dateOfEnding = dateOfEnding;
 		this.dateOfWeek = dateOfWeek;
@@ -56,6 +56,16 @@ public class Course {
 	}
 
 
+	
+	public Integer getCourseId() {
+		return courseId;
+	}
+	public Integer getSubjectId() {
+		return subjectId;
+	}
+	public void setSubjectId(Integer subjectId) {
+		this.subjectId = subjectId;
+	}
 	public Date getDateOfStarting() {
 		return dateOfStarting;
 	}
@@ -122,24 +132,7 @@ public class Course {
 	public void setSubjectIdObject(Subject subjectIdObject) {
 		this.subjectIdObject = subjectIdObject;
 	}
-	public Integer getCourseId() {
-		return courseId;
-	}
-	public void setCourseId(Integer courseId) {
-		this.courseId = courseId;
-	}
-	public Integer getTeacherId() {
-		return teacherId;
-	}
-	public void setTeacherId(Integer teacherId) {
-		this.teacherId = teacherId;
-	}
-	public Integer getSubjectId() {
-		return subjectId;
-	}
-	public void setSubjectId(Integer subjectId) {
-		this.subjectId = subjectId;
-	}
+	
 	
 	
 

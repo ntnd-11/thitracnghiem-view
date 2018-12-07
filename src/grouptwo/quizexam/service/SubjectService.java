@@ -5,6 +5,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import grouptwo.quizexam.model.Course;
+>>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 import grouptwo.quizexam.model.Subject;
 
 
@@ -36,7 +40,36 @@ public class SubjectService extends BaseService {
 		}
 		return lstSubjects;
 	}
+	public static List<Subject> getAllSubject(int firstResult, int amoutResult) {
+		String query = "select * from subjects order by Id LIMIT ?,?";
+		List<Object> param=new ArrayList<>();
+		param.add(firstResult);
+		param.add(amoutResult);
+		List<Subject> lstSubject =null;
 
+<<<<<<< HEAD
+=======
+		try {	
+			lstSubject= new ArrayList<>();
+			ResultSet rs = excuteQuery(query,param);
+			while (rs.next()) {
+				Subject subjects = new Subject(
+						rs.getInt("Id"),
+						rs.getString("Name"),
+						rs.getString("Faculty"),
+						rs.getInt("Credit"),
+						rs.getString("Type"),
+						rs.getBoolean("Activate"));
+				lstSubject.add(subjects);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return lstSubject;
+	}
+>>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 	public static Subject getSubjectsById(int id) {
 		String query = "Select * from subjects where Id = " +id;
 		try
@@ -61,19 +94,31 @@ public class SubjectService extends BaseService {
 	}
 
 	public static Subject getSubjectsByName(String subject) {
+<<<<<<< HEAD
 		String query = "Select * from subjects where name ='" +subject+"'";
+=======
+		String query = "Select * from subjects where Name = N'" +subject+"'";
+>>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 		try
 		{
 			ResultSet rs = excuteQuery(query);
 			rs.next();
+<<<<<<< HEAD
 			Subject obsubject = new Subject(
+=======
+			Subject list = new Subject(
+>>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 					rs.getInt("Id"),
 					rs.getString("Name"),
 					rs.getString("Faculty"),
 					rs.getInt("Credit"),
 					rs.getString("Type"),
 					rs.getBoolean("Activate"));
+<<<<<<< HEAD
 			return obsubject;
+=======
+			return list;
+>>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 		}
 		catch(SQLException e)
 		{
@@ -98,13 +143,7 @@ public class SubjectService extends BaseService {
 
 	public static boolean updateSubjects(Subject subject) {
 		{
-			String query ="update subjects set "
-					+ "Name=?,"
-					+ "Faculty = ?,"
-					+ "Credit = ?,"
-					+ "Type = ?,"
-					+ "Activate = ?,"
-					+ "Where Id= ?";
+			String query ="update subjects set Name=?,Faculty = ?,Credit = ?,Type = ?,Activate = ? Where Id= ?";
 			List<Object> params= new ArrayList<>();
 			params.add(subject.getSubjectName());
 			params.add(subject.getFaculty());
