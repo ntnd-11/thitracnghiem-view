@@ -71,7 +71,7 @@
 										<td>${item.numQuestions}</td>
 										<td><a href="${pageContext.request.contextPath}/EditExams?command=update&id=${item.id}"><i class="fa fa-edit float-right"
 												style="font-size: 36px"></i></a>
-												 <a href="#"><i
+												 <a href="${pageContext.request.contextPath}/EditExams?command=delete&id=${item.id}"><i
 												class="fa fa-trash-o float-left" style="font-size: 36px"></i></a>
 										</td>
 									</tr>

@@ -30,6 +30,25 @@ public class AnswerService extends BaseService {
 		}
 		return lstAnswers;
 	}
+	public static List<Answer> getAllAnswersQuestion(int name) {
+		String query = "Select * from answers where Question="+name;
+		List<Answer> lstAnswers = new ArrayList<>();
+
+		try {
+			ResultSet rs = excuteQuery(query);
+			while (rs.next()) {
+				Answer answers = new Answer(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3));
+				lstAnswers.add(answers);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		return lstAnswers;
+	}
 
 	public static Answer getAnswersById(int id) {
 		String query = "Select * from answers where Id = " +id;

@@ -14,7 +14,8 @@
 						</div>
 
 						<div class="col-md-3">
-							<a class="btn btn-success" href="${pageContext.request.contextPath}/AddQuestion"> <i
+							<a class="btn btn-success"
+								href="${pageContext.request.contextPath}/AddQuestion"> <i
 								class="fa fa-plus"></i> Add Question
 							</a>
 						</div>
@@ -38,7 +39,7 @@
 									</div>
 									<select multiple class="form-control" name="sellist2"
 										id="resultSearch" hidden="hidden">
-										
+
 									</select>
 								</div>
 
@@ -56,15 +57,15 @@
 
 						<table class="table">
 							<thead class=" text-primary">
-							<tr>
-								<th width="2%"><input type="checkbox"
-									aria-label="Radio button for following text input"></th>
-								<th width="8%">Mã</th>
-								<th width="20%">Câu hỏi</th>
-								<th width="20%">Câu trả lời</th>
-								<th width="20%">Đáp án</th>
-								<th class="20%">Tùy chọn</th>
-							</tr>
+								<tr>
+									<th width="2%"><input type="checkbox"
+										aria-label="Radio button for following text input"></th>
+									<th width="8%">Mã</th>
+									<th width="20%">Câu hỏi</th>
+									<th width="20%">Câu trả lời</th>
+									<th width="20%">Đáp án</th>
+									<th class="20%">Tùy chọn</th>
+								</tr>
 							</thead>
 							<c:forEach items="${list}" var="item">
 								<tr>
@@ -72,17 +73,22 @@
 										aria-label="Radio button for following text input"></td>
 									<td>${item.questionId}</td>
 									<td>${item.question}</td>
-									<td><c:forEach items="${item.lsAnswer}" var="item1">
-								${item1.answer} <br />
+									<td>
+									
+									<c:forEach items="${item.lsAnswer}" var="item1">
+								${item1.answer} 
+							
+								<br />
+										
 										</c:forEach></td>
+										
 									<td>${item.answerCorrect.answer}</td>
 
 									<td><a
-										href="${pageContext.request.contextPath}/*?id=${item.questionId}"
-										class="btn btn-warning"><i class="fa fa-pencil"></i></a> 
-										<a
+										href="${pageContext.request.contextPath}/EditQuestion?command=update&id=${item.questionId}"
+										class="btn btn-warning"><i class="fa fa-pencil"></i></a> <a
 										class="btn btn-danger"
-										href="${pageContext.request.contextPath}/*?id=${item.questionId}">
+										href="${pageContext.request.contextPath}/EditQuestion?command=delete&id=${item.questionId}">
 											<i class="fa fa-trash"></i>
 									</a></td>
 								</tr>
@@ -100,7 +106,7 @@
 										href="${pageContext.request.contextPath}/ListQuestion?page=${i}">${i}</a>
 									</li>
 								</c:forEach>
-								
+
 							</ul>
 						</nav>
 					</div>
@@ -151,4 +157,4 @@
 			});
 		});
 	</script>
-</t:WrapperAdmin> 
+</t:WrapperAdmin>

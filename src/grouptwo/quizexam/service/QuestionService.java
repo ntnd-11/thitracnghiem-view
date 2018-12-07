@@ -38,6 +38,7 @@ public class QuestionService extends BaseService {
 		}
 		return null;
 	}
+	
 	public static List<Question> getAllQuestions(int firstReSult,int amoutResult) {
 		String query = "select * from questions order by Id LIMIT ?,?";
 		List<Object> param=new ArrayList<>();
@@ -194,17 +195,18 @@ public class QuestionService extends BaseService {
 					+ "Question = ?,"
 					+ "Image = ?,"
 					+ "Level = ?,"
-					+ "Creator = ?,"
-					+ "CorrectAnswer = ?,"
+					
 					+ "Subject = ?,"
+					+ "CorrectAnswer = ?,"
+					+ "Creator = ? "
 					+ "Where Id= ?";
 			List<Object> params= new ArrayList<>();
 			params.add(question.getQuestion());
 			params.add(question.getImage());
 			params.add(question.getLevel());
-			params.add(question.getCreatorID());
-			params.add(question.getCorrectAnswerID());
 			params.add(question.getSubjectID());
+			params.add(question.getCorrectAnswerID());
+			params.add(question.getCreatorID());
 			params.add(question.getQuestionId());
 			try {
 				boolean action = executeUpdate(query, params);

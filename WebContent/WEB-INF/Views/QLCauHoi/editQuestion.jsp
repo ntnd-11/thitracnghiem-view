@@ -12,7 +12,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<h3 class="card-title">
-								<b> Chỉnh sửa câu hỏi: <i>124</i>
+								<b> Chỉnh sửa câu hỏi: <i>${question.questionId }</i>
 								</b>
 							</h3>
 						</div>
@@ -42,12 +42,8 @@
 									</p>
 									<select class="custom-select" id="inputGroupSelect01"
 										name="lstCategory">
-										<option selected value="${questioncategory.getId()}">
-											${questioncategory.getCategoryName()}</option>
-											<c:forEach items="${ lstCategory }" var="item">
-												<option value="${item.getId()}">
-													${item.getCategoryName() }</option>
-											</c:forEach>
+										<option >Tri</option>
+											
 									</select>
 									
 									
@@ -126,43 +122,21 @@
 							<p class="card-category">Chọn 1 đáp án đúng</p>
 						</div>
 						<div class="card-body">
-							<form>
+							<div>
 								<ul class="nav flex-column">
+								<c:forEach items="${qsl}" var="no1">
 									<li class="nav-item">
 										<div class="input-group-text">
-											<input type="radio" name="radAns" class="mr-2"
-												aria-label="Radio button for following text input">
+											<input type="radio" name="radAnsa" class="mr-2"
+												aria-label="Radio button for following text input"  value="${no1.getId() }">
 											<input type="text" class="form-control"
-												aria-label="Text input with radio button" value="2000">
+												aria-label="Text input with radio button" value="${no1.answer }" >
 										</div>
 									</li>
-									<li class="nav-item">
-										<div class="input-group-text">
-											<input type="radio" checked="checked" name="radAns"
-												class="mr-2"
-												aria-label="Radio button for following text input">
-											<input type="text" class="form-control"
-												aria-label="Text input with radio button" value="2001">
-										</div>
-									</li>
-									<li class="nav-item">
-										<div class="input-group-text">
-											<input type="radio" name="radAns" class="mr-2"
-												aria-label="Radio button for following text input">
-											<input type="text" class="form-control"
-												aria-label="Text input with radio button" value="1995">
-										</div>
-									</li>
-									<li class="nav-item">
-										<div class="input-group-text">
-											<input type="radio" name="radAns" class="mr-2"
-												aria-label="Radio button for following text input">
-											<input type="text" class="form-control"
-												aria-label="Text input with radio button" value="1994">
-										</div>
-									</li>
+								</c:forEach>
+									
 								</ul>
-							</form>
+							</div>
 						</div>
 						<div class="card-footer">
 							<hr />
