@@ -15,6 +15,7 @@ public class Question {
 	private Answer answerCorrect;
 	private int creatorID;
 	private int correctAnswerID;
+	private boolean isTick;
 
 	
 	public Question() {
@@ -100,6 +101,12 @@ public class Question {
 
 	public void setAnswerCorrect(Answer answerCorrect) {
 		this.answerCorrect = answerCorrect;
+	}
+	public boolean getIsTick() {
+		return isTick;
+	}
+	public void setIsTick(boolean b) {
+		this.isTick = b;
 	}
 
 		

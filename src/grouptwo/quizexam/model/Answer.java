@@ -9,6 +9,7 @@ public class Answer implements Serializable {
 	private int id;
 	private Integer questionId;
 	private String answer;
+	private boolean isTick;
 	public Answer() {
 	}
 
@@ -46,4 +47,14 @@ public class Answer implements Serializable {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+
+	public boolean getisTick() {
+		return isTick;
+	}
+
+	public void setTick(boolean isTick) {
+		this.isTick = isTick;
+	}
+
+	
 }

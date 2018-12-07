@@ -66,6 +66,33 @@ public class QuestionService extends BaseService {
 		return null;
 	
 	}
+	public static List<Question> getQuestionForExam(int idExam)
+	{
+		String sql="select questions.Question,questions.CorrectAnswer,questions.Creator,questions.Id,questions.Level,questions.Subject,questions.Image  "
+				+ " from detailexams,questions where detailexams.question=questions.id and detailexams.exam=?";
+		List<Object> param=new ArrayList<>();
+		param.add(idExam);
+		List<Question> lstQuestions = new ArrayList<>();
+		try {
+			ResultSet rs = excuteQuery(sql,param);
+			while (rs.next()) {
+				Question questions = new Question(
+						rs.getInt("Id"),
+						rs.getString("Question"),
+						rs.getString("Image"),
+						rs.getString("Level"),
+						rs.getInt("Subject"),
+						rs.getInt("Creator"),
+						rs.getInt("CorrectAnswer"));
+				lstQuestions.add(questions);
+			}
+			return lstQuestions;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return null;
+	}
 	public static int returnIdQuestionAfterInsert(Question qus)
 	{
 		if(addQuestions(qus))
@@ -218,7 +245,7 @@ public class QuestionService extends BaseService {
 					+ "Level = ?,"
 					+ "Creator = ?,"
 					+ "CorrectAnswer = ?,"
-					+ "Subject = ?,"
+					+ "Subject = ? "
 					+ "Where Id= ?";
 			List<Object> params= new ArrayList<>();
 			params.add(question.getQuestion());

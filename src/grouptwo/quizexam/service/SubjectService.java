@@ -61,6 +61,25 @@ public class SubjectService extends BaseService {
 	}
 
 	public static Subject getSubjectsByName(String subject) {
+		String query = "Select * from subjects where name ='" +subject+"'";
+		try
+		{
+			ResultSet rs = excuteQuery(query);
+			rs.next();
+			Subject obsubject = new Subject(
+					rs.getInt("Id"),
+					rs.getString("Name"),
+					rs.getString("Faculty"),
+					rs.getInt("Credit"),
+					rs.getString("Type"),
+					rs.getBoolean("Activate"));
+			return obsubject;
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+
+		}
 		return null;
 	}
 
