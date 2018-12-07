@@ -1,3 +1,4 @@
+
 package grouptwo.quizexam.model;
 
 import java.sql.Date;
@@ -16,6 +17,10 @@ public class Profilestudent {
 	private Integer yearOfAdmission;
 	private Integer yearOfGraduation;
 	private String image;
+
+
+
+
 	public Integer getStudentId() {
 		return studentId;
 	}
@@ -137,6 +142,25 @@ public class Profilestudent {
 
 	public Profilestudent(String name, Integer identityCardNumber, Date dateOfBirth, String gender, String phoneNumber,
 			String country, String address, String religion, Integer yearOfAdmission, Integer yearOfGraduation,
+			String image, boolean showProfile, Integer userId,int id) {
+		super();
+		this.name = name;
+		this.identityCardNumber = identityCardNumber;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.country = country;
+		this.address = address;
+		this.religion = religion;
+		this.yearOfAdmission = yearOfAdmission;
+		this.yearOfGraduation = yearOfGraduation;
+		this.image = image;
+		this.showProfile = showProfile;
+		this.userId = userId;
+		this.studentId=id;
+	}
+	public Profilestudent(String name, Integer identityCardNumber, Date dateOfBirth, String gender, String phoneNumber,
+			String country, String address, String religion, Integer yearOfAdmission, Integer yearOfGraduation,
 			String image, boolean showProfile, Integer userId) {
 		super();
 		this.name = name;
@@ -153,6 +177,7 @@ public class Profilestudent {
 		this.showProfile = showProfile;
 		this.userId = userId;
 	}
+
 
 	public Profilestudent(Integer studentId, String name, Integer identityCardNumber, Date dateOfBirth, String gender,
 			String phoneNumber, String country, String address, String religion, Integer yearOfAdmission,
@@ -173,8 +198,7 @@ public class Profilestudent {
 		this.showProfile = showProfile;
 		this.userId = userId;
 	}
-
-	
 	
 
 }
+

@@ -52,7 +52,7 @@ public class ListCoursesControler extends HttpServlet {
 		request.setAttribute("list",coureseLs);
 		RequestDispatcher dispatcher 
         = this.getServletContext()//
-              .getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/listSubject.jsp");
+              .getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/listCourse.jsp");
 		 dispatcher.forward(request, response);
 	}
 

@@ -10,7 +10,7 @@ public class DetailCourse {
 	public DetailCourse(int courseId, int studentId) {
 		this.courseId = courseId;
 		this.studentId = studentId;
-		profileStudent=ProfilestudentService.getProfilesutudentById(studentId);
+		profileStudent=ProfilestudentService.getProfilestudentById(studentId);
 		courseObject=CourseService.getCourseById(courseId);
 	}
 	private int courseId;

@@ -105,15 +105,7 @@ public class CourseService extends BaseService {
 	}
 	public static boolean updateCourse(Course course)
 	{
-		String query = "UPDATE onlinequiz.courses SET Subject=?,"
-				+ "DateOfStarting=?,"
-				+ "DateOfEnding=?,"
-				+ "DateOfWeek=?,"
-				+ "PartOfStarting = ?,"
-				+ "PartOfEnding=?, "
-				+ "Room = ? ,Activate = ?,"
-				+ "Teacher = ? "
-				+ "WHERE Id=?";
+		String query = "UPDATE onlinequiz.courses SET Subject= ? ,DateOfStarting= ? , DateOfEnding= ? , DateOfWeek= ? ,PartOfStarting = ? , PartOfEnding= ? ,NumOfStudents= ? , Room = ? ,Activate = ?,Teacher = ? ,Name= ? WHERE Id=?";
 		List<Object> params = new ArrayList<>();
 		params.add(course.getSubjectId());
 		params.add(course.getDateOfStarting());
@@ -121,11 +113,13 @@ public class CourseService extends BaseService {
 		params.add(course.getDateOfWeek());
 		params.add(course.getPartOfStarting());
 		params.add(course.getPartOfEnding());
-		params.add(course.getPartOfEnding());
+		params.add(course.getNumberOfStudent());
 		params.add(course.getRoom());
 		params.add(course.isActivate());
 		params.add(course.getTeacher());
+		params.add(course.getName());
 		params.add(course.getCourseId());
+	
 
 		try {
 			boolean action = executeUpdate(query, params);

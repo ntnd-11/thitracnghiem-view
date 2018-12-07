@@ -77,11 +77,15 @@ public class ProfilestudentService extends BaseService {
 		}
 		return lstProfilemanager;
 	}
-	public static Profilestudent getProfilesutudentById(int id) {
+	public static Profilestudent getProfilestudentById(int id) {
 		String query = "select * from profilestudents where Id = " + id;
+		Profilestudent profilestudent=null;
+		
 		try {
 			ResultSet rs = excuteQuery(query);
-			Profilestudent profilestudent = new Profilestudent(
+			while (rs.next()) {
+				profilestudent = new Profilestudent(
+					
 					rs.getInt("Id"), 
 					rs.getString("Name"),
 					rs.getInt("IdentityCardNumber"),
@@ -96,12 +100,13 @@ public class ProfilestudentService extends BaseService {
 					rs.getString("Image"),
 					rs.getBoolean("ShowProfile"),
 					rs.getInt("User"));
-			return profilestudent;
+			}
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return profilestudent;
 	}
 
 	public static List<Profilestudent> getProfilestudentByName(String subject) {
@@ -136,7 +141,6 @@ public class ProfilestudentService extends BaseService {
 		}
 		return null;
 	}
-
 	public static boolean deleteProfilestudent(int id) {
 		String query = "DELETE FROM Profilestudents WHERE Id=?";
 		List<Object> params = new ArrayList<>();
@@ -181,55 +185,32 @@ public class ProfilestudentService extends BaseService {
 
 		return false;
 	}
-	public static boolean addProfilestudent(Profilestudent student) {
-		String query = "Insert into onlinequiz.profilestudents(Name,IdentityCardNumber,DateOfBirth,Gender,PhoneNumber,Country,Address,Religion,YearOfAdmission,YearOfGraduation,Image,ShowProfile,User)"
-				+ " Values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		List<Object> params = new ArrayList<>();
-		params.add(student.getName());
-		params.add(student.getIdentityCardNumber());
-		params.add(student.getDateOfBirth());
-		params.add(student.getGender());
-		params.add(student.getPhoneNumber());
-		params.add(student.getCountry());
-		params.add(student.getAddress());
-		params.add("Kh·c");
-		params.add(student.getYearOfAdmission());
-		params.add(student.getYearOfGraduation());
-		params.add("");
-		params.add(student.isShowProfile());
-		params.add(student.getUserId());
 
-		try {
-
-			return executeUpdate(query, params);
-
-		} catch (SQLException ex) {
-
-			// Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-		return false;
-	}
-
-	public static boolean UpdateProfilestudent(String user, String name, int identityCardNumber, Date dateOfBirth,
-			String gender, String email, int phoneNumber, String country, Date yearOfAdmission, Date yearOfGraduation,
-			boolean showProfile) {
-		String query = "update profilestudents set profilestudent.Name=?,IdentityCardNumber=?,DateOfBirth=?,Gender=?,Email=?,PhoneNumber=?,Country=?,Address=?,Religion=?,YearOfAdmission=?,YearOfGraduation=?,Image=?,ShowProfile=? where profilestudent.User=?";
+	public static boolean UpdateProfilestudent(Profilestudent c) {
+		//String query = "update profilestudents set Name=?,IdentityCardNumber=?,DateOfBirth=?,Gender=?,PhoneNumber=?,Country=?,Address=?,Religion=?,YearOfAdmission=?,YearOfGraduation=?,Image=?,ShowProfile=?,User=? where Id=?";
+		
+		String query="update profilestudents set Name=? , IdentityCardNumber=? , DateOfBirth= ? , Gender= ? , PhoneNumber= ? , Country= ? , Address= ? , Religion = ? , YearOfAdmission = ? , YearOfGraduation= ? , Image= ? , ShowProfile= ? , User= ?  where Id=?";
 		List<Object> params = new ArrayList<>();
 		
-		params.add(user);
-		params.add(name);
-		params.add(identityCardNumber);
-		params.add(dateOfBirth);
-		params.add(gender);
-		params.add(email);
-		params.add(phoneNumber);
-		params.add(country);
-		params.add(yearOfAdmission);
-		params.add(yearOfGraduation);
-		params.add(showProfile);
+		params.add(c.getName());
+		params.add(c.getIdentityCardNumber());
+		params.add(c.getDateOfBirth());
+		params.add(c.getGender());
+		params.add(c.getPhoneNumber());
+		params.add(c.getCountry());
+		params.add(c.getAddress());
+		params.add(c.getReligion());
+		params.add(c.getYearOfAdmission());
+		params.add(c.getYearOfGraduation());
+		params.add(c.getImage());
+		
+		params.add(c.isShowProfile());
+		//params.add(c.getUserId());
+		params.add(c.getStudentId());
+		params.add(c.getStudentId());
+		
 		try {
-
+			
 			return executeUpdate(query, params);
 
 		} catch (SQLException ex) {
@@ -347,6 +328,34 @@ public class ProfilestudentService extends BaseService {
 		return 0;
 	}
 
-	
+	public static boolean addProfilestudent(Profilestudent student) {
+		String query = "Insert into onlinequiz.profilestudents(Name,IdentityCardNumber,DateOfBirth,Gender,PhoneNumber,Country,Address,Religion,YearOfAdmission,YearOfGraduation,Image,ShowProfile,User)"
+				+ " Values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		List<Object> params = new ArrayList<>();
+		params.add(student.getName());
+		params.add(student.getIdentityCardNumber());
+		params.add(student.getDateOfBirth());
+		params.add(student.getGender());
+		params.add(student.getPhoneNumber());
+		params.add(student.getCountry());
+		params.add(student.getAddress());
+		params.add("Kh√°c");
+		params.add(student.getYearOfAdmission());
+		params.add(student.getYearOfGraduation());
+		params.add("");
+		params.add(student.isShowProfile());
+		params.add(student.getUserId());
+
+		try {
+
+			return executeUpdate(query, params);
+
+		} catch (SQLException ex) {
+
+			// Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		return false;
+	}
 
 }

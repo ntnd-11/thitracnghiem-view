@@ -1,11 +1,9 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=331bc52c02b62e30371bf4634822d3c174675b66
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/Views/QLDeThi/addExam.jsp=UTF-8
-encoding//WebContent/WEB-INF/report.jrxml=UTF-8
 encoding//WebContent/WEB-INF/tags/Navbar.tag=UTF-8
 encoding//WebContent/WEB-INF/tags/SideMenuAdmin.tag=UTF-8
 encoding//src/grouptwo/quizexam/controller/AddExamController.java=UTF-8
 encoding//src/grouptwo/quizexam/controller/AddQuestionController.java=UTF-8
-encoding//src/grouptwo/quizexam/controller/AddStudentController.java=UTF-8
-encoding//src/grouptwo/quizexam/security/SecurityConfig.java=UTF-8
-encoding//src/grouptwo/quizexam/security/SecurityFilter.java=UTF-8
-encoding//src/grouptwo/quizexam/utils/AppUtils.java=UTF-8

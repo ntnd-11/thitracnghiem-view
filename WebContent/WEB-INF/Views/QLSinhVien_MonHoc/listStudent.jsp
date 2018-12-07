@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
@@ -12,7 +13,7 @@
 							<h5 class="card-title">Danh sách Sinh viên</h5>
 						</div>
 						<div class="col-md-3">
-							<a class="btn btn-success" href="./addStudent.jsp"> <i
+							<a class="btn btn-success" href="${pageContext.request.contextPath}/AddStudent"> <i
 								class="fa fa-plus"></i> Thêm sinh viên
 							</a>
 						</div>
@@ -62,12 +63,13 @@
 											<button class="btn btn-success" data-toggle="modal"
 												data-target="#modalStudent">
 												<i class="fa fa-eye"></i>
-											</button> <a href="./editStudent.jsp" class="btn btn-warning"><i
+											</button> 
+						
+											<a href="${pageContext.request.contextPath}/EditAllStudent?command=update&id=${item.studentId}" class="btn btn-warning"><i
 												class="fa fa-pencil"></i></a>
-											<button class="btn btn-danger" data-toggle="modal"
-												data-target="#modalConfirmDeleting">
-												<i class="fa fa-trash"></i>
-											</button>
+											 <a
+												href="${pageContext.request.contextPath}/EditAllStudent?command=delete&id=${item.studentId}"
+												class="btn btn-danger"> <i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
 

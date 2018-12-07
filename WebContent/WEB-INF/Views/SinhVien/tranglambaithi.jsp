@@ -85,7 +85,7 @@
 				<div class="col">
 				<div class="row">
 						<div class="logo">
-							</a> <a href="http://www.creative-tim.com"
+							 <a href="http://www.creative-tim.com"
 									class="simple-text logo-normal">
 								<h4 style="font-weight: bold;">Câu hỏi:</h4>
 							</a>

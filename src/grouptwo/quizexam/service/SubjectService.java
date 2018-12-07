@@ -36,7 +36,33 @@ public class SubjectService extends BaseService {
 		}
 		return lstSubjects;
 	}
+	public static List<Subject> getAllSubject(int firstResult, int amoutResult) {
+		String query = "select * from subjects order by Id LIMIT ?,?";
+		List<Object> param=new ArrayList<>();
+		param.add(firstResult);
+		param.add(amoutResult);
+		List<Subject> lstSubject =null;
 
+		try {	
+			lstSubject= new ArrayList<>();
+			ResultSet rs = excuteQuery(query,param);
+			while (rs.next()) {
+				Subject subjects = new Subject(
+						rs.getInt("Id"),
+						rs.getString("Name"),
+						rs.getString("Faculty"),
+						rs.getInt("Credit"),
+						rs.getString("Type"),
+						rs.getBoolean("Activate"));
+				lstSubject.add(subjects);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return lstSubject;
+	}
 	public static Subject getSubjectsById(int id) {
 		String query = "Select * from subjects where Id = " +id;
 		try
@@ -61,19 +87,21 @@ public class SubjectService extends BaseService {
 	}
 
 	public static Subject getSubjectsByName(String subject) {
-		String query = "Select * from subjects where name ='" +subject+"'";
+
+		String query = "Select * from subjects where Name = N'" +subject+"'";
 		try
 		{
 			ResultSet rs = excuteQuery(query);
 			rs.next();
-			Subject obsubject = new Subject(
+			Subject list = new Subject(
+
 					rs.getInt("Id"),
 					rs.getString("Name"),
 					rs.getString("Faculty"),
 					rs.getInt("Credit"),
 					rs.getString("Type"),
 					rs.getBoolean("Activate"));
-			return obsubject;
+			return list;
 		}
 		catch(SQLException e)
 		{
@@ -98,13 +126,7 @@ public class SubjectService extends BaseService {
 
 	public static boolean updateSubjects(Subject subject) {
 		{
-			String query ="update subjects set "
-					+ "Name=?,"
-					+ "Faculty = ?,"
-					+ "Credit = ?,"
-					+ "Type = ?,"
-					+ "Activate = ?,"
-					+ "Where Id= ?";
+			String query ="update subjects set Name=?,Faculty = ?,Credit = ?,Type = ?,Activate = ? Where Id= ?";
 			List<Object> params= new ArrayList<>();
 			params.add(subject.getSubjectName());
 			params.add(subject.getFaculty());

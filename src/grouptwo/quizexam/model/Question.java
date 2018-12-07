@@ -21,6 +21,7 @@ public class Question {
 	public Question() {
 		super();
 	}
+
 	public Question(int questionId, String question, String image, String level,int subjectID,int creatorID,
 			int correctAnswerID) {
 		this.questionId = questionId;
@@ -43,6 +44,18 @@ public class Question {
 		this.subjectID = subjectID;
 		this.creatorID = creatorID;
 		this.correctAnswerID = correctAnswerID;
+	}
+
+	public Question( String question, String image, String level, int subjectID,
+			int correctAnswerID,int creatorID,int questionId) {
+		this.question = question;
+		this.image = image;
+		this.level = level;
+		this.subjectID = subjectID;
+		this.creatorID = creatorID;
+		this.correctAnswerID = correctAnswerID;
+
+		this.questionId=questionId;
 	}
 	public int getQuestionId() {
 		return questionId;
@@ -110,5 +123,4 @@ public class Question {
 	}
 
 		
-	
 }

@@ -48,7 +48,7 @@ public class EditExamController extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		int examId = 1;
-		lstQuestion = QuestionService.getQuestionByExamId(examId);
+		//lstQuestion = QuestionService.getQuestionByExamId(examId);
 		exam = ExamService.getExamById(examId);
 		//subject = SubjectService.getSubjectsById(exam.get);
 		
