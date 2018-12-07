@@ -61,7 +61,9 @@
           <li><a href="#courses">Thi thử</a></li>
           <li><a href="about.jsp">Liên hệ</a></li>
           <c:if test="${not empty loginedUser}">
-          <li><a href="${pageContext.request.contextPath}/Logout" >Đăng xuất</a></li>
+         <%--  <c:if test="${loginedUser.roleObject.roleName eq 'stu' }"> --%>
+           <li><a href="${pageContext.request.contextPath}/Logout" >Đăng xuất</a></li>
+<%--           </c:if> --%>
           </c:if>
             <c:if test="${empty loginedUser}">
           <li><a href="${pageContext.request.contextPath}/Login" >Đăng nhập</a></li>
