@@ -1,14 +1,14 @@
 package grouptwo.quizexam.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Exam {
 
 	private Integer id;
 	private String name;
-	private Date timeStarting;
+	private Timestamp timeStarting;
 	private Integer numQuestions;
-	private Date timeFinishing;
+	private Timestamp timeFinishing;
 	private Integer subjectId;
 	private Subject subjectObject;
 	private boolean activate;
@@ -18,7 +18,7 @@ public class Exam {
 	private Integer numEasy;
 	private Integer limitTime;
 	
-	public Exam(String name, Date timeStarting, Integer numQuestions, Date timeFinishing, Integer subjectId,
+	public Exam(String name, Timestamp timeStarting, Integer numQuestions, Timestamp timeFinishing, Integer subjectId,
 			boolean activate, Integer creatorID, Integer numDifficult, Integer numNormal, Integer numEasy,
 			Integer limitTime) {
 		super();
@@ -36,7 +36,7 @@ public class Exam {
 	}
 
 
-	public Exam(Integer id, String name, Date timeStarting, Integer numQuestions, Date timeFinishing, Integer subjectId,
+	public Exam(Integer id, String name, Timestamp timeStarting, Integer numQuestions, Timestamp timeFinishing, Integer subjectId,
 			boolean activate, Integer creatorID, Integer numDifficult, Integer numNormal, Integer numEasy,
 			Integer limitTime) {
 		super();
@@ -114,10 +114,10 @@ public class Exam {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getTimeStarting() {
+	public Timestamp getTimeStarting() {
 		return timeStarting;
 	}
-	public void setTimeStarting(Date timeStarting) {
+	public void setTimeStarting(Timestamp timeStarting) {
 		this.timeStarting = timeStarting;
 	}
 	public Integer getNumQuestions() {
@@ -126,10 +126,10 @@ public class Exam {
 	public void setNumQuestions(Integer numQuestions) {
 		this.numQuestions = numQuestions;
 	}
-	public Date getTimeFinishing() {
+	public Timestamp getTimeFinishing() {
 		return timeFinishing;
 	}
-	public void setTimeFinishing(Date timeFinishing) {
+	public void setTimeFinishing(Timestamp timeFinishing) {
 		this.timeFinishing = timeFinishing;
 	}
 	public Integer getSubjectId() {

@@ -3,7 +3,6 @@ package grouptwo.quizexam.service;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +25,13 @@ public class ExamService extends BaseService{
 				Exam exam = new Exam(
 						rs.getInt("Id"), 
 						rs.getString("name"),
-						rs.getDate("timeStarting"), 
+						rs.getTimestamp("timeStarting"), 
 						rs.getInt("numQuestions"), 
-						rs.getDate("timeFinishing"), 
+						rs.getTimestamp("timeFinishing"), 
 						rs.getInt("Subject"), 
 						rs.getBoolean("activate"), 
-						rs.getInt("creatorID"), 
-						rs.getInt("numDifficult"), 
+						rs.getInt("creator"), 
+						rs.getInt("numDiffi"), 
 						rs.getInt("numNormal"), 
 						rs.getInt("numEasy"), 
 						rs.getInt("limitTime"));
@@ -53,13 +52,13 @@ public class ExamService extends BaseService{
 			rs.next();
 			Exam exams = new Exam(rs.getInt("Id"), 
 					rs.getString("name"),
-					rs.getDate("timeStarting"), 
+					rs.getTimestamp("timeStarting"), 
 					rs.getInt("numQuestions"), 
-					rs.getDate("timeFinishing"), 
+					rs.getTimestamp("timeFinishing"), 
 					rs.getInt("Subject"), 
 					rs.getBoolean("activate"), 
-					rs.getInt("creatorID"), 
-					rs.getInt("numDifficult"), 
+					rs.getInt("creator"), 
+					rs.getInt("numDiffi"), 
 					rs.getInt("numNormal"), 
 					rs.getInt("numEasy"), 
 					rs.getInt("limitTime"));
