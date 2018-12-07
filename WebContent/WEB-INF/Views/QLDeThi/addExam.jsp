@@ -10,7 +10,7 @@
                             	<div class="col-lg-10">
                                     <select class="form-control my-2" id="sltSubject">
                                      	<option value="${ subject.subjectID }" selected> ${subject.subjectName}</option>
-                                    	<c:forEach items="${ lstSubject}" var="su" >
+                                    	<c:forEach items="${ lstSubject }" var="su" >
  											<option value="${ su.subjectID }"> ${su.subjectName}</option>
 										</c:forEach>
                                     </select>
@@ -99,9 +99,11 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card card-user">
-                            <div class="card-header row mx-2">
+                            <div class="card-header row mx-2 justify-content-center">
                                 <h5 class="card-title col-8">Danh Sách Câu Hỏi</h5>
-                                <button class="btn btn-danger col-4" id="btnDeleteAll"> Xóa toàn bộ</button>
+                                <button class="btn btn-danger col-4" id="btnDeleteAll"> Xóa toàn bộ </button>
+                                <button class="btn btn-info col-4" id="btnAdd"> Thêm câu hỏi </button>
+                                
                             </div>
                             <div class="card-body">
                                 <table class="table">
@@ -114,13 +116,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    	<tr id="frameAdd" class="my-3">
+	                                            <td colspan="4" class="my-3">
+	                                            	 <select class="form-control slcQuestion" class="my-3" id="addQuestion">
+	                                            		<option selected> Chọn câu hỏi thêm vào<option>
+		                                            	<c:forEach items="${lstQuestionChoose}" var="qe">
+															<option  value="${qe.questionId}"> ${qe.question}<option>
+														</c:forEach>
+	                                            	
+	                                            	</select>
+	                                            </td>
+	                                        </tr>
                                        <c:forEach items="${lstCurrentQuestion}" var="question" varStatus="loop">
                                     
                                             <tr id= "frameQuestion_${loop.index}" >
 	                                            <td> ${question.questionId } </td>
 	                                            <td>
-	                                            	 <select class="form-control">
-	                                            		<option selected value=" ${question.questionId} "> ${ question.question }<option>
+	                                            	 <select class="form-control slcQuestion" data-id="${question.questionId}">
+	                                            		<option selected value="${question.questionId}" id="nowQuestion" > ${ question.question }<option>
+		                                            	<c:forEach items="${lstQuestionChoose}" var="qe">
+															<option  value="${qe.questionId}"> ${qe.question}<option>
+														</c:forEach>
+	                                            	
 	                                            	</select>
 	                                            </td>
 	                                            <td>
@@ -166,6 +183,7 @@
             	      <button type="button" class="btn btn-success btn-round col-8" id="btnAddExam"> Tạo Đề Thi </button>           	
             	</div>
 <script>
+$('#frameAdd').hide();
          	$(document).ready(function() {
                 $('#btnCreateExam').click(function(){
                     var difficult = $('#difficult').val();
@@ -192,8 +210,15 @@
 
                 var link = '/WebThi/AddExam?deleteId='+id+'&action=DELETE';
                 window.location=link;
-				//deleteQuestion(index);
 			  });
+             
+             $('.slcQuestion').change(function(){
+            	 var oldQues = $(this).data('id');
+            	 var newQues = $(this).val();
+                 var link = '/WebThi/AddExam?action=UPDATE&replaceId='+oldQues+'&newId='+newQues;
+                 window.location=link;
+ 			  });
+             
               $('#btnDeleteAll').click(function(){
                  var link = '/WebThi/AddExam?action=DELETEALL';
                  window.location=link;
@@ -221,6 +246,23 @@
         		else */
         			$('#frmAddExam').submit();
         	  });
+        	  
+        	  $('#btnAdd').click(function(){
+                  $('#frameAdd').show();
+  			  });
+        	  
+        	  $('.slcQuestion').change(function(){
+             	 var oldQues = $(this).data('id');
+             	 var newQues = $(this).val();
+                  var link = '/WebThi/AddExam?action=UPDATE&replaceId='+oldQues+'&newId='+newQues;
+                  window.location=link;
+  			  });
+        	  addQuestion
+        	  $("#addQuestion").change(function(){
+              	 var newQues = $(this).val();
+                   var link = '/WebThi/AddExam?action=ADD&newId='+newQues;
+                   window.location=link;
+   			  });
          	});
         function update()
         {
@@ -247,6 +289,7 @@
 					}
 				}
 		});
+
 	};
 </script>
 </t:WrapperAdmin>

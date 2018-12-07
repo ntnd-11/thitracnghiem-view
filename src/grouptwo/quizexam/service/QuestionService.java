@@ -379,6 +379,34 @@ public class QuestionService extends BaseService {
 		return lstQuestion;
 
 	}	
+	public static List<Question> getQuestionBySubjectId(int subjectId) {
+		String query = "Select * from onlinequiz.questions where subject = ?";
+		List<Object> params = new ArrayList<>();
+		params.add(subjectId);
+		
+		List<Question> lstQuestion = new ArrayList<>();
+
+		try {
+			ResultSet rs = excuteQuery(query,params);
+			while (rs.next()) {
+				Question question = new Question(
+						rs.getInt("Id"),
+						rs.getString("Question"), 
+						rs.getString("Image"), 
+						rs.getString("Level"), 
+						rs.getInt("Creator"), 
+						rs.getInt("CorrectAnswer"), 
+						rs.getInt("Subject"));
+				lstQuestion.add(question);
+			}
+			return lstQuestion;
+			
+		} catch (SQLException e) {
+			
+		}
+		return lstQuestion;
+
+	}	
 }
 
 

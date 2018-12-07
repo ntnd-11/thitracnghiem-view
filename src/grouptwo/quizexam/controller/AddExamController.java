@@ -98,9 +98,66 @@ public class AddExamController extends HttpServlet {
 			        	lstNumType.add(0);
 			        }
 			}
-			if (action == "UPDATE")
+			if (action.equals("UPDATE"))
 			{
-				//String test = request.getParameter("deleteIndex");
+				int replaceId = Integer.parseInt(request.getParameter("replaceId"));
+				int newId	= Integer.parseInt(request.getParameter("newId"));
+				Question newQuestion = QuestionService.getQuestionsById(newId);
+				boolean isContain = false;
+				for(Question q : lstQuestion)
+				{
+					if( q.getQuestionId() == newQuestion.getQuestionId())
+					{
+						isContain = true;
+						break;
+					}
+				}
+				if(!isContain){
+					for(Question q:lstQuestion) {
+						if(q.getQuestionId() == replaceId) {
+							int index = lstQuestion.indexOf(q);
+							lstQuestion.set(index, newQuestion);
+							break;
+						}
+					}
+				}
+				Question oldQuestion = QuestionService.getQuestionsById(replaceId);
+				switch(oldQuestion.getLevel())
+				{
+					case "Dễ": lstNumType.set(0, lstNumType.get(0)-1);break;
+					case "Trung bình": lstNumType.set(1, lstNumType.get(1)-1);break;
+					case "Khó": lstNumType.set(2, lstNumType.get(2)-1);break;
+				}
+				switch(newQuestion.getLevel())
+				{
+					case "Dễ": lstNumType.set(0, lstNumType.get(0)+1);break;
+					case "Trung bình": lstNumType.set(1, lstNumType.get(1)+1);break;
+					case "Khó": lstNumType.set(2, lstNumType.get(2)+1);break;
+				}
+			}
+			if (action.equals("ADD"))
+			{
+				int newId	= Integer.parseInt(request.getParameter("newId"));
+				Question newQuestion = QuestionService.getQuestionsById(newId);
+
+				boolean isContain = false;
+				for(Question q : lstQuestion)
+				{
+					if( q.getQuestionId() == newQuestion.getQuestionId())
+					{
+						isContain = true;
+						break;
+					}
+				}
+				if(!isContain){
+					lstQuestion.add(0, newQuestion);
+					switch(newQuestion.getLevel())
+					{
+						case "Dễ": lstNumType.set(0, lstNumType.get(0)+1);break;
+						case "Trung bình": lstNumType.set(1, lstNumType.get(1)+1);break;
+						case "Khó": lstNumType.set(2, lstNumType.get(2)+1);break;
+					}
+				}
 			}
 		}
 		
@@ -141,9 +198,16 @@ public class AddExamController extends HttpServlet {
 		if(subject == null)
 		{
 			List<Subject> lstSubject = SubjectService.getAllSubjects();
-			
 			getServletContext().setAttribute("lstSubject", lstSubject);
+			
 		}
+		if(subject!=null)
+		{
+			List<Question> lstQuestionChoose = QuestionService.getQuestionBySubjectId(subject.getSubjectID());
+			getServletContext().setAttribute("lstQuestionChoose", lstQuestionChoose);
+		}
+	
+		
 		
 		getServletContext().setAttribute("lstCurrentQuestion", lstCurrentQuestions);
 		getServletContext().setAttribute("subject", subject);
