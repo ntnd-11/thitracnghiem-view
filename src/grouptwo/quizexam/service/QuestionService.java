@@ -151,7 +151,29 @@ public class QuestionService extends BaseService {
 		}
 		return null;
 	}
+	public static Question getQuestionsBySubjectId(int id) {
+		String query = "Select * from onlinequiz.questions where Id = " +id;
+		try
+		{
+			ResultSet rs = excuteQuery(query);
+			rs.next();
+			Question question = new Question(
+					rs.getInt("Id"),
+					rs.getString("Question"),
+					rs.getString("Image"),
+					rs.getString("Level"),
+					rs.getInt("Subject"),					
+					rs.getInt("Creator"),
+					rs.getInt("CorrectAnswer"));
+			return question;
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
 
+		}
+		return null;
+	}
 	public static Question getQuestionsByName(String question) {
 		String query = "Select * from onlinequiz.questions where Question = " +question;
 		try
@@ -275,6 +297,58 @@ public class QuestionService extends BaseService {
 			
 		}
 		return null;
+
+	}	
+	public static List<Question> getRandQuestionByLevelSubject(String level, int amount,int subjectId	) {
+		String query = "Select * from onlinequiz.questions where level = '"+level+"' and subject = " + subjectId +" order by rand() limit " +amount;
+		List<Question> lstQuestion = new ArrayList<>();
+
+		try {
+			ResultSet rs = excuteQuery(query);
+			while (rs.next()) {
+				Question question = new Question(
+						rs.getInt("Id"),
+						rs.getString("Question"), 
+						rs.getString("Image"), 
+						rs.getString("Level"), 
+						rs.getInt("Creator"), 
+						rs.getInt("CorrectAnswer"), 
+						rs.getInt("Subject"));
+				lstQuestion.add(question);
+			}
+			return lstQuestion;
+			
+		} catch (SQLException e) {
+			
+		}
+		return lstQuestion;
+
+	}	
+	public static List<Question> getQuestionByExamId(int examId) {
+		String query = "select * from Questions q join detailexams de on q.Id = de.Question\r\n" + 
+				"where de.Exam = ? ";
+		List<Object> params = new ArrayList<>();
+		params.add(examId);
+		List<Question> lstQuestion = new ArrayList<>();
+		try {
+			ResultSet rs = excuteQuery(query,params);
+			while (rs.next()) {
+				Question question = new Question(
+						rs.getInt("Id"),
+						rs.getString("Question"), 
+						rs.getString("Image"), 
+						rs.getString("Level"), 
+						rs.getInt("Creator"), 
+						rs.getInt("CorrectAnswer"), 
+						rs.getInt("Subject"));
+				lstQuestion.add(question);
+			}
+			return lstQuestion;
+			
+		} catch (SQLException e) {
+			
+		}
+		return lstQuestion;
 
 	}	
 }

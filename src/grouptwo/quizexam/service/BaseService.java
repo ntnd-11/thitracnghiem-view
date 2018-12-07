@@ -12,6 +12,7 @@ import grouptwo.quizexam.data.MySqlConnUtils;
 
 public class BaseService {
 	private static Connection conn;
+	public static Connection getConnection(){ return	conn;}
 	static {
 		init();
 	}

@@ -181,6 +181,35 @@ public class ProfilestudentService extends BaseService {
 
 		return false;
 	}
+	public static boolean addProfilestudent(Profilestudent student) {
+		String query = "Insert into onlinequiz.profilestudents(Name,IdentityCardNumber,DateOfBirth,Gender,PhoneNumber,Country,Address,Religion,YearOfAdmission,YearOfGraduation,Image,ShowProfile,User)"
+				+ " Values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		List<Object> params = new ArrayList<>();
+		params.add(student.getName());
+		params.add(student.getIdentityCardNumber());
+		params.add(student.getDateOfBirth());
+		params.add(student.getGender());
+		params.add(student.getPhoneNumber());
+		params.add(student.getCountry());
+		params.add(student.getAddress());
+		params.add("Khác");
+		params.add(student.getYearOfAdmission());
+		params.add(student.getYearOfGraduation());
+		params.add("");
+		params.add(student.isShowProfile());
+		params.add(student.getUserId());
+
+		try {
+
+			return executeUpdate(query, params);
+
+		} catch (SQLException ex) {
+
+			// Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		return false;
+	}
 
 	public static boolean UpdateProfilestudent(String user, String name, int identityCardNumber, Date dateOfBirth,
 			String gender, String email, int phoneNumber, String country, Date yearOfAdmission, Date yearOfGraduation,

@@ -9,8 +9,8 @@ public class Exam {
 	private Date timeStarting;
 	private Integer numQuestions;
 	private Date timeFinishing;
-	private Integer courseID;
-	private Course courseObject;
+	private Integer subjectId;
+	private Subject subjectObject;
 	private boolean activate;
 	private Integer creatorID;
 	private Integer numDifficult;
@@ -18,7 +18,7 @@ public class Exam {
 	private Integer numEasy;
 	private Integer limitTime;
 	
-	public Exam(String name, Date timeStarting, Integer numQuestions, Date timeFinishing, Integer courseID,
+	public Exam(String name, Date timeStarting, Integer numQuestions, Date timeFinishing, Integer subjectId,
 			boolean activate, Integer creatorID, Integer numDifficult, Integer numNormal, Integer numEasy,
 			Integer limitTime) {
 		super();
@@ -26,7 +26,7 @@ public class Exam {
 		this.timeStarting = timeStarting;
 		this.numQuestions = numQuestions;
 		this.timeFinishing = timeFinishing;
-		this.courseID = courseID;
+		this.subjectId = subjectId;
 		this.activate = activate;
 		this.creatorID = creatorID;
 		this.numDifficult = numDifficult;
@@ -36,7 +36,7 @@ public class Exam {
 	}
 
 
-	public Exam(Integer id, String name, Date timeStarting, Integer numQuestions, Date timeFinishing, Integer courseID,
+	public Exam(Integer id, String name, Date timeStarting, Integer numQuestions, Date timeFinishing, Integer subjectId,
 			boolean activate, Integer creatorID, Integer numDifficult, Integer numNormal, Integer numEasy,
 			Integer limitTime) {
 		super();
@@ -45,7 +45,7 @@ public class Exam {
 		this.timeStarting = timeStarting;
 		this.numQuestions = numQuestions;
 		this.timeFinishing = timeFinishing;
-		this.courseID = courseID;
+		this.subjectId = subjectId;
 		this.activate = activate;
 		this.creatorID = creatorID;
 		this.numDifficult = numDifficult;
@@ -132,11 +132,11 @@ public class Exam {
 	public void setTimeFinishing(Date timeFinishing) {
 		this.timeFinishing = timeFinishing;
 	}
-	public Integer getCourseID() {
-		return courseID;
+	public Integer getSubjectId() {
+		return subjectId;
 	}
-	public void setCourseID(Integer courseID) {
-		this.courseID = courseID;
+	public void setSubjectId(Integer subjectId) {
+		this.subjectId = subjectId;
 	}
 	public boolean isActivate() {
 		return activate;
@@ -150,11 +150,11 @@ public class Exam {
 	public void setCreatorID(int creatorID) {
 		this.creatorID = creatorID;
 	}
-	public Course getCourseObject() {
-		return courseObject;
+	public Subject getSubjectObject() {
+		return subjectObject;
 	}
-	public void setCourseObject(Course courseObject) {
-		this.courseObject = courseObject;
+	public void setSubjectObjectt(Subject subjectObject) {
+		this.subjectObject = subjectObject;
 	}
 	
 	

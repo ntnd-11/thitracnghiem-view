@@ -87,15 +87,14 @@ public class DetailExamService extends BaseService {
 		}
 	}
 
-	public static boolean addDetailExams(DetailExam detailexam) {
+	public static boolean addDetailExam(int questionId, int examId) {
 		String query="Insert into detailexams (Exam,Question) "
-				+"values (?,?)";
+				+"values (?,?) ";
 	List<Object> params= new ArrayList<>();
-	params.add(detailexam.getExamId());
-	params.add(detailexam.getQuestionId());
+	params.add(examId);
+	params.add(questionId);
 	try {
-		boolean action = executeUpdate(query, params);
-		return action;
+		return executeUpdate(query, params);
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}

@@ -22,20 +22,20 @@ public class ExamService extends BaseService{
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
-				Exam course = new Exam(
+				Exam exam = new Exam(
 						rs.getInt("Id"), 
 						rs.getString("name"),
 						rs.getDate("timeStarting"), 
 						rs.getInt("numQuestions"), 
 						rs.getDate("timeFinishing"), 
-						rs.getInt("courseID"), 
+						rs.getInt("Subject"), 
 						rs.getBoolean("activate"), 
 						rs.getInt("creatorID"), 
 						rs.getInt("numDifficult"), 
 						rs.getInt("numNormal"), 
 						rs.getInt("numEasy"), 
 						rs.getInt("limitTime"));
-				lstExams.add(course);
+				lstExams.add(exam);
 	        }
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -55,7 +55,7 @@ public class ExamService extends BaseService{
 					rs.getDate("timeStarting"), 
 					rs.getInt("numQuestions"), 
 					rs.getDate("timeFinishing"), 
-					rs.getInt("courseID"), 
+					rs.getInt("Subject"), 
 					rs.getBoolean("activate"), 
 					rs.getInt("creatorID"), 
 					rs.getInt("numDifficult"), 
@@ -135,13 +135,13 @@ public class ExamService extends BaseService{
 	}
 	public static boolean UpdateExam(Exam exam)
 	{
-		String query="update Exams set exams.Name=? ,TimeStarting=?,NumQuestions=?,TimeFinishing=?,Course=?,Avtivate=?,Creator=? where Id=?";
+		String query="update Exams set exams.Name=? ,TimeStarting=?,NumQuestions=?,TimeFinishing=?,Subject=?,Avtivate=?,Creator=? where Id=?";
 		List<Object> params=new ArrayList<>();
 		params.add(exam.getName());
 		params.add(exam.getTimeStarting());
 		params.add(exam.getNumQuestions());
 		params.add(exam.getTimeFinishing());
-		params.add(exam.getCourseID());
+		params.add(exam.getSubjectId());
 		params.add(exam.isActivate());
 		params.add(exam.getCreatorID());
 		params.add(exam.getId());
@@ -190,7 +190,7 @@ public class ExamService extends BaseService{
 						rs.getTimestamp("TimeStarting"), 
 						rs.getInt("NumQuestions"), 
 						rs.getTimestamp("TimeFinishing"), 
-						rs.getInt("Course"), 
+						rs.getInt("Subject"), 
 						rs.getBoolean("Activate"),	 
 						rs.getInt("Creator"),
 						rs.getInt("NumDiffi"),
@@ -219,7 +219,7 @@ public class ExamService extends BaseService{
 						rs.getTimestamp("TimeStarting"), 
 						rs.getInt("NumQuestions"), 
 						rs.getTimestamp("TimeFinishing"), 
-						rs.getInt("Course"), 
+						rs.getInt("Subject"), 
 						rs.getBoolean("Activate"),	 
 						rs.getInt("Creator"),
 						rs.getInt("NumDiffi"),
@@ -234,6 +234,32 @@ public class ExamService extends BaseService{
 			
 		}
 		return null;
+	}
+	public static boolean addExam(Exam exam)
+	{
+		String query="Insert into onlinequiz.exams(Name,TimeStarting,TimeFinishing,NumQuestions,Subject,Activate,Creator,NumDiffi,NumNormal,NumEasy,LimitTime) "
+				+ " value(?,?,?,?,?,?,?,?,?,?,?)";
+		List<Object> params = new ArrayList<>();
+		params.add(exam.getName());
+		params.add(exam.getTimeStarting());
+		params.add(exam.getTimeFinishing());
+		params.add(exam.getNumQuestions());
+		params.add(exam.getSubjectId());
+		params.add(exam.isActivate());
+		params.add(null);
+		params.add(exam.getNumDifficult());
+		params.add(exam.getNumNormal());
+		params.add(exam.getNumEasy());
+		params.add(exam.getLimitTime());
+
+		try {
+			return executeUpdate(query, params);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		
+		return false;
 	}
 
 	

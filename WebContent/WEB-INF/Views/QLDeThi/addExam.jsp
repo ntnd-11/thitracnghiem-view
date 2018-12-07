@@ -7,8 +7,13 @@
                     <div class="col-md-4">
                         <div class="card card-user">
                             <div class="row justify-content-center my-2">
-                                <div class="col-lg-10">
-                                    <input type="number" class="form-control" placeholder="Số Câu Hỏi">
+                            	<div class="col-lg-10">
+                                    <select class="form-control my-2" id="sltSubject">
+                                     	<option value="${ subject.subjectID }" selected> ${subject.subjectName}</option>
+                                    	<c:forEach items="${ lstSubject}" var="su" >
+ 											<option value="${ su.subjectID }"> ${su.subjectName}</option>
+										</c:forEach>
+                                    </select>
                                 </div>
 
                             </div>
@@ -22,19 +27,19 @@
                                             <div class="row justify-content-center ">
                                                 <div class="col-md-4">
                                                     <div class="form-group justify-content-center text-center">
-                                                        <input type="number" class="form-control" value="" name="easy" id="easy">
+                                                        <input type="number" class="form-control" value="${listType.get(0)}" name="easy" id="easy">
                                                         <p>Dễ</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group justify-content-center text-center">
-                                                        <input type="number" class="form-control" value="" name="normal" id="normal">
+                                                        <input type="number" class="form-control" value="${listType.get(1)}" name="normal" id="normal">
                                                         <p>TB</p>
-                                                    </div>
+                                                    </div>	
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group justify-content-center text-center">
-                                                        <input type="number" class="form-control" value="" name="difficult" id="difficult">
+                                                        <input type="number" class="form-control" value="${listType.get(2)}" name="difficult" id="difficult">
                                                         <p>Khó</p>
                                                     </div>
                                                 </div>
@@ -42,14 +47,14 @@
                                         </div>
                                         <div class="row justify-content-center ">
                                             <div class="form-group justify-content-center text-center">
-                                                <input type="text" class="form-control" value="" disabled>
+                                                <input type="text" class="form-control text-center" value="${listType.get(0)+listType.get(1)+listType.get(2)}" readonly id="total">
                                                 <p>Tổng số câu hỏi</p>
                                             </div>
                                             
                                         </div>
                                         
                                     </div>
-                                    <button type="button"  class="btn btn-primary btn-round" id="btnCreateExam">Tạo ngẫu nhiên</button>
+                                    <button type="button"  class="btn btn-primary btn-round col-12" id="btnCreateExam">Tạo ngẫu nhiên</button>
                                 </div>
                             </div>
                             
@@ -59,30 +64,44 @@
                                 <h4 class="card-title"><b>Tùy Chọn</b></h4>
                             </div>
                             <div class="card-body">
+                            <form action="${pageContext.request.contextPath}/AddExam" method="post" id="frmAddExam">
                                 <ul class="list-unstyled ">
                                     <li>
-                                        <div class="mb-1">
-                                            <input type="datetime-local" class="form-control" placeholder="Thời Gian Mở">
+                                    	<p class="my-1"> Thời gian mở đề </p>
+                                        <div class="my-1">
+                                            <input type="datetime-local" class="form-control" placeholder="Thời Gian Mở" name="timeOpen">
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="mb-1">
-                                            <input type="datetime-local" class="form-control" placeholder="Thời Lượng">
+                                        <p class="my-1"> Thời gian đóng đề </p>
+                                    
+                                        <div class="my-1">
+                                            <input type="datetime-local" class="form-control" placeholder="Thời gian đóng" name="closeTime">
                                         </div>
                                     </li>
+                                    	
                                     <li>
-                                        <select name="sltCourse" class="form-control">
-                                        <option value ='-1'> Chọn lớp </option>
-                                        </select>
+                                    	<p class="my-1"> Tên bài thi </p>
+                                    	<div class="my-1">	
+                                        	<input type="text" class="form-control" placeholder="Tên bài thi" name="nameExam" >
+										</div>
+                                    </li>
+                                    <li>
+                                    	<p class="my-1"> Thời gian làm (phút) </p>
+                                    	<div class="my-1">	
+                                        	<input type="number" name="limitTime" class="form-control" placeholder="Thời gian làm bài">
+										</div>
                                     </li>
                                 </ul>
+                                </form>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="card card-user">
-                            <div class="card-header">
-                                <h5 class="card-title">Danh Sách Câu Hỏi</h5>
+                            <div class="card-header row mx-2">
+                                <h5 class="card-title col-8">Danh Sách Câu Hỏi</h5>
+                                <button class="btn btn-danger col-4" id="btnDeleteAll"> Xóa toàn bộ</button>
                             </div>
                             <div class="card-body">
                                 <table class="table">
@@ -95,9 +114,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       <c:forEach items="${lstCurrentQuestion}" var="question">
+                                       <c:forEach items="${lstCurrentQuestion}" var="question" varStatus="loop">
                                     
-	                                        <tr>
+                                            <tr id= "frameQuestion_${loop.index}" >
 	                                            <td> ${question.questionId } </td>
 	                                            <td>
 	                                            	 <select class="form-control">
@@ -116,7 +135,12 @@
 														</c:if> 
 													</c:forEach>
 	                                            </td>
-	                                            <td class="text-center"><a href="#"><i class="fa fa-edit" style="font-size:36px"></i></a>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-danger btnDelete" 
+                                                            data-id="${ question.questionId }"
+                                                            data-index="${loop.index}">
+                                                        <i class="fa fa-trash" style="font-size:10px"></i>
+                                                    </button>
 	                                            </td>
 	                                        </tr>
 										</c:forEach>
@@ -129,9 +153,7 @@
 											<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/AddExam?page=${i}">${i}</a>
 											</li>
 										</c:forEach>
-										
-										<li class="page-item"><a class="page-link" href="#">Next</a></li>
-										
+																				
                                     </ul>
                                 </nav>
                             </div>
@@ -139,25 +161,93 @@
                     </div>
 
                 
-                 <button type="submit" class="btn btn-primary btn-round float-right"> Tạo Đề Thi </button>
+            	</div>
+            	<div class="row justify-content-center">
+            	      <button type="button" class="btn btn-success btn-round col-8" id="btnAddExam"> Tạo Đề Thi </button>           	
             	</div>
 <script>
          	$(document).ready(function() {
-   			$('#btnCreateExam').click(function(){
-				var difficult = $('#difficult').val();
-				var normal = $('#normal').val();
-				var easy = $('#easy').val();
-				if(difficult == "" ||normal == "" ||easy == "")
-					alert("Xin vui lòng nhập số lượng câu hỏi từng loại");
-				else	
-					{
-					 	var link = '/WebThi/AddExam?difficult='+difficult+'&normal='+normal+'&easy='+easy;
-						window.location=link;
+                $('#btnCreateExam').click(function(){
+                    var difficult = $('#difficult').val();
+                    var normal = $('#normal').val();
+                    var easy = $('#easy').val();
+                    var subject = $('#subject').val();
+                    if(difficult == "" ||normal == "" ||easy == "")
+                    {
+                        alert("Xin vui lòng nhập số lượng câu hỏi từng loại");
+                    }
+                    else 
+                    	if (subject == "")
+                    	{ 
+                            alert("Xin vui lòng chọn lớp");
+                    	}
+	                    else    
+	                        {
+	                            var link = '/WebThi/AddExam?difficult='+difficult+'&normal='+normal+'&easy='+easy;
+	                            window.location=link;
+	                        }
+                   });
+             $('.btnDelete').click(function(){
+           	  	var id = $(this).data("id");
+
+                var link = '/WebThi/AddExam?deleteId='+id+'&action=DELETE';
+                window.location=link;
+				//deleteQuestion(index);
+			  });
+              $('#btnDeleteAll').click(function(){
+                 var link = '/WebThi/AddExam?action=DELETEALL';
+                 window.location=link;
+ 				//deleteQuestion(index);
+ 			  });
+
+        	  $('#sltSubject').change(function(){
+        		  var id = $(this).val();
+        		  selectSubject(id);
+        	  });
+        	  $('#easy').change(function(){
+        		  update();
+        	  });
+        	  $('#normal').change(function(){
+        		  update();
+        	  });
+        	  $('#difficult').change(function(){
+        		  update();
+        	  });
+        	  $('#btnAddExam').click(function(){
+        		/* if(false)
+        	  	{
+        			  
+        	  	}
+        		else */
+        			$('#frmAddExam').submit();
+        	  });
+         	});
+        function update()
+        {
+        	  var diff =  parseInt($("#difficult").val());
+	  		  var normal =  parseInt($("#normal").val());
+	  		  var easy =  parseInt($("#easy").val());
+	
+	  		  var total = diff+normal+easy;
+	  		  $("#total").val(total);
+        }
+		function selectSubject(subjectId) {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/AddExam?subjectId='+subjectId,
+				type : 'PUT',
+				contentType : "json",
+				success : function(data) {
+					if (data!=""){
+						var obj = $.parseJSON(data);
+						console.log(obj);
+
 					}
-   			});
-   			
-   			
-   		});
+					else{
+						alert("Không thể đổi môn học khi đã có danh sách câu hỏi");
+					}
+				}
+		});
+	};
 </script>
 </t:WrapperAdmin>
             

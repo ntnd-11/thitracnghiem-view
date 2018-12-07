@@ -4,7 +4,7 @@
 	<div class="logo">
 		<a href="http://www.creative-tim.com" class="simple-text logo-mini">
 			<div class="logo-image-small">
-				<img src="../assets/img/logo-small.png">
+                <img src="${pageContext.request.contextPath}/assets/img/logo-small.png">
 			</div>
 		</a> <a href="http://www.creative-tim.com" class="simple-text logo-normal">
 			Group 2 </a>
