@@ -12,7 +12,7 @@
 							<h4 class="card-title">Danh sách Môn Học</h4>
 						</div>
 						<div class="col-md-3">
-							<a class="btn btn-success" href="${pageContext.request.contextPath}/AddSubject"> <i
+							<a class="btn btn-success" href="./addSubject.jsp"> <i
 								class="fa fa-plus"></i> Mở lớp
 							</a>
 						</div>
@@ -37,7 +37,6 @@
 								<th width="2px"><input type="checkbox"
 									aria-label="Radio button for following text input"></th>
 								<th width="4px">Mã</th>
-								<th>Tên lớp</th>
 
 								<th width="15%">Môn học</th>
 								<th width="10%">Khoa</th>

@@ -39,15 +39,21 @@ public class EditAllStudentController extends HttpServlet {
 		request.setAttribute("profilestudent", profilestudent);
 		request.setAttribute("user", user);
 		
-
+		String contextPath;
 		 RequestDispatcher dispatcher;
 		 switch(command)
 			{
 			case "delete":
 			
 				ProfilestudentService.deleteProfilestudent(Integer.parseInt(id));
-				String contextPath=request.getContextPath();
+				 contextPath=request.getContextPath();
 				response.sendRedirect(contextPath+"/ListAllStudent");
+				break;
+			case "deleteFor":
+				
+				//	ProfilestudentService.deleteProfilestudent(Integer.parseInt(id));
+				 contextPath=request.getContextPath();
+				response.sendRedirect(contextPath+"/ListStudent");
 				break;
 			case "update":
 		

@@ -162,7 +162,7 @@
 				<button type="submit" class="btn btn-info col-3">
 					<i class="fa fa-save"></i>Lưu thay đổi
 				</button>
-				<a href="./listStudent.html" class="btn btn-danger col-3"> <i
+				<a href="${pageContext.request.contextPath}/ListAllStudent" class="btn btn-danger col-3"> <i
 					class="fa fa-times"></i> Hủy
 				</a>
 			</div>
