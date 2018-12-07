@@ -182,14 +182,21 @@
 			$.ajax({
 				url : '${pageContext.request.contextPath}/CountDown',
 				success : function(data) {
-					if (data == '0 : 0') {
-						$.ajax({
+					if (data == '0 : 1') {
+					/* 	$.ajax({
 							url : '${pageContext.request.contextPath}/Submit',
 							type : 'POST',
 							success : function(data) {
 
 							}
-						});
+						}); */
+						
+						var url = '${pageContext.request.contextPath}/Submit'; 
+						var form = $('<form action="' + url + '" method="post">' + 
+						    '</form>'); 
+						$('body').append(form); 
+						form.submit(); 
+						
 					} else
 						$('#timeLimit').text(data);
 				}

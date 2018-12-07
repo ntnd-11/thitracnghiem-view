@@ -32,11 +32,7 @@ public class SecurityUtils {
 		String urlPattern=UrlPatternUtils.getUrlPattern(request);
 		
 		User user= (User)request.getSession().getAttribute("loginedUser");
-		String roles = null;
-		
-		
-
-		
+		String roles = user.getRoleObject().getRoleName();
 			List<String> urlPatterns=SecurityConfig.getAllUrlPatternForRole(roles);
 			if(urlPattern!=null&&urlPatterns.contains(urlPattern))
 			{

@@ -73,9 +73,10 @@ public class ExamService extends BaseService{
 	}
 	public static List<Integer> getLsIdOfUser(int idUser)
 	{
+		
 		List<Integer> lsId=null;
 		List<Object> param=new ArrayList<>();
-		String sql="select exam from detailcourses dc, detailcourseexams dce where dc.course = dce.course and dc.student = ? and (student,exam) not in (select Student,Exam from resulttests)";
+		String sql="select exam from detailcourses dc, detailcourseexams dce where dc.course = dce.course and dc.student = ? and (student,exam) not in (select Student,Exam from resulttests) ";
 		param.add(idUser);
 		try {
 			lsId=new ArrayList<>();

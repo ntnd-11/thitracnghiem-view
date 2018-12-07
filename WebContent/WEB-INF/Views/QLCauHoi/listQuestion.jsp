@@ -18,6 +18,10 @@
 								href="${pageContext.request.contextPath}/AddQuestion"> <i
 								class="fa fa-plus"></i> Add Question
 							</a>
+							<a class="btn btn-success"
+								href="${pageContext.request.contextPath}/uploadFileControler"> <i
+								class="fa fa-plus"></i> Import câu hỏi từ file
+							</a>
 						</div>
 
 						<div class="navbar navbar-light">
@@ -42,9 +46,6 @@
 
 									</select>
 								</div>
-
-
-
 							</form>
 
 						</div>

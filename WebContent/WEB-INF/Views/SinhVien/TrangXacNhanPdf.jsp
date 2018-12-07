@@ -14,7 +14,7 @@
 						</div>
 						<div class="intro-para text-center quote">
 							
-								<p class="big-text">Bạn đã thi xong với với số điểm là: ${garde} </p>
+								<p class="big-text">Bạn đã thi xong với với số điểm là: ${grade} </p>
 							
 								<a  href="${pageContext.request.contextPath}/ReportExam" class="btn get-quote">
 									Xem kết quả

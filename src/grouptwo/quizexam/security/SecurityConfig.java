@@ -16,13 +16,30 @@ public class SecurityConfig {
 		{
 			//cấu hình cho admin
 			List<String> urlPatternsAD=new ArrayList<String>();
-			//cấu hình cho khách hầng
-			List<String> urlPatternsCU=new ArrayList<String>();
-			urlPatternsCU.add("/HomeQuizController");
 			urlPatternsAD.add("/HomeQuizController");
+			//cấu hình cho học sinh
+			List<String> urlPatternsStu=new ArrayList<String>();
+			urlPatternsStu.add("/HomeQuizController");
+			//cấu hình cho quản lý đề
+			List<String> urlPatternsExam=new ArrayList<String>();
+			urlPatternsExam.add("/HomeQuizController");
+			//cấu hình cho quản lý câu hỏi
+			List<String> urlPatternsQus=new ArrayList<String>();
+			urlPatternsQus.add("/HomeQuizController");
+			//cấu hình cho quản lý lớp học và sinh viên
+			List<String> urlPatternsStu_Course=new ArrayList<String>();
+			urlPatternsStu_Course.add("/HomeQuizController");
+			
+			
+			
+			
 			
 			map.put("ad", urlPatternsAD);
-			map.put("stu",urlPatternsCU);
+			map.put("stu",urlPatternsStu);
+			map.put("asma",urlPatternsQus);
+			map.put("stuma",urlPatternsStu_Course);
+			map.put("exma",urlPatternsExam);
+			
 		
 		}
 		public static Set<String> getAllRoles()
