@@ -21,7 +21,7 @@
 							<div class="col-md-3 col-12">
 								<div class="price-table pt-bg-black">
 									<div>
-										<span>${item1.getCourseObject().getSubjectIdObject().getSubjectName()}</span>
+										<span>${item1.getSubjectObject().getSubjectName()}</span>
 										<span>${item1.name}</span>
 									</div>
 									<ul>

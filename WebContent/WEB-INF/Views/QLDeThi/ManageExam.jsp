@@ -67,7 +67,7 @@
 										<td>${item.id}</td>
 										<td>${item.timeStarting}</td>
 										<td>${item.timeFinishing}</td>
-										<td>${item.courseObject.subjectIdObject.subjectName}</td>
+										<td>${item.subjectObject.subjectName}</td>
 										<td>${item.numQuestions}</td>
 										<td><a href="#"><i class="fa fa-edit float-right"
 												style="font-size: 36px"></i></a> <a href="#"><i

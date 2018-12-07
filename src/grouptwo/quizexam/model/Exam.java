@@ -2,6 +2,8 @@ package grouptwo.quizexam.model;
 
 import java.sql.Timestamp;
 
+import grouptwo.quizexam.service.SubjectService;
+
 public class Exam {
 
 	private Integer id;
@@ -33,6 +35,7 @@ public class Exam {
 		this.numNormal = numNormal;
 		this.numEasy = numEasy;
 		this.limitTime = limitTime;
+		
 	}
 
 
@@ -52,6 +55,7 @@ public class Exam {
 		this.numNormal = numNormal;
 		this.numEasy = numEasy;
 		this.limitTime = limitTime;
+		subjectObject = SubjectService.getSubjectsById(subjectId);
 	}
 	
 	public Integer getNumDifficult() {

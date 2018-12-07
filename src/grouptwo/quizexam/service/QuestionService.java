@@ -38,6 +38,7 @@ public class QuestionService extends BaseService {
 		}
 		return null;
 	}
+
 	public static List<Question> getAllQuestions(int firstReSult,int amoutResult) {
 		String query = "select * from questions order by Id LIMIT ?,?";
 		List<Object> param=new ArrayList<>();

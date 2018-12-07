@@ -15,7 +15,7 @@
 						<div class="intro-para text-center quote">
 							
 								<p class="big-text">Môn:
-									${exam.getCourseObject().getSubjectIdObject().getSubjectName()}</p>
+									${exam.getSubjectObject().getSubjectName()}</p>
 								<p class="small-text">Gồm có ${exam.numQuestions} câu hỏi và
 									câu trả lời. Nếu bạn trả lời đúng thì bạn được 0.5đ. Nếu làm
 									full sẽ được 10 điểm. Chọn một câu trả lời đúng.</p>

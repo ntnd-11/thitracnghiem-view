@@ -81,7 +81,7 @@
 					</nav>
 				</div>
 
-				<div class="col-md-3 col-12 pull-right" style="margin-left: 50px;">
+				<div class="col-md-3 col-12 pull-right" style="margin-left: 50px;position:sticky;top:100px">
 				<div class="col">
 				<div class="row">
 						<div class="logo">
