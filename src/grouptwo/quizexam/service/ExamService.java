@@ -3,6 +3,7 @@ package grouptwo.quizexam.service;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,17 +22,20 @@ public class ExamService extends BaseService{
 
 		try {
 			ResultSet rs = excuteQuery(query);
+			Date date;
+			Timestamp timestamp;
 			while (rs.next()) {
+		
 				Exam course = new Exam(
 						rs.getInt("Id"), 
 						rs.getString("name"),
-						rs.getDate("timeStarting"), 
+						rs.getTimestamp("timeStarting"), 
 						rs.getInt("numQuestions"), 
-						rs.getDate("timeFinishing"), 
-						rs.getInt("courseID"), 
+						rs.getTimestamp("timeFinishing"), 
+						rs.getInt("course"), 
 						rs.getBoolean("activate"), 
-						rs.getInt("creatorID"), 
-						rs.getInt("numDifficult"), 
+						rs.getInt("creator"), 
+						rs.getInt("numDiffi"), 
 						rs.getInt("numNormal"), 
 						rs.getInt("numEasy"), 
 						rs.getInt("limitTime"));
@@ -44,21 +48,45 @@ public class ExamService extends BaseService{
 		return lstExams;
 		
 	}
+	public static List<Integer> getLsIdOfUser(int idUser)
+	{
+		List<Integer> lsId=null;
+		List<Object> param=new ArrayList<>();
+		String sql="select exams.Id from exams,detailcourses where exams.Course=detailcourses.Course and detailcourses.Student=?";
+		param.add(idUser);
+		try {
+			lsId=new ArrayList<>();
+			ResultSet rs=excuteQuery(sql, param);
+			while(rs.next())
+			{
+				lsId.add(rs.getInt(1));
+			}
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return lsId;
+	}
 	public static Exam getExamById(int id) {
-		String query = "Select * from Exams where Id = " +id;
+		String query = "Select * from Exams where Id =" +id;
 		try
 		{
 			ResultSet rs = excuteQuery(query);
+			Date date = null;
+			Timestamp timestamp;
 			rs.next();
+			timestamp=rs.getTimestamp("timeStarting");
+			if (timestamp != null)
+			    date =  new java.sql.Date(timestamp.getTime());
 			Exam exams = new Exam(rs.getInt("Id"), 
 					rs.getString("name"),
-					rs.getDate("timeStarting"), 
+					rs.getTimestamp("timeStarting"),
 					rs.getInt("numQuestions"), 
-					rs.getDate("timeFinishing"), 
-					rs.getInt("courseID"), 
+					rs.getTimestamp("timeFinishing"), 
+					rs.getInt("course"), 
 					rs.getBoolean("activate"), 
-					rs.getInt("creatorID"), 
-					rs.getInt("numDifficult"), 
+					rs.getInt("creator"), 
+					rs.getInt("numDiffi"), 
 					rs.getInt("numNormal"), 
 					rs.getInt("numEasy"), 
 					rs.getInt("limitTime"));
@@ -186,16 +214,17 @@ public class ExamService extends BaseService{
 			while (rs.next()) {
 				Exam questions = new Exam(
 						rs.getInt("Id"), 
-						rs.getString("name"), 
-						rs.getTimestamp("TimeStarting"), 
-						rs.getInt("NumQuestions"), 
-						rs.getTimestamp("TimeFinishing"), 
-						rs.getInt("Course"), 
-						rs.getBoolean("Activate"),	 
-						rs.getInt("Creator"),
-						rs.getInt("NumDiffi"),
-						rs.getInt("NumNormal"), 
-						rs.getInt("NumEasy"), rs.getInt("LimitTime"));
+						rs.getString("name"),
+						rs.getTimestamp("timeStarting"), 
+						rs.getInt("numQuestions"), 
+						rs.getTimestamp("timeFinishing"), 
+						rs.getInt("course"), 
+						rs.getBoolean("activate"), 
+						rs.getInt("creator"), 
+						rs.getInt("numDiffi"), 
+						rs.getInt("numNormal"), 
+						rs.getInt("numEasy"), 
+						rs.getInt("limitTime"));
 				lstExam.add(questions);
 			}
 			
@@ -215,17 +244,17 @@ public class ExamService extends BaseService{
 			while (rs.next()) {
 				Exam exams = new Exam(
 						rs.getInt("Id"), 
-						rs.getString("name"), 
-						rs.getTimestamp("TimeStarting"), 
-						rs.getInt("NumQuestions"), 
-						rs.getTimestamp("TimeFinishing"), 
-						rs.getInt("Course"), 
-						rs.getBoolean("Activate"),	 
-						rs.getInt("Creator"),
-						rs.getInt("NumDiffi"),
-						rs.getInt("NumNormal"), 
-						rs.getInt("NumEasy"), 
-						rs.getInt("LimitTime"));
+						rs.getString("name"),
+						rs.getTimestamp("timeStarting"), 
+						rs.getInt("numQuestions"), 
+						rs.getTimestamp("timeFinishing"), 
+						rs.getInt("course"), 
+						rs.getBoolean("activate"), 
+						rs.getInt("creator"), 
+						rs.getInt("numDiffi"), 
+						rs.getInt("numNormal"), 
+						rs.getInt("numEasy"), 
+						rs.getInt("limitTime"));
 				lstExams.add(exams);
 			}
 			return lstExams;

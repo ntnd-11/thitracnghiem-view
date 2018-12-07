@@ -96,7 +96,7 @@ public class FileUtlis {
 		return null;
 	}
 
-	public static boolean readAndWriteFileExcel(String filePath,int idCreator) throws IOException {
+	public static boolean readAndWriteFileExcel(String filePath,int idCreator,int idSubject) throws IOException {
 		Question question=null;
 		Answer answer=null;
 		
@@ -111,6 +111,7 @@ public class FileUtlis {
 				int idCurrentQus;
 				question=new Question();
 				question.setCreatorID(idCreator);
+				question.setSubjectID(idSubject);
 				
 				
 				/*Lấy từng hàng của sheet*/
@@ -121,22 +122,22 @@ public class FileUtlis {
 				Iterator<Cell> cellIterator = currentRow.cellIterator();
 				
 				
-				/* getIdCategory câu h�?i */
+			/*	 getIdCategory câu h�?i 
 				Cell cellIdCategory = cellIterator.next();
-				System.out.println("id category câu h�?i là" + Integer.parseInt(fmt.formatCellValue(cellIdCategory)));
+				System.out.println("id category câu h�?i là" + Integer.parseInt(fmt.formatCellValue(cellIdCategory)));*/
 				
 				
-				/*get mức độ câu h�?i*/
+				/*get mức độ câu h�?i*/
 				Cell cellLevel = cellIterator.next();
 				question.setLevel((cellLevel+""));
 				
-				/* get câu h�?i */
+				/* get câu h�?i */
 				Cell cellQuestion = cellIterator.next();
 				question.setQuestion(cellQuestion+"");
-				System.out.println("câu h�?i là:" + cellQuestion);
+				System.out.println("câu h�?i là:" + cellQuestion);
 				
 				
-				/*add câu h�?i vào database
+				/*add câu h�?i vào database
 				 */
 				
 				idCurrentQus=QuestionService.returnIdQuestionAfterInsert(question);
@@ -146,7 +147,7 @@ public class FileUtlis {
 					return false;
 				}
 				question.setQuestionId(idCurrentQus);
-				/* import câu trả l�?i */
+				/* import câu trả l�?i */
 				while (cellIterator.hasNext()) {
 					answer=new Answer();
 					Cell nextCell = cellIterator.next();

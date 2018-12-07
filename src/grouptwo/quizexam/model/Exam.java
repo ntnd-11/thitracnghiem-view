@@ -1,14 +1,19 @@
 package grouptwo.quizexam.model;
 
-import java.util.Date;
+
+
+import java.sql.Date;
+import java.sql.Timestamp;
+
+import grouptwo.quizexam.service.CourseService;
 
 public class Exam {
 
 	private Integer id;
 	private String name;
-	private Date timeStarting;
+	private Timestamp timeStarting;
 	private Integer numQuestions;
-	private Date timeFinishing;
+	private Timestamp timeFinishing;
 	private Integer courseID;
 	private Course courseObject;
 	private boolean activate;
@@ -18,7 +23,7 @@ public class Exam {
 	private Integer numEasy;
 	private Integer limitTime;
 	
-	public Exam(String name, Date timeStarting, Integer numQuestions, Date timeFinishing, Integer courseID,
+	public Exam(String name, Timestamp timeStarting, Integer numQuestions, Timestamp timeFinishing, Integer courseID,
 			boolean activate, Integer creatorID, Integer numDifficult, Integer numNormal, Integer numEasy,
 			Integer limitTime) {
 		super();
@@ -36,15 +41,15 @@ public class Exam {
 	}
 
 
-	public Exam(Integer id, String name, Date timeStarting, Integer numQuestions, Date timeFinishing, Integer courseID,
+	public Exam(Integer id, String name, Timestamp timestamp, Integer numQuestions, Timestamp timestamp2, Integer courseID,
 			boolean activate, Integer creatorID, Integer numDifficult, Integer numNormal, Integer numEasy,
 			Integer limitTime) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.timeStarting = timeStarting;
+		this.timeStarting = timestamp;
 		this.numQuestions = numQuestions;
-		this.timeFinishing = timeFinishing;
+		this.timeFinishing = timestamp2;
 		this.courseID = courseID;
 		this.activate = activate;
 		this.creatorID = creatorID;
@@ -52,6 +57,7 @@ public class Exam {
 		this.numNormal = numNormal;
 		this.numEasy = numEasy;
 		this.limitTime = limitTime;
+		this.courseObject=CourseService.getCourseById(courseID);
 	}
 	
 	public Integer getNumDifficult() {
@@ -114,10 +120,10 @@ public class Exam {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getTimeStarting() {
+	public Timestamp getTimeStarting() {
 		return timeStarting;
 	}
-	public void setTimeStarting(Date timeStarting) {
+	public void setTimeStarting(Timestamp timeStarting) {
 		this.timeStarting = timeStarting;
 	}
 	public Integer getNumQuestions() {
@@ -126,10 +132,10 @@ public class Exam {
 	public void setNumQuestions(Integer numQuestions) {
 		this.numQuestions = numQuestions;
 	}
-	public Date getTimeFinishing() {
+	public Timestamp getTimeFinishing() {
 		return timeFinishing;
 	}
-	public void setTimeFinishing(Date timeFinishing) {
+	public void setTimeFinishing(Timestamp timeFinishing) {
 		this.timeFinishing = timeFinishing;
 	}
 	public Integer getCourseID() {
