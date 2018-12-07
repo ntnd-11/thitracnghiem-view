@@ -23,14 +23,11 @@
     </div>
   </footer>
   <!--/ Footer-->
-
   <script src="${pageContext.request.contextPath}/assetquiz/js/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/assetquiz/js/jquery.easing.min.js"></script>
   <script src="${pageContext.request.contextPath}/assetquiz/js/bootstrap.min.js"></script>
-  
   <script src="${pageContext.request.contextPath}/assetquiz/js/custom.js"></script>
   <script src="${pageContext.request.contextPath}/assetquiz/contactform/contactform.js"></script>
-
    <script src="${pageContext.request.contextPath}/assetquiz/js/jquery-3.3.1.min.js"></script>
     <!-- //js -->
     <!-- script for calendar -->

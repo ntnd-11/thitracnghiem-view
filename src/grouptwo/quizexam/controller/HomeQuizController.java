@@ -10,8 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import grouptwo.quizexam.model.Exam;
+import grouptwo.quizexam.model.User;
 import grouptwo.quizexam.service.ExamService;
 import grouptwo.quizexam.service.SubjectService;
 
@@ -35,9 +37,9 @@ public class HomeQuizController extends HttpServlet {
 	 */
 	@SuppressWarnings("null")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		int idUser=2;
+		HttpSession sessionn=request.getSession();
+		User user=(User) sessionn.getAttribute("loginedUser");
+		int idUser=user.getUserId();
 		List<Integer> lsIdExamOfUser=ExamService.getLsIdOfUser(idUser);
 		List<Exam> lsExamOfUser=new ArrayList<>();
 		

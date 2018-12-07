@@ -31,10 +31,8 @@
 			<li><a href="./ManageExam.jsp"> <i class="nc-icon nc-pin-3"></i>
 					Quản Lý Đề Thi
 			</a></li>
-			<!-- End Đề thi -->
-
-
-			<!-- Sinh viên -->
+			<!--End Đề thi-->
+			<!--Sinh viên-->
 
 			<li>
 				<a href="./listStudent.jsp"> 
