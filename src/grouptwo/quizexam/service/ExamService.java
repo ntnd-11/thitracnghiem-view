@@ -22,7 +22,6 @@ public class ExamService extends BaseService{
 		try {
 			ResultSet rs = excuteQuery(query);
 			while (rs.next()) {
-<<<<<<< HEAD
 				Exam exam = new Exam(
 						rs.getInt("Id"), 
 						rs.getString("name"),
@@ -37,22 +36,6 @@ public class ExamService extends BaseService{
 						rs.getInt("numEasy"), 
 						rs.getInt("limitTime"));
 				lstExams.add(exam);
-=======
-				Exam course = new Exam(
-						rs.getInt("Id"), 
-						rs.getString("name"),
-						rs.getDate("timeStarting"), 
-						rs.getInt("numQuestions"), 
-						rs.getDate("timeFinishing"), 
-						rs.getInt("courseID"), 
-						rs.getBoolean("activate"), 
-						rs.getInt("creatorID"), 
-						rs.getInt("numDifficult"), 
-						rs.getInt("numNormal"), 
-						rs.getInt("numEasy"), 
-						rs.getInt("limitTime"));
-				lstExams.add(course);
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 	        }
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -68,7 +51,6 @@ public class ExamService extends BaseService{
 			ResultSet rs = excuteQuery(query);
 			rs.next();
 			Exam exams = new Exam(rs.getInt("Id"), 
-<<<<<<< HEAD
 					rs.getString("name"),
 					rs.getTimestamp("timeStarting"), 
 					rs.getInt("numQuestions"), 
@@ -80,19 +62,6 @@ public class ExamService extends BaseService{
 					rs.getInt("numNormal"), 
 					rs.getInt("numEasy"), 
 					rs.getInt("limitTime"));
-=======
-					rs.getString("Name"),
-					rs.getDate("TimeStarting"), 
-					rs.getInt("NumQuestions"), 
-					rs.getDate("TimeFinishing"), 
-					rs.getInt("Course"), 
-					rs.getBoolean("Activate"), 
-					rs.getInt("Creator"), 
-					rs.getInt("NumDiffi"), 
-					rs.getInt("NumNormal"), 
-					rs.getInt("NumEasy"), 
-					rs.getInt("LimitTime"));
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 			return exams;
 		}
 		catch(SQLException e)
@@ -102,7 +71,6 @@ public class ExamService extends BaseService{
 		}
 		return null;
 	}
-<<<<<<< HEAD
 	public static List<Integer> getLsIdOfUser(int idUser)
 	{
 		List<Integer> lsId=null;
@@ -122,9 +90,6 @@ public class ExamService extends BaseService{
 		}
 		return lsId;
 	}
-=======
-	
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 	/*public Exam getExamByName(String subject) {
 		String query = "Select * from Exams where Name = " +subject;
 		try
@@ -188,21 +153,13 @@ public class ExamService extends BaseService{
 	}
 	public static boolean UpdateExam(Exam exam)
 	{
-<<<<<<< HEAD
 		String query="update Exams set exams.Name=? ,TimeStarting=?,NumQuestions=?,TimeFinishing=?,Subject=?,Avtivate=?,Creator=? where Id=?";
-=======
-		String query="update Exams set exams.Name=? ,TimeStarting=?,NumQuestions=?,TimeFinishing=?,Course=?,Avtivate=?,Creator=? where Id=?";
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 		List<Object> params=new ArrayList<>();
 		params.add(exam.getName());
 		params.add(exam.getTimeStarting());
 		params.add(exam.getNumQuestions());
 		params.add(exam.getTimeFinishing());
-<<<<<<< HEAD
 		params.add(exam.getSubjectId());
-=======
-		params.add(exam.getCourseID());
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 		params.add(exam.isActivate());
 		params.add(exam.getCreatorID());
 		params.add(exam.getId());
@@ -251,11 +208,7 @@ public class ExamService extends BaseService{
 						rs.getTimestamp("TimeStarting"), 
 						rs.getInt("NumQuestions"), 
 						rs.getTimestamp("TimeFinishing"), 
-<<<<<<< HEAD
 						rs.getInt("Subject"), 
-=======
-						rs.getInt("Course"), 
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 						rs.getBoolean("Activate"),	 
 						rs.getInt("Creator"),
 						rs.getInt("NumDiffi"),
@@ -284,11 +237,7 @@ public class ExamService extends BaseService{
 						rs.getTimestamp("TimeStarting"), 
 						rs.getInt("NumQuestions"), 
 						rs.getTimestamp("TimeFinishing"), 
-<<<<<<< HEAD
 						rs.getInt("Subject"), 
-=======
-						rs.getInt("Course"), 
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 						rs.getBoolean("Activate"),	 
 						rs.getInt("Creator"),
 						rs.getInt("NumDiffi"),
@@ -304,7 +253,6 @@ public class ExamService extends BaseService{
 		}
 		return null;
 	}
-<<<<<<< HEAD
 	public static boolean addExam(Exam exam)
 	{
 		String query="Insert into onlinequiz.exams(Name,TimeStarting,TimeFinishing,NumQuestions,Subject,Activate,Creator,NumDiffi,NumNormal,NumEasy,LimitTime) "
@@ -331,8 +279,6 @@ public class ExamService extends BaseService{
 		
 		return false;
 	}
-=======
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 
 	
 

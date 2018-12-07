@@ -9,10 +9,8 @@ public class Answer implements Serializable {
 	private int id;
 	private Integer questionId;
 	private String answer;
-<<<<<<< HEAD
+
 	private boolean isTick;
-=======
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 	public Answer() {
 	}
 
@@ -50,7 +48,6 @@ public class Answer implements Serializable {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-<<<<<<< HEAD
 
 	public boolean getisTick() {
 		return isTick;
@@ -61,6 +58,4 @@ public class Answer implements Serializable {
 	}
 
 	
-=======
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 }

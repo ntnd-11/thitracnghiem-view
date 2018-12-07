@@ -1,9 +1,6 @@
 package grouptwo.quizexam.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,10 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.model.Profilestudent;
-import grouptwo.quizexam.model.Question;
 import grouptwo.quizexam.model.User;
 import grouptwo.quizexam.service.ProfilestudentService;
-import grouptwo.quizexam.service.QuestionService;
 import grouptwo.quizexam.service.UserService;
 
 

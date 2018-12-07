@@ -15,15 +15,13 @@ public class Question {
 	private Answer answerCorrect;
 	private int creatorID;
 	private int correctAnswerID;
-<<<<<<< HEAD
 	private boolean isTick;
-=======
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 
 	
 	public Question() {
 		super();
 	}
+
 	public Question(int questionId, String question, String image, String level,int subjectID,int creatorID,
 			int correctAnswerID) {
 		this.questionId = questionId;
@@ -38,23 +36,26 @@ public class Question {
 		this.lsAnswer= AnswerService.getAnswersByIdForQuestion(questionId);
 		this.answerCorrect= AnswerService.getAnswersById(correctAnswerID);
 	}
-<<<<<<< HEAD
 	public Question( String question, String image, String level,int creatorID,
 			int correctAnswerID, int subjectID) {
-=======
-	public Question( String question, String image, String level, int subjectID,
-			int correctAnswerID,int creatorID,int questionId) {
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 		this.question = question;
 		this.image = image;
 		this.level = level;
 		this.subjectID = subjectID;
 		this.creatorID = creatorID;
 		this.correctAnswerID = correctAnswerID;
-<<<<<<< HEAD
-=======
+	}
+
+	public Question( String question, String image, String level, int subjectID,
+			int correctAnswerID,int creatorID,int questionId) {
+		this.question = question;
+		this.image = image;
+		this.level = level;
+		this.subjectID = subjectID;
+		this.creatorID = creatorID;
+		this.correctAnswerID = correctAnswerID;
+
 		this.questionId=questionId;
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
 	}
 	public int getQuestionId() {
 		return questionId;
@@ -114,7 +115,6 @@ public class Question {
 	public void setAnswerCorrect(Answer answerCorrect) {
 		this.answerCorrect = answerCorrect;
 	}
-<<<<<<< HEAD
 	public boolean getIsTick() {
 		return isTick;
 	}
@@ -123,11 +123,4 @@ public class Question {
 	}
 
 		
-	
 }
-=======
-
-		
-	
-}
->>>>>>> 8f40102d5dab577a2fe25fff6221cca96e6598d0
