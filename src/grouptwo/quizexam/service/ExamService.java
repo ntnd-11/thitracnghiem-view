@@ -182,6 +182,7 @@ public class ExamService extends BaseService{
 			return executeUpdate(query, params);
 
 		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
 		}
 
 		return false;
