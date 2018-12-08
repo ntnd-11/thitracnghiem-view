@@ -105,7 +105,7 @@
 				<button type="submit" class="btn btn-info col-3">
 					<i class="fa fa-save"></i>Lưu thay đổi
 				</button>
-				 <a href="./listSubject.html" class="btn btn-danger col-3"> <i
+				 <a href="${pageContext.request.contextPath}/ListCourses" class="btn btn-danger col-3"> <i
 					class="fa fa-times"></i> Hủy
 				</a>
 			</div>

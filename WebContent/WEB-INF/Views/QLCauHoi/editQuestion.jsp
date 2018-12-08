@@ -155,9 +155,9 @@
 				</button>
 
 
-				<button class="btn btn-danger col-3">
-					<i class="fa fa-times"></i> Hủy
-				</button>
+				<a href="${pageContext.request.contextPath}/ListQuestion" class="btn btn-danger col-3"> <i
+					class="fa fa-times"></i> Hủy
+				</a>
 			</div>
 		</div>
 	</form>

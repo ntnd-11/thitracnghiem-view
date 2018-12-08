@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.model.Profilestudent;
 import grouptwo.quizexam.model.User;
+import grouptwo.quizexam.service.CourseService;
 import grouptwo.quizexam.service.ProfilestudentService;
 import grouptwo.quizexam.service.UserService;
 
@@ -39,15 +40,21 @@ public class EditAllStudentController extends HttpServlet {
 		request.setAttribute("profilestudent", profilestudent);
 		request.setAttribute("user", user);
 		
-
+		String contextPath;
 		 RequestDispatcher dispatcher;
 		 switch(command)
 			{
 			case "delete":
 			
 				ProfilestudentService.deleteProfilestudent(Integer.parseInt(id));
-				String contextPath=request.getContextPath();
+				 contextPath=request.getContextPath();
 				response.sendRedirect(contextPath+"/ListAllStudent");
+				break;
+			case "deleteFor":
+				
+				CourseService.deleteDetailCourse(Integer.parseInt(id));
+				 contextPath=request.getContextPath();
+				response.sendRedirect(contextPath+"/ListStudent");
 				break;
 			case "update":
 		
@@ -75,7 +82,7 @@ public class EditAllStudentController extends HttpServlet {
 		String PhoneNumber=request.getParameter("PhoneNumber");
 		String DateOfBirth=request.getParameter("DateOfBirth");
 		String GenDer=request.getParameter("GenDer");
-		//String GenDer="Nữ";
+		//String GenDer="Ná»¯";
 		String Country=request.getParameter("Country");
 		String Adress=request.getParameter("Adress");
 		String Religion=request.getParameter("Religion");

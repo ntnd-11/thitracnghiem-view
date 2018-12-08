@@ -29,7 +29,14 @@ public class User {
 		this.activate = activate;
 		this.roleObject=RoleuserService.getRoleUserById(roleuser);
 	}
-
+	public User(String userName, String email, String password, Integer roleuser, boolean activate,int id) {
+		this.userName = userName;
+		this.roleuser = roleuser;
+		this.email = email;
+		this.password = password;
+		this.activate = activate;
+		this.userId=id;
+	}
 	public User(String userName, String email, String password, Integer roleuser, boolean activate) {
 		this.userName = userName;
 		this.roleuser = roleuser;

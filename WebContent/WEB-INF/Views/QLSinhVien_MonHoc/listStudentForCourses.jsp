@@ -74,10 +74,9 @@
 												data-target="#modalStudent">
 												<i class="fa fa-eye"></i>
 											</button>
-											<button class="btn btn-danger" data-toggle="modal"
-												data-target="#modalConfirmDeleting">
-												<i class="fa fa-trash"></i>
-											</button>
+											<a
+												href="${pageContext.request.contextPath}/EditAllStudent?command=deleteFor&id=${item.studentId}"
+												class="btn btn-danger"> <i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
 
