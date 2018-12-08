@@ -1,4 +1,3 @@
- 
 package grouptwo.quizexam.service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,7 +38,7 @@ public class QuestionService extends BaseService {
 		}
 		return null;
 	}
-	
+
 	public static List<Question> getAllQuestions(int firstReSult,int amoutResult) {
 		String query = "select * from questions order by Id LIMIT ?,?";
 		List<Object> param=new ArrayList<>();
@@ -67,6 +66,33 @@ public class QuestionService extends BaseService {
 		}
 		return null;
 	
+	}
+	public static List<Question> getQuestionForExam(int idExam)
+	{
+		String sql="select questions.Question,questions.CorrectAnswer,questions.Creator,questions.Id,questions.Level,questions.Subject,questions.Image  "
+				+ " from detailexams,questions where detailexams.question=questions.id and detailexams.exam=?";
+		List<Object> param=new ArrayList<>();
+		param.add(idExam);
+		List<Question> lstQuestions = new ArrayList<>();
+		try {
+			ResultSet rs = excuteQuery(sql,param);
+			while (rs.next()) {
+				Question questions = new Question(
+						rs.getInt("Id"),
+						rs.getString("Question"),
+						rs.getString("Image"),
+						rs.getString("Level"),
+						rs.getInt("Subject"),
+						rs.getInt("Creator"),
+						rs.getInt("CorrectAnswer"));
+				lstQuestions.add(questions);
+			}
+			return lstQuestions;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			
+		}
+		return null;
 	}
 	public static int returnIdQuestionAfterInsert(Question qus)
 	{
@@ -153,7 +179,29 @@ public class QuestionService extends BaseService {
 		}
 		return null;
 	}
+	public static Question getQuestionsBySubjectId(int id) {
+		String query = "Select * from onlinequiz.questions where Id = " +id;
+		try
+		{
+			ResultSet rs = excuteQuery(query);
+			rs.next();
+			Question question = new Question(
+					rs.getInt("Id"),
+					rs.getString("Question"),
+					rs.getString("Image"),
+					rs.getString("Level"),
+					rs.getInt("Subject"),					
+					rs.getInt("Creator"),
+					rs.getInt("CorrectAnswer"));
+			return question;
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
 
+		}
+		return null;
+	}
 	public static Question getQuestionsByName(String question) {
 		String query = "Select * from onlinequiz.questions where Question = " +question;
 		try
@@ -196,18 +244,17 @@ public class QuestionService extends BaseService {
 					+ "Question = ?,"
 					+ "Image = ?,"
 					+ "Level = ?,"
-					
-					+ "Subject = ?,"
+					+ "Creator = ?,"
 					+ "CorrectAnswer = ?,"
-					+ "Creator = ? "
+					+ "Subject = ? "
 					+ "Where Id= ?";
 			List<Object> params= new ArrayList<>();
 			params.add(question.getQuestion());
 			params.add(question.getImage());
 			params.add(question.getLevel());
-			params.add(question.getSubjectID());
-			params.add(question.getCorrectAnswerID());
 			params.add(question.getCreatorID());
+			params.add(question.getCorrectAnswerID());
+			params.add(question.getSubjectID());
 			params.add(question.getQuestionId());
 			try {
 				boolean action = executeUpdate(query, params);
@@ -304,33 +351,62 @@ public class QuestionService extends BaseService {
 		}
 		return lstQuestion;
 
-	}
-	public static List<Question> getQuestionForExam(int idExam)
-	{
-		String sql="select questions.Question,questions.CorrectAnswer,questions.Creator,questions.Id,questions.Level,questions.Subject,questions.Image  "
-				+ " from detailexams,questions where detailexams.question=questions.id and detailexams.exam=?";
-		List<Object> param=new ArrayList<>();
-		param.add(idExam);
-		List<Question> lstQuestions = new ArrayList<>();
+	}	
+	public static List<Question> getQuestionByExamId(int examId) {
+		String query = "select * from Questions q join detailexams de on q.Id = de.Question\r\n" + 
+				"where de.Exam = ? ";
+		List<Object> params = new ArrayList<>();
+		params.add(examId);
+		List<Question> lstQuestion = new ArrayList<>();
 		try {
-			ResultSet rs = excuteQuery(sql,param);
+			ResultSet rs = excuteQuery(query,params);
 			while (rs.next()) {
-				Question questions = new Question(
+				Question question = new Question(
 						rs.getInt("Id"),
-						rs.getString("Question"),
-						rs.getString("Image"),
-						rs.getString("Level"),
-						rs.getInt("Subject"),
-						rs.getInt("Creator"),
-						rs.getInt("CorrectAnswer"));
-				lstQuestions.add(questions);
+						rs.getString("Question"), 
+						rs.getString("Image"), 
+						rs.getString("Level"), 
+						rs.getInt("Creator"), 
+						rs.getInt("CorrectAnswer"), 
+						rs.getInt("Subject"));
+				lstQuestion.add(question);
 			}
-			return lstQuestions;
+			return lstQuestion;
+			
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 			
 		}
-		return null;
-	}
-	
+		return lstQuestion;
+
+	}	
+	public static List<Question> getQuestionBySubjectId(int subjectId) {
+		String query = "Select * from onlinequiz.questions where subject = ?";
+		List<Object> params = new ArrayList<>();
+		params.add(subjectId);
+		
+		List<Question> lstQuestion = new ArrayList<>();
+
+		try {
+			ResultSet rs = excuteQuery(query,params);
+			while (rs.next()) {
+				Question question = new Question(
+						rs.getInt("Id"),
+						rs.getString("Question"), 
+						rs.getString("Image"), 
+						rs.getString("Level"), 
+						rs.getInt("Creator"), 
+						rs.getInt("CorrectAnswer"), 
+						rs.getInt("Subject"));
+				lstQuestion.add(question);
+			}
+			return lstQuestion;
+			
+		} catch (SQLException e) {
+			
+		}
+		return lstQuestion;
+
+	}	
 }
+
+

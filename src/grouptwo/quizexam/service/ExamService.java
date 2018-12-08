@@ -73,10 +73,9 @@ public class ExamService extends BaseService{
 	}
 	public static List<Integer> getLsIdOfUser(int idUser)
 	{
-		
 		List<Integer> lsId=null;
 		List<Object> param=new ArrayList<>();
-		String sql="select exam from detailcourses dc, detailcourseexams dce where dc.course = dce.course and dc.student = ? and (student,exam) not in (select Student,Exam from resulttests) ";
+		String sql="select exam from detailcourses dc, detailcourseexams dce where dc.course = dce.course and dc.student = ? and (student,exam) not in (select Student,Exam from resulttests)";
 		param.add(idUser);
 		try {
 			lsId=new ArrayList<>();
@@ -154,7 +153,18 @@ public class ExamService extends BaseService{
 	}
 	public static boolean UpdateExam(Exam exam)
 	{
-		String query="update Exams set exams.Name=? ,TimeStarting=?,NumQuestions=?,TimeFinishing=?,Subject=?,Avtivate=?,Creator=? where Id=?";
+		String query="update Exams set Name=?,"
+				+ "TimeStarting=?,"
+				+ "NumQuestions=?,"
+				+ "TimeFinishing=?,"
+				+ "Subject=?,"
+				+ "Activate=?,"
+				+ "Creator=?,"
+				+ "NumDiffi=?,"
+				+ "NumNormal=?,"
+				+ "NumEasy=?,"
+				+ "LimitTime=?  "
+				+ "where Id=?";
 		List<Object> params=new ArrayList<>();
 		params.add(exam.getName());
 		params.add(exam.getTimeStarting());
@@ -162,10 +172,13 @@ public class ExamService extends BaseService{
 		params.add(exam.getTimeFinishing());
 		params.add(exam.getSubjectId());
 		params.add(exam.isActivate());
-		params.add(exam.getCreatorID());
+		params.add(null);
+		params.add(exam.getNumDifficult());
+		params.add(exam.getNumNormal());
+		params.add(exam.getNumEasy());
+		params.add(exam.getLimitTime());
 		params.add(exam.getId());
 		try {
-
 			return executeUpdate(query, params);
 
 		} catch (SQLException ex) {
