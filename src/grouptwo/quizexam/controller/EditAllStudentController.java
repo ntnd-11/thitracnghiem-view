@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.model.Profilestudent;
 import grouptwo.quizexam.model.User;
+import grouptwo.quizexam.service.CourseService;
 import grouptwo.quizexam.service.ProfilestudentService;
 import grouptwo.quizexam.service.UserService;
 
@@ -51,7 +52,7 @@ public class EditAllStudentController extends HttpServlet {
 				break;
 			case "deleteFor":
 				
-				//	ProfilestudentService.deleteProfilestudent(Integer.parseInt(id));
+				CourseService.deleteDetailCourse(Integer.parseInt(id));
 				 contextPath=request.getContextPath();
 				response.sendRedirect(contextPath+"/ListStudent");
 				break;

@@ -103,6 +103,19 @@ public class CourseService extends BaseService {
 		}
 		return false;
 	}
+	public static boolean deleteDetailCourse(int id) {
+		String query = "DELETE FROM onlinequiz.detailcourses WHERE Id = ?";
+		
+		List<Object> params = new ArrayList<>();
+		params.add(id);
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public static boolean updateCourse(Course course)
 	{
 		String query = "UPDATE onlinequiz.courses SET Subject= ? ,DateOfStarting= ? , DateOfEnding= ? , DateOfWeek= ? ,PartOfStarting = ? , PartOfEnding= ? ,NumOfStudents= ? , Room = ? ,Activate = ?,Teacher = ? ,Name= ? WHERE Id=?";
@@ -220,6 +233,8 @@ public class CourseService extends BaseService {
 		}
 		return lstCourse;
 	}
+
+
 
 
 

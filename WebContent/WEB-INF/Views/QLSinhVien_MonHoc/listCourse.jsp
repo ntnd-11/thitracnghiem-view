@@ -9,7 +9,7 @@
 				<div class="card-header">
 					<div class="row">
 						<div class="col-md-3">
-							<h4 class="card-title">Danh sách Môn Học</h4>
+							<h4 class="card-title">Danh sách Lớp Học</h4>
 						</div>
 						<div class="col-md-3">
 							<a class="btn btn-success" href="${pageContext.request.contextPath}/AddCourse"> <i
