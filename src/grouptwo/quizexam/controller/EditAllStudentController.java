@@ -50,12 +50,7 @@ public class EditAllStudentController extends HttpServlet {
 				 contextPath=request.getContextPath();
 				response.sendRedirect(contextPath+"/ListAllStudent");
 				break;
-			case "deleteFor":
-				
-				CourseService.deleteDetailCourse(Integer.parseInt(id));
-				 contextPath=request.getContextPath();
-				response.sendRedirect(contextPath+"/ListStudent");
-				break;
+			
 			case "update":
 		
 					  dispatcher = request.getServletContext()
@@ -82,7 +77,7 @@ public class EditAllStudentController extends HttpServlet {
 		String PhoneNumber=request.getParameter("PhoneNumber");
 		String DateOfBirth=request.getParameter("DateOfBirth");
 		String GenDer=request.getParameter("GenDer");
-		//String GenDer="Nữ";
+		//String GenDer="Ná»¯";
 		String Country=request.getParameter("Country");
 		String Adress=request.getParameter("Adress");
 		String Religion=request.getParameter("Religion");

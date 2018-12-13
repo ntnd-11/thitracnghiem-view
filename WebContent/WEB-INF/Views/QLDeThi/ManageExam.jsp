@@ -70,7 +70,7 @@
 										<td>${item.timeFinishing}</td>
 										<td>${item.name}</td>
 										<td>${item.numQuestions}</td>
-										<td><a href="${pageContext.request.contextPath}/EditExams?command=update&id=${item.id}"><i class="fa fa-edit float-right"
+										<td><a href="${pageContext.request.contextPath}/EditExam?examId=${item.id}"><i class="fa fa-edit float-right"
 												style="font-size: 36px"></i></a>
 												 <a href="${pageContext.request.contextPath}/EditExams?command=delete&id=${item.id}"><i
 												class="fa fa-trash-o float-left" style="font-size: 36px"></i></a>

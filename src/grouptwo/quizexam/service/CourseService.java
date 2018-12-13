@@ -1,3 +1,4 @@
+
 package grouptwo.quizexam.service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -116,6 +117,21 @@ public class CourseService extends BaseService {
 		}
 		return false;
 	}
+	//xoa sinh vien ra khoi lop hoc
+	public static boolean deleteDetailCourseInClass(int idCourse,int student) {
+		String query = "DELETE FROM onlinequiz.detailcourses WHERE Course = ? and Student=?";
+		
+		List<Object> params = new ArrayList<>();
+		params.add(idCourse);
+		params.add(student);
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public static boolean updateCourse(Course course)
 	{
 		String query = "UPDATE onlinequiz.courses SET Subject= ? ,DateOfStarting= ? , DateOfEnding= ? , DateOfWeek= ? ,PartOfStarting = ? , PartOfEnding= ? ,NumOfStudents= ? , Room = ? ,Activate = ?,Teacher = ? ,Name= ? WHERE Id=?";
@@ -143,6 +159,7 @@ public class CourseService extends BaseService {
 		return false;
 
 	}
+	
 	public static boolean addCourse(Course course) {
 		String query = "INSERT INTO onlinequiz.courses (Subject, DateOfStarting, DateOfEnding,DateOfWeek,PartOfStarting,PartOfEnding,NumOfStudents,Room,Activate,Name) " + 
 				"VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -236,7 +253,6 @@ public class CourseService extends BaseService {
 
 
 
-
-
 	
+
 }

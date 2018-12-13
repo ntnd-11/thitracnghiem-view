@@ -115,4 +115,30 @@ public class UserService extends BaseService {
 
 
 	}
+	public static User findAcc(String userName, String password) {
+		String sql="select * from users where UserName=? and Password=?";
+		List<Object> param=new ArrayList<>();
+		param.add(userName);
+		param.add(password);
+		try
+		{
+			ResultSet rs= excuteQuery(sql,param);
+			while(rs.next())
+			{
+				User users = new User(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getBoolean(6));
+				return users;
+			}
+			
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
 }

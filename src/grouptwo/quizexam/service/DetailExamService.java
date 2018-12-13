@@ -53,11 +53,11 @@ public class DetailExamService extends BaseService {
 		return null;
 	}
 
-	public static boolean deleteDetailExams(int id1, int id2) {
+	public static boolean deleteDetailExams(int examId, int questionId) {
 		String query="Delete from detailexams where Exam=? and Question=?";
 		List<Object> params= new ArrayList<>();
-		params.add(id1);
-		params.add(id2);
+		params.add(examId);
+		params.add(questionId);
 		try {
 			boolean action = executeUpdate(query, params);
 			return action;

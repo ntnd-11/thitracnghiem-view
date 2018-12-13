@@ -8,15 +8,12 @@
                         <div class="card card-user">
                             <div class="row justify-content-center my-2">
                             	<div class="col-lg-10">
-                                    <select class="form-control my-2" id="sltCourse">
-                                     	<option value="${ course.subjectId }" selected> ${course.name}</option>
-                                    	<c:forEach items="${ lstCourseSubject}" var="co" >
- 											<option value="${ co.subjectId }"> ${co.name}</option>
+                                    <select class="form-control my-2" id="sltSubject">
+                                     	<option value="${ subject.subjectID }" selected> ${subject.subjectName}</option>
+                                    	<c:forEach items="${ lstSubject }" var="su" >
+ 											<option value="${ su.subjectID }"> ${su.subjectName}</option>
 										</c:forEach>
                                     </select>
-                                </div>
-                                <div class="col-lg-10">
-                                    <input type="text" readonly class="form-control my-2" placeholder="Môn học" id="subject" value="${subject.subjectName}">
                                 </div>
 
                             </div>
@@ -67,32 +64,32 @@
                                 <h4 class="card-title"><b>Tùy Chọn</b></h4>
                             </div>
                             <div class="card-body">
-                            <form action="${pageContext.request.contextPath}/AddExam" method="post" id="frmAddExam">
+                            <form action="${pageContext.request.contextPath}/EditExam" method="post" id="frmEditExam">
                                 <ul class="list-unstyled ">
                                     <li>
                                     	<p class="my-1"> Thời gian mở đề </p>
                                         <div class="my-1">
-                                            <input type="datetime-local" class="form-control" placeholder="Thời Gian Mở" name="timeOpen">
+                                            <input type="datetime-local" class="form-control" placeholder="Thời Gian Mở" name="timeOpen" value="${timeOpen}">
                                         </div>
                                     </li>
                                     <li>
                                         <p class="my-1"> Thời gian đóng đề </p>
                                     
                                         <div class="my-1">
-                                            <input type="datetime-local" class="form-control" placeholder="Thời gian đóng" name="closeTime">
+                                            <input type="datetime-local" class="form-control" placeholder="Thời gian đóng" name="closeTime"  value="${closeTime}">
                                         </div>
                                     </li>
                                     	
                                     <li>
                                     	<p class="my-1"> Tên bài thi </p>
                                     	<div class="my-1">	
-                                        	<input type="text" class="form-control" placeholder="Tên bài thi" name="nameExam" >
+                                        	<input type="text" class="form-control" placeholder="Tên bài thi" name="nameExam" value="${nameExam}" >
 										</div>
                                     </li>
                                     <li>
                                     	<p class="my-1"> Thời gian làm (phút) </p>
                                     	<div class="my-1">	
-                                        	<input type="number" name="limitTime" class="form-control" placeholder="Thời gian làm bài">
+                                        	<input type="number" name="limitTime" class="form-control" placeholder="Thời gian làm bài" value="${limitTime}">
 										</div>
                                     </li>
                                 </ul>
@@ -102,9 +99,11 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card card-user">
-                            <div class="card-header row mx-2">
+                            <div class="card-header row mx-2 justify-content-center">
                                 <h5 class="card-title col-8">Danh Sách Câu Hỏi</h5>
-                                <button class="btn btn-danger col-4" id="btnDeleteAll"> Xóa toàn bộ</button>
+                                <button class="btn btn-danger col-4" id="btnDeleteAll"> Xóa toàn bộ </button>
+                                <button class="btn btn-info col-4" id="btnAdd"> Thêm câu hỏi </button>
+                                
                             </div>
                             <div class="card-body">
                                 <table class="table">
@@ -117,13 +116,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    	<tr id="frameAdd" class="my-3">
+	                                            <td colspan="4" class="my-3">
+	                                            	 <select class="form-control slcQuestion" class="my-3" id="addQuestion">
+	                                            		<option selected> Chọn câu hỏi thêm vào<option>
+		                                            	<c:forEach items="${lstQuestionChoose}" var="qe">
+															<option  value="${qe.questionId}"> ${qe.question}<option>
+														</c:forEach>
+	                                            	
+	                                            	</select>
+	                                            </td>
+	                                        </tr>
                                        <c:forEach items="${lstCurrentQuestion}" var="question" varStatus="loop">
                                     
                                             <tr id= "frameQuestion_${loop.index}" >
 	                                            <td> ${question.questionId } </td>
 	                                            <td>
-	                                            	 <select class="form-control">
-	                                            		<option selected value=" ${question.questionId} "> ${ question.question }<option>
+	                                            	 <select class="form-control slcQuestion" data-id="${question.questionId}">
+	                                            		<option selected value="${question.questionId}" id="nowQuestion" > ${ question.question }<option>
+		                                            	<c:forEach items="${lstQuestionChoose}" var="qe">
+															<option  value="${qe.questionId}"> ${qe.question}<option>
+														</c:forEach>
+	                                            	
 	                                            	</select>
 	                                            </td>
 	                                            <td>
@@ -153,7 +167,7 @@
                                     <ul class="pagination">
                                         
                                         <c:forEach var="i" begin="1" end="${numberPage}">
-											<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/AddExam?page=${i}">${i}</a>
+											<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/EditExam?page=${i}">${i}</a>
 											</li>
 										</c:forEach>
 																				
@@ -166,9 +180,10 @@
                 
             	</div>
             	<div class="row justify-content-center">
-            	      <button type="button" class="btn btn-success btn-round col-8" id="btnAddExam"> Tạo Đề Thi </button>           	
+            	      <button type="button" class="btn btn-success btn-round col-8" id="btnEditExam"> Sửa Đề Thi </button>           	
             	</div>
 <script>
+			$('#frameAdd').hide();
          	$(document).ready(function() {
                 $('#btnCreateExam').click(function(){
                     var difficult = $('#difficult').val();
@@ -186,24 +201,31 @@
                     	}
 	                    else    
 	                        {
-	                            var link = '/WebThi/AddExam?difficult='+difficult+'&normal='+normal+'&easy='+easy;
+	                            var link = '/WebThi/EditExam?difficult='+difficult+'&normal='+normal+'&easy='+easy;
 	                            window.location=link;
 	                        }
                    });
              $('.btnDelete').click(function(){
            	  	var id = $(this).data("id");
 
-                var link = '/WebThi/AddExam?deleteId='+id+'&action=DELETE';
+                var link = '/WebThi/EditExam?deleteId='+id+'&action=DELETE';
                 window.location=link;
-				//deleteQuestion(index);
 			  });
+             
+             $('.slcQuestion').change(function(){
+            	 var oldQues = $(this).data('id');
+            	 var newQues = $(this).val();
+                 var link = '/WebThi/EditExam?action=UPDATE&replaceId='+oldQues+'&newId='+newQues;
+                 window.location=link;
+ 			  });
+             
               $('#btnDeleteAll').click(function(){
-                 var link = '/WebThi/AddExam?action=DELETEALL';
+                 var link = '/WebThi/EditExam?action=DELETEALL';
                  window.location=link;
  				//deleteQuestion(index);
  			  });
 
-        	  $('#sltCourse').change(function(){
+        	  $('#sltSubject').change(function(){
         		  var id = $(this).val();
         		  selectSubject(id);
         	  });
@@ -216,14 +238,25 @@
         	  $('#difficult').change(function(){
         		  update();
         	  });
-        	  $('#btnAddExam').click(function(){
-        		/* if(false)
-        	  	{
-        			  
-        	  	}
-        		else */
-        			$('#frmAddExam').submit();
+        	  $('#btnEditExam').click(function(){
+        			$('#frmEditExam').submit();
         	  });
+        	  
+        	  $('#btnAdd').click(function(){
+                  $('#frameAdd').show();
+  			  });
+        	  
+        	  $('.slcQuestion').change(function(){
+             	 var oldQues = $(this).data('id');
+             	 var newQues = $(this).val();
+                  var link = '/WebThi/EditExam?action=UPDATE&replaceId='+oldQues+'&newId='+newQues;
+                  window.location=link;
+  			  });
+        	  $("#addQuestion").change(function(){
+              	 var newQues = $(this).val();
+                   var link = '/WebThi/EditExam?action=ADD&newId='+newQues;
+                   window.location=link;
+   			  });
          	});
         function update()
         {
@@ -236,17 +269,21 @@
         }
 		function selectSubject(subjectId) {
 			$.ajax({
-				url : '${pageContext.request.contextPath}/AddExam?subjectId='+subjectId,
+				url : '${pageContext.request.contextPath}/EditExam?subjectId='+subjectId,
 				type : 'PUT',
 				contentType : "json",
 				success : function(data) {
-					var obj = $.parseJSON(data);
-					console.log(obj);
-					$("#subject").val(obj.subjectName);
+					if (data!=""){
+						var obj = $.parseJSON(data);
+						console.log(obj);
+
+					}
+					else{
+						alert("Không thể đổi môn học khi đã có danh sách câu hỏi");
+					}
 				}
 		});
+
 	};
 </script>
 </t:WrapperAdmin>
-            
-

@@ -55,7 +55,7 @@ public class maina {
 		String currentDate=dtf.format((LocalDateTime.now())) ;
 		System.out.println(currentDate);*/
 		
-		 SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+		/* SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss");  
 			String currentDate=dtf.format((LocalDateTime.now())) ;
 		 Date d = df.parse(currentDate); 
@@ -69,7 +69,8 @@ public class maina {
 		 Date Sau=df.parse("12/07/2018 01:27:16"); 
 		 
 		 long ConLai=Sau.getTime()-truoc.getTime();
-		 System.out.println(ConLai);
+		 System.out.println(ConLai);*/
+		System.out.println(UserService.findAcc("thanhdat","123456").getRoleObject().getRoleName());
 	}
 	 public static int GetQus(String a) {
 	    	String b[]=a.split("_");
