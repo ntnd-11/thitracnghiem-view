@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import grouptwo.quizexam.model.Exam;
 import grouptwo.quizexam.model.User;
 import grouptwo.quizexam.service.ExamService;
-import grouptwo.quizexam.service.SubjectService;
 
 /**
  * Servlet implementation class HomeQuizController

@@ -11,54 +11,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.data.ParamaterStatic;
-import grouptwo.quizexam.model.Course;
-import grouptwo.quizexam.service.CourseService;
+import grouptwo.quizexam.model.Exam;
+import grouptwo.quizexam.service.ExamService;
 
-/**
- * Servlet implementation class ListSubjectControler
- */
-@WebServlet("/ListCourses")
-public class ListCoursesControler extends HttpServlet {
+@WebServlet("/ListExam")
+public class ListExamController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ListCoursesControler() {
+
+    public ListExamController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		List<Course> coureseLs= null;
+		
+		List<Exam> exl= null;
 		int page=1;
-		if(request.getParameter("page")==null)
+		if(request.getParameter	("page")==null)
 		{
 			int numberPage;
 			//Dem so trang
-			numberPage=lamTron(CourseService.countCourse(),ParamaterStatic.amoutResult);
-			coureseLs=CourseService.getAllCourse(page-1,ParamaterStatic.amoutResult);
+			numberPage=lamTron(ExamService.countExam(),ParamaterStatic.amoutResult);
+			exl=ExamService.getAllExam(page-1,ParamaterStatic.amoutResult);
 			getServletContext().setAttribute("numberPage",numberPage);
 		}
 		else
 		{
 			page=Integer.parseInt(request.getParameter("page"));
-			coureseLs=CourseService.getAllCourse((page-1)*ParamaterStatic.amoutResult,ParamaterStatic.amoutResult);
+			exl=ExamService.getAllExam((page-1)*ParamaterStatic.amoutResult,ParamaterStatic.amoutResult);
 		}	
-		request.setAttribute("list",coureseLs);
+		request.setAttribute("list",exl);
 		RequestDispatcher dispatcher 
         = this.getServletContext()//
-              .getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/listCourse.jsp");
+              .getRequestDispatcher("/WEB-INF/Views/QLDeThi/ManageExam.jsp");
 		 dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

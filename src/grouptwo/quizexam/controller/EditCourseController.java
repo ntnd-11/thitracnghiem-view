@@ -16,14 +16,13 @@ import grouptwo.quizexam.service.CourseService;
 import grouptwo.quizexam.service.SubjectService;
 
 
-@WebServlet("/EditCourses")
-public class EditCoursesController extends HttpServlet {
+@WebServlet("/EditCourse")
+public class EditCourseController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
  
-    public EditCoursesController() {
+    public EditCourseController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,7 +42,7 @@ public class EditCoursesController extends HttpServlet {
 			case "delete":
 				CourseService.deleteCourse(Integer.parseInt(id));
 				String contextPath=request.getContextPath();
-				response.sendRedirect(contextPath+"/ListCourses");
+				response.sendRedirect(contextPath+"/ListCourse");
 				break;
 			case "update":
 		
@@ -61,7 +60,6 @@ public class EditCoursesController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		String command=request.getParameter("command");	
 		String id=request.getParameter("id");
 		////
 		String Subject=request.getParameter("Subject");
@@ -83,7 +81,7 @@ public class EditCoursesController extends HttpServlet {
 				Integer.parseInt(PartOfStarting),Integer.parseInt(PartOfEnding),Integer.parseInt(NumofStudents),Room,Activate,Integer.parseInt(Teacher),Name,Integer.parseInt(id)));
 		
 		String contextPath=request.getContextPath();
-		response.sendRedirect(contextPath+"/ListCourses");
+		response.sendRedirect(contextPath+"/ListCourse");
 		
 		
 		

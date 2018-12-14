@@ -5,7 +5,7 @@
 
 <t:WrapperAdmin>
                          <form method="post" action="${pageContext.request.contextPath}/AddStudentCourse">
-
+		<input type="hidden" name="courseId" value="${course.courseId }">
         <div class="row">
         
             <div class="col-md-12">

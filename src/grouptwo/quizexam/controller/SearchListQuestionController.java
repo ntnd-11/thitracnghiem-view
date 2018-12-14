@@ -16,10 +16,10 @@ import grouptwo.quizexam.model.Question;
 import grouptwo.quizexam.service.QuestionService;
 
 @WebServlet("/SearchListQuestion")
-public class SearchListQuestionControler extends HttpServlet {
+public class SearchListQuestionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public SearchListQuestionControler() {
+    public SearchListQuestionController() {
         super();
         // TODO Auto-generated constructor stub
     }

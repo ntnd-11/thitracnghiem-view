@@ -12,7 +12,7 @@
 							<h5 class="card-title">Danh sách Sinh viên</h5>
 						</div>
 						<div class="col-md-3">
-							<a class="btn btn-success" href="./addStudent.jsp"> <i
+							<a href="${pageContext.request.contextPath}/AddStudentCourse?id=${idCourse}" class="btn btn-success" id="btnAddStudentCourse"> <i
 								class="fa fa-plus"></i> Thêm sinh viên
 							</a>
 						</div>
@@ -32,14 +32,15 @@
 				<div class="card-body">
 					<div class="row justify-content-center">
 						<div class="col-md-8">
-							<select class="custom-select" id="inputGroupSelect01" onchange="location = this.value;">
+							<select class="custom-select" id="sltCourse" onchange="location = this.value;">
 								<option selected>Chọn lớp ...</option>
 							
 								<c:forEach items="${lsCourses}" var="item">
-									<option value="${pageContext.request.contextPath}/ListStudent?idCourse=${item.courseId}">${item.courseId}----${item.subjectIdObject.subjectName}-----${item.dateOfStarting}-----${item.dateOfWeek}</option>
+									<option value="${pageContext.request.contextPath}/ListStudent?idCourse=${item.courseId}">${item.courseId}-${item.subjectIdObject.subjectName}-${item.dateOfStarting}-${item.dateOfWeek}</option>
 								
 								</c:forEach>
 							</select>
+							<input type="hidden" value="0" id="courseId">
 						</div>
 					</div>
 					<div class="table-responsive">
@@ -55,7 +56,7 @@
 									<th width="10%">Giới Tính</th>
 									<th width="10%">Ngày Sinh</th>
 									
-									<th class="20%">Tùy chọn</th>
+									<th width="5%" class="mr-0">Tùy chọn</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -71,10 +72,7 @@
 										<td>${item.dateOfBirth}</td>
 									
 										<td>
-											<button class="btn btn-success" data-toggle="modal"
-												data-target="#modalStudent">
-												<i class="fa fa-eye"></i>
-											</button>
+
 											<a
 												href="${pageContext.request.contextPath}/DeleteStudentCourse?command=delete&student=${item.studentId}&idCourse=${param.idCourse}"
 												class="btn btn-danger"> <i class="fa fa-trash"></i></a>
@@ -88,13 +86,10 @@
 						</table>
 						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
-								<li class="page-item disabled"><a class="page-link"
-									href="#" tabindex="-1">Previous</a></li>
+
 									<c:forEach var="i" begin="1" end="${numberPage}">
 										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListStudent?page=${i}">${i}</a></li>
 									</c:forEach>
-								<li class="page-item"><a class="page-link" href="#">Next</a>
-								</li>
 							</ul>
 						</nav>
 					</div>
@@ -103,4 +98,6 @@
 		</div>
 
 	</div>
+	
+
 </t:WrapperAdmin>

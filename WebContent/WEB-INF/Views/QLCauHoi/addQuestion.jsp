@@ -15,14 +15,7 @@
 							</h3>
 					</div>
 					<div class="col-md-3"></div>
-					<div class="col-md-3 mr-0">
-						<div class="input-group">
-							<input type="file" class="custom-file-input"
-								id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-							<label class="custom-file-label" for="inputGroupFile04">Choose
-								file</label>
-						</div>
-					</div>
+				
 				</div>
 			</div>
 		</div>
@@ -143,9 +136,9 @@
 				<i class="fa fa-save"></i> Lưu thay đổi
 			</button>
 			
-			<button class="btn btn-danger col-3">
+			<a href="${pageContext.request.contextPath}/ListQuestion" class="btn btn-danger col-3">
 				<i class="fa fa-times"></i> Hủy
-			</button>
+			</a>
 		</div>
 	
 	

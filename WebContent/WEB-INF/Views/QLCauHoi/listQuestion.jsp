@@ -12,20 +12,24 @@
 						<div class="col-md-3">
 							<h4 class="card-title">Danh sách câu hỏi</h4>
 						</div>
+					</div>
+					<div class="row">
 
 						<div class="col-md-3">
-							<a class="btn btn-success"
+							<a class="btn btn-success col-12"
 								href="${pageContext.request.contextPath}/AddQuestion"> <i
 								class="fa fa-plus"></i> Add Question
 							</a>
-							<a class="btn btn-success"
+						</div>
+						<div class="col-md-3">
+						
+							<a class="btn btn-success col-12"
 								href="${pageContext.request.contextPath}/uploadFileControler"> <i
 								class="fa fa-plus"></i> Import câu hỏi từ file
 							</a>
 						</div>
 
 						<div class="navbar navbar-light">
-
 							<form class="form">
 
 								<div class="col-12">
@@ -41,7 +45,7 @@
 											</button>
 										</div>
 									</div>
-									<select multiple class="form-control" name="sellist2"
+									<select multiple class="form-control sticky-top" name="sellist2"
 										id="resultSearch" hidden="hidden">
 
 									</select>
@@ -59,19 +63,16 @@
 						<table class="table">
 							<thead class=" text-primary">
 								<tr>
-									<th width="2%"><input type="checkbox"
-										aria-label="Radio button for following text input"></th>
+									
 									<th width="8%">Mã</th>
-									<th width="20%">Câu hỏi</th>
+									<th>Câu hỏi</th>
 									<th width="20%">Câu trả lời</th>
 									<th width="20%">Đáp án</th>
-									<th class="20%">Tùy chọn</th>
+									<th width="20%" class="mr-0">Tùy chọn</th>
 								</tr>
 							</thead>
 							<c:forEach items="${list}" var="item">
 								<tr>
-									<td><input type="checkbox"
-										aria-label="Radio button for following text input"></td>
 									<td>${item.questionId}</td>
 									<td>${item.question}</td>
 									<td>
@@ -83,7 +84,7 @@
 										
 										</c:forEach></td>
 										
-									<td>${item.answerCorrect.answer}</td>
+									<td> <b> ${item.answerCorrect.answer} </b></td>
 
 									<td><a
 										href="${pageContext.request.contextPath}/EditQuestion?command=update&id=${item.questionId}"
@@ -100,8 +101,6 @@
 
 						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
-								<li class="page-item disabled"><a class="page-link"
-									href="#" tabindex="-1">Previous</a></li>
 								<c:forEach var="i" begin="1" end="${numberPage}">
 									<li class="page-item"><a class="page-link"
 										href="${pageContext.request.contextPath}/ListQuestion?page=${i}">${i}</a>

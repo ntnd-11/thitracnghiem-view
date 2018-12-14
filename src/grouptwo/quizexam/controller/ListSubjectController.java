@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import grouptwo.quizexam.data.ParamaterStatic;
-import grouptwo.quizexam.model.Course;
 import grouptwo.quizexam.model.Subject;
 import grouptwo.quizexam.service.CourseService;
 import grouptwo.quizexam.service.SubjectService;

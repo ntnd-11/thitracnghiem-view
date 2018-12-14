@@ -78,6 +78,8 @@ public class AddQuestionController extends HttpServlet {
 			}
 		}
 		
+		response.sendRedirect("ListQuestion");
+		
 	}
 
 }

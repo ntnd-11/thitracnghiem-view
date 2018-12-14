@@ -8,11 +8,11 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<h4 class="card-title">Danh sách Môn Học</h4>
-						</div>
+						</div>	
 						<div class="col-md-3">
-							<a class="btn btn-success" href="./addSubject.jsp"> <i
+							<a class="btn btn-success" href="AddSubject"> <i
 								class="fa fa-plus"></i> Mở lớp
 							</a>
 						</div>
@@ -36,15 +36,15 @@
 							<tr>
 								<th width="2px"><input type="checkbox"
 									aria-label="Radio button for following text input"></th>
-								<th width="4px">Mã</th>
+								<th width="10px">Mã</th>
 
-								<th width="15%">Môn học</th>
+								<th >Môn học</th>
 								<th width="10%">Khoa</th>
 
 								<th width="10%">Số tín chỉ</th>
-								<th width="10%">Loại môn học</th>
+								<th width="10%">Loại môn</th>
 								<th width="10%">Activate</th>
-								<th class="20%">Tùy chọn</th>
+								<th width="15%" class="mr-0">Tùy chọn</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -71,8 +71,7 @@
 						</table>
 						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
-								<li class="page-item disabled"><a class="page-link"
-									href="#" tabindex="-1">Previous</a></li>
+
 								<c:forEach var="i" begin="1" end="${numberPage}">
 									<li class="page-item"><a class="page-link"
 										href="${pageContext.request.contextPath}/ListSubject?page=${i}">${i}</a></li>

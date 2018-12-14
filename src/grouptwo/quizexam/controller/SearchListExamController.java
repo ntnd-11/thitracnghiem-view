@@ -17,10 +17,10 @@ import grouptwo.quizexam.service.ExamService;
 
 
 @WebServlet("/SearchListExam")
-public class SearchListExamControler extends HttpServlet {
+public class SearchListExamController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public SearchListExamControler() {
+	public SearchListExamController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

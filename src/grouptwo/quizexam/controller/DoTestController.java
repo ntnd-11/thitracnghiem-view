@@ -111,7 +111,6 @@ public class DoTestController extends HttpServlet {
 						}
 					}
 				}
-			/*	System.out.println(c);*/
 			}
 		}		
 		session.setAttribute("lsQusAllParent", lsQusAllParent);

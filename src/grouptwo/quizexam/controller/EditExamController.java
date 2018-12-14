@@ -90,7 +90,7 @@ public class EditExamController extends HttpServlet {
 						{
 							lstNumType.set(0, lstNumType.get(0)-1);
 						}
-						if(q.getLevel().equals("Trung bình"))
+						if(q.getLevel().equals("Trung bìnhh"))
 						{
 							lstNumType.set(1, lstNumType.get(1)-1);
 						}
@@ -206,7 +206,7 @@ public class EditExamController extends HttpServlet {
 			}
 		}
 
-		//phân trang
+		//phÃ¢n trang
 		int startPage = amountPerPage*(page-1);
 		int finishPage = amountPerPage*page-1> lstNewQuestion.size()-1? lstNewQuestion.size() :amountPerPage*page-1;
 		lstCurrentQuestions = lstNewQuestion.subList(startPage, finishPage);
@@ -287,6 +287,8 @@ public class EditExamController extends HttpServlet {
 				int id = q.getQuestionId();
 				DetailExamService.addDetailExam(id,examId);
 			}
+			
+			response.sendRedirect("ListExam");
 		} catch (ParseException e) {
 			doGet(request, response);
 		}

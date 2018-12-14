@@ -25,7 +25,8 @@ public class AddStudentCourseController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		Course course = CourseService.getCourseById(2);
+		int courseId = Integer.parseInt(request.getParameter("id"));
+		Course course = CourseService.getCourseById(courseId);
 		request.setAttribute("course", course);
 		RequestDispatcher dispatcher = request.getServletContext()
 				.getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/addStudentCourse.jsp");
@@ -33,13 +34,12 @@ public class AddStudentCourseController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		int studentId = Integer.parseInt(request.getParameter("studentId"));
-		Course course = (Course)request.getAttribute("course");
-		int courseId = course.getCourseId();
+		int courseId = Integer.parseInt(request.getParameter("courseId"));;
 		CourseService.addStudentCourse(courseId, studentId);
+		response.sendRedirect("ListStudent?idCourse=" +courseId);
 	}
 
 }

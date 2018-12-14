@@ -65,22 +65,29 @@ public class AddStudentController extends HttpServlet {
 				return;
 			}
 			else {
-				message += "\nMật khẩu không trùng khớp";
+				message += "Mật khẩu không trùng khớp";
 
 			}
 		}
 		catch(NumberFormatException ne) 
 		{
-			message+="\nMời nhập định dạng số cho CMND, năm nhập học, năm tốt nghiệp";
+			message+="Mời nhập định dạng số cho CMND, năm học, năm tốt nghiệp";
 		}
 		catch(NullPointerException e) 
 		{
-			message+="\nVui lòng không để trống thông tin";
+			message+="Vui lòng điền đầy đủ thông tin";
 		}
-		finally
+		catch(IllegalArgumentException e)
 		{
-			request.setAttribute("message", message);
+			message+="Vui lòng điền ngày sinh";
+
 		}
+		
+
+			request.setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getServletContext()
+					.getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/addStudent.jsp");
+			dispatcher.forward(request, response);
 		
 	}
 

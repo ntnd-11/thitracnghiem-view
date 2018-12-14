@@ -8,12 +8,8 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="row">
-						<div class="col-md-3">
-<<<<<<< HEAD
+						<div class="col-md-4">
 							<h4 class="card-title">Danh sách Lớp Học</h4>
-=======
-							<h4 class="card-title">Danh sách Môn Học</h4>
->>>>>>> 755a5f3dc3518c5161b8204665b97d8bf98607aa
 						</div>
 						<div class="col-md-3">
 							<a class="btn btn-success" href="${pageContext.request.contextPath}/AddCourse"> <i
@@ -49,7 +45,7 @@
 
 									<th width="10%">Bắt đầu</th>
 									<th width="10%">Kết thúc</th>
-									<th class="20%">Tùy chọn</th>
+									<th width="20%" class="mr-0">Tùy chọn</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -58,16 +54,15 @@
 										<td><input type="checkbox"
 											aria-label="Radio button for following text input"></td>
 										<td>${item.courseId}</td>
-										<td>${item.subjectIdObject.subjectName} -Date: ${item.dateOfWeek}
-											 </td>
+										<td>${item.name}</td>
 										<td>${item.subjectIdObject.subjectName}</td>
 										<td>  ${item.partOfStarting} - ${item.partOfEnding}</td>
 										<td>${item.dateOfStarting}</td>
 										<td>${item.dateOfEnding}</td>
-										<td><a href="${pageContext.request.contextPath}/EditCourses?command=update&id=${item.courseId}&subjectName=${item.subjectIdObject.subjectName}" class="btn btn-warning"><i
+										<td><a href="${pageContext.request.contextPath}/EditCourse?command=update&id=${item.courseId}&subjectName=${item.subjectIdObject.subjectName}" class="btn btn-warning"><i
 												class="fa fa-pencil"></i></a>
 											 <a
-												href="${pageContext.request.contextPath}/EditCourses?command=delete&id=${item.courseId}"
+												href="${pageContext.request.contextPath}/EditCourse?command=delete&id=${item.courseId}"
 												class="btn btn-danger"> <i class="fa fa-trash"></i></a></td>
 									</tr>
 								</c:forEach>
@@ -78,14 +73,12 @@
 						</table>
 						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
-								<li class="page-item disabled"><a class="page-link"
-									href="#" tabindex="-1">Previous</a></li>
+
 								<c:forEach var="i" begin="1" end="${numberPage}">
 									<li class="page-item"><a class="page-link"
-										href="${pageContext.request.contextPath}/ListCourses?page=${i}">${i}</a></li>
+										href="${pageContext.request.contextPath}/ListCourse?page=${i}">${i}</a></li>
 								</c:forEach>
-								<li class="page-item"><a class="page-link" href="#">Next</a>
-								</li>
+
 							</ul>
 						</nav>
 					</div>

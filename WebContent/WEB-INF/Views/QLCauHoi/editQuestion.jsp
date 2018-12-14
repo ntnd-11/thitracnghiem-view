@@ -38,17 +38,18 @@
 							<div class="input-group mb-4">
 								<div class="form-control" style="border: none">
 									<p>
-										<b>Lĩnh vực</b>
+										<b>Môn học</b>
 									</p>
 									<select class="custom-select" id="inputGroupSelect01"
-										name="lstCategory">
-										<option >Tri</option>
+										name="sltSubject">
+										<c:forEach items="${lstSubject}" var="subject">
+											<c:if test="${ subject.subjectID eq question.subjectID }">
+												<option value="${subject.subjectID}" selected> ${subject.subjectName} </option>
+											</c:if>
+											<option value="${subject.subjectID}"> ${subject.subjectName} </option>
+										</c:forEach>
 											
 									</select>
-									
-									
-
-								
 								</div>
 							</div>
 
@@ -68,7 +69,6 @@
 									style="border: none; background: none">
 									<c:if test="${ question.getLevel() eq 'Dễ' }">
 										<input type="radio" name="radLevel" class="ml-2 mr-1"
-											aria-label="Radio button for following text input "
 											checked=checked value="de"> Dễ
 										
 									<input type="radio" name="radLevel" class="ml-2 mr-1"
@@ -90,14 +90,21 @@
 										</c:if>
 									<c:if test="${ question.getLevel() eq 'Khó' }">
 
-										<input type="radio" name="radLevel" class="ml-2 mr-1"
-											aria-label="Radio button for following text input" value="de"> Dễ
-									<input type="radio" name="radLevel" class="ml-2 mr-1"
+										<input type="radio" name="radLevel" class="ml-2 mr-1" id="easy"
+											aria-label="Radio button for following text input" value="de"> 
+											<label for="easy">Dễ</label>
+											
+										<input type="radio" name="radLevel" class="ml-2 mr-1" id="normal"
 											aria-label="Radio button for following text input" value="tb">
-									Trung bình <input type="radio" name="radLevel"
+										
+										<label for="normal">Trung bình</label>
+									
+										<input type="radio" name="radLevel"
 											class="ml-2 mr-1"
 											aria-label="Radio button for following text input"
-											checked=checked value="kh">Khó
+											checked=checked value="kh"
+											id="diffi">
+											<label for="diffi">Khó</label>
 										</c:if>
 									
 									<input type="hidden" name ="id" value="${param.id }">
@@ -108,9 +115,9 @@
 						<div class="card-footer">
 							<div class="input-group-text"
 								style="border: none; background: none">
-								<input type="checkbox" checked="checked" name="radAns"
+								<input type="checkbox"  name="radAns" id="activate"
 									class="mr-2" aria-label="Radio button for following text input">
-								Kích hoạt
+								<label for="activate">Kích hoạt</label>
 							</div>
 						</div>
 					</div>
@@ -124,15 +131,21 @@
 						<div class="card-body">
 							<div>
 								<ul class="nav flex-column">
-								<c:forEach items="${qsl}" var="no1">
-									<li class="nav-item">
-										<div class="input-group-text">
+								<c:forEach items="${question.lsAnswer}" var="no1">
+								<li class="nav-item">
+									<div class="input-group-text">
+										<c:if test="${no1.id eq question.correctAnswerID}">
+											<input type="radio" name="radAnsa" class="mr-2" checked
+															aria-label="Radio button for following text input"  value="${no1.id }">
+										</c:if>
+										<c:if test="${no1.id != question.correctAnswerID}">
 											<input type="radio" name="radAnsa" class="mr-2"
-												aria-label="Radio button for following text input"  value="${no1.getId() }">
-											<input type="text" class="form-control"
-												aria-label="Text input with radio button" value="${no1.answer }" >
-										</div>
-									</li>
+															aria-label="Radio button for following text input"  value="${no1.id }">
+										</c:if>
+										<input type="text" class="form-control"
+										aria-label="Text input with radio button" value="${no1.answer }" >
+									</div>
+								</li>
 								</c:forEach>
 									
 								</ul>

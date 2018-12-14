@@ -244,6 +244,8 @@ public class AddExamController extends HttpServlet {
 				int id = q.getQuestionId();
 				DetailExamService.addDetailExam(id,examId);
 			}
+			response.sendRedirect("ListExam");
+
 		} catch (ParseException e) {
 			doGet(request, response);
 		}

@@ -30,19 +30,19 @@ public class AddSubjectController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
 		Boolean isActivate = request.getParameter("ckbActivate")!=null;
 		String name = request.getParameter("txtName");
 		String faculty = request.getParameter("txtFaculty");
-		System.out.println(request.getParameter("txtCredit"));
+		//System.out.println(request.getParameter("txtCredit"));
 		int credit = Integer.parseInt(request.getParameter("txtCredit"));
 		String type = request.getParameter("txtType");
 		
 		SubjectService.addSubjects(new Subject(name,faculty,credit,type,isActivate));
-		System.out.println(isActivate);
+		
+		response.sendRedirect("ListSubject");
 	}
 
 }

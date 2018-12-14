@@ -44,7 +44,7 @@
 									<th width="10%">Giới Tính</th>
 									<th width="10%">Ngày Sinh</th>
 									
-									<th class="20%">Tùy chọn</th>
+									<th width="20%" class="mr-0">Tùy chọn</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -80,13 +80,10 @@
 						</table>
 						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
-								<li class="page-item disabled"><a class="page-link"
-									href="#" tabindex="-1">Previous</a></li>
 									<c:forEach var="i" begin="1" end="${numberPage}">
 										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListAllStudent?page=${i}">${i}</a></li>
 									</c:forEach>
-								<li class="page-item"><a class="page-link" href="#">Next</a>
-								</li>
+				
 							</ul>
 						</nav>
 					</div>

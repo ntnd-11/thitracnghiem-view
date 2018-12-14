@@ -8,10 +8,9 @@
 			<div class="card">
 				<div class="card-header">
 					<h3 class="card-title">
-						<b> Chỉnh sữa lớp học </b>
+						<b> Chỉnh sửa lớp học </b>
 					</h3>
 					<div class="card-body">
-						<form>
 							<div class="form-group row">
 							<input type="hidden" name="id" value=${course.getCourseId() }>
 								<label for="inputId" class="col-sm-2 col-form-label"> <b>Tên
@@ -96,7 +95,6 @@
 
 							</div>
 
-						</form>
 					</div>
 				</div>
 			</div>
@@ -105,7 +103,7 @@
 				<button type="submit" class="btn btn-info col-3">
 					<i class="fa fa-save"></i>Lưu thay đổi
 				</button>
-				 <a href="${pageContext.request.contextPath}/ListCourses" class="btn btn-danger col-3"> <i
+				 <a href="${pageContext.request.contextPath}/ListCourse" class="btn btn-danger col-3"> <i
 					class="fa fa-times"></i> Hủy
 				</a>
 			</div>

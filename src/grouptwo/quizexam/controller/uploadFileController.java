@@ -23,11 +23,11 @@ import grouptwo.quizexam.utils.FileUtlis;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10, // 10MB
 maxRequestSize = 1024 * 1024 * 50) // 50MB
-public class uploadFileControler extends HttpServlet {
+public class uploadFileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public uploadFileControler() {
+    public uploadFileController() {
         super();
         // TODO Auto-generated constructor stub
     }

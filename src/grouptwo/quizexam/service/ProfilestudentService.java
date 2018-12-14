@@ -379,7 +379,40 @@ public class ProfilestudentService extends BaseService {
 		}
 		return profilestudent;
 	}
+	public static boolean UpdateProfilestudent(Profilestudent c) {
+		//String query = "update profilestudents set Name=?,IdentityCardNumber=?,DateOfBirth=?,Gender=?,PhoneNumber=?,Country=?,Address=?,Religion=?,YearOfAdmission=?,YearOfGraduation=?,Image=?,ShowProfile=?,User=? where Id=?";
+		
+		String query="update profilestudents set Name=? , IdentityCardNumber=? , DateOfBirth= ? , Gender= ? , PhoneNumber= ? , Country= ? , Address= ? , Religion = ? , YearOfAdmission = ? , YearOfGraduation= ? , Image= ? , ShowProfile= ? , User= ?  where Id=?";
+		List<Object> params = new ArrayList<>();
+		
+		params.add(c.getName());
+		params.add(c.getIdentityCardNumber());
+		params.add(c.getDateOfBirth());
+		params.add(c.getGender());
+		params.add(c.getPhoneNumber());
+		params.add(c.getCountry());
+		params.add(c.getAddress());
+		params.add(c.getReligion());
+		params.add(c.getYearOfAdmission());
+		params.add(c.getYearOfGraduation());
+		params.add(c.getImage());
+		
+		params.add(c.isShowProfile());
+		//params.add(c.getUserId());
+		params.add(c.getStudentId());
+		params.add(c.getStudentId());
+		
+		try {
+			
+			return executeUpdate(query, params);
 
+		} catch (SQLException ex) {
+
+			// Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		return false;
+	}
 	
 
 }

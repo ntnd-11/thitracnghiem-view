@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class uploadFileResultsControler
  */
 @WebServlet("/uploadFileResults")
-public class uploadFileResultsControler extends HttpServlet {
+public class uploadFileResultsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public uploadFileResultsControler() {
+    public uploadFileResultsController() {
         super();
         // TODO Auto-generated constructor stub
     }

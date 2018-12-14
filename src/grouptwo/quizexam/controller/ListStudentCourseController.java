@@ -18,11 +18,11 @@ import grouptwo.quizexam.utils.CalculationHelper;
 
 
 @WebServlet("/ListStudent")
-public class ListStudentCourseControler extends HttpServlet {
+public class ListStudentCourseController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public ListStudentCourseControler() {
+    public ListStudentCourseController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,6 +51,7 @@ public class ListStudentCourseControler extends HttpServlet {
 		}
 		else
 		{
+			request.setAttribute("idCourse", request.getParameter("idCourse"));
 			if(request.getParameter("idCourse")!=getServletContext().getAttribute("idCourse")+"")
 			{
 				idCourse=Integer.parseInt(request.getParameter("idCourse"));

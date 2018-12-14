@@ -18,10 +18,10 @@ import grouptwo.quizexam.utils.CalculationHelper;
 
 
 @WebServlet("/ListAllStudent")
-public class ListAllStudentControler extends HttpServlet {
+public class ListAllStudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ListAllStudentControler() {
+    public ListAllStudentController() {
         super();
     }
 

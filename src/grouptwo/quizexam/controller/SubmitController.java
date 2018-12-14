@@ -16,11 +16,8 @@ import grouptwo.quizexam.model.Answer;
 import grouptwo.quizexam.model.DetailResult;
 import grouptwo.quizexam.model.Question;
 import grouptwo.quizexam.model.User;
-import grouptwo.quizexam.service.AnswerService;
 import grouptwo.quizexam.service.BaseService;
 import grouptwo.quizexam.service.DetailResultService;
-import grouptwo.quizexam.service.ExamService;
-import grouptwo.quizexam.service.QuestionService;
 import grouptwo.quizexam.service.ResultTestService;
 import grouptwo.quizexam.utils.TimeUltils;
 
@@ -56,7 +53,7 @@ public class SubmitController extends HttpServlet {
 		HttpSession session=request.getSession();
 		User user=(User) session.getAttribute("loginedUser");
 		int idStu=user.getUserId();
-		/*kiem tra xem submit co dung giờ hay khong*/
+		/*kiem tra xem submit co dung giá»� hay khong*/
 		String timeFinishingExam=(String) session.getAttribute("timeFinishing");
 		String timeStrarting=(String) session.getAttribute("timeStarting");
 		String currentTimeSubmit=TimeUltils.getCurrentTime();

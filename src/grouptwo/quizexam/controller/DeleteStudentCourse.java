@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package grouptwo.quizexam.controller;
 
 import java.io.IOException;
@@ -17,71 +16,23 @@ public class DeleteStudentCourse extends HttpServlet {
  
     public DeleteStudentCourse() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		String command=request.getParameter("command");
 		String idCourse=request.getParameter("idCourse");
 		String student=request.getParameter("student");
 		CourseService.deleteDetailCourseInClass(Integer.parseInt(idCourse), Integer.parseInt(student));
 		String contextPath=request.getContextPath();
-		response.sendRedirect(contextPath+"/ListStudent");
+		response.sendRedirect(contextPath+"/ListStudent?idCourse="+idCourse);
 	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 
 }
-=======
-package grouptwo.quizexam.controller;
-
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import grouptwo.quizexam.service.CourseService;
-
-
-@WebServlet("/DeleteStudentCourse")
-public class DeleteStudentCourse extends HttpServlet {
-	private static final long serialVersionUID = 1L;
- 
-    public DeleteStudentCourse() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		String command=request.getParameter("command");
-		String idCourse=request.getParameter("idCourse");
-		String student=request.getParameter("student");
-		CourseService.deleteDetailCourseInClass(Integer.parseInt(idCourse), Integer.parseInt(student));
-		String contextPath=request.getContextPath();
-		response.sendRedirect(contextPath+"/ListStudent");
-	
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
-}
->>>>>>> bf9f9563ccdb10da09f7e43ce1c22b7dfbb4f8c2
