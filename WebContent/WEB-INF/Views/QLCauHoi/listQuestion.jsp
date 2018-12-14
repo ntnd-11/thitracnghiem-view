@@ -68,7 +68,7 @@
 									<th class="20%">Tùy chọn</th>
 								</tr>
 							</thead>
-							<c:forEach items="${list}" var="item">
+							<c:forEach items="${lsExam}" var="item">
 								<tr>
 									<td><input type="checkbox"
 										aria-label="Radio button for following text input"></td>

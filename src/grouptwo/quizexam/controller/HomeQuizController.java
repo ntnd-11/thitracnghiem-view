@@ -1,6 +1,7 @@
 package grouptwo.quizexam.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.ss.usermodel.DateUtil;
+
 import grouptwo.quizexam.model.Exam;
 import grouptwo.quizexam.model.User;
 import grouptwo.quizexam.service.ExamService;
 import grouptwo.quizexam.service.SubjectService;
+import grouptwo.quizexam.utils.TimeUltils;
 
 /**
  * Servlet implementation class HomeQuizController
@@ -43,12 +47,36 @@ public class HomeQuizController extends HttpServlet {
 		List<Integer> lsIdExamOfUser=ExamService.getLsIdOfUser(idUser);
 		List<Exam> lsExamOfUser=new ArrayList<>();
 		
+		// Lay tat ca ngay kiem tra trong thang
+		List<Integer> lsDateExamInMonth=new ArrayList<>();
+		List<String> lsTenKhoaHoc=new ArrayList<>(); 
+		List<Integer> lsIdExamInMonth=new ArrayList<>();
+				
+		int month =LocalDateTime.now().getMonthValue();
+		
 		//Get Ds exam của user khi đã có list id exam của user đó
 		for(int c:lsIdExamOfUser)
 		{
-			lsExamOfUser.add(ExamService.getExamById(c));
+			Exam exam = new Exam();
+			exam = ExamService.getExamById(c);
+			if (TimeUltils.isInHappyHour(exam.getTimeStarting().toString(), exam.getTimeFinishing().toString())) {
+			lsExamOfUser.add(exam);
+			}
+			
+			// kiem tra xem bai kiem tra co nam trong thang nay khong
+			if((exam.getTimeStarting().getMonth()+1)==month)
+			{
+				lsDateExamInMonth.add(exam.getTimeStarting().getDate());
+				lsTenKhoaHoc.add(exam.getSubjectObject().getSubjectName()+"--"+exam.getName());
+				lsIdExamInMonth.add(exam.getId());
+				
+			}
+			
 		}
 		request.setAttribute("lsExam", lsExamOfUser);
+		request.setAttribute("lsDateExamInMonth", lsDateExamInMonth);
+		request.setAttribute("lsTenKhoaHoc",lsTenKhoaHoc);
+		request.setAttribute("lsIdExamInMonth",lsIdExamInMonth);
 		
 		RequestDispatcher dispatcher 
         = this.getServletContext()//

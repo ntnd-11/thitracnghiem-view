@@ -36,9 +36,18 @@ public class ReportExam extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		User use=(User) session.getAttribute("loginedUser");
+		int studentId;
+		int examId;
 		try {
-			int studentId = use.getUserId();
-			int examId	= (int) session.getAttribute("idExamCurent");
+			if(request.getParameter("idExam")==null)
+			{
+				examId	= (int) session.getAttribute("idExamCurent");
+			}
+			else
+			{
+				examId	= Integer.parseInt(request.getParameter("idExam"));
+			}
+			studentId = use.getUserId();
 			JasperReport jasperReport = null;
 			JasperDesign jasperDesign = null;
 			Map<String, Object> parameters = new HashMap<String,Object>();

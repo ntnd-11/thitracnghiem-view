@@ -15,7 +15,10 @@ import com.sun.javafx.collections.MappingChange.Map;
 import grouptwo.quizexam.model.Answer;
 import grouptwo.quizexam.model.Exam;
 import grouptwo.quizexam.model.Question;
+import grouptwo.quizexam.model.ResultTest;
 import grouptwo.quizexam.model.Subject;
+import grouptwo.quizexam.model.User;
+import grouptwo.quizexam.utils.TimeUltils;
 
 public class maina {
 
@@ -70,7 +73,39 @@ public class maina {
 		 
 		 long ConLai=Sau.getTime()-truoc.getTime();
 		 System.out.println(ConLai);*/
-		System.out.println(UserService.findAcc("thanhdat","123456").getRoleObject().getRoleName());
+//		for (ResultTest rs :ResultTestService.getResultTestLs(2) ) {
+	
+/*		System.out.println(ExamService.getExamById(2).getName());*/
+		
+		
+		
+	
+		List<Integer> lsIdExamOfUser=ExamService.getLsIdOfUser(1);
+		List<Exam> lsExamOfUser=new ArrayList<>();
+		
+		// Lay tat ca ngay kiem tra trong thang
+		List<Integer> dateExamInMonth=new ArrayList<>();
+		
+		int month =LocalDateTime.now().getMonthValue();
+		
+		//Get Ds exam của user khi đã có list id exam của user đó
+		for(int c:lsIdExamOfUser)
+		{
+			Exam exam = new Exam();
+			exam = ExamService.getExamById(c);
+			System.out.println(exam.getTimeStarting().toString());
+			if (TimeUltils.isInHappyHour(exam.getTimeStarting().toString(), exam.getTimeFinishing().toString())) {
+			lsExamOfUser.add(exam);
+			}
+			
+			// kiem tra xem bai kiem tra co nam trong thang nay khong
+			
+			if((exam.getTimeStarting().getMonth()+1)==month)
+			{
+				System.out.println(exam.getTimeStarting().getDate()+"");
+			}
+			
+		}
 	}
 	 public static int GetQus(String a) {
 	    	String b[]=a.split("_");
