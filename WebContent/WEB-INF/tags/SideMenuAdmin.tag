@@ -12,13 +12,13 @@
 	</div>
 	<div class="sidebar-wrapper">
 		<ul class="nav">
-			<li><a href="#"> <i class="nc-icon nc-bank"></i> Trang chủ
+			<li><a href="${pageContext.request.contextPath}/HomeQuizController"> <i class="nc-icon nc-bank"></i> Trang chủ
 			</a></li>
 
-			<li><a href="./notifications.jsp"> <i
+			<li><a href="#"> <i
 					class="nc-icon nc-bell-55"></i> Thông báo
 			</a></li>
-			<li><a href="./profile.jsp"> <i class="nc-icon nc-single-02"></i>
+			<li><a href="${pageContext.request.contextPath}/Profile"> <i class="nc-icon nc-single-02"></i>
 					Hồ sơ
 			</a></li>
 <!-- Quản lý người tạo câu hỏi -->
@@ -64,6 +64,9 @@
 				</a></li>
 				<li><a href="${pageContext.request.contextPath}/ListCourses">
 						<i class="nc-icon nc-briefcase-24"></i> Lớp Học
+				</a></li>
+				<li><a href="${pageContext.request.contextPath}/ListCoursesExam">
+						<i class="nc-icon nc-briefcase-24"></i> Đề thi lớp học
 				</a></li>
 			</c:if>
 			<li><a href="${pageContext.request.contextPath}/Logout"> <i

@@ -57,10 +57,33 @@ public class UserService extends BaseService {
 		}
 		return user;
 	}
+	public static  User getUsersByName(String UserName) {
+		String query = "SELECT * FROM onlinequiz.users where UserName='"+UserName+"'";
+		User user=null;
+		try
+		{
+			
+			ResultSet rs = excuteQuery(query);
+			while(rs.next()) {
+					user = new User(
+					rs.getInt("UserId"),
+					rs.getString("UserName"),
+					rs.getString("Email"),
+					rs.getString("Password"),
+					rs.getInt("RoleUser"),
+					rs.getBoolean("Activate"));
+			
+			}
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
 
-	public static  User getUsersByName(String user) {
-		return null;
+		}
+		return user;
 	}
+
+
 
 	public static  boolean deleteUsers(int id) {
 		String query="Delete from users where Id=?";
@@ -86,6 +109,21 @@ public class UserService extends BaseService {
 			params.add(user.getActivate());
 			params.add(user.getUserId());
 			//System.out.println(user.getUserName()+user.getEmail()+user.getPassword()+user.getRoleuser()+user.getActivate());
+			try {
+				boolean action = executeUpdate(query, params);
+				return action;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+	}
+	public static boolean ChangePass(String pass,int UserId) {
+		{
+			String query ="update users set Password = ? Where UserId= ?";
+			List<Object> params= new ArrayList<>();
+			params.add(pass);
+			params.add(UserId);
 			try {
 				boolean action = executeUpdate(query, params);
 				return action;

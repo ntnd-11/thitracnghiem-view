@@ -77,6 +77,37 @@ public class ProfilestudentService extends BaseService {
 		}
 		return lstProfilemanager;
 	}
+	public static Profilestudent getProfilestudentByUser(int id_User) {
+		String query = "select * from onlinequiz.profilestudents where User ="+id_User;
+		Profilestudent profilestudent=null;
+		
+		try {
+			ResultSet rs = excuteQuery(query);
+			while (rs.next()) {
+				profilestudent = new Profilestudent(
+					
+					rs.getInt("Id"), 
+					rs.getString("Name"),
+					rs.getInt("IdentityCardNumber"),
+					rs.getDate("DateOfBirth"),
+					rs.getString("Gender"),
+					rs.getString("PhoneNumber"),
+					rs.getString("Country"),
+					rs.getString("Address"),
+					rs.getString("Religion"),
+					rs.getInt("YearOfAdmission"),
+					rs.getInt("YearOfGraduation"),
+					rs.getString("Image"),
+					rs.getBoolean("ShowProfile"),
+					rs.getInt("User"));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+
+		}
+		return profilestudent;
+	}
 	public static Profilestudent getProfilestudentById(int id) {
 		String query = "select * from profilestudents where Id = " + id;
 		Profilestudent profilestudent=null;

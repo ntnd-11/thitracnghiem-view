@@ -16,6 +16,7 @@ import grouptwo.quizexam.model.Answer;
 import grouptwo.quizexam.model.Exam;
 import grouptwo.quizexam.model.Question;
 import grouptwo.quizexam.model.Subject;
+import grouptwo.quizexam.model.User;
 
 public class maina {
 
@@ -70,7 +71,10 @@ public class maina {
 		 
 		 long ConLai=Sau.getTime()-truoc.getTime();
 		 System.out.println(ConLai);*/
-		System.out.println(UserService.findAcc("thanhdat","123456").getRoleObject().getRoleName());
+		String UserName="trivan";
+		User user= UserService.getUsersByName(UserName);
+		Integer a=user.getUserId();
+		System.out.println(a);
 	}
 	 public static int GetQus(String a) {
 	    	String b[]=a.split("_");
