@@ -9,19 +9,50 @@
 		<div class="col-md-10  ">
 			<div class="card card-user">
 				<div class="card-header">
-					<h5 class="card-title">Danh Sách Câu Hỏi</h5>
+					<h5 class="card-title">Danh Sách Đề Thi</h5>
 				</div>
 				<div class="card-body">
 					<div class="col">
 						<div class="row">
 							<div class="mr-auto">
-								<a href="${pageContext.request.contextPath}/AddExam" class="btn btn-info " role="button">Thêm Đề Thi
-									&#x2b; </a>
+								<a href="${pageContext.request.contextPath}/AddExam"
+									class="btn btn-info " role="button">Thêm Đề Thi &#x2b; </a> 
 							</div>
+
+							<!-- modal -->
+							<!-- Modal -->
+							<div class="modal fade" id="myModal" role="dialog">
+								<div class="modal-dialog">
+
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+											<h4 class="modal-title">Thêm đề thi cho lớp học</h4>
+										</div>
+										<div class="modal-body">
+
+											<label for="sel1">Lớp học:</label> <select
+												class="form-control" id="sel1">
+												
+												<c:forEach items="${lsCourse}" var="item">
+												<option value="${item.courseId}">${item.courseId}----${item.subjectIdObject.subjectName}-----${item.dateOfStarting}-----${item.dateOfWeek}</option>
+												</c:forEach>
+											</select> 
+										</div>
+										<div class="modal-footer">
+
+											<button type="button" class="btn btn-default" id="btnGrant">Gán
+												đề thi cho lớp</button>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
 
 							<div class="ml-auto">
 								<form class="form">
-
 									<div class="col">
 										<div class="input-group mb-3">
 											<input class="form-control " type="number"
@@ -44,7 +75,7 @@
 
 							</div>
 						</div>
-						
+
 						<select multiple class="form-control mb-4" name="sellist2"
 							id="resultSearch" hidden="hidden">
 							<option selected>Result</option>
@@ -70,9 +101,13 @@
 										<td>${item.timeFinishing}</td>
 										<td>${item.name}</td>
 										<td>${item.numQuestions}</td>
-										<td><a href="${pageContext.request.contextPath}/EditExam?examId=${item.id}"><i class="fa fa-edit float-right"
-												style="font-size: 36px"></i></a>
-												 <a href="${pageContext.request.contextPath}/EditExams?command=delete&id=${item.id}"><i
+										<td><a
+											href="${pageContext.request.contextPath}/EditExam?examId=${item.id}"><i
+												class="fa fa-edit float-right" style="font-size: 36px"></i></a>
+											<a
+											href="${pageContext.request.contextPath}/EditExams?command=delete&id=${item.id}"><i
+												class="fa fa-trash-o float-left" style="font-size: 36px"></i></a>
+											<a href="#" tag="${item.id}" class="grantCourse"><i
 												class="fa fa-trash-o float-left" style="font-size: 36px"></i></a>
 										</td>
 									</tr>
@@ -98,10 +133,10 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+	var idExam;
 		function searchResult(character) {
 
-			
-		$
+			$
 					.ajax({
 						url : '${pageContext.request.contextPath}/SearchListExam',
 						data : {
@@ -141,6 +176,28 @@
 					searchResult($(this).val());
 				}
 			});
+			
+			$(".grantCourse").click(function(){
+				idExam=$(this).attr("tag");
+				$("#myModal").modal()
+				
+			})
+			$("#btnGrant").click(function(){
+				var idCourse=$("#sel1").val();
+				$.ajax({
+					url : '${pageContext.request.contextPath}/ListExam',
+					type:'POST',
+					data : {
+						idCourse : idCourse,
+						idExam:idExam
+					},
+					dataType : 'html',
+					success : function(data) {
+						alert("Thành Công")
+					}
+					});
+			})
+
 		});
 	</script>
 </t:WrapperAdmin>

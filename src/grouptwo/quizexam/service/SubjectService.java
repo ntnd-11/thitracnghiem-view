@@ -163,4 +163,9 @@ public class SubjectService extends BaseService {
 
 
 	}
+
+	public static List<Subject> getAllSubject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

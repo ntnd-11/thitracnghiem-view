@@ -80,6 +80,7 @@ public class ExamService extends BaseService{
 		return lstExams;
 		
 	}
+
 	public static Exam getExamById(int id) {
 		String query = "Select * from exams where Id = " +id;
 		try
@@ -329,6 +330,36 @@ public class ExamService extends BaseService{
 
 		
 		return false;
+	}
+
+	public static List<Exam> getExamForSubject(int idSubject) {
+		String sql="select * from exams where subject=?";
+		List<Object> params = new ArrayList<>();
+		params.add(idSubject);
+		List<Exam> lstExams = new ArrayList<>();
+		try {
+			ResultSet rs = excuteQuery(sql);
+			while (rs.next()) {
+				Exam exam = new Exam(
+						rs.getInt("Id"), 
+						rs.getString("name"),
+						rs.getTimestamp("timeStarting"), 
+						rs.getInt("numQuestions"), 
+						rs.getTimestamp("timeFinishing"), 
+						rs.getInt("Subject"), 
+						rs.getBoolean("activate"), 
+						rs.getInt("creator"), 
+						rs.getInt("numDiffi"), 
+						rs.getInt("numNormal"), 
+						rs.getInt("numEasy"), 
+						rs.getInt("limitTime"));
+				lstExams.add(exam);
+	        }
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}	
+		return lstExams;
 	}
 
 	
