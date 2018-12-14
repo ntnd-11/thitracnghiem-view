@@ -95,6 +95,21 @@ public class UserService extends BaseService {
 			return false;
 		}
 	}
+	public static boolean ChangePass(String pass,int UserId) {
+		{
+			String query ="update users set Password = ? Where UserId= ?";
+			List<Object> params= new ArrayList<>();
+			params.add(pass);
+			params.add(UserId);
+			try {
+				boolean action = executeUpdate(query, params);
+				return action;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+	}
 
 	public static boolean addUsers(User user) {
 		String query="Insert into users (UserName,Email,Password,RoleUser,Activate)"
