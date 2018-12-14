@@ -32,7 +32,7 @@ public class LoadInfoStudentController extends HttpServlet {
 		if (typeSearch.equals("id")) {
 			int studentId = Integer.parseInt(request.getParameter("studentId"));
 
-			Profilestudent student = ProfilestudentService.getProfilesutudentById(studentId);
+			Profilestudent student = ProfilestudentService.getProfilestudentById(studentId);
 
 			String json = new Gson().toJson(student);
 			response.getWriter().println(json);

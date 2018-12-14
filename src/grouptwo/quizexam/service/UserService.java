@@ -33,24 +33,29 @@ public class UserService extends BaseService {
 	}
 
 	public static  User getUsersById(int id) {
-		String query = "Select * from users where Id = " +id;
+		String query = "Select * from users where UserId = " +id;
+		User user=null;
 		try
 		{
+			
 			ResultSet rs = excuteQuery(query);
-			User user = new User(
-					rs.getString(1),
-					rs.getString(2),
-					rs.getString(3),
-					rs.getInt(4),
-					rs.getBoolean(5));
-			return user;
+			while(rs.next()) {
+					user = new User(
+					
+					rs.getString("UserName"),
+					rs.getString("Email"),
+					rs.getString("Password"),
+					rs.getInt("RoleUser"),
+					rs.getBoolean("Activate"));
+			
+			}
 		}
 		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return user;
 	}
 
 	public static  User getUsersByName(String user) {
@@ -72,19 +77,15 @@ public class UserService extends BaseService {
 
 	public static boolean updateUsers(User user) {
 		{
-			String query ="update users set "
-					+ "UserName=?,"
-					+ "Email = ?,"
-					+ "Password = ?,"
-					+ "RoleUser = ?,"
-					+ "Activate = ?,"
-					+ "Where Id= ?";
+			String query ="update users set  UserName=?,Email = ?,Password = ?,RoleUser = ?,Activate = ? Where UserId= ?";
 			List<Object> params= new ArrayList<>();
 			params.add(user.getUserName());
 			params.add(user.getEmail());
 			params.add(user.getPassword());
 			params.add(user.getRoleuser());
 			params.add(user.getActivate());
+			params.add(user.getUserId());
+			//System.out.println(user.getUserName()+user.getEmail()+user.getPassword()+user.getRoleuser()+user.getActivate());
 			try {
 				boolean action = executeUpdate(query, params);
 				return action;
@@ -113,5 +114,31 @@ public class UserService extends BaseService {
 	return false;
 
 
+	}
+	public static User findAcc(String userName, String password) {
+		String sql="select * from users where UserName=? and Password=?";
+		List<Object> param=new ArrayList<>();
+		param.add(userName);
+		param.add(password);
+		try
+		{
+			ResultSet rs= excuteQuery(sql,param);
+			while(rs.next())
+			{
+				User users = new User(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getBoolean(6));
+				return users;
+			}
+			
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 }

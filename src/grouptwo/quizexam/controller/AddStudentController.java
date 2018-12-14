@@ -59,11 +59,6 @@ public class AddStudentController extends HttpServlet {
 			{
 				UserService.addUsers(new User(username,email,password,1,true));
 				int userId = BaseService.getIdAfterInsert();
-				if (userId == 0)
-				{
-					message += "Tài khoản đã tồn tại";
-				}
-				else
 				ProfilestudentService.addProfilestudent(new Profilestudent(fullname,cmnd,birthday,gender,phone,country,address,religion,admission,graduation,"",true,userId));
 
 				response.sendRedirect("ListAllStudent");
@@ -82,15 +77,10 @@ public class AddStudentController extends HttpServlet {
 		{
 			message+="\nVui lòng không để trống thông tin";
 		}
-
-		request.setAttribute("message", message);
-
-		RequestDispatcher dispatcher = request.getServletContext()
-				.getRequestDispatcher("/WEB-INF/Views/QLSinhVien_MonHoc/addStudent.jsp");
-
-		dispatcher.forward(request, response);
-
-
+		finally
+		{
+			request.setAttribute("message", message);
+		}
 		
 	}
 

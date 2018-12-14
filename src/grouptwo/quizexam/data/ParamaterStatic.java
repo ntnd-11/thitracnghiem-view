@@ -1,3 +1,4 @@
+
 package grouptwo.quizexam.data;
 
 public class ParamaterStatic {

@@ -34,9 +34,10 @@
 						<div class="col-md-8">
 							<select class="custom-select" id="inputGroupSelect01" onchange="location = this.value;">
 								<option selected>Chọn lớp ...</option>
-
+							
 								<c:forEach items="${lsCourses}" var="item">
 									<option value="${pageContext.request.contextPath}/ListStudent?idCourse=${item.courseId}">${item.courseId}----${item.subjectIdObject.subjectName}-----${item.dateOfStarting}-----${item.dateOfWeek}</option>
+								
 								</c:forEach>
 							</select>
 						</div>
@@ -74,10 +75,9 @@
 												data-target="#modalStudent">
 												<i class="fa fa-eye"></i>
 											</button>
-											<button class="btn btn-danger" data-toggle="modal"
-												data-target="#modalConfirmDeleting">
-												<i class="fa fa-trash"></i>
-											</button>
+											<a
+												href="${pageContext.request.contextPath}/DeleteStudentCourse?command=delete&student=${item.studentId}&idCourse=${param.idCourse}"
+												class="btn btn-danger"> <i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
 

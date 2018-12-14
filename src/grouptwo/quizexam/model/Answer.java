@@ -9,6 +9,7 @@ public class Answer implements Serializable {
 	private int id;
 	private Integer questionId;
 	private String answer;
+
 	private boolean isTick;
 	public Answer() {
 	}

@@ -182,7 +182,8 @@ public class RoleuserService extends BaseService {
 		try
 		{
 			ResultSet rs = excuteQuery(query);
-			Roleuser roleuser = new Roleuser(
+			rs.next();
+			Roleuser roleuser = new Roleuser(rs.getInt("id"),
 					rs.getString("RoleName"));
 			return roleuser;
 		}

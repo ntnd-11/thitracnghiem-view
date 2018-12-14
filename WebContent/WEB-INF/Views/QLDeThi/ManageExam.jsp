@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
@@ -14,7 +15,7 @@
 					<div class="col">
 						<div class="row">
 							<div class="mr-auto">
-								<a href="#" class="btn btn-info " role="button">Thêm Đề Thi
+								<a href="${pageContext.request.contextPath}/AddExam" class="btn btn-info " role="button">Thêm Đề Thi
 									&#x2b; </a>
 							</div>
 
@@ -67,10 +68,11 @@
 										<td>${item.id}</td>
 										<td>${item.timeStarting}</td>
 										<td>${item.timeFinishing}</td>
-										<td>${item.subjectObject.subjectName}</td>
+										<td>${item.name}</td>
 										<td>${item.numQuestions}</td>
-										<td><a href="#"><i class="fa fa-edit float-right"
-												style="font-size: 36px"></i></a> <a href="#"><i
+										<td><a href="${pageContext.request.contextPath}/EditExam?examId=${item.id}"><i class="fa fa-edit float-right"
+												style="font-size: 36px"></i></a>
+												 <a href="${pageContext.request.contextPath}/EditExams?command=delete&id=${item.id}"><i
 												class="fa fa-trash-o float-left" style="font-size: 36px"></i></a>
 										</td>
 									</tr>

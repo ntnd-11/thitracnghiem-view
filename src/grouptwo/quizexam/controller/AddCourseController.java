@@ -52,7 +52,7 @@ public class AddCourseController extends HttpServlet {
 		
 		System.out.println(request.getParameter("sltSubject"));
 
-		CourseService.addCourse(new Course(subjectId,fromDate,endDate,dayOfWeek,startPart,endPart,amount,room,isActivate,name));
+		//CourseService.addCourse(new Course(subjectId,fromDate,endDate,dayOfWeek,startPart,endPart,amount,room,isActivate,name));
 	}
 
 }

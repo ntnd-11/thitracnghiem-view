@@ -17,7 +17,6 @@
 							</a>
 						</div>
 						<div class="navbar navbar-light">
-							<a class="navbar-brand"> Navbar </a>
 							<form class="form-inline">
 								<input class="form-control " type="search"
 									placeholder="Tìm kiếm .." aria-label="Search">
@@ -34,43 +33,40 @@
 					<div class="table-responsive">
 						<table class="table">
 							<thead class=" text-primary">
-								<tr>
-									<th width="2px"><input type="checkbox"
-										aria-label="Radio button for following text input"></th>
-									<th width="4px">Mã</th>
-									<th>Tên lớp</th>
+							<tr>
+								<th width="2px"><input type="checkbox"
+									aria-label="Radio button for following text input"></th>
+								<th width="4px">Mã</th>
 
-									<th width="15%">Môn học</th>
-									<th width="10%">Thời gian</th>
+								<th width="15%">Môn học</th>
+								<th width="10%">Khoa</th>
 
-									<th width="10%">Bắt đầu</th>
-									<th width="10%">Kết thúc</th>
-									<th class="20%">Tùy chọn</th>
+								<th width="10%">Số tín chỉ</th>
+								<th width="10%">Loại môn học</th>
+								<th width="10%">Activate</th>
+								<th class="20%">Tùy chọn</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${list}" var="item">
-									<tr>
-										<td><input type="checkbox"
-											aria-label="Radio button for following text input"></td>
-										<td>${item.courseId}</td>
-										<td>${item.subjectIdObject.subjectName} ${item.dateOfWeek}
-											${item.partOfStarting} - ${item.partOfEnding} ${item.dateOfStarting}</td>
-										<td>${item.subjectIdObject.subjectName}</td>
-										<td>${item.partOfStarting-partOfEnding} ${item.dateOfWeek}</td>
-										<td>${item.dateOfStarting}</td>
-										<td>${item.dateOfEnding}</td>
-										<td><a href="./editSubject.jsp" class="btn btn-warning"><i
+							<c:forEach items="${list}" var="item">
+								<tr>
+									<td><input type="checkbox"
+										aria-label="Radio button for following text input"></td>
+									<td>${item.subjectID }</td>
+									<td>${item.subjectName }</td>
+									<td>${item.faculty}</td>
+									<td>${item.credit }</td>
+									<td>${item.type }</td>
+									<td>${item.activate }</td>
+									<td><a href="${pageContext.request.contextPath}/EditSubject?command=update&id=${item.subjectID}" class="btn btn-warning"><i
 												class="fa fa-pencil"></i></a>
-											<button class="btn btn-danger" data-toggle="modal"
-												data-target="#modalConfirmDeleting">
-												<i class="fa fa-trash"></i>
-											</button></td>
-									</tr>
+											 <a
+												href="${pageContext.request.contextPath}/EditSubject?command=delete&id=${item.subjectID}"
+												class="btn btn-danger"> <i class="fa fa-trash"></i></a>
+												</td>
+								</tr>
 								</c:forEach>
-
-
-
+								
 							</tbody>
 						</table>
 						<nav aria-label="Page navigation example">
@@ -79,10 +75,8 @@
 									href="#" tabindex="-1">Previous</a></li>
 								<c:forEach var="i" begin="1" end="${numberPage}">
 									<li class="page-item"><a class="page-link"
-										href="${pageContext.request.contextPath}/ListCourses?page=${i}">${i}</a></li>
+										href="${pageContext.request.contextPath}/ListSubject?page=${i}">${i}</a></li>
 								</c:forEach>
-								<li class="page-item"><a class="page-link" href="#">Next</a>
-								</li>
 							</ul>
 						</nav>
 					</div>

@@ -50,9 +50,7 @@ public class TestOnController extends HttpServlet {
 			int idExam = Integer.parseInt(request.getParameter("id"));
 			Exam exam = new Exam();
 			exam = ExamService.getExamById(idExam);
-
-			
-			/*	if (TimeUltils.isInHappyHour(exam.getTimeStarting().toString(), exam.getTimeFinishing().toString())) {*/
+				if (TimeUltils.isInHappyHour(exam.getTimeStarting().toString(), exam.getTimeFinishing().toString())) {
 					request.setAttribute("exam", exam);
 					session.setAttribute("idExamCurent", idExam);
 					session.setAttribute("isStart", false);
@@ -60,9 +58,9 @@ public class TestOnController extends HttpServlet {
 					RequestDispatcher dispatcher = this.getServletContext()//
 							.getRequestDispatcher("/WEB-INF/Views/SinhVien/TrangXacNhanThi.jsp");
 					dispatcher.forward(request, response);
-			/*	} else {
+				} else {
 					System.out.println("đã quá thời hạn làm bài");
-				}*/
+				}
 			
 
 		} else {

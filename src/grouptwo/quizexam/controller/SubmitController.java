@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import grouptwo.quizexam.model.Answer;
 import grouptwo.quizexam.model.DetailResult;
 import grouptwo.quizexam.model.Question;
+import grouptwo.quizexam.model.User;
 import grouptwo.quizexam.service.AnswerService;
 import grouptwo.quizexam.service.BaseService;
 import grouptwo.quizexam.service.DetailResultService;
@@ -52,6 +54,8 @@ public class SubmitController extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session=request.getSession();
+		User user=(User) session.getAttribute("loginedUser");
+		int idStu=user.getUserId();
 		/*kiem tra xem submit co dung giờ hay khong*/
 		String timeFinishingExam=(String) session.getAttribute("timeFinishing");
 		String timeStrarting=(String) session.getAttribute("timeStarting");
@@ -82,7 +86,7 @@ public class SubmitController extends HttpServlet {
 				}
 			}
 			
-			if(ResultTestService.addResultTest(grade, idExam, 2, timeStrarting, currentTimeSubmit))
+			if(ResultTestService.addResultTest(grade, idExam, idStu, timeStrarting, currentTimeSubmit))
 			{
 				int idResult=BaseService.getIdAfterInsert();
 				for(DetailResult ders:lsDeRS)
@@ -91,8 +95,20 @@ public class SubmitController extends HttpServlet {
 					DetailResultService.addDetailResult(ders);
 				}
 			}
+			request.setAttribute("grade", grade);
 			System.out.println("tong diem cua ban la:"+grade);
-			
+			session.removeAttribute("exam");
+			session.removeAttribute("isStart");
+			session.removeAttribute("TimeMinuteLimit");
+			session.removeAttribute("timeStarting");
+			session.removeAttribute("timeFinishing");
+			session.removeAttribute("lsQusAllParent");
+			session.removeAttribute("numberPage");
+			session.removeAttribute("isComplete");
+			RequestDispatcher dispatcher 
+	         = this.getServletContext()//
+	               .getRequestDispatcher("/WEB-INF/Views/SinhVien/TrangXacNhanPdf.jsp");
+			 dispatcher.forward(request, response);
 		}
 		
 		

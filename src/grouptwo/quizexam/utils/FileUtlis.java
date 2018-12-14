@@ -151,6 +151,9 @@ public class FileUtlis {
 				while (cellIterator.hasNext()) {
 					answer=new Answer();
 					Cell nextCell = cellIterator.next();
+					
+					
+					
 					Workbook book = currentRow.getSheet().getWorkbook();
 					CellStyle style = nextCell.getCellStyle();
 					int fontIndex = style.getFontIndex();

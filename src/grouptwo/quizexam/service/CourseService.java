@@ -1,3 +1,4 @@
+
 package grouptwo.quizexam.service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -103,17 +104,37 @@ public class CourseService extends BaseService {
 		}
 		return false;
 	}
+	public static boolean deleteDetailCourse(int id) {
+		String query = "DELETE FROM onlinequiz.detailcourses WHERE Id = ?";
+		
+		List<Object> params = new ArrayList<>();
+		params.add(id);
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	//xoa sinh vien ra khoi lop hoc
+	public static boolean deleteDetailCourseInClass(int idCourse,int student) {
+		String query = "DELETE FROM onlinequiz.detailcourses WHERE Course = ? and Student=?";
+		
+		List<Object> params = new ArrayList<>();
+		params.add(idCourse);
+		params.add(student);
+		try {
+			boolean action = executeUpdate(query, params);
+			return action;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public static boolean updateCourse(Course course)
 	{
-		String query = "UPDATE onlinequiz.courses SET Subject=?,"
-				+ "DateOfStarting=?,"
-				+ "DateOfEnding=?,"
-				+ "DateOfWeek=?,"
-				+ "PartOfStarting = ?,"
-				+ "PartOfEnding=?, "
-				+ "Room = ? ,Activate = ?,"
-				+ "Teacher = ? "
-				+ "WHERE Id=?";
+		String query = "UPDATE onlinequiz.courses SET Subject= ? ,DateOfStarting= ? , DateOfEnding= ? , DateOfWeek= ? ,PartOfStarting = ? , PartOfEnding= ? ,NumOfStudents= ? , Room = ? ,Activate = ?,Teacher = ? ,Name= ? WHERE Id=?";
 		List<Object> params = new ArrayList<>();
 		params.add(course.getSubjectId());
 		params.add(course.getDateOfStarting());
@@ -121,11 +142,13 @@ public class CourseService extends BaseService {
 		params.add(course.getDateOfWeek());
 		params.add(course.getPartOfStarting());
 		params.add(course.getPartOfEnding());
-		params.add(course.getPartOfEnding());
+		params.add(course.getNumberOfStudent());
 		params.add(course.getRoom());
 		params.add(course.isActivate());
 		params.add(course.getTeacher());
+		params.add(course.getName());
 		params.add(course.getCourseId());
+	
 
 		try {
 			boolean action = executeUpdate(query, params);
@@ -136,6 +159,7 @@ public class CourseService extends BaseService {
 		return false;
 
 	}
+	
 	public static boolean addCourse(Course course) {
 		String query = "INSERT INTO onlinequiz.courses (Subject, DateOfStarting, DateOfEnding,DateOfWeek,PartOfStarting,PartOfEnding,NumOfStudents,Room,Activate,Name) " + 
 				"VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -230,4 +254,5 @@ public class CourseService extends BaseService {
 
 
 	
+
 }

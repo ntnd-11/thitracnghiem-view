@@ -10,28 +10,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import grouptwo.quizexam.model.Exam;
+import grouptwo.quizexam.model.User;
 import grouptwo.quizexam.service.ExamService;
 import grouptwo.quizexam.service.SubjectService;
 
+/**
+ * Servlet implementation class HomeQuizController
+ */
 @WebServlet("/HomeQuizController")
 public class HomeQuizController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
     public HomeQuizController() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	@SuppressWarnings("null")
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	@SuppressWarnings("null")  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		int idUser=2;
+		HttpSession sessionn=request.getSession();
+		User user=(User) sessionn.getAttribute("loginedUser");
+		int idUser=user.getUserId();
 		List<Integer> lsIdExamOfUser=ExamService.getLsIdOfUser(idUser);
-		List<Exam> lsExamOfUser=new ArrayList<>();
+		List<Exam> lsExamOfUser=new ArrayList<>();	
 		
 		//Get Ds exam của user khi đã có list id exam của user đó
 		for(int c:lsIdExamOfUser)
@@ -46,6 +56,9 @@ public class HomeQuizController extends HttpServlet {
 		 dispatcher.forward(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
