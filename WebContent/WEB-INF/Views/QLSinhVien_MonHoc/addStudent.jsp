@@ -6,46 +6,45 @@
 <t:WrapperAdmin>
         <div class="row">
             <div class="col-md-12">
+         
               <form action="${pageContext.request.contextPath}/AddStudent" method="post">
             
                 <div class="card">
                   <div class="card-header">
                       <h3 class="card-title"><b> Thêm sinh viên vào lớp học </b> </h3>
                       <div class="card-body">
-                      <c:if test=" ${message!=null} ">
-                      	<div class="form-group row alert alert-warning text-center">
-                      			<h3 style="color:red">${message}</h3>
-                      	</div>
-                      	</c:if>
+                         <c:if test = "${ message != null }">
+                      			<i><p style="color:red">${message}</p></i>
+                      </c:if>
 								 <div class="form-group row">
-                                  <label for="inputName" class="col-sm-2 col-form-label"> Tài khoản</label>
+                                  <label for="account" class="col-sm-2 col-form-label"> Tài khoản</label>
                                   <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputName" placeholder="Tài khoản" name="username">
+                                    <input type="text" class="form-control" id="account" placeholder="Tài khoản" name="username">
                                   </div>
                                 </div>
                                  <div class="form-group row">
-                                  <label for="inputName" class="col-sm-2 col-form-label"> Email</label>
+                                  <label for="email" class="col-sm-2 col-form-label"> Email</label>
                                   <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputName" placeholder="Email" name="email">
+                                    <input type="email" class="form-control" id="email" placeholder="Email" name="email">
                                   </div>
                                 </div>
                                  <div class="form-group row">
-	                                  <label for="inputName" class="col-sm-2 col-form-label"> Mật khẩu</label>
+	                                  <label for="password" class="col-sm-2 col-form-label"> Mật khẩu</label>
 	                                  <div class="col-sm-10">
-	                                    <input type="password" class="form-control" id="inputName" placeholder="Mật khẩu" name="password">
+	                                    <input type="password" class="form-control" id="password" placeholder="Mật khẩu" name="password">
 	                                  </div>
                                 </div>
                                  <div class="form-group row">
-	                                  <label for="inputName" class="col-sm-2 col-form-label"> Mật khẩu xác nhận</label>
+	                                  <label for="confirm" class="col-sm-2 col-form-label"> Mật khẩu xác nhận</label>
 	                                  <div class="col-sm-10">
-	                                    <input type="password" class="form-control" id="inputName" placeholder="Xác nhận mật khẩu" name="confirm">
+	                                    <input type="password" class="form-control" id="confirm" placeholder="Xác nhận mật khẩu" name="confirm">
 	                                  </div>
                                 </div>
                                 
                                 <div class="form-group row">
-                                  <label for="inputName" class="col-sm-2 col-form-label"> Họ tên sinh viên</label>
+                                  <label for="fullname" class="col-sm-2 col-form-label"> Họ tên sinh viên</label>
                                   <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputName" placeholder="Họ tên sinh viên" name="fullname">
+                                    <input type="text" class="form-control" id=""fullname"" placeholder="Họ tên sinh viên" name="fullname">
                                   </div>
                                 </div>
                                   <div class="form-group row">
@@ -101,7 +100,7 @@
       
         <div class="row justify-content-center">
           <button type="submit" class="btn btn-info col-3"> <i class="fa fa-check"></i> Lưu thay đổi</button>
-          <a href="./listStudent.html" class="btn btn-danger col-3"> <i class="fa fa-times"></i> Hủy </a>
+          <a href="${pageContext.request.contextPath}/ListAllStudent" class="btn btn-danger col-3"> <i class="fa fa-times"></i> Hủy </a>
         </div>
         </form>
       

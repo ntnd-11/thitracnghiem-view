@@ -32,8 +32,8 @@ public class ReportExam extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");		
 		try {
-			int studentId = 1;
-			int examId	= 1;
+			int studentId = Integer.parseInt(request.getParameter("studentId"));
+			int examId	= Integer.parseInt(request.getParameter("examId"));
 			JasperReport jasperReport = null;
 			JasperDesign jasperDesign = null;
 			Map<String, Object> parameters = new HashMap<String,Object>();

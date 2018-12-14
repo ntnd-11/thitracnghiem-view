@@ -81,6 +81,7 @@ public class ProfilestudentService extends BaseService {
 		String query = "select * from profilestudents where Id = " + id;
 		try {
 			ResultSet rs = excuteQuery(query);
+			rs.next();
 			Profilestudent profilestudent = new Profilestudent(
 					rs.getInt("Id"), 
 					rs.getString("Name"),
@@ -104,29 +105,29 @@ public class ProfilestudentService extends BaseService {
 		return null;
 	}
 
-	public static List<Profilestudent> getProfilestudentByName(String subject) {
-		String query = "select * from profilestudents where User = " + subject;
+	public static List<Profilestudent> getProfilestudentByName(String name) {
+		String query = "select * from profilestudents where Name like '%" + name + "%'";
 		try {
 			List<Profilestudent> lstStudent = new ArrayList<>();
 			ResultSet rs = excuteQuery(query);
 			while(rs.next())
 			{
-			Profilestudent profilestudent = new Profilestudent(
-					rs.getInt("Id"), 
-					rs.getString("Name"),
-					rs.getInt("IdentityCardNumber"),
-					rs.getDate("DateOfBirth"),
-					rs.getString("Gender"),
-					rs.getString("PhoneNumber"),
-					rs.getString("Country"),
-					rs.getString("Address"),
-					rs.getString("Religion"),
-					rs.getInt("YearOfAdmission"),
-					rs.getInt("YearOfGraduation"),
-					rs.getString("Image"),
-					rs.getBoolean("ShowProfile"),
-					rs.getInt("User"));
-			lstStudent.add(profilestudent);
+				Profilestudent profilestudent = new Profilestudent(
+						rs.getInt("Id"), 
+						rs.getString("Name"),
+						rs.getInt("IdentityCardNumber"),
+						rs.getDate("DateOfBirth"),
+						rs.getString("Gender"),
+						rs.getString("PhoneNumber"),
+						rs.getString("Country"),
+						rs.getString("Address"),
+						rs.getString("Religion"),
+						rs.getInt("YearOfAdmission"),
+						rs.getInt("YearOfGraduation"),
+						rs.getString("Image"),
+						rs.getBoolean("ShowProfile"),
+						rs.getInt("User"));
+				lstStudent.add(profilestudent);
 			}
 			
 			return lstStudent;
@@ -205,6 +206,7 @@ public class ProfilestudentService extends BaseService {
 
 		} catch (SQLException ex) {
 
+			ex.printStackTrace();
 			// Logger.getLogger(ExamsService.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
