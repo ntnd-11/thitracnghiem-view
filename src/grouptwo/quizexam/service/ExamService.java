@@ -45,7 +45,7 @@ public class ExamService extends BaseService{
 		
 	}
 	public static Exam getExamById(int id) {
-		String query = "Select * from Exams where Id = " +id;
+		String query = "Select * from exams where Id = " +id;
 		try
 		{
 			ResultSet rs = excuteQuery(query);

@@ -1,7 +1,7 @@
 package grouptwo.quizexam.controller;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,6 +46,7 @@ public class TestOnController extends HttpServlet {
 			throws  IOException, ServletException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
+		PrintWriter print=response.getWriter();
 		if (session.getAttribute("isStart") == null) {
 			int idExam = Integer.parseInt(request.getParameter("id"));
 			Exam exam = new Exam();
@@ -60,6 +61,7 @@ public class TestOnController extends HttpServlet {
 					dispatcher.forward(request, response);
 				} else {
 					System.out.println("đã quá thời hạn làm bài");
+					print.println("Exam was closed, because timeout! return home and select exam another");
 				}
 			
 

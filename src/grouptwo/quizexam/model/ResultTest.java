@@ -1,12 +1,15 @@
 package grouptwo.quizexam.model;
 
 import java.sql.Date;
+
+import grouptwo.quizexam.service.ExamService;
  
 public class ResultTest {
 
 	private int resultId;
 	private int score;
 	private int examID;
+	private Exam examObject;
 	private int studentId;
 	private Date startTime;
 	private Date finishTime;
@@ -64,14 +67,25 @@ public class ResultTest {
 	}
 	public int getExamID() {
 		return examID;
+		
 	}
 	public void setExamID(int examID) {
+		
 		this.examID = examID;
+		this.examObject=ExamService.getExamById(examID);
 	}
 	public int getStudentId() {
 		return studentId;
 	}
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
+	}
+
+	public Exam getExamObject() {
+		return examObject;
+	}
+
+	public void setExamObject(Exam examObject) {
+		this.examObject = examObject;
 	}
 }

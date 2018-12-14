@@ -1,7 +1,6 @@
 package grouptwo.quizexam.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,25 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.ss.usermodel.DateUtil;
-
-import grouptwo.quizexam.model.Exam;
+import grouptwo.quizexam.model.ResultTest;
 import grouptwo.quizexam.model.User;
-import grouptwo.quizexam.service.ExamService;
-import grouptwo.quizexam.service.SubjectService;
-import grouptwo.quizexam.utils.TimeUltils;
+import grouptwo.quizexam.service.ResultTestService;
 
 /**
- * Servlet implementation class HomeQuizController
+ * Servlet implementation class HistoryExamControler
  */
-@WebServlet("/HomeQuizController")
-public class HomeQuizController extends HttpServlet {
+@WebServlet("/HistoryExam")
+public class HistoryExamControler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeQuizController() {
+    public HistoryExamControler() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,25 +33,18 @@ public class HomeQuizController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("null")  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession sessionn=request.getSession();
-		User user=(User) sessionn.getAttribute("loginedUser");
+		HttpSession session =request.getSession();
+		User user=(User) session.getAttribute("loginedUser");
 		int idUser=user.getUserId();
-		List<Integer> lsIdExamOfUser=ExamService.getLsIdOfUser(idUser);
-		List<Exam> lsExamOfUser=new ArrayList<>();	
 		
-		//Get Ds exam của user khi đã có list id exam của user đó
-		for(int c:lsIdExamOfUser)
-		{
-			lsExamOfUser.add(ExamService.getExamById(c));
-		}
-		request.setAttribute("lsExam", lsExamOfUser);
+		List<ResultTest> lsResultTests=ResultTestService.getResultTestLs(idUser);
+		request.setAttribute("lsExam", lsResultTests);
+		RequestDispatcher dispatcher = request.getServletContext()
+				.getRequestDispatcher("/WEB-INF/Views/SinhVien/historyExam.jsp");
+		dispatcher.forward(request, response);
 		
-		RequestDispatcher dispatcher 
-        = this.getServletContext()//
-              .getRequestDispatcher("/WEB-INF/Views/SinhVien/trangchu.jsp");
-		 dispatcher.forward(request, response);
+		
 	}
 
 	/**

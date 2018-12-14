@@ -8,47 +8,45 @@
 	<parameter name="examId" class="java.lang.Integer"/>
 	<parameter name="studentId" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[select AB.rowNumber, AB.StudentName, AB.ExamName, q.Question, AB.ChooseAnswer, correct.CorrectAnswer,a.Answer from questions q 
-join ( select (@cnt := @cnt + 1) AS rowNumber,s.Name StudentName,e.Name ExamName, q.Id,a.Answer ChooseAnswer,rs.Id ResultId 
-	from resulttests rs CROSS JOIN (SELECT @cnt := 0) AS dummy
-		join detailresult dr on dr.Result = rs.Id
-		join answers a on a.Id = dr.Answer
-		join questions q on q.Id = a.Question
-        join exams e on e.Id = rs.Exam
-        join profilestudents s on s.Id = rs.Student
+		<![CDATA[select fe.rowNumber, ce.ChooseAnswer, fe.Question, a.Answer, ce.ExamName, correct.CorrectAnswer, ce.StudentName from
+(select a.Answer ChooseAnswer,a.Question, e.Name ExamName, s.Name StudentName from resulttests rs 
+join detailresult dr on rs.Id = dr.result 
+join answers a on a.Id = dr.Answer
+join exams e on e.Id = rs.Exam
+join profilestudents s on s.User = rs.Student
+where rs.student = $P!{studentId} and rs.exam = $P!{examId}) ce 
 
-		where rs.Exam =  $P!{examId}  and rs.Student = $P!{studentId} ) AB on AB.Id = q.Id
-join answers a on a.Question = q.Id
+right join (select (@cnt := @cnt + 1) AS rowNumber, q.Question, q.Id, q.CorrectAnswer from questions q CROSS JOIN (SELECT @cnt := 0) AS dummy join detailexams de on q.Id = de.Question where exam = $P!{examId}) fe on ce.Question = fe.Id
+join answers a on a.Question = fe.Id
 join (select q.Id QuestionId, a.Answer CorrectAnswer from questions q
-		join answers a on q.CorrectAnswer =a.Id) correct on correct.QuestionId = q.Id
-		]]>
+		join answers a on q.CorrectAnswer =a.Id) correct on correct.QuestionId = fe.id]]>
 	</queryString>
-	<field name="rowNumber" class="java.lang.Integer">
+	<field name="rowNumber" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="rowNumber"/>
-	</field>
-	<field name="StudentName" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="StudentName"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="profilestudents"/>
-	</field>
-	<field name="ExamName" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="ExamName"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="exams"/>
-	</field>
-	<field name="Question" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="Question"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="questions"/>
 	</field>
 	<field name="ChooseAnswer" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="ChooseAnswer"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="answers"/>
 	</field>
-	<field name="CorrectAnswer" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="CorrectAnswer"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="answers"/>
+	<field name="Question" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Question"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="questions"/>
 	</field>
 	<field name="Answer" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="Answer"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="answers"/>
+	</field>
+	<field name="ExamName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ExamName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="exams"/>
+	</field>
+	<field name="CorrectAnswer" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CorrectAnswer"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="answers"/>
+	</field>
+	<field name="StudentName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="StudentName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="profilestudents"/>
 	</field>
 	<group name="Question">
 		<groupExpression><![CDATA[$F{Question}]]></groupExpression>
@@ -74,7 +72,7 @@ join (select q.Id QuestionId, a.Answer CorrectAnswer from questions q
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="80">
+			<band height="50">
 				<textField>
 					<reportElement x="130" y="10" width="434" height="20" uuid="0e069583-2df3-4b6b-85b7-6a4ffa7d6693"/>
 					<textElement>
