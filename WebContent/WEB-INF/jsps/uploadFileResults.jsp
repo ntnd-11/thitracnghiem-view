@@ -6,6 +6,6 @@
 <body>
  
     <h3>insert question successfully!</h3>
-    <a href="${pageContext.request.contextPath}/uploadFile">upload contrinute</a>
+    <a href="${pageContext.request.contextPath}/ListQuestion">Return</a>
 </body>
 </html>

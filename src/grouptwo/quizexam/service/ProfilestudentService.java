@@ -108,32 +108,20 @@ public class ProfilestudentService extends BaseService {
 		}
 		return profilestudent;
 	}
-	public static Profilestudent getProfilesutudentById(int id) {
-		String query = "select * from profilestudents where Id = " + id;
+	
+	
+	public static int getIdStudentByUser(int id) {
+		String query = "SELECT * FROM onlinequiz.profilestudents where user= " + id;
 		try {
 			ResultSet rs = excuteQuery(query);
 			rs.next();
-			Profilestudent profilestudent = new Profilestudent(
-					rs.getInt("Id"), 
-					rs.getString("Name"),
-					rs.getInt("IdentityCardNumber"),
-					rs.getDate("DateOfBirth"),
-					rs.getString("Gender"),
-					rs.getString("PhoneNumber"),
-					rs.getString("Country"),
-					rs.getString("Address"),
-					rs.getString("Religion"),
-					rs.getInt("YearOfAdmission"),
-					rs.getInt("YearOfGraduation"),
-					rs.getString("Image"),
-					rs.getBoolean("ShowProfile"),
-					rs.getInt("User"));
-			return profilestudent;
+			return rs.getInt("Id");
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 
 		}
-		return null;
+		return 0;
 	}
 
 	public static List<Profilestudent> getProfilestudentByName(String name) {

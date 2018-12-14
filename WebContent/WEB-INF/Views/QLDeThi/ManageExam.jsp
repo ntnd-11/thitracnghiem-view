@@ -103,12 +103,12 @@
 										<td>${item.numQuestions}</td>
 										<td><a
 											href="${pageContext.request.contextPath}/EditExam?examId=${item.id}"><i
-												class="fa fa-edit float-right" style="font-size: 36px"></i></a>
+												class="fa fa-edit " style="font-size: 36px"></i></a>
 											<a
-											href="${pageContext.request.contextPath}/EditExams?command=delete&id=${item.id}"><i
-												class="fa fa-trash-o float-left" style="font-size: 36px"></i></a>
+											href="${pageContext.request.contextPath}/DeleteExam?id=${item.id}"><i
+												class="fa fa-trash-o " style="font-size: 36px"></i></a>
 											<a href="#" tag="${item.id}" class="grantCourse"><i
-												class="fa fa-trash-o float-left" style="font-size: 36px"></i></a>
+												class="fa fa-plus " style="font-size: 36px"></i></a>
 										</td>
 									</tr>
 								</c:forEach>

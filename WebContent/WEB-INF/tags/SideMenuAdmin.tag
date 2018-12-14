@@ -47,6 +47,9 @@
 				<li><a href="${pageContext.request.contextPath}/ListCourses">
 						<i class="nc-icon nc-briefcase-24"></i> Lớp Học
 				</a></li>
+				<li><a href="${pageContext.request.contextPath}/ListCoursesExam">
+						<i class="nc-icon nc-briefcase-24"></i> Đề thi lớp học
+				</a></li>
 			</c:if>
 <!-- 	phân quyền admin -->
 			<c:if test="${loginedUser.roleObject.roleName eq 'ad' }">

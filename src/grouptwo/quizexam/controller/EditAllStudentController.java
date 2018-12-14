@@ -13,6 +13,7 @@ import grouptwo.quizexam.model.Profilestudent;
 import grouptwo.quizexam.model.User;
 import grouptwo.quizexam.service.ProfilestudentService;
 import grouptwo.quizexam.service.UserService;
+import grouptwo.quizexam.utils.EncryptionHelper;
 
 
 @WebServlet("/EditAllStudent")
@@ -67,7 +68,7 @@ public class EditAllStudentController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		String id=request.getParameter("id");
 		String userprofile=request.getParameter("userprofile");
-		String passwordUser=request.getParameter("passwordUser");
+		String passwordUser= EncryptionHelper.MD5(request.getParameter("passwordUser"));
 		String email=request.getParameter("email");
 		String RoleUser="1";
 		//////////////////////////////

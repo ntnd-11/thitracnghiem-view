@@ -60,7 +60,7 @@ public class TestOnController extends HttpServlet {
 							.getRequestDispatcher("/WEB-INF/Views/SinhVien/TrangXacNhanThi.jsp");
 					dispatcher.forward(request, response);
 				} else {
-					System.out.println("đã quá thời hạn làm bài");
+					
 					print.println("Exam was closed, because timeout! return home and select exam another");
 				}
 			

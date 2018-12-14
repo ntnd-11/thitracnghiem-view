@@ -58,8 +58,30 @@ public class UserService extends BaseService {
 		return user;
 	}
 
-	public static  User getUsersByName(String user) {
-		return null;
+	public static  User getUsersByName(String UserName) {
+		String query = "SELECT * FROM onlinequiz.users where UserName='"+UserName+"'";
+		User user=null;
+		try
+		{
+			
+			ResultSet rs = excuteQuery(query);
+			while(rs.next()) {
+					user = new User(
+					rs.getInt("UserId"),
+					rs.getString("UserName"),
+					rs.getString("Email"),
+					rs.getString("Password"),
+					rs.getInt("RoleUser"),
+					rs.getBoolean("Activate"));
+			
+			}
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+
+		}
+		return user;
 	}
 
 	public static  boolean deleteUsers(int id) {

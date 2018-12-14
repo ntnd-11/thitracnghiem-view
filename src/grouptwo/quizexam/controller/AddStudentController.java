@@ -14,6 +14,7 @@ import grouptwo.quizexam.model.User;
 import grouptwo.quizexam.service.BaseService;
 import grouptwo.quizexam.service.ProfilestudentService;
 import grouptwo.quizexam.service.UserService;
+import grouptwo.quizexam.utils.EncryptionHelper;
 
 @WebServlet("/AddStudent")
 public class AddStudentController extends HttpServlet {
@@ -41,7 +42,7 @@ public class AddStudentController extends HttpServlet {
 		{
 			String username = request.getParameter("username");
 			String email	= request.getParameter("email");
-			String password = request.getParameter("password");
+			String password = EncryptionHelper.MD5(request.getParameter("password"));
 			String confirmpw = request.getParameter("confirm");
 			String fullname = request.getParameter("fullname");
 			int	cmnd		= Integer.parseInt(request.getParameter("cmnd"));

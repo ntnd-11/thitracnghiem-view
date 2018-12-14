@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import grouptwo.quizexam.model.User;
 import grouptwo.quizexam.service.UserService;
 import grouptwo.quizexam.utils.AppUtils;
+import grouptwo.quizexam.utils.EncryptionHelper;
 
 /**
  * Servlet implementation class LoginController
@@ -44,11 +45,12 @@ public class LoginController extends HttpServlet {
 		
 		 	
 			String userName=request.getParameter("userName");
-			String password=request.getParameter("passWord");
+			String pw=request.getParameter("passWord");
+			String password = EncryptionHelper.MD5(pw);
 			User userAccount=UserService.findAcc(userName,password);
 			if(userAccount==null)
 			{
-				String error="Đăng nhập không thành công";
+				String error="Ä�Äƒng nháº­p khÃ´ng thÃ nh cÃ´ng";
 				request.setAttribute("error", error);
 				RequestDispatcher dispatcher //
 	            = this.getServletContext().getRequestDispatcher("/WEB-INF/Views/SinhVien/loginView.jsp");
@@ -69,8 +71,8 @@ public class LoginController extends HttpServlet {
 		                  .getRequestDispatcher(requestUri);
 		        	 dispatcher.forward(request, response);
 		        } else {
-		            // Mặc định sau khi đăng nhập thành công
-		            // chuyển hướng về trang /userInfo
+		            // Máº·c Ä‘á»‹nh sau khi Ä‘Äƒng nháº­p thÃ nh cÃ´ng
+		            // chuyá»ƒn hÆ°á»›ng vá»� trang /userInfo
 		        	
 		            response.sendRedirect(request.getContextPath() +"/HomeQuizController");
 		        }

@@ -14,6 +14,7 @@ import grouptwo.quizexam.model.Profilestudent;
 import grouptwo.quizexam.model.User;
 import grouptwo.quizexam.service.ProfilestudentService;
 import grouptwo.quizexam.service.UserService;
+import grouptwo.quizexam.utils.EncryptionHelper;
 
 /**
  * Servlet implementation class Profile
@@ -59,7 +60,8 @@ public class Profile extends HttpServlet {
 		String passMoi=request.getParameter("passMoi");
 		String passXacNhan=request.getParameter("passXacNhan");
 		String id=request.getParameter("idUser");
-		System.out.println(passMoi+id);
+		//System.out.println(passMoi+id);
+		passMoi = EncryptionHelper.MD5(passMoi);
 		UserService.ChangePass(passMoi,Integer.parseInt(id));
 		String contextPath=request.getContextPath();
 		response.sendRedirect(contextPath+"/Profile");

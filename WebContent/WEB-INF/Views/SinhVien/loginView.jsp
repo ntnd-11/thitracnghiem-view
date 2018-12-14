@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assetquiz/css/login.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assetquiz/css/reset.css">
 <title>Đăng Nhập</title>
-</head>S
+</head>
 <body>   
       <div class="limiter">
 		<div class="container-login">

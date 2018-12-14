@@ -4,6 +4,7 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/Views/QLDeThi/addExam.jsp=UTF-8
 encoding//WebContent/WEB-INF/Views/ViewTrangChu/IndexTrangChu.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsps/uploadFileResults.jsp=UTF-8
 encoding//WebContent/WEB-INF/report.jrxml=UTF-8
 encoding//WebContent/WEB-INF/tags/Navbar.tag=UTF-8
 encoding//WebContent/WEB-INF/tags/SideMenuAdmin.tag=UTF-8
@@ -12,5 +13,8 @@ encoding//src/grouptwo/quizexam/controller/AddQuestionController.java=UTF-8
 encoding//src/grouptwo/quizexam/controller/AddStudentController.java=UTF-8
 encoding//src/grouptwo/quizexam/controller/EditExamController.java=UTF-8
 encoding//src/grouptwo/quizexam/controller/EditQuestionController.java=UTF-8
+encoding//src/grouptwo/quizexam/controller/HomeQuizController.java=UTF-8
+encoding//src/grouptwo/quizexam/controller/LoginController.java=UTF-8
 encoding//src/grouptwo/quizexam/controller/SubmitController.java=UTF-8
+encoding//src/grouptwo/quizexam/security/SecurityConfig.java=UTF-8
 encoding//src/grouptwo/quizexam/security/SecurityFilter.java=UTF-8

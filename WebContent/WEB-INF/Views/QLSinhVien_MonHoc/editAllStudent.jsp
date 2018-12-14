@@ -149,7 +149,7 @@
 									Password</label>
 								<div class="col-sm-10">
 									<input type="password" class="form-control" id="passwordUser"
-										value="${user.getPassword()}" placeholder="passwordUser"
+										placeholder="passwordUser"
 										name="passwordUser">
 								</div>
 							</div>
