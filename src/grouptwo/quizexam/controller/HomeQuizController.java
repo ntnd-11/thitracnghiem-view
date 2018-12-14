@@ -35,13 +35,13 @@ public class HomeQuizController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("null")
+	@SuppressWarnings("null")  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sessionn=request.getSession();
 		User user=(User) sessionn.getAttribute("loginedUser");
 		int idUser=user.getUserId();
 		List<Integer> lsIdExamOfUser=ExamService.getLsIdOfUser(idUser);
-		List<Exam> lsExamOfUser=new ArrayList<>();
+		List<Exam> lsExamOfUser=new ArrayList<>();	
 		
 		//Get Ds exam của user khi đã có list id exam của user đó
 		for(int c:lsIdExamOfUser)

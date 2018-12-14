@@ -54,30 +54,12 @@
 	<header>
 		<div class="container">
 			<!-- top header -->
-			<section class="row top_header pt-3">
-				<div class="col-lg-6"></div>
-				<div class="col-lg-6 buttons">
-					<p>
-						<i class="fas mr-1 fa-phone"></i> +12 8976 2334
-					</p>
-					<p>
-						<a class="nav-link " 
-							href="${pageContext.request.contextPath}/Login">Đăng Nhập</a>
-					</p>
-					<p>
-					<a class="nav-link"
-						href="${pageContext.request.contextPath}/ViewsWeb/DangKiTK.jsp">Đăng
-							kí</a>
-					</p>
-				</div>
-			</section>
-			<!-- top header -->
 
 			<!-- nav -->
 			<nav class="navbar navbar-expand-lg navbar-light py-sm-4 py-2">
 				<!-- logo -->
 				<h1>
-					<a class="navbar-brand" href="index.html"> <i
+					<a class="navbar-brand" href="${pageContext.request.contextPath}/Home"> <i
 						class="fab fa-affiliatetheme"></i> Eduversity
 					</a>
 				</h1>
@@ -92,19 +74,19 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-lg-auto text-center">
 						<li class="nav-item active  mr-lg-3"><a class="nav-link"
-							href="index.html">Trang chủ <span class="sr-only">(current)</span>
+							href="${pageContext.request.contextPath}/Home">Trang chủ <span class="sr-only">(current)</span>
 						</a></li>
 						
 						<li class="nav-item mr-lg-3"><a class="nav-link"
-							href="services.html">Services</a></li>
+							href="#">Môn học</a></li>
 						<li class="dropdown nav-item mr-lg-3"><a href="#"
 							data-toggle="dropdown" class="nav-link dropdown-toggle ">
-								Pages <b class="caret"></b>
+								Đề thi <b class="caret"></b>
 						</a>
 							<ul class="dropdown-menu" role="menu">
-								<li class="nav-item"><a href="course.html" class="nav-link">Courses</a>
+								<li class="nav-item"><a href="#" class="nav-link">Đề Mạng 2016</a>
 								</li>
-								<li class="nav-item"><a href="error.html" class="nav-link">404</a>
+								<li class="nav-item"><a href="#" class="nav-link">Đề CNPM 2017</a>
 								</li>
 							</ul></li>
 						<li class="nav-item mr-3"><a class="nav-link"
@@ -143,9 +125,9 @@
 						<h3>Practice makes you better</h3>
 					</div>
 					<h3 class="txt-w3_agile mb-3">Its time to master your skills</h3>
-					<a href="course.html" class="mr-2"><i
+					<a href="#" class="mr-2"><i
 						class="fas fa-graduation-cap"></i> Our Courses</a> <a
-						href="about.html"><i class="fas fa-book"></i> Read More</a>
+						href="#"><i class="fas fa-book"></i> Read More</a>
 				</div>
 				<!-- To bottom button-->
 				<div class="thim-click-to-bottom">
@@ -200,7 +182,7 @@
 					</div>
 				</div>
 				<div class="ser-button mt-4">
-					<a href="services.html">Explore all services</a>
+					<a href="#">Explore all services</a>
 				</div>
 			</div>
 		</div>
@@ -306,26 +288,10 @@
 
 
 
-				<div class="col-lg-2 col-md-4 col-sm-6 mt-lg-0 mt-sm-5 mt-4">
-					<h3 class="text-uppercase mb-3">Follow us</h3>
-					<p class="mb-4">Follow us on social media</p>
-					<ul class="social mt-lg-0 mt-3">
-						<li class="mr-1"><a href="#"><span
-								class="fab fa-facebook-f"></span></a></li>
-						<li class="mr-1"><a href="#"><span class="fab fa-twitter"></span></a></li>
-						<li class="mr-1"><a href="#"><span
-								class="fab fa-google-plus-g"></span></a></li>
-						<li class=""><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
-						<div class="social-divider"></div>
-						<li class="mr-1"><a href="#"><span class="fas fa-rss"></span></a></li>
-						<li class="mr-1"><a href="#"><span class="fab fa-vk"></span></a></li>
-						<li class="mr-1"><a href="#"><span class="fab fa-vimeo-v"></span></a></li>
-						<li class=""><a href="#"><span class="fab fa-yahoo"></span></a></li>
-					</ul>
-				</div>
 			</div>
 		</div>
 		<div class="copyright pb-5 text-center">
+			
 			<p>
 				© 2018 Eduversity. All Rights Reserved | Design by <a
 					href="http://www.W3Layouts.com" target="_blank">Group 2</a>
