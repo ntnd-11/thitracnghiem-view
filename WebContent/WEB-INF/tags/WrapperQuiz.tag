@@ -1,5 +1,6 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
    <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +78,37 @@
           <li><a href="#organisations">Kiến thức</a></li>
           <li><a href="#courses">Thi thử</a></li>
           <li><a href="about.jsp">Liên hệ</a></li>
-          <li><a href="#" data-target="#login" data-toggle="modal">Đăng xuất</a></li>
+          <c:if test="${not empty loginedUser}">
+          <c:if test="${loginedUser.roleObject.roleName eq 'stu' }">
+           <li><a href="${pageContext.request.contextPath}/Logout" >Đăng xuất</a></li>
+          </c:if>
+          
+           <c:if test="${loginedUser.roleObject.roleName eq 'asma' }">
+          <li><a href="${pageContext.request.contextPath}/ListQuestion" >Quản Lý Câu Hỏi</a></li>
+           <li><a href="${pageContext.request.contextPath}/Logout" >Đăng xuất</a></li>
+          </c:if>
+          
+            <c:if test="${loginedUser.roleObject.roleName eq 'stuma' }">
+          <li><a href="${pageContext.request.contextPath}/ListAllStudent" >Quản Lý Học Sinh</a></li>
+           <li><a href="${pageContext.request.contextPath}/Logout" >Đăng xuất</a></li>
+          </c:if>
+          
+            <c:if test="${loginedUser.roleObject.roleName eq 'exma' }">
+          <li><a href="${pageContext.request.contextPath}/ListExam" >Quản Lý Đề Thi</a></li>
+           <li><a href="${pageContext.request.contextPath}/Logout" >Đăng xuất</a></li>
+          </c:if>
+          
+        
+        <c:if test="${loginedUser.roleObject.roleName eq 'ad' }">
+          <li><a href="${pageContext.request.contextPath}/ListQuestion" >Quản Lý</a></li>
+           <li><a href="${pageContext.request.contextPath}/Logout" >Đăng xuất</a></li>
+          </c:if>
+          
+          
+          </c:if>
+            <c:if test="${empty loginedUser}">
+          <li><a href="${pageContext.request.contextPath}/Login" >Đăng nhập</a></li>
+          </c:if>
           <li class="btn-trial"><a href="#footer">Free Trail</a></li>
         </ul>
       </div>
